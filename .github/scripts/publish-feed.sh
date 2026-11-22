@@ -28,7 +28,7 @@ for attempt in 1 2 3 4 5; do
         git -C "${dir}" rm -rfq --cached . 2>/dev/null || true
         printf '%s\n' \
             "# Update channels" "" \
-            "The newest build on each channel, for NectarLink's updaters to read" \
+            "The newest build on each channel, for Panal's updaters to read" \
             "(see \`desktop/app/src/feed.rs\` on main). Written by the release and" \
             "nightly workflows; don't edit by hand." > "${dir}/README.md"
         git -C "${dir}" add README.md

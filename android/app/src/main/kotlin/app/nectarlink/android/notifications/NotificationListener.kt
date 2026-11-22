@@ -11,7 +11,7 @@ import android.provider.Settings
 import android.service.notification.NotificationListenerService
 import android.service.notification.StatusBarNotification
 import androidx.core.app.NotificationManagerCompat
-import app.nectarlink.android.NectarlinkApplication
+import app.nectarlink.android.PanalApplication
 
 /**
  * Hands this phone's notifications to the core, which mirrors them to the
@@ -22,7 +22,7 @@ import app.nectarlink.android.NectarlinkApplication
  * it (and keeps the process alive) for as long as that lasts.
  */
 class NotificationListener : NotificationListenerService() {
-    private val core get() = (application as NectarlinkApplication).core
+    private val core get() = (application as PanalApplication).core
     private val reader by lazy { NotificationReader(this) }
     private val limiter = LiveRateLimiter { notification -> core.notificationPosted(notification) }
     private val worker = java.util.concurrent.Executors.newSingleThreadExecutor { r ->
@@ -184,7 +184,7 @@ class NotificationListener : NotificationListenerService() {
 
         fun component(context: Context) = ComponentName(context, NotificationListener::class.java)
 
-        /** Android's notification access screen, on NectarLink's own switch where possible. */
+        /** Android's notification access screen, on Panal's own switch where possible. */
         fun settingsIntent(context: Context): Intent =
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                 Intent(Settings.ACTION_NOTIFICATION_LISTENER_DETAIL_SETTINGS).putExtra(

@@ -1,120 +1,120 @@
-# Privacy and Security
+# Privacidad y seguridad
 
-NectarLink is built so that your personal data stays on your own devices under your direct control. There is no user account, no cloud database, no analytics or telemetry, and no advertising SDK. Every connection between your phone and your PC is mutually authenticated and encrypted end to end.
+Panal está hecho para que tus datos personales se queden en tus propios dispositivos, bajo tu control directo. No hay cuenta de usuario, ni base de datos en la nube, ni analítica o telemetría, ni SDK de publicidad. Cada conexión entre el teléfono y el PC se autentica en ambos sentidos y se cifra de extremo a extremo.
 
-For a line-by-line engineering audit of every network, IPC, shared-memory, and filesystem boundary, see [`docs/SECURITY-REVIEW.md`](../SECURITY-REVIEW.md).
+Para una auditoría técnica línea a línea de cada frontera de red, IPC, memoria compartida y sistema de archivos, consulta [`docs/SECURITY-REVIEW.md`](../SECURITY-REVIEW.md).
 
-## 1. Device Identity Keys
+## 1. Claves de identidad del dispositivo
 
-When NectarLink starts for the first time on your PC or Android phone, it generates a persistent 256-bit **Ed25519** cryptographic identity keypair:
+La primera vez que Panal arranca en el PC o en el teléfono Android, genera un par de claves de identidad criptográfica **Ed25519** de 256 bits que se conserva:
 
-- **How devices are identified**: Every device is addressed by its 32-byte Ed25519 public key (`DeviceId`), never by an IP address, hostname, or email address.
-- **How your private key is protected at rest**:
-  - On **Windows**, `identity.key` is encrypted using the Windows Data Protection API (**DPAPI** via `CryptProtectData` with `CRYPTPROTECT_UI_FORBIDDEN` and entropy `b"nectarlink/identity/v1"`), tied to your Windows user account credentials (not hardware-backed).
-  - On **Android**, `identity.key` is encrypted by a non-exportable **AES-256-GCM** key (`nectarlink.identity.v1`) inside the **Android Keystore**, which may be hardware-backed depending on your phone.
-  - On **Linux**, `identity.key` isn't encrypted yet. It's protected by file permissions (`0600`), so only your user can read it, but anything running as you can, and so can anyone who reads the disk. Full-disk encryption covers the second case.
+- **Cómo se identifican los dispositivos**: cada dispositivo se identifica por su clave pública Ed25519 de 32 bytes (`DeviceId`), nunca por una dirección IP, un nombre de equipo o una dirección de correo.
+- **Cómo se protege la clave privada en reposo**:
+  - En **Windows**, `identity.key` se cifra con la API de protección de datos de Windows (**DPAPI**, mediante `CryptProtectData` con `CRYPTPROTECT_UI_FORBIDDEN` y la entropía `b"nectarlink/identity/v1"`), ligada a las credenciales de tu cuenta de usuario de Windows (no respaldada por hardware).
+  - En **Android**, `identity.key` se cifra con una clave **AES-256-GCM** no exportable (`nectarlink.identity.v1`) dentro del **Almacén de claves de Android**, que puede estar respaldado por hardware según el teléfono.
+  - En **Linux**, `identity.key` aún no se cifra. La protegen los permisos del archivo (`0600`), así que solo tu usuario puede leerla, pero también puede cualquier cosa que se ejecute como tú y cualquiera que lea el disco. El cifrado de disco completo cubre este segundo caso.
 
-## 2. Cryptographic Pairing (Out-of-Band Secret and 6-Digit SAS)
+## 2. Emparejamiento criptográfico (secreto fuera de banda y SAS de 6 dígitos)
 
-An unknown device on your Wi-Fi network can never read your notifications, clipboard, or files. Devices only communicate after completing a mutual pairing ceremony (`ALPN = "nectarlink-pair/0"`):
+Un dispositivo desconocido en tu red Wi-Fi nunca puede leer tus notificaciones, tu portapapeles ni tus archivos. Los dispositivos solo se comunican tras completar un emparejamiento mutuo (`ALPN = "nectarlink-pair/0"`):
 
-- **QR Code Pairing**: When you display a pairing QR code on your PC, NectarLink generates a one-time 128-bit random secret (`s`, encoded in URL-safe base64) that expires after 5 minutes and is invalidated after use or after 5 failed attempts. Scanning that QR code proves your phone observed the secret out of band by computing `HMAC-SHA256(s, "nectarlink-pair-v0" || idA || idB)` over both devices' Ed25519 public keys (`idA` for the initiator and `idB` for the responder).
-- **Nearby and USB 6-Digit Code Pairing**: When you pair without a camera (via **Pair nearby** or **USB auto-pair**), both devices establish a TLS 1.3 session, exchange SHA-256 commitments to 128-bit random nonces (`nA` and `nB`), and derive a 6-digit Short Authentication String (**SAS**) using **HMAC-SHA256** (`uint32_be(HMAC-SHA256(nA || nB, "nectarlink-sas-v0" || idA || idB)[0..4]) mod 1,000,000`). If an attacker on an untrusted Wi-Fi network attempted a man-in-the-middle attack, the public keys in the SAS calculation would not match on both sides. Nothing is paired until you confirm **Codes match** on both devices.
+- **Emparejamiento con código QR**: cuando muestras un código QR de emparejamiento en el PC, Panal genera un secreto aleatorio de un solo uso de 128 bits (`s`, codificado en base64 apto para URL) que caduca a los 5 minutos y se invalida al usarse o tras 5 intentos fallidos. Escanear ese QR demuestra que el teléfono vio el secreto fuera de banda, calculando `HMAC-SHA256(s, "nectarlink-pair-v0" || idA || idB)` sobre las claves públicas Ed25519 de ambos dispositivos (`idA` para el que inicia e `idB` para el que responde).
+- **Emparejamiento cercano y por USB con código de 6 dígitos**: cuando emparejas sin cámara (con **Emparejar cerca** o **Emparejamiento automático por USB**), ambos dispositivos establecen una sesión TLS 1.3, intercambian compromisos SHA-256 de nonces aleatorios de 128 bits (`nA` y `nB`) y derivan una cadena corta de autenticación (**SAS**) de 6 dígitos con **HMAC-SHA256** (`uint32_be(HMAC-SHA256(nA || nB, "nectarlink-sas-v0" || idA || idB)[0..4]) mod 1.000.000`). Si un atacante en una Wi-Fi no fiable intentara un ataque de intermediario, las claves públicas del cálculo SAS no coincidirían en ambos lados. No se empareja nada hasta que confirmas **Los códigos coinciden** en ambos dispositivos.
 
-- **Pairing links opened from outside the app**: A `nectarlink://pair` link that reaches the phone from a web page, another app, or the system camera never pairs on its own. The phone asks first, naming the PC, and pairs only after you tap **Pair**.
+- **Enlaces de emparejamiento abiertos desde fuera de la app**: un enlace `nectarlink://pair` que llega al teléfono desde una página web, otra app o la cámara del sistema nunca empareja por sí solo. El teléfono pregunta antes, con el nombre del PC, y solo empareja cuando tocas **Emparejar**.
 
 <p align="center">
-  <img src="images/pair-link-prompt.png" alt="The phone asking Pair with Bee? after a pairing link was opened" width="360">
+  <img src="images/pair-link-prompt.png" alt="El teléfono pregunta si emparejar con Bee tras abrir un enlace de emparejamiento" width="360">
 </p>
 
-Once paired, each device saves the peer's Ed25519 public key in its local SQLite trust store (`peers` table).
+Una vez emparejados, cada dispositivo guarda la clave pública Ed25519 del otro en su almacén de confianza SQLite local (tabla `peers`).
 
-**Install ID**: Each device also shares a 32-character install ID with the devices it pairs with. It is a salted BLAKE3 hash of the Android ID on the phone, or the Windows machine GUID or Linux machine ID on the PC, so the underlying identifier is never sent. It is used for one thing: when you reset and re-pair the same device, the old entry is replaced instead of left behind. Two different devices with the same name are never merged.
+**ID de instalación**: cada dispositivo comparte también un ID de instalación de 32 caracteres con los dispositivos con los que se empareja. Es un hash BLAKE3 con sal del Android ID en el teléfono, o del GUID de la máquina Windows o el machine ID de Linux en el PC, así que el identificador original nunca se envía. Sirve para una sola cosa: cuando restableces y vuelves a emparejar el mismo dispositivo, la entrada antigua se sustituye en lugar de quedarse duplicada. Dos dispositivos distintos con el mismo nombre nunca se fusionan.
 
-## 3. End-to-End Encrypted Connections (QUIC + TLS 1.3)
+## 3. Conexiones cifradas de extremo a extremo (QUIC + TLS 1.3)
 
-Every post-pairing session (`ALPN = "nectarlink/0"`) runs over **QUIC** (via `iroh`) with **TLS 1.3** mutual authentication:
+Cada sesión posterior al emparejamiento (`ALPN = "nectarlink/0"`) funciona sobre **QUIC** (con `iroh`) con autenticación mutua **TLS 1.3**:
 
-- **Mutual verification**: Both the phone and the PC verify the peer's Ed25519 signature during the TLS 1.3 handshake and immediately drop any connection whose public key is not in the local `peers` table.
-- **USB tunnel encryption**: Even when connected over a USB cable (`On USB`), NectarLink runs the exact same TLS 1.3 end-to-end encrypted QUIC protocol over the local loopback bridge.
-- **Strict wire bounds**: Every protocol message is length-prefixed CBOR capped at 1 MiB before memory allocation (`MAX_FRAME_LEN`), preventing malformed frames from exhausting memory.
+- **Verificación mutua**: el teléfono y el PC verifican la firma Ed25519 del otro durante el saludo TLS 1.3 y cortan al momento cualquier conexión cuya clave pública no esté en la tabla `peers` local.
+- **Cifrado del túnel USB**: incluso conectado por cable USB (`Por USB`), Panal usa exactamente el mismo protocolo QUIC cifrado de extremo a extremo con TLS 1.3 sobre el puente de bucle local.
+- **Límites estrictos en la transmisión**: cada mensaje del protocolo es CBOR con prefijo de longitud, limitado a 1 MiB antes de reservar memoria (`MAX_FRAME_LEN`), para que los mensajes malformados no agoten la memoria.
 
-## 4. Network Connections and Automatic Update Checks
+## 4. Conexiones de red y búsqueda automática de actualizaciones
 
-### Local-First Device Communication
+### Comunicación local primero
 
-- **Local network by default**: By default, NectarLink discovers your paired devices on the local network using mDNS and connects directly over LAN IPv4/IPv6 or a USB cable (`127.0.0.1:53319` over `adb forward`). No device-to-device data leaves your local network unless you turn on **Connect over mobile data**.
-- **Opt-in **Connect over mobile data** (`away_mode`, off by default on both PC and Android)**: If you turn on **Connect over mobile data** in **Settings › Connection & About** on the PC and **Settings › Devices** on Android, NectarLink maintains your connection when your phone is on LTE/5G or a different Wi-Fi network.
-- **What it publishes**: While it's on, your device publishes its network addresses to `iroh`'s public address service under its public key, so your other device can find it. Your device's name isn't included.
-- **Turning it off**: It takes effect right away. Publishing and looking up stop, connections that aren't on your local network or USB close, and no relay carries anything more. One idle connection to the relay stays open, carrying nothing, until NectarLink next restarts.
-- **End-to-end encryption over relays**: When a direct UDP hole-punch cannot be established while **Connect over mobile data** is enabled, encrypted QUIC packets are forwarded through an `iroh` relay. Because TLS 1.3 terminates exclusively inside your phone and your PC using your paired Ed25519 keys, a relay only sees opaque encrypted UDP datagrams and can never decrypt your messages, notifications, clipboard, or files.
-- **Extra protection for remote storage**: Even if you have enabled **File Explorer integration** (`storage`) on your home Wi-Fi, NectarLink blocks storage browsing over a relay connection unless you also explicitly enable **Remote PC file access** (`remote_files`, off by default) in **Settings › Devices**.
+- **Red local por defecto**: por defecto, Panal descubre los dispositivos emparejados en la red local con mDNS y se conecta directamente por IPv4/IPv6 en la red local o por cable USB (`127.0.0.1:53319` con `adb forward`). Ningún dato entre dispositivos sale de tu red local salvo que actives **Conectar con datos móviles**.
+- **Opcional: **Conectar con datos móviles** (`away_mode`, desactivado por defecto en el PC y en Android)**: si activas **Conectar con datos móviles** en **Ajustes › Conexión y Acerca de** del PC y en **Ajustes › Dispositivos** de Android, Panal mantiene la conexión cuando el teléfono está en LTE/5G o en otra red Wi-Fi.
+- **Qué publica**: mientras está activado, el dispositivo publica sus direcciones de red en el servicio público de direcciones de `iroh` bajo su clave pública, para que tu otro dispositivo pueda encontrarlo. El nombre del dispositivo no se incluye.
+- **Desactivarlo**: tiene efecto al momento. Se dejan de publicar y buscar direcciones, se cierran las conexiones que no van por la red local o USB, y ningún relé transporta nada más. Una conexión inactiva con el relé sigue abierta, sin transportar nada, hasta el siguiente reinicio de Panal.
+- **Cifrado de extremo a extremo a través de relés**: cuando no se puede abrir un paso directo UDP con **Conectar con datos móviles** activado, los paquetes QUIC cifrados se reenvían a través de un relé `iroh`. Como TLS 1.3 termina solo dentro del teléfono y del PC con tus claves Ed25519 emparejadas, un relé solo ve datagramas UDP cifrados opacos y nunca puede descifrar tus mensajes, notificaciones, portapapeles ni archivos.
+- **Protección extra para el almacenamiento remoto**: aunque hayas activado la **Integración con el Explorador de archivos** (`storage`) en la Wi-Fi de casa, Panal bloquea la exploración del almacenamiento por una conexión con relé salvo que también actives expresamente **Acceso remoto a archivos del PC** (`remote_files`, desactivado por defecto) en **Ajustes › Dispositivos**.
 
-### Automatic Update Checks
+### Búsqueda automática de actualizaciones
 
-To keep your installation current without an app store, installed copies check this project's GitHub repository over HTTPS. Each check sends only a `User-Agent` such as `Nectarlink/<version> (Windows)`, with no personal or device information.
+Para mantener la instalación al día sin tienda de apps, las copias instaladas consultan por HTTPS el repositorio GitHub de este proyecto. Cada consulta solo envía un `User-Agent` como `Panal/<versión> (Windows)`, sin información personal ni del dispositivo.
 
-- **What's fetched**: your channel's feed, `https://raw.githubusercontent.com/thtbee/nectarlink/channels/<stable|nightly>.json`, or the GitHub Releases API if no feed is published. A download is only accepted from this repository's own release files, and only if its SHA-256 matches.
-- **How often on the PC**: 30 seconds after startup, then every 12 hours on Stable or every 2 hours on Nightly.
-- **How often on Android**: at most once a day on Stable or every 6 hours on Nightly, in the background and when the app comes to the front, and when you tap **Check for updates**. A paired device can tell another that a build is out, which only starts the same check sooner. It can't name a file.
-- **Installing on Windows**: with **Install updates automatically** on (the default), the update runs at a quiet moment, or when you click **Update**. The installer registers a Windows task, **Nectarlink Update**, that runs the update as SYSTEM so no administrator prompt is needed. It takes no input from whoever starts it, only installs an official build, and writes what it did to `update.log` in the install folder.
-- **Installing on Android**: a newer APK is downloaded, checked and installed. Android only installs it over NectarLink if it carries the same signature, so only official builds can update the app.
-- **Installing on Linux**: an install only takes its own kind of file, such as a `.deb` for a `.deb` install.
+- **Qué se descarga**: el feed de tu canal, `https://raw.githubusercontent.com/zaiddia/NectarLink/channels/<stable|nightly>.json`, o la API de GitHub Releases si no hay feed publicado. Solo se acepta una descarga de los archivos de las versiones publicadas de este repositorio, solo si su SHA-256 coincide y solo si el archivo `SHA256SUMS.txt` lleva una firma Ed25519 válida de la clave de publicación de Panal.
+- **Con qué frecuencia en el PC**: 30 segundos después de arrancar y luego cada 12 horas en Estable o cada 2 horas en Nightly.
+- **Con qué frecuencia en Android**: como mucho una vez al día en Estable o cada 6 horas en Nightly, en segundo plano y cuando la app pasa a primer plano, y cuando tocas **Buscar actualizaciones**. Un dispositivo emparejado puede avisar a otro de que hay una compilación nueva, lo que solo adelanta esa misma consulta. No puede indicar un archivo.
+- **Instalación en Windows**: con **Instalar actualizaciones automáticamente** activado (lo predeterminado), la actualización se hace en un momento tranquilo o cuando haces clic en **Actualizar**. El instalador registra una tarea de Windows, **Panal Update**, que ejecuta la actualización como SYSTEM para no necesitar una petición de administrador. No acepta datos de quien la lanza, solo instala una compilación oficial y escribe lo que ha hecho en `update.log` en la carpeta de instalación.
+- **Instalación en Android**: se descarga, se comprueba y se instala un APK más nuevo. Android solo lo instala sobre Panal si lleva la misma firma, así que solo las compilaciones oficiales pueden actualizar la app.
+- **Instalación en Linux**: una instalación solo acepta su propio tipo de archivo, por ejemplo un `.deb` para una instalación `.deb`.
 
-Turn either setting off in **Settings › Connection & About** on the PC, or **Settings › Features & Data › About** on Android.
+Desactiva cualquiera de los dos ajustes en **Ajustes › Conexión y Acerca de** en el PC o en **Ajustes › Funciones y datos › Acerca de** en Android.
 
-### Network Connections NectarLink Makes
+### Conexiones de red que hace Panal
 
-| Connection / Activity | Protocol & Destination | Default State | How to Control or Disable |
+| Conexión / actividad | Protocolo y destino | Estado predeterminado | Cómo controlarla o desactivarla |
 | :--- | :--- | :--- | :--- |
-| **Paired device discovery & session** | mDNS (`_nectarlink._udp.local`) and direct QUIC + TLS 1.3 UDP on your local LAN | **On** (LAN only) | Unpair devices in **Settings › Devices** or quit NectarLink |
-| **USB wired transport (`On USB`)** | QUIC + TLS 1.3 over loopback TCP (`127.0.0.1:5037` ADB host to `127.0.0.1:53319` on device) | **On** when USB debugging is active | Unplug the USB cable or turn off USB debugging on the phone |
-| **Automatic update check (PC)** | HTTPS `GET` of the channel feed on `raw.githubusercontent.com`, or `api.github.com` (see above); downloads the update from this repository's releases when a newer one exists | **On** on installed copies | Turn off **Settings › Connection & About › Check for updates** |
-| **Automatic / manual update check (Android)** | The same feed over HTTPS (see above); downloads the `.apk` from this repository's releases when a newer one exists | **On** in release builds | Turn off **Settings › Features & Data › About › Check for updates** |
-| **Connect over mobile data** (`away_mode`) | `iroh` DNS/Pkarr lookup and end-to-end TLS 1.3 encrypted QUIC relay servers | **Off** on both PC and Android | Toggle **Settings › Connection & About › Connect over mobile data** (PC) and **Settings › Devices › Connect over mobile data** (Android) |
-| **Voice typing** | Android's speech recognizer on your phone, which may send what you say to its provider (usually Google) | Only while you tap or hold **Dictate** | Don't use **Dictate** |
-| **LocalSend discovery & transfer** | UDP multicast `224.0.0.167:53317` and HTTPS/HTTP TCP `53317` (local network only) | **Off** on both PC and Android | Toggle **Settings › Files & Sync › LocalSend on local network** (PC) or **Settings › Features & Data › LocalSend** (Android) |
-| **Local automation API (PC)** | Loopback HTTP on `127.0.0.1:53320` (never bound to LAN interfaces) | **Off** | Toggle **Settings › Connection & About › Local automation API** |
+| **Descubrimiento y sesión de dispositivos emparejados** | mDNS (`_nectarlink._udp.local`) y QUIC + TLS 1.3 directo por UDP en tu red local | **Activado** (solo red local) | Desempareja dispositivos en **Ajustes › Dispositivos** o cierra Panal |
+| **Transporte por cable USB (`Por USB`)** | QUIC + TLS 1.3 sobre TCP de bucle local (`127.0.0.1:5037` del host ADB a `127.0.0.1:53319` en el dispositivo) | **Activado** con la depuración USB activa | Desconecta el cable USB o desactiva la depuración USB en el teléfono |
+| **Búsqueda automática de actualizaciones (PC)** | `GET` HTTPS del feed del canal en `raw.githubusercontent.com`, o `api.github.com` (ver arriba); descarga la actualización de las versiones publicadas de este repositorio cuando hay una más nueva | **Activado** en copias instaladas | Desactiva **Ajustes › Conexión y Acerca de › Buscar actualizaciones** |
+| **Búsqueda automática o manual de actualizaciones (Android)** | El mismo feed por HTTPS (ver arriba); descarga el `.apk` de las versiones publicadas de este repositorio cuando hay uno más nuevo | **Activado** en compilaciones de publicación | Desactiva **Ajustes › Funciones y datos › Acerca de › Buscar actualizaciones** |
+| **Conectar con datos móviles** (`away_mode`) | Búsqueda DNS/Pkarr de `iroh` y servidores de relé QUIC cifrados de extremo a extremo con TLS 1.3 | **Desactivado** en el PC y en Android | Cambia **Ajustes › Conexión y Acerca de › Conectar con datos móviles** (PC) y **Ajustes › Dispositivos › Conectar con datos móviles** (Android) |
+| **Dictado por voz** | El reconocedor de voz de Android del teléfono, que puede enviar lo que dices a su proveedor (normalmente Google) | Solo mientras tocas o mantienes **Dictar** | No uses **Dictar** |
+| **Descubrimiento y transferencia LocalSend** | Multidifusión UDP `224.0.0.167:53317` y HTTPS/HTTP por TCP `53317` (solo red local) | **Desactivado** en el PC y en Android | Cambia **Ajustes › Archivos y sincronización › LocalSend en la red local** (PC) o **Ajustes › Funciones y datos › LocalSend** (Android) |
+| **API de automatización local (PC)** | HTTP de bucle local en `127.0.0.1:53320` (nunca en interfaces de red local) | **Desactivado** | Cambia **Ajustes › Conexión y Acerca de › API de automatización local** |
 
-## 5. Per-Device Feature Toggles and Explicit Consent Prompts
+## 5. Interruptores de funciones por dispositivo y avisos de consentimiento expreso
 
-Pairing a device does not give it unrestricted access to everything. You control 19 individual per-device feature toggles in **Settings › Devices** (see [Settings Reference](settings.md#3-devices)), and sensitive capabilities require explicit user consent:
+Emparejar un dispositivo no le da acceso ilimitado a todo. Controlas 19 interruptores de funciones por dispositivo en **Ajustes › Dispositivos** (consulta la [Referencia de ajustes](settings.md#3-dispositivos)), y las capacidades sensibles requieren tu consentimiento expreso:
 
-| Capability | Default State | Consent and Visibility Controls |
+| Capacidad | Estado predeterminado | Consentimiento y visibilidad |
 | :--- | :--- | :--- |
-| **Reverse Mirroring** (`Share PC screen to phone`) | **Off** | Prompts on the PC screen (**Not now**, **Allow**, **Allow for this device**) when requested from a phone; shows a persistent **Sharing this PC's screen with `<Phone>`** top banner with a one-click **Stop sharing** button while active. |
-| **Remote Input to PC** (`Remote mouse, keyboard & Deck`) | **Off** | Prompts on the PC the first time a paired phone asks to move the cursor or send keys. |
-| **Deck Shell Commands** (`Run Deck shell commands`) | **Off** | Separate per-phone toggle that must be manually enabled in PC Settings before any `Deck` command tile can run. |
-| **File Explorer Storage** (`File Explorer integration`) | **Off** on both PC and phone | Must be turned on per device, with an explicit prompt on the phone and support for sharing only specific folders (**Selected folders only**). |
-| **Phone Screen Mirroring** (`Screen mirroring`) | **On** | Android prompts before sharing at `Standard`/`Assist`, and shows a persistent notification with a **Stop** button (or **Close all** for `app window` sessions) on the phone while active. |
-| **Deleting Photos from the PC** | **On** with `photos` | Needs **All files access** on the phone. A PC you've paired can move photos to the phone's trash without a prompt on the phone, and they stay restorable there. Turn off `photos` for that PC to prevent it. |
-| **Phone as Webcam, Phone as Microphone & Continuity Camera** | **On** | Starting them from the PC posts a notification on the phone requiring a physical tap on the phone before the camera opens, plus a persistent **Stop** notification and Android's green camera dot. The one exception is a PC you chose for **Start the camera and microphone without asking** on the phone (`Elevated`, off by default): its webcam and microphone requests start right away. |
-| **Type on Phone from PC** | Requires `Assist` or `Elevated` | Shows a persistent **Typing from `<PC>`** banner on the phone with a one-tap **Stop typing** button. |
-| **LocalSend** (`LocalSend on local network`) | **Off** | Every incoming file offer from a nearby LocalSend device requires explicit user approval (**Accept** / **Decline**) before any bytes are written. |
-| **Forward PC Notifications / Stream PC Audio / Share PC Folders** | **Off** | All three PC-to-phone sharing features are off by default and can only be enabled locally on the PC. |
+| **Duplicación inversa** (`Compartir la pantalla del PC con el teléfono`) | **Desactivado** | Pregunta en la pantalla del PC (**Ahora no**, **Permitir**, **Permitir para este dispositivo**) cuando se pide desde un teléfono; mientras está activa muestra arriba un aviso persistente **Compartiendo la pantalla de este PC con `<Teléfono>`** con un botón **Dejar de compartir**. |
+| **Control remoto del PC** (`Ratón, teclado y Deck remotos`) | **Desactivado** | Pregunta en el PC la primera vez que un teléfono emparejado pide mover el cursor o enviar teclas. |
+| **Comandos de shell de Deck** (`Ejecutar comandos de shell desde Deck`) | **Desactivado** | Interruptor aparte por teléfono que debe activarse a mano en los Ajustes del PC antes de que pueda ejecutarse cualquier botón de comando de `Deck`. |
+| **Almacenamiento en el Explorador de archivos** (`Integración con el Explorador de archivos`) | **Desactivado** en el PC y en el teléfono | Debe activarse por dispositivo, con un aviso expreso en el teléfono y la opción de compartir solo carpetas concretas (**Solo carpetas seleccionadas**). |
+| **Duplicación de la pantalla del teléfono** (`Duplicación de pantalla`) | **Activado** | Android pregunta antes de compartir con `Standard`/`Assist`, y muestra en el teléfono una notificación persistente con un botón **Detener** (o **Cerrar todo** en sesiones `app window`) mientras está activa. |
+| **Eliminar fotos desde el PC** | **Activado** con `photos` | Requiere **Acceso a todos los archivos** en el teléfono. Un PC emparejado puede mover fotos a la papelera del teléfono sin aviso en el teléfono, y allí se pueden restaurar. Desactiva `photos` para ese PC si quieres impedirlo. |
+| **Teléfono como webcam, Teléfono como micrófono y Cámara de continuidad** | **Activado** | Iniciarlos desde el PC publica en el teléfono una notificación que requiere un toque en el teléfono antes de abrir la cámara, además de una notificación persistente **Detener** y el punto verde de cámara de Android. La única excepción es un PC que hayas elegido para **Iniciar la cámara y el micrófono sin preguntar** en el teléfono (`Elevated`, desactivado por defecto): sus peticiones de webcam y micrófono empiezan al momento. |
+| **Escribir en el teléfono desde el PC** | Requiere `Assist` o `Elevated` | Muestra en el teléfono un aviso persistente **Escribiendo desde `<PC>`** con un botón **Dejar de escribir**. |
+| **LocalSend** (`LocalSend en la red local`) | **Desactivado** | Cada oferta de archivo entrante de un dispositivo LocalSend cercano requiere tu aprobación expresa (**Aceptar** / **Rechazar**) antes de escribir ningún byte. |
+| **Reenviar notificaciones del PC / Enviar el audio del PC / Compartir carpetas del PC** | **Desactivado** | Las tres funciones para compartir del PC al teléfono están desactivadas por defecto y solo se pueden activar en el propio PC. |
 
-## 6. How the `Elevated` Shell Helper Is Secured
+## 6. Cómo se protege el ayudante de shell `Elevated`
 
-If you choose to enable the `Elevated` power level on Android, NectarLink starts its companion helper (`app.nectarlink.android.elevated.InputServer` via `app_process`) running as Android's `shell` user (`UID 2000`) through Wireless Debugging or USB `adb`.
+Si decides activar el nivel de control `Elevated` en Android, Panal inicia su ayudante (`app.nectarlink.android.elevated.InputServer` mediante `app_process`) como el usuario `shell` de Android (`UID 2000`) a través de la depuración inalámbrica o de `adb` por USB.
 
-To ensure no other app on your phone can abuse this helper:
+Para que ninguna otra app del teléfono pueda abusar de este ayudante:
 
-1. **Loopback Binding and 192-Bit Per-Session Token Authentication**: Because Android SELinux blocks regular apps from connecting to `shell`-owned Unix domain sockets, `InputServer` binds exclusively to a loopback TCP socket (`127.0.0.1:<ephemeral_port>`) and requires a 24-byte (48-hex-character) `SecureRandom` secret token on the first line of every connection. The token is generated fresh by the NectarLink app when launching the helper and verified in constant time (`MessageDigest.isEqual`); any unauthenticated connection is closed immediately before reading a command.
-2. **Fixed Commands and a Strict Allowlist**: Commands sent over the socket are fixed verbs dispatched directly to Android APIs (`IInputManager`, `IClipboard`, `/dev/uhid` and others). The one that runs a shell command, `C`, only accepts an explicit list: expanding the notification shade, Wi-Fi, Bluetooth, hotspot, brightness `0..255`, and the grants NectarLink needs for itself. Arbitrary shell commands are rejected.
+1. **Escucha en bucle local y autenticación con token de 192 bits por sesión**: como SELinux de Android impide a las apps normales conectarse a sockets Unix propiedad de `shell`, `InputServer` escucha solo en un socket TCP de bucle local (`127.0.0.1:<puerto_efímero>`) y exige un token secreto `SecureRandom` de 24 bytes (48 caracteres hexadecimales) en la primera línea de cada conexión. La app Panal genera un token nuevo al lanzar el ayudante y lo verifica en tiempo constante (`MessageDigest.isEqual`); cualquier conexión no autenticada se cierra al momento, antes de leer un comando.
+2. **Comandos fijos y una lista estricta de permitidos**: los comandos que llegan por el socket son verbos fijos que se envían directamente a las API de Android (`IInputManager`, `IClipboard`, `/dev/uhid` y otras). El único que ejecuta un comando de shell, `C`, solo acepta una lista explícita: desplegar el panel de notificaciones, Wi-Fi, Bluetooth, zona Wi-Fi, brillo `0..255` y los permisos que Panal necesita para sí misma. Los comandos de shell arbitrarios se rechazan.
 
-## 7. Local Data Storage, Encryption, and Retention
+## 7. Almacenamiento local de datos, cifrado y conservación
 
-All cached data stays inside your local profile directory (`%LOCALAPPDATA%\Nectarlink` on Windows, `~/.local/share/Nectarlink` on Linux and the app's private data folder on Android):
+Todos los datos en caché se quedan dentro de tu carpeta de perfil local (`%LOCALAPPDATA%\Panal` en Windows, `~/.local/share/Panal` en Linux y la carpeta de datos privada de la app en Android):
 
-| Data Store | How It Is Stored | Default Retention |
+| Almacén de datos | Cómo se guarda | Conservación predeterminada |
 | :--- | :--- | :--- |
-| **Clipboard History** | Encrypted at rest in `clipboard_history.enc` (`NLCB\x01` header) and `clipboard_images/<id>.enc` (`NLCI\x01` header) directly using the platform `KeyProtector` (**Windows DPAPI** on Windows, **Android Keystore AES-256-GCM** on Android; not sealed on Linux, where only file permissions protect it). Passwords marked sensitive by password managers and one-time verification codes (OTPs) are never sent or saved. | **7 days**, up to 50 items / 128 MB |
-| **Notification History (PC)** | Stored locally in `notification-history.json` (and per-app rules in `notification-rules.json`) with cached images in `cache\images\`. One-time verification codes are excluded. Not duplicated on the phone. | **24 hours**, up to 300 items |
-| **Cross-Device `Timeline`** | Stored locally in `nectarlink.db`. Clipboard items in `Timeline` reference `clipboard_history.enc` by ID so clip text is never stored in plain text in SQLite. | **90 days** (configurable to `30d`, `90d`, `1y`, or up to `5,000` items) |
-| **Cached Messages (PC)** | Cached in `nectarlink.db` and `cache\images\` for fast inbox loading. Temporary MMS staging files on Android are deleted within 5 minutes. | **90 days** on PC |
-| **Photo Thumbnails (PC)** | Cached in `cache\photos\`. Full-resolution photos are only fetched on demand. Temporary Continuity Camera captures on Android are deleted within 24 hours. | **30 days** on PC |
-| **Offline `Waiting to send` Queue** | Stored in `nectarlink.db` (`send_queue` table). Copied text and images, links and task alerts are sealed with the platform `KeyProtector`, like clipboard history (not on Linux, which has none yet). File names are stored as they are, and files are referenced by path rather than duplicated. | Camera requests: **2m**; Links/Clips/Alerts: **24h**, then removed; Files: **7d**. Clearing clipboard history removes waiting clips. **Clear everything...** also removes waiting links and alerts, and leaves files you chose to send. |
-| **OBS Studio Password (PC)** | Saved in `settings.json` only after you enter it in **Settings › Shortcuts & Rules › OBS Studio**, encrypted with **Windows DPAPI** for your Windows account (on Linux, protected by file permissions only). Used only to sign in to OBS's WebSocket server on this PC (`127.0.0.1`). | Until you remove it |
-| **Media Artwork Lookup** | Extracted from the local media session (Windows GSMTC, Linux MPRIS or Android `MediaSession`) and cached locally on disk. | Local session cache |
+| **Historial del portapapeles** | Cifrado en reposo en `clipboard_history.enc` (cabecera `NLCB\x01`) y `clipboard_images/<id>.enc` (cabecera `NLCI\x01`) con el `KeyProtector` de la plataforma (**DPAPI de Windows** en Windows, **AES-256-GCM del Almacén de claves de Android** en Android; sin sellar en Linux, donde solo lo protegen los permisos del archivo). Las contraseñas que los gestores marcan como sensibles y los códigos de verificación de un solo uso (OTP) nunca se envían ni se guardan. | **7 días**, hasta 50 elementos / 128 MB |
+| **Historial de notificaciones (PC)** | Guardado localmente en `notification-history.json` (y las reglas por app en `notification-rules.json`), con imágenes en caché en `cache\images\`. Los códigos de un solo uso se excluyen. No se duplica en el teléfono. | **24 horas**, hasta 300 elementos |
+| **`Línea de tiempo` entre dispositivos** | Guardada localmente en `nectarlink.db`. Los elementos del portapapeles en la `Línea de tiempo` hacen referencia a `clipboard_history.enc` por su ID, así el texto nunca se guarda en texto plano en SQLite. | **90 días** (configurable a `30 d`, `90 d`, `1 año` o hasta `5.000` elementos) |
+| **Mensajes en caché (PC)** | En caché en `nectarlink.db` y `cache\images\` para que la bandeja cargue rápido. Los archivos temporales de MMS en Android se borran en 5 minutos. | **90 días** en el PC |
+| **Miniaturas de fotos (PC)** | En caché en `cache\photos\`. Las fotos a resolución completa solo se traen cuando las pides. Las capturas temporales de la Cámara de continuidad en Android se borran en 24 horas. | **30 días** en el PC |
+| **Cola sin conexión `Pendiente de enviar`** | Guardada en `nectarlink.db` (tabla `send_queue`). El texto y las imágenes copiados, los enlaces y los avisos de tareas se sellan con el `KeyProtector` de la plataforma, como el historial del portapapeles (no en Linux, que aún no lo tiene). Los nombres de archivo se guardan tal cual, y los archivos se referencian por ruta en lugar de duplicarse. | Peticiones de cámara: **2 min**; Enlaces/Recortes/Avisos: **24 h**, luego se quitan; Archivos: **7 d**. Borrar el historial del portapapeles quita los recortes en espera. **Borrar todo...** también quita los enlaces y avisos en espera, y deja los archivos que elegiste enviar. |
+| **Contraseña de OBS Studio (PC)** | Se guarda en `settings.json` solo después de escribirla en **Ajustes › Atajos y reglas › OBS Studio**, cifrada con **DPAPI de Windows** para tu cuenta de Windows (en Linux, protegida solo por los permisos del archivo). Solo se usa para iniciar sesión en el servidor WebSocket de OBS de este PC (`127.0.0.1`). | Hasta que la quites |
+| **Carátulas multimedia** | Se extraen de la sesión multimedia local (GSMTC de Windows, MPRIS de Linux o `MediaSession` de Android) y se guardan en caché local en el disco. | Caché local de la sesión |
 
-You can clear any individual store or click **Clear everything...** at any time in **Settings › Storage & Privacy** on the PC or **Settings › Features & Data › Data & storage** on Android.
+Puedes borrar cualquier almacén por separado o hacer clic en **Borrar todo...** cuando quieras en **Ajustes › Almacenamiento y privacidad** en el PC o en **Ajustes › Funciones y datos › Datos y almacenamiento** en Android.

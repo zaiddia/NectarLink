@@ -1,84 +1,88 @@
-# Frequently Asked Questions (FAQ)
+# Preguntas frecuentes
 
-## General and Accounts
+## General y cuentas
 
-### Do I need to create an account or sign in to use NectarLink?
+### ¿Tengo que crear una cuenta o iniciar sesión para usar Panal?
 
-No. NectarLink has no user accounts, no sign-in screens, and no cloud servers. Each device generates its own cryptographic Ed25519 identity key locally on first launch, and you link your devices directly by scanning a QR code or comparing a 6-digit code.
+No. Panal no tiene cuentas de usuario, ni pantallas de inicio de sesión, ni servidores en la nube. Cada dispositivo genera su propia clave de identidad criptográfica Ed25519 en local al arrancar por primera vez, y enlazas los dispositivos directamente escaneando un código QR o comparando un código de 6 dígitos.
 
-### Is NectarLink free and open source?
+### ¿Panal es gratuita y de código abierto?
 
-Yes. The Windows and Android applications and the CLI are licensed under [GPL-3.0-or-later](../../LICENSES/GPL-3.0-or-later.txt) (with an app-store distribution exception), the shared Rust core crates are licensed under [MPL-2.0](../../LICENSES/MPL-2.0.txt), and the protocol specifications and documentation are licensed under [CC BY 4.0](../../LICENSES/CC-BY-4.0.txt). There are no paid tiers, subscriptions, or advertisements.
+Sí. Las aplicaciones de Windows y Android y la línea de comandos tienen licencia [GPL-3.0-or-later](../../LICENSES/GPL-3.0-or-later.txt) (con una excepción para la distribución en tiendas de apps), los crates compartidos del núcleo en Rust tienen licencia [MPL-2.0](../../LICENSES/MPL-2.0.txt) y las especificaciones del protocolo y la documentación tienen licencia [CC BY 4.0](../../LICENSES/CC-BY-4.0.txt). No hay niveles de pago, suscripciones ni anuncios.
 
-### Does NectarLink only work with Samsung or Pixel phones?
+### ¿Panal es lo mismo que NectarLink?
 
-No. NectarLink works with any Android phone or tablet running Android 8.0 (API 26) or newer, regardless of manufacturer (Samsung, Google Pixel, Xiaomi, OnePlus, Motorola, Sony, Nothing, Asus, Oppo, Realme, Vivo, Huawei, and others).
+Panal es una versión derivada, en español y con su propio nombre, basada en NectarLink. No es la app oficial de NectarLink ni la publica su autor. Su ID de Android es `app.panal`, así que puede instalarse junto a la app oficial, pero cada app solo se empareja con su propia contraparte: instala Panal tanto en el PC como en el teléfono.
 
-## Networking and Connectivity
+### ¿Panal solo funciona con teléfonos Samsung o Pixel?
 
-### Do my phone and PC have to be on the same Wi-Fi network?
+No. Panal funciona con cualquier teléfono o tableta con Android 8.0 (API 26) o posterior, sea cual sea el fabricante (Samsung, Google Pixel, Xiaomi, OnePlus, Motorola, Sony, Nothing, Asus, Oppo, Realme, Vivo, Huawei y otros).
 
-By default, yes: NectarLink connects directly over your local network (Wi-Fi or Ethernet) or over a USB data cable (`On USB`). If you want your phone and PC to stay connected when you leave home on mobile data (LTE/5G) or use a separate Wi-Fi network, turn on **Connect over mobile data** in **Settings › Connection & About** on your PC and **Settings › Devices** on your phone.
+## Red y conectividad
 
-### Does my data pass through a server when I use **Connect over mobile data**?
+### ¿El teléfono y el PC tienen que estar en la misma red Wi-Fi?
 
-When **Connect over mobile data** is turned on and a direct peer-to-peer UDP path cannot be established between your networks, encrypted QUIC packets are forwarded through an `iroh` relay. Because the TLS 1.3 session is encrypted end to end between your phone's key and your PC's key, the relay only forwards opaque encrypted packets and can never read your notifications, messages, clipboard, or files. When your devices are on the same local network or connected by USB, all device-to-device traffic goes straight between them without leaving your local network (the only internet request NectarLink makes by default on installed copies is a periodic HTTPS check to GitHub Releases for app updates, which can be turned off on the PC in **Settings › Connection & About › Automatic updates**).
+Por defecto, sí: Panal se conecta directamente por tu red local (Wi-Fi o Ethernet) o por un cable USB de datos (`Por USB`). Si quieres que el teléfono y el PC sigan conectados cuando sales de casa con datos móviles (LTE/5G) o usas otra red Wi-Fi, activa **Conectar con datos móviles** en **Ajustes › Conexión y Acerca de** del PC y en **Ajustes › Dispositivos** del teléfono.
 
-### Can I use NectarLink without Wi-Fi at all, using only a USB cable?
+### ¿Mis datos pasan por un servidor cuando uso **Conectar con datos móviles**?
 
-Yes. USB needs Android's `adb` on the PC with its server running: install Google's platform-tools and run `adb start-server` after each restart (Android Studio and scrcpy also start it). NectarLink doesn't start it itself. Then enable **USB debugging** in your phone's Developer options and plug your phone into your PC with a USB data cable. NectarLink automatically detects the USB connection, lets you pair with a 6-digit confirmation code, and runs your entire encrypted session (`On USB`) over the cable.
+Con **Conectar con datos móviles** activado y sin camino UDP directo entre tus redes, los paquetes QUIC cifrados se reenvían a través de un relé `iroh`. Como la sesión TLS 1.3 está cifrada de extremo a extremo entre la clave del teléfono y la del PC, el relé solo reenvía paquetes cifrados opacos y nunca puede leer tus notificaciones, mensajes, portapapeles ni archivos. Cuando los dispositivos están en la misma red local o conectados por USB, todo el tráfico entre ellos va directo sin salir de tu red local (la única petición a internet que hace Panal por defecto en las copias instaladas es una consulta HTTPS periódica a GitHub Releases para buscar actualizaciones, que puedes desactivar en el PC en **Ajustes › Conexión y Acerca de › Buscar actualizaciones**).
 
-### What happens if I send a file or copy a link while my other device is asleep or offline?
+### ¿Puedo usar Panal sin Wi-Fi, solo con un cable USB?
 
-It is not lost. NectarLink places files, folders, clipboard sends, `Handoff` links, and `notify-when` task alerts into a persistent `Waiting to send` queue stored in SQLite. You can see and cancel queued items on the Home screen of either app, and they are delivered automatically in order as soon as the other device reconnects.
+Sí. El USB necesita `adb` de Android en el PC con su servidor en marcha: instala las platform-tools de Google y ejecuta `adb start-server` después de cada reinicio (Android Studio y scrcpy también lo inician). Panal no lo inicia por sí misma. Después activa la **Depuración USB** en las opciones de desarrollador del teléfono y conéctalo al PC con un cable USB de datos. Panal detecta sola la conexión USB, te deja emparejar con un código de confirmación de 6 dígitos y lleva toda la sesión cifrada (`Por USB`) por el cable.
 
-### Can I pair multiple phones with one PC, or one phone with multiple PCs?
+### ¿Qué pasa si envío un archivo o copio un enlace mientras el otro dispositivo está dormido o desconectado?
 
-Yes. You can pair two or more phones (for example, a personal phone and a work phone, or a phone and an Android tablet) with the same PC, and you can pair your phone with both a desktop PC and a laptop. Connected devices appear first in the device switcher on Home, and **Settings › Devices** lets you configure feature permissions independently for each paired device.
+No se pierde. Panal pone los archivos, carpetas, envíos del portapapeles, enlaces de `Handoff` y avisos de tareas `notify-when` en una cola persistente `Pendiente de enviar` guardada en SQLite. Puedes ver y cancelar los elementos en cola en la pantalla de Inicio de cualquiera de las dos apps, y se entregan solos y en orden en cuanto el otro dispositivo se reconecta.
 
-## Power Levels and Permissions
+### ¿Puedo emparejar varios teléfonos con un PC, o un teléfono con varios PC?
 
-### Do I need to root my phone to use NectarLink?
+Sí. Puedes emparejar dos o más teléfonos (por ejemplo, uno personal y uno del trabajo, o un teléfono y una tableta Android) con el mismo PC, y puedes emparejar tu teléfono con un PC de sobremesa y un portátil a la vez. Los dispositivos conectados aparecen primero en el selector de dispositivos de Inicio, y **Ajustes › Dispositivos** te permite configurar los permisos de funciones de cada dispositivo emparejado por separado.
 
-No. Every everyday feature works at the default `Standard` power level using normal Android permissions, and advanced features (`Elevated`) use Android's own Wireless Debugging, which runs a small helper as the shell user (`UID 2000`).
+## Niveles de control y permisos
 
-If your phone is already rooted (Magisk, KernelSU or APatch), you can choose **Use root** when setting up Elevated instead. NectarLink then starts the same helper through root, still as the shell user with the same permissions, so it needs no pairing and comes back by itself after a restart or away from Wi-Fi. NectarLink never asks for root unless you choose this.
+### ¿Tengo que rootear el teléfono para usar Panal?
 
-If you already use [Shizuku](https://shizuku.rikka.app/), you can choose **Use Shizuku** instead (it shows when Shizuku's app is installed). Shizuku asks once whether NectarLink may use it; after that Elevated starts through Shizuku whenever it runs, with no pairing of its own, and keeps working away from Wi-Fi. The helper is the same and runs as the shell user. If Shizuku runs with root, NectarLink doesn't use it: start Shizuku through Wireless debugging, or choose **Use root**. After a restart, start Shizuku again, then open NectarLink once: Shizuku only tells apps it's running when they come to the front, and Elevated starts as soon as it hears.
+No. Todas las funciones del día a día funcionan con el nivel de control predeterminado `Standard` y los permisos normales de Android, y las funciones avanzadas (`Elevated`) usan la depuración inalámbrica del propio Android, que ejecuta un pequeño ayudante como usuario shell (`UID 2000`).
 
-### Why does Android 13+ gray out the Notification access or Accessibility switch ("Restricted settings")?
+Si tu teléfono ya tiene root (Magisk, KernelSU o APatch), puedes elegir **Usar root** al configurar Elevated. Panal inicia entonces el mismo ayudante a través de root, igualmente como usuario shell y con los mismos permisos, así que no necesita emparejamiento y vuelve solo tras un reinicio o fuera de la Wi-Fi. Panal nunca pide root salvo que elijas esta opción.
 
-Android 13 and newer block sideloaded APKs (apps installed outside an app store) from turning on Notification Listener or Accessibility services until you confirm in **App info**. Open **Android Settings › Apps › NectarLink**, tap the three-dot menu in the top-right corner, tap **Allow restricted settings**, verify with your fingerprint or PIN, and then return to NectarLink to turn the switch on.
+Si ya usas [Shizuku](https://shizuku.rikka.app/), puedes elegir **Usar Shizuku** (aparece cuando la app Shizuku está instalada). Shizuku pregunta una vez si Panal puede usarlo; después, Elevated arranca a través de Shizuku siempre que este funcione, sin emparejamiento propio, y sigue funcionando fuera de la Wi-Fi. El ayudante es el mismo y se ejecuta como usuario shell. Si Shizuku se ejecuta con root, Panal no lo usa: inicia Shizuku con la depuración inalámbrica o elige **Usar root**. Tras un reinicio, vuelve a iniciar Shizuku y abre Panal una vez: Shizuku solo avisa a las apps de que está en marcha cuando pasan a primer plano, y Elevated arranca en cuanto se entera.
 
-### Do I have to re-pair Wireless Debugging (`Elevated`) every time I reboot my phone?
+### ¿Por qué Android 13+ pone en gris el interruptor de Acceso a notificaciones o Accesibilidad ("Ajustes restringidos")?
 
-No. You only enter the 6-digit Wireless Debugging pairing code once during initial setup. After that, whenever your phone reboots or reconnects to Wi-Fi, NectarLink automatically turns Wireless Debugging back on and starts the `Elevated` helper in the background by itself.
+Android 13 y posterior impiden que los APK instalados a mano (fuera de una tienda de apps) activen servicios de escucha de notificaciones o de accesibilidad hasta que lo confirmes en **Información de la app**. Abre **Ajustes de Android › Aplicaciones › Panal**, toca el menú de tres puntos de la esquina superior derecha, toca **Permitir ajustes restringidos**, verifica con tu huella o PIN y vuelve a Panal para activar el interruptor.
 
-### Can I use NectarLink if I do not want to grant SMS, Call, or Photo permissions?
+### ¿Tengo que volver a emparejar la depuración inalámbrica (`Elevated`) cada vez que reinicio el teléfono?
 
-Yes. Every Android permission is optional, and NectarLink's capability matrix adapts the user interface to show only what you have enabled. For example, if you only want clipboard sync, file transfers, and screen mirroring, you can skip SMS, Calls, Contacts, and Photos permissions completely.
+No. Solo introduces el código de 6 dígitos de la depuración inalámbrica una vez, en la configuración inicial. Después, cada vez que el teléfono se reinicia o se reconecta a la Wi-Fi, Panal vuelve a activar sola la depuración inalámbrica e inicia el ayudante `Elevated` en segundo plano.
 
-## Battery, Memory, and Performance
+### ¿Puedo usar Panal sin conceder permisos de SMS, llamadas o fotos?
 
-### How much battery does NectarLink use on my phone?
+Sí. Todos los permisos de Android son opcionales, y la matriz de capacidades de Panal adapta la interfaz para mostrar solo lo que has activado. Por ejemplo, si solo quieres sincronizar el portapapeles, transferir archivos y duplicar la pantalla, puedes saltarte por completo los permisos de SMS, Llamadas, Contactos y Fotos.
 
-When connected and idle in the background, NectarLink maintains a single lightweight QUIC connection with event-driven wakeups and zero polling loops, using less than 1 percent battery per hour in continuous connected soak tests. High-power features such as screen mirroring (`mirror`) and camera streaming (**Phone as webcam**) use hardware video encoders only while actively streaming and stop immediately when you close the window.
+## Batería, memoria y rendimiento
 
-### Does NectarLink work on Linux or Windows 7?
+### ¿Cuánta batería gasta Panal en el teléfono?
 
-Linux, yes, from 0.1.5: Ubuntu 24.04 or newer, Debian 13, Fedora 40 or newer and other distributions from 2024 on. See [Getting Started](getting-started.md) and what's different in [Known Limitations](known-limitations.md#on-linux). Windows needs Windows 10 version 2004 or newer, so Windows 7 and 8 aren't supported.
+Conectada e inactiva en segundo plano, Panal mantiene una única conexión QUIC ligera que solo se despierta con eventos y sin bucles de sondeo, y gasta menos del 1 % de batería por hora en pruebas de conexión continua. Las funciones de alto consumo como la duplicación de pantalla (`mirror`) y la transmisión de cámara (**Teléfono como webcam**) usan codificadores de vídeo por hardware solo mientras transmiten y se detienen al momento al cerrar la ventana.
 
-### How much RAM and CPU does the Windows app use in the background?
+### ¿Panal funciona en Linux o en Windows 7?
 
-When started minimized in the Windows system tray, NectarLink uses approximately **27 MB** of private commit memory (~5 to 10 MB active working set) and **0.0 percent** idle CPU. When you close the main window (`Stay in system tray`), NectarLink unloads the QML window tree and image caches to keep background memory usage minimal while staying ready to pop up notifications or open the `Shelf` and `Command Palette` in under 50 milliseconds.
+En Linux, sí, desde la 0.1.5: Ubuntu 24.04 o posterior, Debian 13, Fedora 40 o posterior y otras distribuciones de 2024 en adelante. Consulta [Primeros pasos](getting-started.md) y las diferencias en [Limitaciones conocidas](known-limitations.md#en-linux). Windows requiere Windows 10 versión 2004 o posterior, así que Windows 7 y 8 no son compatibles.
 
-## Privacy and Data Management
+### ¿Cuánta RAM y CPU usa la app de Windows en segundo plano?
 
-### Does NectarLink send my clipboard when I copy a password from my password manager?
+Iniciada minimizada en la bandeja del sistema de Windows, Panal usa aproximadamente **27 MB** de memoria privada comprometida (unos 5-10 MB de memoria activa) y **0,0 %** de CPU en reposo. Al cerrar la ventana principal (`Seguir en la bandeja del sistema`), Panal descarga el árbol de ventanas QML y las cachés de imágenes para mantener al mínimo la memoria en segundo plano, y sigue lista para mostrar notificaciones o abrir la `Bandeja` y la `Paleta de comandos` en menos de 50 milisegundos.
 
-No. Password managers on both Windows (such as 1Password, Bitwarden, and KeePassXC) and Android 13+ mark copied passwords with system privacy flags (`ExcludeClipboardContentFromMonitorProcessing` on Windows and `ClipDescription.EXTRA_IS_SENSITIVE` on Android). NectarLink checks those flags before reading or sending the clipboard and skips any sensitive item. One-time verification codes (OTPs) are also excluded from clipboard history and `Timeline`.
+## Privacidad y gestión de datos
 
-### How do I delete my local history or unpair a device?
+### ¿Panal envía el portapapeles cuando copio una contraseña de mi gestor de contraseñas?
 
-- To wipe your local history and caches while keeping your paired devices and settings, open **Settings › Storage & Privacy** on Windows (or **Settings › Features & Data › Data & storage** on Android) and click **Clear everything...** (or click **Clear** next to any individual category such as **Clipboard history**, **Notification history**, **Cross-device timeline**, **Cached messages**, or **Photo thumbnails**).
-- To unpair a device, open **Settings › Devices** on either app and click **Unpair**. Both devices remove each other from their trust store and drop any queued items for that peer.
+No. Los gestores de contraseñas de Windows (como 1Password, Bitwarden y KeePassXC) y de Android 13+ marcan las contraseñas copiadas con marcas de privacidad del sistema (`ExcludeClipboardContentFromMonitorProcessing` en Windows y `ClipDescription.EXTRA_IS_SENSITIVE` en Android). Panal comprueba esas marcas antes de leer o enviar el portapapeles y se salta cualquier elemento sensible. Los códigos de verificación de un solo uso (OTP) también se excluyen del historial del portapapeles y de la `Línea de tiempo`.
+
+### ¿Cómo borro mi historial local o desemparejo un dispositivo?
+
+- Para borrar el historial y las cachés locales sin tocar los dispositivos emparejados ni los ajustes, abre **Ajustes › Almacenamiento y privacidad** en Windows (o **Ajustes › Funciones y datos › Datos y almacenamiento** en Android) y haz clic en **Borrar todo...** (o en **Borrar** junto a una categoría concreta como **Historial del portapapeles**, **Historial de notificaciones**, **Línea de tiempo entre dispositivos**, **Mensajes en caché** o **Miniaturas de fotos**).
+- Para desemparejar un dispositivo, abre **Ajustes › Dispositivos** en cualquiera de las dos apps y haz clic en **Desemparejar**. Ambos dispositivos se quitan mutuamente de su almacén de confianza y descartan los elementos en cola para el otro.

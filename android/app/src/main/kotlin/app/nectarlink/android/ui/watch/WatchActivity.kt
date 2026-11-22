@@ -52,14 +52,14 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import app.nectarlink.android.NectarlinkApplication
+import app.nectarlink.android.PanalApplication
 import app.nectarlink.android.R
 import app.nectarlink.android.core.Core
 import app.nectarlink.android.media.WatchOffers
 import app.nectarlink.android.ui.Preferences
 import app.nectarlink.android.ui.remote.PcMirrorView
 import app.nectarlink.android.ui.theme.LocalReducedMotion
-import app.nectarlink.android.ui.theme.NectarlinkTheme
+import app.nectarlink.android.ui.theme.PanalTheme
 import app.nectarlink.core.MediaAction
 import app.nectarlink.core.WatchFileOffer
 import kotlinx.coroutines.delay
@@ -89,11 +89,11 @@ class WatchActivity : ComponentActivity() {
             )
         }
         WatchOffers.dismiss(this, pcId)
-        val core = (application as NectarlinkApplication).core
+        val core = (application as PanalApplication).core
         val preferences = Preferences(this)
         setContent {
             val appearance by preferences.appearance.collectAsStateWithLifecycle()
-            NectarlinkTheme(appearance) {
+            PanalTheme(appearance) {
                 WatchScreen(core, pcId, pcName, player, title, file, onClose = ::finish)
             }
         }

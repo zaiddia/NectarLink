@@ -46,7 +46,7 @@ pub fn build_pc_notification(
     .sanitized()
 }
 
-/// Returns `true` when the notification originated from NectarLink itself or a
+/// Returns `true` when the notification originated from Panal itself or a
 /// blocked system self-source so we never create a forwarding loop.
 #[cfg(any(target_os = "linux", test))]
 pub fn is_blocked_self_source(app_name: &str) -> bool {
@@ -221,8 +221,8 @@ mod tests {
 
     #[test]
     fn blocks_self_source_notifications() {
-        assert!(is_blocked_self_source("NectarLink"));
-        assert!(is_blocked_self_source("nectarlink-desktop"));
+        assert!(is_blocked_self_source("Panal"));
+        assert!(is_blocked_self_source("panal"));
         assert!(is_blocked_self_source("notify-send"));
         assert!(is_blocked_self_source(""));
         assert!(!is_blocked_self_source("Firefox"));
@@ -231,7 +231,7 @@ mod tests {
 
     #[test]
     fn forward_pc_toast_ignores_self_and_empty() {
-        assert!(!forward_pc_toast("NectarLink", "Connected", "Pixel 9"));
+        assert!(!forward_pc_toast("Panal", "Connected", "Pixel 9"));
         assert!(!forward_pc_toast("Firefox", "   ", ""));
     }
 

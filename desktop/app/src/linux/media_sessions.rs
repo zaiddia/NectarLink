@@ -4,7 +4,7 @@
 //! and signal subscriptions (`PropertiesChanged`, `Seeked`, `NameOwnerChanged`),
 //! artwork resolution/caching, and remote transport commands.
 //!
-//! NectarLink's own MPRIS session (`org.mpris.MediaPlayer2.nectarlink`) is
+//! Panal's own MPRIS session (`org.mpris.MediaPlayer2.nectarlink`) is
 //! excluded so a phone never gets its own music echoed back.
 
 use std::collections::HashMap;
@@ -576,6 +576,8 @@ fn is_excluded_player(name: &str) -> bool {
     let lower = name.trim().to_ascii_lowercase();
     lower.is_empty()
         || lower == "nectarlink"
+        || lower == "panal"
+        || lower.starts_with("panal.")
         || lower == "playerctld"
         || lower.starts_with("nectarlink.")
         || lower.ends_with(".nectarlink")

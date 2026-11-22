@@ -22,7 +22,7 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.ServiceCompat
 import androidx.core.content.ContextCompat
-import app.nectarlink.android.NectarlinkApplication
+import app.nectarlink.android.PanalApplication
 import app.nectarlink.android.R
 import app.nectarlink.core.MirrorSendResult
 import app.nectarlink.core.VideoPacketKind
@@ -64,7 +64,7 @@ class MicService : Service() {
                 running = false
                 // The phone's user stopped it: tell the PC.
                 if (intent.getBooleanExtra(EXTRA_FROM_USER, false) && pcId != null) {
-                    (application as NectarlinkApplication).core.micStop(pcId)
+                    (application as PanalApplication).core.micStop(pcId)
                 }
                 if (job == null) stopSelf()
             }
@@ -87,7 +87,7 @@ class MicService : Service() {
         ServiceCompat.startForeground(this, NOTIFICATION_ID, notification(pcId), type)
         running = true
         _streaming.value = pcId
-        val core = (application as NectarlinkApplication).core
+        val core = (application as PanalApplication).core
         job = scope.launch {
             try {
                 val stream = core.micOpen(pcId) ?: return@launch
@@ -156,7 +156,7 @@ class MicService : Service() {
     }
 
     private fun notification(pcId: String): Notification {
-        val core = (application as NectarlinkApplication).core
+        val core = (application as PanalApplication).core
         val pcName = core.state.value.nameOf(pcId).orEmpty().ifEmpty { getString(R.string.your_pc) }
         val stop = PendingIntent.getService(
             this,

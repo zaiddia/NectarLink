@@ -19,7 +19,7 @@ import androidx.core.app.ServiceCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleService
 import androidx.lifecycle.lifecycleScope
-import app.nectarlink.android.NectarlinkApplication
+import app.nectarlink.android.PanalApplication
 import app.nectarlink.android.R
 import app.nectarlink.android.ui.MainActivity
 import kotlinx.coroutines.Dispatchers
@@ -150,7 +150,7 @@ class WebcamService : LifecycleService() {
             return
         }
 
-        val core = (application as NectarlinkApplication).core
+        val core = (application as PanalApplication).core
         core.clearWebcamRequest(targetPc)
 
         lifecycleScope.launch(Dispatchers.IO) {
@@ -214,7 +214,7 @@ class WebcamService : LifecycleService() {
     }
 
     private fun buildNotification(targetPc: String, width: Int, height: Int, camera: String): Notification {
-        val core = (application as NectarlinkApplication).core
+        val core = (application as PanalApplication).core
         val pcName = core.state.value.nameOf(targetPc).orEmpty().ifEmpty { getString(R.string.your_pc) }
 
         val openIntent = Intent(this, MainActivity::class.java).apply {

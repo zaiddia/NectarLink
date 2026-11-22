@@ -1,94 +1,94 @@
-# Notifications
+# Notificaciones
 
-NectarLink mirrors your phone's notifications to your PC in real time. You can read alerts, reply inline to messages, trigger notification action buttons, track live delivery or timer progress, copy one-time verification codes with one click, and dismiss notifications on both devices at once.
+Panal refleja en tiempo real las notificaciones del teléfono en tu PC. Puedes leer los avisos, responder mensajes al momento, usar los botones de acción, seguir el progreso de entregas o temporizadores en vivo, copiar códigos de verificación con un clic y descartar notificaciones en los dos dispositivos a la vez.
 
 <p align="center">
-  <img src="images/notifications-grouped.png" alt="Phone notifications grouped by app on the PC Home screen" width="760">
+  <img src="images/notifications-grouped.png" alt="Notificaciones del teléfono agrupadas por app en el Inicio del PC" width="760">
 </p>
 
-## What You Need
+## Qué necesitas
 
-| Requirement | Details |
+| Requisito | Detalles |
 | :--- | :--- |
-| **Android Permission** | **Notification access** (`Settings › Permissions › Notifications › Show notifications on your PC`). On Android 13+, if the switch is grayed out, open **App info › Allow restricted settings** first. |
-| **Android Power Level** | `Standard` for all regular notifications, inline replies, actions, and Live Updates. `Elevated` is required on Android 15 and newer if you want to receive notifications that Android's Enhanced Confirmation Mode marks as sensitive (such as SMS one-time verification codes). |
-| **Per-Device Toggle** | **Notifications** (enabled by default in **Settings › Devices** on the PC). |
-| **Network** | Local network, USB cable, or **Connect over mobile data**. |
+| **Permiso de Android** | **Acceso a notificaciones** (`Ajustes › Permisos › Notificaciones › Mostrar notificaciones en tu PC`). En Android 13 o superior, si el interruptor está en gris, abre antes **Información de la app › Permitir ajustes restringidos**. |
+| **Nivel de control de Android** | `Standard` para todas las notificaciones normales, respuestas rápidas, acciones y actualizaciones en vivo. En Android 15 o superior hace falta `Elevated` para recibir las notificaciones que el modo de confirmación mejorada de Android marca como sensibles (como los códigos de verificación por SMS). |
+| **Interruptor por dispositivo** | **Notificaciones** (activado por defecto en **Ajustes › Dispositivos** del PC). |
+| **Red** | Red local, cable USB o **Conectar con datos móviles**. |
 
-## Step-by-Step Use
+## Uso paso a paso
 
-### Reading, Grouping, and Dismissing Notifications
+### Leer, agrupar y descartar notificaciones
 
-1. Open **NectarLink** on your PC and stay on **Home**. Active notifications from your connected phone appear in the **Notifications** card, displaying each app's icon, title, body text, timestamp, and any attached photo or big picture.
-2. When an app posts multiple notifications, NectarLink groups them under a collapsible app header showing the count. Click the header to expand or collapse that app's alerts, or click **Clear group** (`x`) to dismiss all notifications from that app at once.
-3. Click the `x` button on any individual notification card (or dismiss the Windows popup) to clear it. Dismissals synchronize both ways: clearing a notification on your PC removes it from your phone's notification shade, and swiping it away on your phone removes it from your PC. After you dismiss a notification or group on the PC, a brief **Undo** bar lets you restore it locally if you clicked by mistake.
-4. Click a notification card on your PC while `Elevated` is active (on Android 11+) to open that phone app directly on your PC in its own `app window`.
+1. Abre **Panal** en el PC y quédate en **Inicio**. Las notificaciones activas del teléfono conectado aparecen en la tarjeta **Notificaciones**, con el icono de cada app, el título, el texto, la hora y cualquier foto o imagen grande adjunta.
+2. Cuando una app publica varias notificaciones, Panal las agrupa bajo un encabezado plegable con el número de avisos. Haz clic en el encabezado para desplegar o plegar los avisos de esa app, o en **Borrar grupo** (`x`) para descartarlos todos de una vez.
+3. Haz clic en el botón `x` de cualquier tarjeta (o descarta la ventana emergente de Windows) para borrarla. El descarte se sincroniza en ambos sentidos: borrar una notificación en el PC la quita del panel del teléfono, y deslizarla en el teléfono la quita del PC. Al descartar una notificación o un grupo en el PC, una barra **Deshacer** te deja recuperarla localmente si te equivocaste.
+4. Con `Elevated` activo (Android 11 o superior), haz clic en una tarjeta de notificación en el PC para abrir esa app del teléfono directamente en el PC, en su propia `app window`.
 
-### Replying Inline and Running Notification Actions
+### Responder al momento y usar las acciones
 
-1. When a notification supports direct reply (such as a chat message or email), click **Reply** on the notification card in the app or type directly into the Windows notification popup.
-2. Type your response and press **Enter** or click **Send**. Your phone sends the reply through the original app's `RemoteInput` handler immediately.
-3. Action buttons attached to the notification on your phone (such as **Mark as read**, **Archive**, **Remind me**, or **Snooze**) appear as buttons on both the Windows popup and the card in NectarLink. Click any action button to run it on the phone.
+1. Cuando una notificación admite respuesta directa (como un mensaje de chat o un correo), haz clic en **Responder** en la tarjeta de la app o escribe directamente en la ventana emergente de Windows.
+2. Escribe la respuesta y pulsa **Intro** o haz clic en **Enviar**. El teléfono la envía al instante mediante el `RemoteInput` de la app original.
+3. Los botones de acción de la notificación en el teléfono (como **Marcar como leído**, **Archivar**, **Recordar** o **Posponer**) aparecen como botones en la ventana emergente de Windows y en la tarjeta de Panal. Haz clic en cualquiera para ejecutarlo en el teléfono.
 
-### Live Updates, Progress Bars, and Timers
+### Actualizaciones en vivo, barras de progreso y temporizadores
 
-Notifications that report ongoing progress or live time stay pinned at the top of your notification feed and update cleanly in place without re-popping or playing repeated alert sounds:
+Las notificaciones que informan de un progreso o de un tiempo en curso se quedan fijadas arriba del panel y se actualizan en su sitio sin volver a aparecer ni repetir sonidos:
 
-- **Android 16 Live Updates (`ProgressStyle`)**: Ride-share, food delivery, navigation, and flight tracker notifications display their multi-segment progress bar, current milestone point, and tracker icon live on your PC.
-- **Ongoing Progress Bars**: Downloads, uploads, and system tasks update their percentage bar in place.
-- **Chronometers and Countdowns**: Active kitchen timers, stopwatches, and ongoing workout timers tick every second in the feed (and in `Nectar Island` when enabled).
+- **Actualizaciones en vivo de Android 16 (`ProgressStyle`)**: las notificaciones de viajes compartidos, comida a domicilio, navegación y seguimiento de vuelos muestran en vivo en el PC su barra de progreso por tramos, el hito actual y el icono de seguimiento.
+- **Barras de progreso en curso**: las descargas, subidas y tareas del sistema actualizan su porcentaje en su sitio.
+- **Cronómetros y cuentas atrás**: los temporizadores de cocina, cronómetros y entrenamientos en curso avanzan cada segundo en el panel (y en `Nectar Island` si está activada).
 
-### One-Time Verification Codes (OTPs)
+### Códigos de verificación de un solo uso
 
-When an incoming notification or SMS contains a 4-to-8-digit one-time verification code:
+Cuando una notificación o un SMS entrante contiene un código de verificación de 4 a 8 dígitos:
 
 <p align="center">
-  <img src="images/notifications-otp.png" alt="One-time verification code detected with a Copy code button" width="760">
+  <img src="images/notifications-otp.png" alt="Código de verificación detectado con un botón Copiar código" width="760">
 </p>
 
-1. NectarLink extracts the verification code locally on your device and adds a prominent **Copy code (`123456`)** button to both the Windows notification popup and the notification card on Home.
-2. If you turn on **Copy one-time codes** in **Settings › General**, NectarLink copies the verification code to your PC clipboard automatically as soon as it arrives and shows a brief confirmation banner so you can press `Ctrl+V` straight into your browser.
-3. One-time verification codes are never written to your clipboard history or `Timeline`, and copying an OTP on your PC never loops it back to the phone.
+1. Panal extrae el código localmente en tu dispositivo y añade un botón destacado **Copiar código (`123456`)** en la ventana emergente de Windows y en la tarjeta de Inicio.
+2. Si activas **Copiar códigos de un solo uso** en **Ajustes › General**, Panal copia el código al portapapeles del PC en cuanto llega y muestra un breve aviso de confirmación, para que pegues con `Ctrl+V` directamente en el navegador.
+3. Los códigos de un solo uso nunca se guardan en el historial del portapapeles ni en la `Timeline`, y copiar un código en el PC nunca lo devuelve al teléfono.
 
-### Viewing Dismissed Notification History
+### Ver el historial de notificaciones descartadas
 
-If you accidentally swipe away an alert on your phone or want to check a notification from earlier in the day:
+Si deslizaste un aviso por error en el teléfono o quieres revisar una notificación de antes:
 
-1. In the **Notifications** card on PC Home, switch the filter from **Active** to **History**.
-2. NectarLink displays dismissed notifications from the last 24 hours (up to 300 items), complete with search filtering by app name or text.
-3. You can clear the history at any time or turn 24-hour retention off in **Settings › Storage & Privacy › Notification history**.
+1. En la tarjeta **Notificaciones** del Inicio del PC, cambia el filtro de **Activas** a **Historial**.
+2. Panal muestra las notificaciones descartadas en las últimas 24 horas (hasta 300), con búsqueda por nombre de app o texto.
+3. Puedes borrar el historial cuando quieras o desactivar la retención de 24 horas en **Ajustes › Almacenamiento y privacidad › Historial de notificaciones**.
 
-### Forwarding PC Notifications to Your Phone (Optional)
+### Reenviar las notificaciones del PC al teléfono (opcional)
 
-If you step away from your desk and want your PC's alerts (such as calendar reminders, build completions, or desktop chat messages) sent to your phone:
+Si te alejas del escritorio y quieres recibir en el teléfono los avisos del PC (recordatorios del calendario, compilaciones terminadas o mensajes de chat del escritorio):
 
-1. On your PC, open **Settings › Notifications** and turn on **Forward PC notifications**.
-2. Grant Windows notification listener access if Windows prompts you.
-3. Incoming Windows notifications are forwarded to your connected phone under the **Tasks on your PC** channel. This setting is **off by default** for privacy.
+1. En el PC, abre **Ajustes › Notificaciones** y activa **Reenviar notificaciones del PC**.
+2. Concede a Windows el acceso de escucha de notificaciones si te lo pide.
+3. Las notificaciones de Windows se reenvían al teléfono conectado en el canal **Tareas en tu PC**. Este ajuste viene **desactivado por defecto** por privacidad.
 
-## What the Options Do
+## Qué hacen las opciones
 
-All notification settings live in **Settings › Notifications** (and **Settings › General** / **Settings › Storage & Privacy**) on the PC:
+Todos los ajustes de notificaciones están en **Ajustes › Notificaciones** (y **Ajustes › General** / **Ajustes › Almacenamiento y privacidad**) del PC:
 
-- **Follow phone Do not disturb** (`Settings › Notifications`, default: **Off**): When turned on, your PC silences popup toasts whenever your phone is in Do Not Disturb mode. Notifications still arrive quietly in the NectarLink feed so you can read them when you want.
-- **Notification profile on Home**: From the Phone Controls card on PC Home, you can switch your phone's notification profile between **All**, **Priority only** (Do Not Disturb), and **Silent**.
-- **Forward PC notifications** (`Settings › Notifications`, default: **Off**): Mirrors Windows desktop notifications to your connected phone.
-- **Quiet hours** (`Settings › Notifications`): Opens Windows **System › Notifications** settings so you can configure automatic Focus / Do Not Disturb schedules on Windows 11.
-- **Per-app notification rules** (`Settings › Notifications`): Every phone app that has sent at least one notification appears in an alphabetical list with its icon and a three-way selector:
-  - **Show** (default): Shows a Windows popup toast and lists the alert in the NectarLink feed.
-  - **No pop-ups**: Suppresses Windows popup toasts for that app while keeping its notifications visible inside the NectarLink feed.
-  - **Hide**: Completely blocks notifications from that app on your PC.
-- **Copy one-time codes** (`Settings › General`, default: **Off**): Automatically copies detected verification codes from incoming notifications and SMS messages to the PC clipboard.
-- **Notification history** (`Settings › Storage & Privacy`, default: **On**): Keeps dismissed phone notifications on the PC for 24 hours (up to 300 alerts). Includes a one-click **Clear** button.
+- **Seguir el No molestar del teléfono** (`Ajustes › Notificaciones`, por defecto: **desactivado**): al activarlo, el PC silencia las ventanas emergentes mientras el teléfono está en No molestar. Las notificaciones siguen llegando en silencio al panel de Panal para que las leas cuando quieras.
+- **Perfil de notificaciones en Inicio**: desde la tarjeta de controles del teléfono en el Inicio del PC puedes cambiar el perfil de notificaciones del teléfono entre **Todas**, **Solo prioritarias** (No molestar) y **Silencio**.
+- **Reenviar notificaciones del PC** (`Ajustes › Notificaciones`, por defecto: **desactivado**): refleja las notificaciones del escritorio de Windows en el teléfono conectado.
+- **Horas de silencio** (`Ajustes › Notificaciones`): abre los ajustes **Sistema › Notificaciones** de Windows para configurar horarios automáticos de Concentración / No molestar en Windows 11.
+- **Reglas por app** (`Ajustes › Notificaciones`): cada app del teléfono que haya enviado al menos una notificación aparece en una lista alfabética con su icono y un selector de tres opciones:
+  - **Mostrar** (predeterminado): muestra una ventana emergente de Windows y el aviso en el panel de Panal.
+  - **Sin ventanas emergentes**: suprime las ventanas emergentes de esa app pero mantiene sus notificaciones visibles en el panel de Panal.
+  - **Ocultar**: bloquea por completo las notificaciones de esa app en el PC.
+- **Copiar códigos de un solo uso** (`Ajustes › General`, por defecto: **desactivado**): copia automáticamente al portapapeles del PC los códigos de verificación detectados en notificaciones y SMS.
+- **Historial de notificaciones** (`Ajustes › Almacenamiento y privacidad`, por defecto: **activado**): conserva en el PC las notificaciones descartadas durante 24 horas (hasta 300). Incluye un botón **Borrar**.
 
-## Data and Privacy
+## Datos y privacidad
 
-- **Where data travels**: Notification payloads, app icons, and inline images travel directly between your phone and PC over your end-to-end encrypted QUIC session.
-- **Where data stays**: Active notifications are held in memory while current (up to 200 active notifications). If **Notification history** is enabled on the PC, dismissed notifications are stored locally in `%LOCALAPPDATA%\Nectarlink\notification-history.json` (and per-app rules in `notification-rules.json`) and cached inline images are kept in `%LOCALAPPDATA%\Nectarlink\cache\images\` for up to 24 hours (capped at 300 entries), then automatically purged. No notification history is duplicated on the phone.
-- **OTP protection**: Notifications containing one-time verification codes are excluded from clipboard history and `Timeline` storage. Neither the Android app nor the `Elevated` shell helper ever logs notification text to `logcat` or disk logs.
+- **Por dónde viajan los datos**: el contenido de las notificaciones, los iconos y las imágenes viajan directamente entre el teléfono y el PC por tu sesión QUIC cifrada de extremo a extremo.
+- **Dónde se quedan**: las notificaciones activas se guardan en memoria mientras siguen vigentes (hasta 200). Si el **Historial de notificaciones** está activado en el PC, las descartadas se guardan localmente en `%LOCALAPPDATA%\Panal\notification-history.json` (y las reglas por app en `notification-rules.json`), y las imágenes en caché en `%LOCALAPPDATA%\Panal\cache\images\` hasta 24 horas (como máximo 300 entradas); después se borran solas. El teléfono no guarda ninguna copia del historial.
+- **Protección de códigos**: las notificaciones con códigos de verificación se excluyen del historial del portapapeles y de la `Timeline`. Ni la app de Android ni el asistente `Elevated` escriben nunca el texto de las notificaciones en `logcat` ni en registros en disco.
 
-## Limits
+## Límites
 
-- **Android 15+ Enhanced Confirmation Mode (`RECEIVE_SENSITIVE_NOTIFICATIONS`)**: Starting in Android 15, the operating system redacts the text of notifications that appear to contain two-factor authentication codes from untrusted notification listeners. To receive sensitive notification text and OTPs on Android 15 and newer, enable the `Elevated` power level once; NectarLink's shell helper automatically grants `RECEIVE_SENSITIVE_NOTIFICATIONS` to NectarLink.
-- **OEM Background Restrictions**: If your phone manufacturer puts NectarLink to sleep in the background, notifications may be delayed until you wake the phone screen. Follow the per-OEM steps in [Troubleshooting](troubleshooting.md) to set NectarLink's battery usage to **Unrestricted**.
-- **Chat App History**: Notification mirroring captures alerts that arrive while your phone and PC are connected (or recently active in the phone's shade). Full historical message databases for third-party encrypted chat apps (such as Signal or WhatsApp) are sandboxed by Android and cannot be read retroactively.
+- **Modo de confirmación mejorada de Android 15 o superior (`RECEIVE_SENSITIVE_NOTIFICATIONS`)**: desde Android 15, el sistema oculta a los receptores de notificaciones no confiables el texto de las notificaciones que parecen contener códigos de doble factor. Para recibir ese texto y los códigos en Android 15 o superior, activa una vez el nivel `Elevated`; su asistente concede `RECEIVE_SENSITIVE_NOTIFICATIONS` a Panal automáticamente.
+- **Restricciones en segundo plano del fabricante**: si el fabricante de tu teléfono suspende Panal en segundo plano, las notificaciones pueden retrasarse hasta que enciendas la pantalla. Sigue los pasos de tu fabricante en [Solución de problemas](troubleshooting.md) para poner el uso de batería de Panal en **Sin restricciones**.
+- **Historial de apps de chat**: la duplicación de notificaciones captura los avisos que llegan mientras el teléfono y el PC están conectados (o que siguen en el panel del teléfono). Android aísla las bases de datos completas de las apps de chat cifradas de terceros (como Signal o WhatsApp), así que no se pueden leer mensajes anteriores.

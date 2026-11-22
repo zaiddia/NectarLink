@@ -4,7 +4,7 @@ package app.nectarlink.android.service
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import app.nectarlink.android.NectarlinkApplication
+import app.nectarlink.android.PanalApplication
 import app.nectarlink.android.core.CoreStatus
 import app.nectarlink.android.ui.Preferences
 import kotlinx.coroutines.CoroutineScope
@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withTimeoutOrNull
 
 /**
- * Brings the connection back after the phone restarts or NectarLink is
+ * Brings the connection back after the phone restarts or Panal is
  * updated, without waiting for the app to be opened. Starting the core starts
  * the connection service when a PC is paired (Core.start). After an update,
  * the new version also says so in a notification.
@@ -26,7 +26,7 @@ class StartupReceiver : BroadcastReceiver() {
             Intent.ACTION_BOOT_COMPLETED -> false
             else -> return
         }
-        val app = context.applicationContext as NectarlinkApplication
+        val app = context.applicationContext as PanalApplication
         if (!Preferences.isBackgroundServiceEnabled(context)) {
             if (updated) app.updater.onUpdated()
             return

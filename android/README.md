@@ -1,4 +1,4 @@
-# NectarLink for Android
+# Panal for Android
 
 Kotlin + Jetpack Compose (Material 3) on top of the shared Rust core,
 called through UniFFI (`core/nectarlink-ffi`).
@@ -43,7 +43,7 @@ sources; nothing generated is checked in except the theme tokens
   the clipboard once it has focus, as Android requires; and writing text a
   PC sent. `SendActivity` also takes shared files.
 - `files/`: opening files to send, publishing received files to
-  Download/Nectarlink (MediaStore on Android 10+), and the transfer
+  Download/Panal (MediaStore on Android 10+), and the transfer
   notifications with progress and Cancel.
 - `media/`: this phone's media sessions for PCs (`PhoneMedia`, with
   notification access), and a PC's player in Android's media controls
@@ -75,7 +75,7 @@ No signing keys or passwords are stored in the repository:
   is deleted immediately after `apksigner verify`. When `NECTARLINK_KEYSTORE` is
   unset locally, `assembleRelease` signs `app-release.apk` with the debug key,
   for testing only; never publish that build.
-- **Windows:** `./scripts/package.ps1` builds `Nectarlink-<version>-x64-setup.exe`,
+- **Windows:** `./scripts/package.ps1` builds `Panal-<version>-x64-setup.exe`,
   and `.github/workflows/release.yml` publishes `SHA256SUMS.txt` alongside the
   release artifacts so both the Windows and Android in-app updaters verify the
   SHA-256 digest before installing.

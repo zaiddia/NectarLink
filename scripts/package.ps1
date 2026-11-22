@@ -7,7 +7,7 @@
   1. Builds the release app (unless -SkipBuild).
   2. Stages it with the Qt libraries, plugins, QML modules and translations it
      uses (windeployqt), the Microsoft C++ runtime, and the license notices.
-  3. Packs the folder into target\package\Nectarlink-<version>-x64-setup.exe
+  3. Packs the folder into target\package\Panal-<version>-x64-setup.exe
      with NSIS (unless -StageOnly).
 
   Needs Qt (qmake on PATH, or QT_ROOT_DIR / -QtRoot) and, for the
@@ -82,7 +82,7 @@ if (-not (Test-Path $windeployqt)) {
 }
 if (-not (Test-Path $windeployqt)) { throw "windeployqt not found under $hostKit or $QtRoot; pass -QtRoot" }
 
-$arm64ToolDir = Join-Path $env:LOCALAPPDATA "Nectarlink\dev\qmake-arm64"
+$arm64ToolDir = Join-Path $env:LOCALAPPDATA "Panal\dev\qmake-arm64"
 if ($isArm64) {
     & (Join-Path $PSScriptRoot "qmake-arm64.ps1") -QtRoot $qtBase -OutDir $arm64ToolDir | Out-Null
     $qtpaths = Join-Path $arm64ToolDir 'qtpaths.exe'
@@ -108,7 +108,7 @@ if (-not $SkipBuild) {
         Invoke-Native "the build" { cargo build --locked --release -p nectarlink-desktop -p nectarlink-vcam }
     }
 }
-$exe = Join-Path $targetDir 'nectarlink-desktop.exe'
+$exe = Join-Path $targetDir 'panal.exe'
 if (-not (Test-Path $exe)) { throw "no release build at $exe" }
 $vcamDll = Join-Path $targetDir 'nectarlink_vcam.dll'
 if (-not (Test-Path $vcamDll)) { throw "no release build at $vcamDll" }
@@ -116,7 +116,7 @@ if (-not (Test-Path $vcamDll)) { throw "no release build at $vcamDll" }
 # ---- Stage ----
 Step "Stage"
 $package = Join-Path $root 'target\package'
-$stage = Join-Path $package 'Nectarlink'
+$stage = Join-Path $package 'Panal'
 if (Test-Path $stage) {
     $stagedVcam = Join-Path $stage 'nectarlink_vcam.dll'
     if (Test-Path $stagedVcam) {
@@ -153,11 +153,11 @@ Invoke-Native "windeployqt" {
         }
         $env:PATH = "$arm64ToolDir;$(Join-Path $hostKit 'bin');$env:PATH"
     }
-    & $windeployqt @deployArgs (Join-Path $stage 'nectarlink-desktop.exe')
+    & $windeployqt @deployArgs (Join-Path $stage 'panal.exe')
 }
 
 # Translations. windeployqt stages Qt's own .qm files (in translations/, so its
-# file dialogs and standard buttons follow the system language). NectarLink's
+# file dialogs and standard buttons follow the system language). Panal's
 # are compiled from the .ts files the repository keeps; they land beside the
 # executable, which is where the app looks for them.
 # Only the languages Settings offers (i18n::LANGUAGES) ship: a catalogue still being
@@ -250,12 +250,12 @@ Set-Content -Path (Join-Path $stage 'AppxManifest.xml') -Value $manifest -Encodi
 $makeappx = Get-ChildItem "${env:ProgramFiles(x86)}\Windows Kits\10\bin\*\x64\makeappx.exe" -ErrorAction SilentlyContinue |
     Sort-Object { [version]$_.Directory.Parent.Name } -Descending | Select-Object -First 1
 if ($makeappx) {
-    $check = Join-Path ([IO.Path]::GetTempPath()) "nectarlink-appx-$PID"
+    $check = Join-Path ([IO.Path]::GetTempPath()) "panal-appx-$PID"
     try {
         New-Item -ItemType Directory -Force (Join-Path $check 'content') | Out-Null
         Copy-Item (Join-Path $stage 'AppxManifest.xml'), $assetsDir -Destination (Join-Path $check 'content') -Recurse
         # The app is outside the package (its install folder); any file stands in for it.
-        Set-Content (Join-Path $check 'content\nectarlink-desktop.exe') 'app'
+        Set-Content (Join-Path $check 'content\panal.exe') 'app'
         Invoke-Native "the package manifest check" {
             & $makeappx.FullName pack /o /d (Join-Path $check 'content') /p (Join-Path $check 'check.msix')
         }
@@ -275,7 +275,7 @@ Step "Installer ($Arch)"
 $makensis = (Get-Command makensis -ErrorAction SilentlyContinue).Source
 if (-not $makensis) { $makensis = Join-Path ${env:ProgramFiles(x86)} 'NSIS\makensis.exe' }
 if (-not (Test-Path $makensis)) { throw "NSIS (makensis) not found" }
-$out = Join-Path $package "Nectarlink-$version-$Arch-setup.exe"
+$out = Join-Path $package "Panal-$version-$Arch-setup.exe"
 Invoke-Native "makensis" {
     & $makensis /V2 "/DVERSION=$numeric" "/DBUILD=$build" "/DDISPLAY_VERSION=$version" "/DARCH=$Arch" "/DSTAGE=$stage" `
         "/DICON=$($icon.FullName)" "/DOUTFILE=$out" (Join-Path $root 'desktop\installer\nectarlink.nsi')

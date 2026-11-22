@@ -10,7 +10,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.core.content.IntentCompat
-import app.nectarlink.android.NectarlinkApplication
+import app.nectarlink.android.PanalApplication
 import app.nectarlink.android.R
 import app.nectarlink.android.core.Device
 import kotlinx.coroutines.CoroutineScope
@@ -127,7 +127,7 @@ class SendActivity : ComponentActivity() {
     /** Files go to one PC: the connected one, or the one the user picks (queueing if offline). */
     private fun sendFiles(uris: List<Uri>, handoff: Boolean = false) {
         sent = true
-        val core = (application as NectarlinkApplication).core
+        val core = (application as PanalApplication).core
         val chosen = targetPcId()?.let { core.state.value.device(it) }
         if (chosen != null) {
             sendFilesTo(chosen, uris, handoff)
@@ -151,7 +151,7 @@ class SendActivity : ComponentActivity() {
      * confirmation show as notifications; an offline one queues, and says so.
      */
     private fun sendFilesTo(pc: Device, uris: List<Uri>, handoff: Boolean) {
-        (application as NectarlinkApplication).core.sendFiles(pc.id, uris, handoff)
+        (application as PanalApplication).core.sendFiles(pc.id, uris, handoff)
         if (pc.online) finish() else finishWith(getString(R.string.send_queue_offline_toast, pc.name))
     }
 
@@ -173,7 +173,7 @@ class SendActivity : ComponentActivity() {
      */
     private fun sendLink(url: String, text: String) {
         sent = true
-        val core = (application as NectarlinkApplication).core
+        val core = (application as PanalApplication).core
         val chosenPcId = targetPcId()
         if (chosenPcId != null) {
             val pc = core.state.value.device(chosenPcId)
@@ -205,14 +205,14 @@ class SendActivity : ComponentActivity() {
 
     private fun send(text: String, html: String? = null) {
         sent = true
-        val core = (application as NectarlinkApplication).core
+        val core = (application as PanalApplication).core
         val pcId = targetPcId()
         scope.launch { finishWith(core.sendClipboard(text, pcId, html)) }
     }
 
     private fun sendImage(uri: Uri) {
         sent = true
-        val core = (application as NectarlinkApplication).core
+        val core = (application as PanalApplication).core
         val pcId = targetPcId()
         scope.launch { finishWith(core.sendClipboardImage(uri, pcId)) }
     }

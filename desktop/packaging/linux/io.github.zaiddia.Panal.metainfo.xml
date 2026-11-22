@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-  <id>org.nectarlink.desktop</id>
+  <id>io.github.zaiddia.Panal</id>
   <name>Panal</name>
   <summary>Connect your Android phone and Linux PC over LAN</summary>
   <metadata_license>CC0-1.0</metadata_license>
@@ -20,11 +20,11 @@
       <li>Read and send SMS/MMS messages and manage phone calls</li>
     </ul>
   </description>
-  <launchable type="desktop-id">nectarlink.desktop</launchable>
+  <launchable type="desktop-id">panal.desktop</launchable>
   <url type="homepage">https://github.com/zaiddia/NectarLink</url>
   <url type="bugtracker">https://github.com/zaiddia/NectarLink/issues</url>
   <provides>
-    <binary>nectarlink-desktop</binary>
+    <binary>panal</binary>
     <mediatype>x-scheme-handler/nectarlink</mediatype>
     <mediatype>x-scheme-handler/tel</mediatype>
     <mediatype>x-scheme-handler/sms</mediatype>

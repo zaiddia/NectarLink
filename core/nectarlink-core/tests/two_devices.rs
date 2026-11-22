@@ -2911,7 +2911,7 @@ async fn remote_input_needs_toggle_and_delivers_motion_keys_and_slides() {
         RemoteInput::Button { button: MouseButton::Left, action: ButtonAction::Down },
         RemoteInput::Button { button: MouseButton::Left, action: ButtonAction::Up },
         RemoteInput::Scroll { dx: 0.0, dy: -3.0 },
-        RemoteInput::Text { text: "Hello NectarLink 🐝".into() },
+        RemoteInput::Text { text: "Hello Panal 🐝".into() },
         RemoteInput::Key { key: remote_keys::ENTER.into(), mods: vec![] },
         RemoteInput::Key { key: "c".into(), mods: vec![KeyMod::Ctrl] },
         RemoteInput::Key { key: remote_keys::COPY.into(), mods: vec![] },
@@ -4947,14 +4947,14 @@ async fn localsend_coexists_when_port_is_already_bound() {
     assert!(dev.node.localsend_enabled());
     assert!(
         !dev.node.localsend_receiving(),
-        "when port is occupied by standalone LocalSend, NectarLink must leave receiving to it without failing"
+        "when port is occupied by standalone LocalSend, Panal must leave receiving to it without failing"
     );
 
     dev.node.shutdown().await;
     drop(occupied);
 }
 
-/// A paired phone also answers LocalSend (NectarLink does). It isn't listed
+/// A paired phone also answers LocalSend (Panal does). It isn't listed
 /// as a LocalSend device nearby too, until it's unpaired.
 #[tokio::test(flavor = "multi_thread")]
 async fn a_paired_device_is_left_out_of_localsend_nearby() {
@@ -7098,7 +7098,7 @@ async fn elevated_over_usb_is_refused_without_a_usb_connection() {
     let mut phone = device("phone", DeviceKind::Phone).await;
     pair_qr(&mut pc, &mut phone).await;
     let pc_id = pc.node.device_id();
-    let apk = "/data/app/~~a==/app.nectarlink-b==/base.apk".to_owned();
+    let apk = "/data/app/~~a==/app.panal-b==/base.apk".to_owned();
     let token = "0123456789abcdef0123456789abcdef".to_owned();
 
     // This PC doesn't watch adb, so it can't start anything over USB.

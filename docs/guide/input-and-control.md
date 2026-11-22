@@ -1,122 +1,122 @@
-# Input and Control
+# Entrada y control
 
-NectarLink lets you control your PC from your phone and control your phone from your PC. Use your phone as a multi-touch trackpad, gyroscope air mouse, remote keyboard, voice dictation mic, presentation clicker with a laser pointer, `Deck` macro pad, or bedside `Desk clock` display. Going the other way, type on your phone from your PC keyboard without screen mirroring, toggle phone system settings from PC Home, or lock, sleep, and wake your PC remotely.
+Panal te permite controlar el PC desde el teléfono y el teléfono desde el PC. Usa el teléfono como panel táctil multitáctil, ratón aéreo con giroscopio, teclado remoto, micrófono de dictado por voz, mando de presentaciones con puntero láser, botonera de macros `Deck` o reloj de mesilla `Desk clock`. En el otro sentido, escribe en el teléfono con el teclado del PC sin duplicar la pantalla, cambia ajustes del teléfono desde el Inicio del PC o bloquea, suspende y enciende el PC a distancia.
 
 <p align="center">
-  <img src="images/type-on-phone.png" alt="Typing on the phone from the PC keyboard and controlling phone settings on Home" width="760">
+  <img src="images/type-on-phone.png" alt="Escribir en el teléfono con el teclado del PC y controlar los ajustes del teléfono desde Inicio" width="760">
 </p>
 
-## What You Need
+## Qué necesitas
 
-| Feature | Requirements |
+| Función | Requisitos |
 | :--- | :--- |
-| **Control PC from phone (Touchpad, Air mouse, Keyboard, Voice dictation, Presentation remote)** | `Standard` power level on Android. Per-phone **Remote mouse, keyboard & Deck** (`remote_input`) toggle enabled on the PC in **Settings › Devices** (off by default; the PC shows a one-time consent prompt the first time your phone asks). Air mouse requires a phone gyroscope sensor; Voice dictation requires Android **Microphone** permission (`RECORD_AUDIO`). |
-| **Type on phone from PC keyboard (without mirroring)** | `Assist` (Android Accessibility Service) or `Elevated` (Wireless Debugging) on the phone. |
-| **`Deck` macro pad** | Per-phone **Remote mouse, keyboard & Deck** (`remote_input`) toggle enabled on the PC. Tiles that run custom PC shell commands also require the separate per-phone **Run Deck shell commands** (`commands`) toggle in PC **Settings › Devices** (off by default). |
-| **Phone controls on PC Home** | `Standard` for Media volume, Ringer mode (Ring/Vibrate), and Flashlight. **Do Not Disturb and silent mode** requires Android Notification Policy Access (**Settings › Permissions › Control from your PC**). **Screen brightness** requires Android Modify system settings. **Wi-Fi** and **Bluetooth** toggles require `Elevated` (which also grants DND and brightness permissions automatically). |
-| **Lock, Sleep, and Wake-on-LAN** | **Lock, sleep & wake PC** (`pc_actions`) toggle enabled in PC **Settings › Devices** (on by default). Wake-on-LAN requires a PC network adapter with Wake on LAN enabled in Windows Device Manager and BIOS/UEFI (typically Ethernet). |
+| **Controlar el PC desde el teléfono (panel táctil, ratón aéreo, teclado, dictado por voz, mando de presentaciones)** | Nivel de control `Standard` en Android. Interruptor por teléfono **Ratón, teclado y Deck remotos** (`remote_input`) activado en **Ajustes › Dispositivos** del PC (desactivado por defecto; el PC muestra un aviso de consentimiento la primera vez que el teléfono lo pide). El ratón aéreo requiere giroscopio en el teléfono; el dictado por voz requiere el permiso de **Micrófono** de Android (`RECORD_AUDIO`). |
+| **Escribir en el teléfono con el teclado del PC (sin duplicar)** | `Assist` (servicio de accesibilidad de Android) o `Elevated` (depuración inalámbrica) en el teléfono. |
+| **Botonera de macros `Deck`** | Interruptor por teléfono **Ratón, teclado y Deck remotos** (`remote_input`) activado en el PC. Los botones que ejecutan comandos de shell propios en el PC también requieren el interruptor aparte **Ejecutar comandos de shell desde Deck** (`commands`) en **Ajustes › Dispositivos** del PC (desactivado por defecto). |
+| **Controles del teléfono en el Inicio del PC** | `Standard` para volumen multimedia, modo de timbre (sonido/vibración) y linterna. **No molestar y modo silencio** requiere el acceso a la política de notificaciones de Android (**Ajustes › Permisos › Control desde tu PC**). **Brillo de la pantalla** requiere el permiso de Android para modificar ajustes del sistema. Los interruptores de **Wi-Fi** y **Bluetooth** requieren `Elevated` (que además concede solo los permisos de No molestar y brillo). |
+| **Bloquear, suspender y Wake-on-LAN** | Interruptor **Bloquear, suspender y encender el PC** (`pc_actions`) activado en **Ajustes › Dispositivos** del PC (activado por defecto). Wake-on-LAN requiere un adaptador de red del PC con Wake on LAN activado en el Administrador de dispositivos de Windows y en la BIOS/UEFI (normalmente Ethernet). |
 
-## Step-by-Step Use
+## Uso paso a paso
 
-### 1. Controlling Your PC from Your Phone
+### 1. Controlar el PC desde el teléfono
 
-Tap **Control PC** on the Android Home screen. The first time you open it, click **Allow** on the prompt shown on your PC (or turn on **Remote mouse, keyboard & Deck** in PC **Settings › Devices**). Choose from three modes at the top of the phone screen:
+Toca **Controlar el PC** en la pantalla de Inicio de Android. La primera vez, haz clic en **Permitir** en el aviso que aparece en el PC (o activa **Ratón, teclado y Deck remotos** en **Ajustes › Dispositivos** del PC). Elige entre tres modos en la parte superior de la pantalla del teléfono:
 
-#### Touchpad Mode
+#### Modo panel táctil
 
-- **Move cursor**: Drag one finger across the pad. Adjust pointer speed (`0.5x` to `2.5x`) in Android **Settings › Features & Data › Control your PC › Touchpad speed**.
-- **Left-click**: Tap with one finger, or tap the **Left** button below the pad.
-- **Right-click**: Tap with two fingers, or tap the **Right** button.
-- **Middle-click**: Tap the **Middle** button.
-- **Scroll**: Drag two fingers up, down, left, or right.
-- **Click and drag**: Double-tap and hold with one finger, then drag.
+- **Mover el cursor**: arrastra un dedo por el panel. Ajusta la velocidad del puntero (de `0.5x` a `2.5x`) en **Ajustes › Funciones y datos › Controlar tu PC › Velocidad del panel táctil** de Android.
+- **Clic izquierdo**: toca con un dedo o toca el botón **Izquierdo** bajo el panel.
+- **Clic derecho**: toca con dos dedos o toca el botón **Derecho**.
+- **Clic central**: toca el botón **Central**.
+- **Desplazar**: arrastra dos dedos hacia arriba, abajo, izquierda o derecha.
+- **Hacer clic y arrastrar**: toca dos veces y mantén con un dedo, luego arrastra.
 
-#### Air Mouse Mode
+#### Modo ratón aéreo
 
-- Hold your thumb on the center pad and tilt your phone in the air. NectarLink reads your phone's gyroscope with hand-tremor filtering to move the PC cursor accurately where you point.
-- Tap the pad while holding to left-click, and release the pad to park the cursor. (If your phone does not have a gyroscope sensor, NectarLink lets you know and suggests Touchpad mode.)
+- Mantén el pulgar en el panel central e inclina el teléfono en el aire. Panal lee el giroscopio del teléfono con filtrado del temblor de la mano para mover el cursor del PC con precisión hacia donde apuntas.
+- Toca el panel mientras mantienes para hacer clic izquierdo, y suelta el panel para dejar quieto el cursor. (Si el teléfono no tiene giroscopio, Panal te avisa y te sugiere el modo panel táctil.)
 
-#### Keyboard and Voice Dictation
+#### Teclado y dictado por voz
 
-- **Remote Keyboard**: Tap **Keyboard** to open your phone's soft keyboard and type straight into the focused window on your PC. Above the keyboard sits a scrollable bar of PC modifier and special keys: **`Ctrl`**, **`Alt`**, **`Shift`**, **`Win`**, **`Esc`**, **`Tab`**, **Arrow keys**, **`Home`**, **`End`**, **`PgUp`**, **`PgDn`**, **`Del`**, **`Copy`**, and **`Paste`**. Tap a modifier key (`Ctrl`, `Alt`, `Shift`, `Win`) to latch it for the next keystroke.
-- **Voice Dictation**: Tap or hold **Dictate** and speak. NectarLink uses your phone's speech recognizer (on-device recognition where available) to stream live partial transcripts and type the finished sentence directly into the active text field on your PC.
+- **Teclado remoto**: toca **Teclado** para abrir el teclado en pantalla del teléfono y escribir directamente en la ventana enfocada del PC. Encima del teclado hay una barra desplazable con modificadores y teclas especiales del PC: **`Ctrl`**, **`Alt`**, **`Mayús`**, **`Win`**, **`Esc`**, **`Tab`**, **flechas**, **`Inicio`**, **`Fin`**, **`RePág`**, **`AvPág`**, **`Supr`**, **`Copiar`** y **`Pegar`**. Toca un modificador (`Ctrl`, `Alt`, `Mayús`, `Win`) para dejarlo fijado para la siguiente pulsación.
+- **Dictado por voz**: toca o mantén **Dictar** y habla. Panal usa el reconocedor de voz del teléfono (reconocimiento en el dispositivo cuando está disponible) para mostrar transcripciones parciales en directo y escribir la frase terminada directamente en el campo de texto activo del PC.
 
-#### Presentation Remote and Laser Pointer
+#### Mando de presentaciones y puntero láser
 
-Switch to **Presentation** mode when giving a talk or slideshow:
+Cambia al modo **Presentación** cuando des una charla o un pase de diapositivas:
 
-- Tap **Next slide** or **Previous** to step through slides. While the Presentation screen is open on your phone, your phone's physical **Volume Up** and **Volume Down** buttons also advance or go back a slide without looking at the screen.
-- Tap **Start show** (`F5`), **End show** (`Esc`), or **Black screen** (`B`) to control PowerPoint, Google Slides, Keynote Web, or PDF presenters.
-- **Hold for laser pointer**: Press and hold the laser button to project a bright, accent-colored laser dot overlay onto your PC monitor that follows how you tilt your phone (via gyroscope) or drag your finger.
+- Toca **Siguiente diapositiva** o **Anterior** para avanzar o retroceder. Con la pantalla Presentación abierta en el teléfono, los botones físicos de **Subir volumen** y **Bajar volumen** también avanzan o retroceden una diapositiva sin mirar la pantalla.
+- Toca **Iniciar presentación** (`F5`), **Terminar presentación** (`Esc`) o **Pantalla negra** (`B`) para controlar PowerPoint, Google Slides, Keynote Web o visores de PDF.
+- **Mantener para el puntero láser**: mantén pulsado el botón láser para proyectar en el monitor del PC un punto láser brillante del color de acento que sigue cómo inclinas el teléfono (con el giroscopio) o cómo arrastras el dedo.
 
-#### Screen Mode
+#### Modo pantalla
 
-With **Share PC screen to phone** and **Remote mouse, keyboard & Deck** on for this phone, **Screen** shows your PC's screen on the phone and controls it:
+Con **Compartir la pantalla del PC con el teléfono** y **Ratón, teclado y Deck remotos** activados para este teléfono, **Pantalla** muestra la pantalla del PC en el teléfono y la controla:
 
-- Drag on the touchpad below the picture to move the cursor. Tap to click, and use two fingers to right-click or scroll.
-- **Keyboard** opens a box above the phone's keyboard. What you type goes to the PC as you type it, **Send** presses Enter, and the key beside it deletes.
-- The quality button changes the stream's resolution.
+- Arrastra en el panel táctil bajo la imagen para mover el cursor. Toca para hacer clic y usa dos dedos para el clic derecho o para desplazar.
+- **Teclado** abre un cuadro sobre el teclado del teléfono. Lo que escribes llega al PC según lo escribes, **Enviar** pulsa Intro y la tecla de al lado borra.
+- El botón de calidad cambia la resolución de la transmisión.
 
-### 2. Typing on Your Phone from Your PC Keyboard (Without Mirroring)
+### 2. Escribir en el teléfono con el teclado del PC (sin duplicar)
 
-When your phone is sitting on a stand next to your monitor and you just want to type a quick message or search on the phone using your physical PC keyboard without opening a screen-mirroring window:
+Cuando el teléfono está en un soporte junto al monitor y solo quieres escribir un mensaje rápido o buscar algo en el teléfono con el teclado físico del PC sin abrir una ventana de duplicación:
 
-1. On PC **Home**, click **Type on phone** (or open the `Command Palette` with `Ctrl+Alt+Space` and select **Type on phone with PC keyboard**).
-2. While the **Type on phone** card is active on your PC, every keystroke you type (including letters, numbers, Unicode text, **Arrow keys**, **Backspace**, **Enter**, and `Ctrl+V` clipboard paste) goes straight into the focused text field on your phone.
-3. Your phone displays a top banner (**Typing from `<PC>`**) with a one-tap **Stop typing** button, and pressing **Escape** on your PC ends keyboard capture immediately.
+1. En el **Inicio** del PC, haz clic en **Escribir en el teléfono** (o abre la `Paleta de comandos` con `Ctrl+Alt+Espacio` y elige **Escribir en el teléfono con el teclado del PC**).
+2. Mientras la tarjeta **Escribir en el teléfono** está activa en el PC, cada pulsación (letras, números, texto Unicode, **flechas**, **Retroceso**, **Intro** y el pegado con `Ctrl+V`) va directamente al campo de texto enfocado del teléfono.
+3. El teléfono muestra un aviso arriba (**Escribiendo desde `<PC>`**) con un botón **Dejar de escribir**, y pulsar **Esc** en el PC termina al momento la captura del teclado.
 
-### 3. `Deck`: Customizable Macro Pad and PC Audio Controller
+### 3. `Deck`: botonera de macros personalizable y control de audio del PC
 
-`Deck` turns your phone into a tactile, multi-page button grid and live audio controller for your PC:
+`Deck` convierte el teléfono en una cuadrícula de botones de varias páginas y en un control de audio en directo para el PC:
 
-1. **Using `Deck` on your phone**: Tap **Deck** on the Android Home screen.
-   - The header gives you a live **PC master volume slider**, a **Mute** button, and an **Output device switcher** showing which speaker or headset is active on your PC.
-   - Swipe left or right between pages of action tiles, or tap **Full screen** to fill your phone in portrait or landscape with haptic feedback on every press.
-   - Live tiles update in real time to show whether PC media is **Playing** or **Paused**, the current speaker volume percentage, and whether your PC microphone is **Muted** or **Live**.
-2. **Customizing `Deck` on your PC**: Click **Deck** in the left navigation bar on your PC.
-   - Drag and drop tiles to reorder them, add new pages, and customize each tile's label, icon, and color.
-   - Choose from built-in tile types: **Play / Pause**, **Previous**, **Next**, **Volume up / down / mute**, **Microphone mute**, **Lock PC**, **Show desktop**, **Switch window**, **Screenshot**, **Keyboard shortcut** (any custom hotkey combo), **Open web link**, **Type text snippet**, **Launch application** (`.exe` or `.lnk`), or **Run shell command**.
-   - **Security gate for shell commands**: Tiles that execute custom PC shell commands are blocked unless you also turn on **Run Deck shell commands** (`commands`, off by default) for that phone in PC **Settings › Devices**.
+1. **Usar `Deck` en el teléfono**: toca **Deck** en la pantalla de Inicio de Android.
+   - La cabecera ofrece un **control deslizante del volumen general del PC**, un botón **Silenciar** y un **selector de dispositivo de salida** que muestra qué altavoz o auricular está activo en el PC.
+   - Desliza a izquierda o derecha entre páginas de botones, o toca **Pantalla completa** para ocupar todo el teléfono en vertical u horizontal, con respuesta háptica en cada pulsación.
+   - Los botones en directo se actualizan en tiempo real para mostrar si la multimedia del PC está **Reproduciendo** o **En pausa**, el porcentaje de volumen actual y si el micrófono del PC está **Silenciado** o **Activo**.
+2. **Personalizar `Deck` en el PC**: haz clic en **Deck** en la barra lateral del PC.
+   - Arrastra y suelta los botones para reordenarlos, añade páginas nuevas y personaliza la etiqueta, el icono y el color de cada botón.
+   - Elige entre los tipos de botón integrados: **Reproducir / Pausa**, **Anterior**, **Siguiente**, **Subir / bajar / silenciar volumen**, **Silenciar micrófono**, **Bloquear el PC**, **Mostrar escritorio**, **Cambiar de ventana**, **Captura de pantalla**, **Atajo de teclado** (cualquier combinación propia), **Abrir enlace web**, **Escribir fragmento de texto**, **Abrir aplicación** (`.exe` o `.lnk`) o **Ejecutar comando de shell**.
+   - **Protección para los comandos de shell**: los botones que ejecutan comandos de shell propios en el PC están bloqueados salvo que también actives **Ejecutar comandos de shell desde Deck** (`commands`, desactivado por defecto) para ese teléfono en **Ajustes › Dispositivos** del PC.
 
-### 4. Phone Controls on PC Home
+### 4. Controles del teléfono en el Inicio del PC
 
-The **Phone controls** section on your PC's Home screen lets you check and toggle your phone's hardware and sound settings from your desk:
+La sección **Controles del teléfono** de la pantalla de Inicio del PC te permite ver y cambiar ajustes de hardware y sonido del teléfono desde el escritorio:
 
-- **Media volume**: Drag the slider to change your phone's media playback volume.
-- **Ringer mode**: Switch between **Ring**, **Vibrate**, and **Silent**.
-- **Do Not Disturb**: Toggle Do Not Disturb on or off (or switch notification profiles between **All**, **Priority only**, and **Silent**).
-- **Flashlight**: Turn your phone's rear flashlight on or off.
-- **Screen brightness**: Drag the slider to adjust your phone's display brightness.
-- **Wi-Fi and Bluetooth** (available at `Elevated`): Toggle your phone's Wi-Fi or Bluetooth radios. Turning Wi-Fi off from the PC asks for confirmation first so you do not accidentally drop a Wi-Fi connection.
+- **Volumen multimedia**: arrastra el control para cambiar el volumen de reproducción del teléfono.
+- **Modo de timbre**: cambia entre **Sonido**, **Vibración** y **Silencio**.
+- **No molestar**: activa o desactiva No molestar (o cambia el perfil de notificaciones entre **Todo**, **Solo prioritarias** y **Silencio**).
+- **Linterna**: enciende o apaga la linterna trasera del teléfono.
+- **Brillo de la pantalla**: arrastra el control para ajustar el brillo de la pantalla del teléfono.
+- **Wi-Fi y Bluetooth** (disponible con `Elevated`): activa o desactiva la Wi-Fi o el Bluetooth del teléfono. Apagar la Wi-Fi desde el PC pide confirmación antes para que no cortes una conexión Wi-Fi por error.
 
-### 5. Desk Mode (`Desk clock`) on Android
+### 5. Modo escritorio (`Desk clock`) en Android
 
-When your phone is resting on a charger or desk stand, tap **Desk clock** on the Android Home screen to switch into **Desk Mode**: a calm, high-contrast landscape or portrait stand display showing the time, connection status, live PC media artwork and transport controls, and quick actions designed for OLED screens.
+Cuando el teléfono está en el cargador o en un soporte de mesa, toca **Reloj de escritorio** en la pantalla de Inicio de Android para pasar al **Modo escritorio**: una pantalla tranquila y de alto contraste, en horizontal o vertical, con la hora, el estado de la conexión, la carátula y los controles de la multimedia del PC en directo y acciones rápidas pensadas para pantallas OLED.
 
-### 6. Lock, Sleep, Find My Device, and Wake-on-LAN
+### 6. Bloquear, suspender, Encontrar mi dispositivo y Wake-on-LAN
 
-- **Find my device (both ways)**: Click **Find phone** on PC Home to ring your phone at full volume on the alarm audio stream (even if the phone is on silent or Do Not Disturb). Tap **Ring PC** on your phone (or on the Android home-screen widget) to play an alert chime on your PC.
-- **Lock or Sleep PC**: Tap **Lock PC** or **Sleep** on your phone (or on the Android **PC quick actions** widget) to lock your Windows session or put the PC to sleep when you walk away.
-- **Wake PC (Wake-on-LAN)**: When your PC is asleep or powered off, tap **Wake** on your phone (or on the Android home-screen widget).
-  - On the local network, your phone sends Wake-on-LAN UDP packets to every MAC and broadcast address stored for your PC during prior connections.
-  - If you have another NectarLink device online on your home LAN while you are on mobile data (**Connect over mobile data**), NectarLink can also relay the wake request through your online home device.
-  - Check **Settings › Connection & About › Wake from your phone** on your PC to verify whether your Windows network adapter has Wake on LAN enabled in Device Manager.
+- **Encontrar mi dispositivo (en ambos sentidos)**: haz clic en **Buscar el teléfono** en el Inicio del PC para que el teléfono suene a todo volumen por el canal de alarma (aunque esté en silencio o en No molestar). Toca **Hacer sonar el PC** en el teléfono (o en el widget de la pantalla de inicio de Android) para que suene un aviso en el PC.
+- **Bloquear o suspender el PC**: toca **Bloquear el PC** o **Suspender** en el teléfono (o en el widget **Acciones rápidas del PC** de Android) para bloquear la sesión de Windows o suspender el PC cuando te alejas.
+- **Encender el PC (Wake-on-LAN)**: cuando el PC está suspendido o apagado, toca **Encender** en el teléfono (o en el widget de la pantalla de inicio de Android).
+  - En la red local, el teléfono envía paquetes UDP de Wake-on-LAN a todas las direcciones MAC y de difusión guardadas para tu PC en conexiones anteriores.
+  - Si tienes otro dispositivo Panal conectado en la red de casa mientras usas datos móviles (**Conectar con datos móviles**), Panal también puede retransmitir la petición de encendido a través de ese dispositivo de casa.
+  - Consulta **Ajustes › Conexión y Acerca de › Encender desde el teléfono** en el PC para comprobar si el adaptador de red de Windows tiene Wake on LAN activado en el Administrador de dispositivos.
 
-## What the Options Do
+## Qué hacen las opciones
 
-- **Remote mouse, keyboard & Deck** (`Settings › Devices` on PC, default: **Off**): Allows the selected phone to control the PC's mouse, keyboard, presentation remote, and standard `Deck` tiles.
-- **Run Deck shell commands** (`Settings › Devices` on PC, default: **Off**): Allows the selected phone to trigger `Deck` tiles that execute custom shell commands on the PC.
-- **Phone controls** (`Settings › Devices` on PC, default: **On**): Allows the PC to view and change the phone's volume, ringer, DND, flashlight, brightness, Wi-Fi, and Bluetooth.
-- **Lock, sleep & wake PC** (`Settings › Devices` on PC, default: **On**): Allows the selected phone to lock or sleep the PC and learn its MAC address for Wake-on-LAN.
-- **Touchpad speed** (`Settings › Features & Data › Control your PC` on Android, default: `1.0x`): Adjusts pointer sensitivity from `0.5x` to `2.5x`.
+- **Ratón, teclado y Deck remotos** (`Ajustes › Dispositivos` en el PC, por defecto: **desactivado**): permite al teléfono seleccionado controlar el ratón, el teclado, el mando de presentaciones y los botones normales de `Deck` del PC.
+- **Ejecutar comandos de shell desde Deck** (`Ajustes › Dispositivos` en el PC, por defecto: **desactivado**): permite al teléfono seleccionado lanzar botones de `Deck` que ejecutan comandos de shell propios en el PC.
+- **Controles del teléfono** (`Ajustes › Dispositivos` en el PC, por defecto: **activado**): permite al PC ver y cambiar el volumen, el timbre, No molestar, la linterna, el brillo, la Wi-Fi y el Bluetooth del teléfono.
+- **Bloquear, suspender y encender el PC** (`Ajustes › Dispositivos` en el PC, por defecto: **activado**): permite al teléfono seleccionado bloquear o suspender el PC y conocer su dirección MAC para Wake-on-LAN.
+- **Velocidad del panel táctil** (`Ajustes › Funciones y datos › Controlar tu PC` en Android, por defecto: `1.0x`): ajusta la sensibilidad del puntero de `0.5x` a `2.5x`.
 
-## Data and Privacy
+## Datos y privacidad
 
-- **Consent before remote input**: Incoming mouse, keyboard, and `Deck` input from a phone is **off by default** on the PC and prompts for your approval the first time a paired phone requests control. Custom shell command tiles require a second, separate per-device toggle (**Run Deck shell commands**) that you must turn on manually in PC Settings.
-- **Visible banner when typing on phone**: Whenever your PC keyboard is typing into your phone via **Type on phone**, your phone shows an active banner (**Typing from `<PC>`**) with a one-tap **Stop typing** button.
-- **Voice dictation**: Voice typing uses Android's system `SpeechRecognizer` (preferring on-device recognition when installed on your phone) and sends only the recognized text strings over your encrypted QUIC connection to the PC.
+- **Consentimiento antes del control remoto**: la entrada de ratón, teclado y `Deck` desde un teléfono está **desactivada por defecto** en el PC y pide tu aprobación la primera vez que un teléfono emparejado solicita el control. Los botones de comandos de shell propios requieren un segundo interruptor aparte por dispositivo (**Ejecutar comandos de shell desde Deck**) que debes activar a mano en los Ajustes del PC.
+- **Aviso visible al escribir en el teléfono**: siempre que el teclado del PC escribe en el teléfono con **Escribir en el teléfono**, el teléfono muestra un aviso activo (**Escribiendo desde `<PC>`**) con un botón **Dejar de escribir**.
+- **Dictado por voz**: la escritura por voz usa el `SpeechRecognizer` del sistema Android (con preferencia por el reconocimiento en el dispositivo si está instalado) y solo envía al PC el texto reconocido por tu conexión QUIC cifrada.
 
-## Limits
+## Límites
 
-- **Wake-on-LAN Hardware Requirements**: Waking a sleeping or powered-off PC over the network requires Wake-on-LAN to be enabled in your PC's BIOS/UEFI and in your network adapter's Windows Device Manager properties (**Power Management › Allow this device to wake the computer**). Most desktop Ethernet adapters support waking from both sleep (`S3`) and shutdown (`S5`), whereas many laptop Wi-Fi cards only support waking from low-power standby (`S0ix`) or sleep, not full shutdown.
-- **Wi-Fi and Bluetooth Toggles on Android 10+**: Starting in Android 10, regular apps cannot toggle Wi-Fi or Bluetooth directly. Those two toggles on PC Home require the `Elevated` power level on your phone.
+- **Requisitos de hardware para Wake-on-LAN**: encender por red un PC suspendido o apagado requiere tener Wake-on-LAN activado en la BIOS/UEFI del PC y en las propiedades del adaptador de red en el Administrador de dispositivos de Windows (**Administración de energía › Permitir que este dispositivo reactive el equipo**). La mayoría de los adaptadores Ethernet de sobremesa permiten encender tanto desde la suspensión (`S3`) como desde el apagado (`S5`), mientras que muchas tarjetas Wi-Fi de portátil solo despiertan desde el modo de espera de bajo consumo (`S0ix`) o la suspensión, no desde el apagado completo.
+- **Interruptores de Wi-Fi y Bluetooth en Android 10+**: desde Android 10, las apps normales no pueden activar o desactivar la Wi-Fi ni el Bluetooth directamente. Esos dos interruptores del Inicio del PC requieren el nivel de control `Elevated` en el teléfono.

@@ -471,7 +471,7 @@ struct Decoder
     }
 };
 
-NectarlinkDecodedNv12 decoded_picture(Decoder& decoder, AVFrame* picture)
+PanalDecodedNv12 decoded_picture(Decoder& decoder, AVFrame* picture)
 {
     decoder.functions.check(decoder.functions.crop(picture, 0), "Crop decoded picture");
     const int width = picture->width & ~1;
@@ -896,7 +896,7 @@ extern "C" int nectarlink_video_decoder_send(void* pointer, const uint8_t* bytes
     }
 }
 
-extern "C" int nectarlink_video_decoder_receive(void* pointer, NectarlinkDecodedNv12* frame,
+extern "C" int nectarlink_video_decoder_receive(void* pointer, PanalDecodedNv12* frame,
                                               char* error, size_t capacity)
 {
     try {

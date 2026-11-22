@@ -179,12 +179,12 @@ impl MprisRoot {
 
     #[zbus(property)]
     fn identity(&self) -> String {
-        "NectarLink".to_owned()
+        "Panal".to_owned()
     }
 
     #[zbus(property)]
     fn desktop_entry(&self) -> String {
-        "nectarlink".to_owned()
+        "panal".to_owned()
     }
 
     #[zbus(property)]

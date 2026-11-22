@@ -36,11 +36,11 @@ fn verify_with(key: &[u8; 32], data: &[u8], signature: &[u8]) -> bool {
 mod tests {
     use super::*;
 
-    const SUMS: &[u8] = b"abc123  Nectarlink-9.9.9-x64-setup.exe\n";
+    const SUMS: &[u8] = b"abc123  Panal-9.9.9-x64-setup.exe\n";
 
     fn openssl_signature() -> Vec<u8> {
-        let hex = "004ca0f7d5cc66412ac1ba843233c3c250edf59f1c5c684628f2a1254db25f27\
-                   9e19d710fc50d44ad69db135ad09137b1e5191b5eafe4b7efe00c7bde9d02a07";
+        let hex = "979bb938ee9aa3e863534fec54de7d4569ddb8e3642b58a29241a0eec611e503\
+                   ff385b37284dff4405a170e2c0044e493d974b43cf0e6c06e4d77823af8fe101";
         (0..hex.len()).step_by(2).map(|i| u8::from_str_radix(&hex[i..i + 2], 16).unwrap()).collect()
     }
 
@@ -52,7 +52,7 @@ mod tests {
     #[test]
     fn refuses_changed_data_bad_signatures_and_other_keys() {
         let sig = openssl_signature();
-        assert!(!verify(b"abc124  Nectarlink-9.9.9-x64-setup.exe\n", &sig));
+        assert!(!verify(b"abc124  Panal-9.9.9-x64-setup.exe\n", &sig));
         let mut flipped = sig.clone();
         flipped[10] ^= 1;
         assert!(!verify(SUMS, &flipped));

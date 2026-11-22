@@ -48,13 +48,13 @@ import java.security.SecureRandom
 
 /**
  * The Elevated level (docs/PLAN.md §4.6) through the phone's own wireless
- * debugging, with nothing else to install: the user pairs NectarLink once
- * with a pairing code, and from then on NectarLink connects to the phone's
+ * debugging, with nothing else to install: the user pairs Panal once
+ * with a pairing code, and from then on Panal connects to the phone's
  * debugging service and runs [InputServer] with the shell's permissions,
  * for real touch and keys on the mirrored screen.
  *
  * Wireless debugging turns itself off on a reboot or a new Wi-Fi network;
- * after the first pairing NectarLink may turn it back on itself
+ * after the first pairing Panal may turn it back on itself
  * (WRITE_SECURE_SETTINGS, which it grants itself through the shell).
  */
 object Elevated {
@@ -164,7 +164,7 @@ object Elevated {
 
     /**
      * Sets Elevated up through Shizuku, as the user asked: Shizuku asks once
-     * whether NectarLink may use it, and from then on Elevated starts through
+     * whether Panal may use it, and from then on Elevated starts through
      * it whenever Shizuku runs. The helper runs as the shell user, as through
      * Wireless debugging; a Shizuku running as root isn't used.
      */
@@ -206,7 +206,7 @@ object Elevated {
     // ---- Staying in sync ----
     //
     // Wireless debugging turns itself off when Wi-Fi drops or changes, and
-    // comes back (NectarLink turns it on, or the user does) a moment after
+    // comes back (Panal turns it on, or the user does) a moment after
     // the new network is up. A single attempt on the network change is
     // usually too early, so Elevated retries with a backoff while the phone
     // is on Wi-Fi, and starts right away when wireless debugging turns on.
@@ -275,7 +275,7 @@ object Elevated {
 
     private fun paired() = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE).getBoolean(PAIRED, false)
 
-    /** The phone's own adbd, as NectarLink. */
+    /** The phone's own adbd, as Panal. */
     private class Connection(context: Context) : AbsAdbConnectionManager() {
         private val key = AdbKey.load(context.noBackupFilesDir.resolve("adb"))
 
@@ -286,7 +286,7 @@ object Elevated {
 
         override fun getPrivateKey() = key.privateKey
         override fun getCertificate() = key.certificate
-        override fun getDeviceName() = "Nectarlink"
+        override fun getDeviceName() = "Panal"
     }
 
     // ---- Pairing ----
@@ -542,7 +542,7 @@ object Elevated {
         process.inputStream.bufferedReader().readText().takeIf { process.exitValue() == 0 }
     }.getOrNull()
 
-    /** Wireless debugging back on, when NectarLink may (granted at the first start). */
+    /** Wireless debugging back on, when Panal may (granted at the first start). */
     private fun turnOnWirelessDebugging() {
         if (context.checkSelfPermission(Manifest.permission.WRITE_SECURE_SETTINGS) != PackageManager.PERMISSION_GRANTED) return
         runCatching {
@@ -553,10 +553,10 @@ object Elevated {
         }.onFailure { Log.i(TAG, "can't turn on wireless debugging", it) }
     }
 
-    /** What the shell grants NectarLink once, before the helper starts (however it starts). */
+    /** What the shell grants Panal once, before the helper starts (however it starts). */
     private fun grants(): List<String> = buildList {
         val pkg = context.packageName
-        // Turning wireless debugging back on later is NectarLink's to do.
+        // Turning wireless debugging back on later is Panal's to do.
         if (context.checkSelfPermission(Manifest.permission.WRITE_SECURE_SETTINGS) != PackageManager.PERMISSION_GRANTED) {
             add("pm grant $pkg ${Manifest.permission.WRITE_SECURE_SETTINGS}")
         }
@@ -740,7 +740,7 @@ object Elevated {
      * comes out (its socket then closes, see [connectSocketLocked]).
      */
     private suspend fun startOverUsbLocked(): Boolean {
-        val app = context.applicationContext as? app.nectarlink.android.NectarlinkApplication ?: return false
+        val app = context.applicationContext as? app.nectarlink.android.PanalApplication ?: return false
         val token = ByteArray(24).also(SecureRandom()::nextBytes).joinToString("") { "%02x".format(it) }
         val port = app.core.elevatedUsbStart(context.applicationInfo.sourceDir, token, grants()) ?: return false
         return runCatching {
@@ -873,7 +873,7 @@ object Elevated {
         }.onFailure { Log.w(TAG, "can't open Elevated audio stream", it) }.getOrNull()
     }
 
-    /** Lets NectarLink see which app is in front (for Pause for banking apps); false if Elevated isn't running. */
+    /** Lets Panal see which app is in front (for Pause for banking apps); false if Elevated isn't running. */
     fun grantUsageAccess(): Boolean = runCommand("appops set ${context.packageName} GET_USAGE_STATS allow")
 
     /** Runs an allowed shell command through the Elevated helper. */

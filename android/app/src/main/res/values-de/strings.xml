@@ -25,7 +25,7 @@
     <string name="pair_failed_declined">Die Kopplung wurde auf einem der Geräte abgelehnt.</string>
     <string name="pair_failed_expired">Der Code ist abgelaufen. Lass dir auf deinem PC einen neuen anzeigen.</string>
     <string name="pair_failed_unreachable">Der PC konnte nicht erreicht werden. Stelle sicher, dass beide Geräte im selben Netzwerk sind.</string>
-    <string name="pair_failed_other">Das ist kein NectarLink-Kopplungscode oder etwas ist schiefgelaufen.</string>
+    <string name="pair_failed_other">Das ist kein Panal-Kopplungscode oder etwas ist schiefgelaufen.</string>
     <string name="your_pc">dein PC</string>
     <string name="camera_permission_needed">Panal benötigt die Kamera, um den Kopplungscode zu scannen. Es wird nichts aufgenommen.</string>
 
@@ -102,7 +102,7 @@
     <string name="elevated_use_root">Root verwenden</string>
     <string name="elevated_root_hint">Dieses Gerät ist gerootet, daher kann der erweiterte Modus stattdessen über Root starten: ohne Kopplung, und er ist nach einem Neustart oder ohne WLAN von selbst wieder da. Er erhält dieselben Berechtigungen wie beim Kabellosen Debugging.</string>
     <string name="elevated_running_root">Ein (über Root): Maus und Tastatur deines PCs funktionieren wie ein echter Touchscreen und eine echte Tastatur.</string>
-    <string name="elevated_root_failed">Root-Zugriff wurde nicht gewährt oder dein Root-Manager kann den NectarLink-Helfer nicht als Shell-Benutzer starten. Du kannst ihn stattdessen über Kabelloses Debugging einrichten.</string>
+    <string name="elevated_root_failed">Root-Zugriff wurde nicht gewährt oder dein Root-Manager kann den Panal-Helfer nicht als Shell-Benutzer starten. Du kannst ihn stattdessen über Kabelloses Debugging einrichten.</string>
     <string name="elevated_use_shizuku">Shizuku verwenden</string>
     <string name="elevated_shizuku_hint">Shizuku ist installiert, daher kann der erweiterte Modus stattdessen darüber starten: ohne eigene Kopplung, und er funktioniert auch ohne WLAN, solange Shizuku läuft. Er erhält dieselben Berechtigungen wie beim Kabellosen Debugging.</string>
     <string name="elevated_running_shizuku">An, über Shizuku: Maus und Tastatur deines PCs funktionieren wie ein echter Touchscreen und eine echte Tastatur.</string>
@@ -162,7 +162,7 @@
     <string name="transfer_pause">Pause</string>
     <string name="transfer_resume">Fortsetzen</string>
     <string name="transfer_paused_progress">Pausiert · %1$s / %2$s</string>
-    <string name="transfer_received_from">Von %1$s · in Download/Nectarlink</string>
+    <string name="transfer_received_from">Von %1$s · in Download/Panal</string>
     <string name="transfer_sent_to">Gesendet an %1$s</string>
     <string name="transfer_cancelled">Abgebrochen</string>
     <string name="transfer_denied">%1$s nimmt keine Dateien von diesem Gerät an.</string>
@@ -368,7 +368,7 @@
     <string name="remote_dictate_error">Die Spracherkennung konnte nicht abgeschlossen werden. Tippe oder halte „Diktieren“, um es erneut zu versuchen.</string>
     <string name="remote_dictate_permission_needed">Panal benötigt Mikrofonzugriff, um auf %1$s zu diktieren.</string>
     <string name="remote_denied_title">Steuerung auf %1$s erlauben</string>
-    <string name="remote_denied_text">Erlaube auf %1$s die Steuerung durch dieses Gerät im NectarLink-Hinweis oder unter „Einstellungen › Geräte“.</string>
+    <string name="remote_denied_text">Erlaube auf %1$s die Steuerung durch dieses Gerät im Panal-Hinweis oder unter „Einstellungen › Geräte“.</string>
     <string name="remote_offline_text">%1$s ist momentan nicht verbunden.</string>
     <string name="remote_unsupported_text">Aktualisiere Panal auf %1$s, um ihn von diesem Gerät aus zu steuern.</string>
     <string name="remote_slide_next">Nächste Folie</string>
@@ -717,7 +717,7 @@
     <string name="pc_files_downloading">%1$s wird heruntergeladen…</string>
     <string name="pc_files_saved">%1$s in Downloads gespeichert</string>
     <string name="pc_files_failed">%1$s konnte nicht heruntergeladen werden</string>
-    <string name="pc_files_not_shared">Aktiviere „Dein PC in der Hosentasche“ in den NectarLink-Einstellungen auf %1$s.</string>
+    <string name="pc_files_not_shared">Aktiviere „Dein PC in der Hosentasche“ in den Panal-Einstellungen auf %1$s.</string>
     <string name="pc_files_offline">%1$s ist nicht verbunden.</string>
     <string name="pc_files_update">Aktualisiere Panal auf %1$s, um dessen Dateien zu durchsuchen.</string>
     <string name="pc_files_not_found">Dieser Ordner ist auf %1$s nicht mehr vorhanden.</string>
@@ -824,7 +824,7 @@
 
     <string name="walkthrough_perm_access_title">Assistenz</string>
     <string name="walkthrough_perm_access_does">Deinen gespiegelten Gerätebildschirm vom PC aus mit Maus und Tastatur steuern.</string>
-    <string name="walkthrough_perm_access_requires">Android benötigt den NectarLink-Bedienungshilfendienst oder den erweiterten Modus.</string>
+    <string name="walkthrough_perm_access_requires">Android benötigt den Panal-Bedienungshilfendienst oder den erweiterten Modus.</string>
 
     <string name="walkthrough_pair_title">Mit deinem PC koppeln</string>
     <string name="walkthrough_pair_subtitle">Öffne Panal auf deinem PC. Scanne den QR-Code oder wähle deinen PC unten aus.</string>
@@ -945,7 +945,7 @@
     <string name="guide_notif_need_3">PC gekoppelt und online.</string>
     <string name="guide_notif_phone_1">Öffne Einstellungen › Berechtigungen › Benachrichtigungen und tippe auf „Erlauben“.</string>
     <string name="guide_notif_phone_2">Aktiviere Panal im Android-Benachrichtigungszugriff.</string>
-    <string name="guide_notif_pc_1">Sieh dir Gerätebenachrichtigungen im PC-Benachrichtigungscenter oder im NectarLink-Fenster an.</string>
+    <string name="guide_notif_pc_1">Sieh dir Gerätebenachrichtigungen im PC-Benachrichtigungscenter oder im Panal-Fenster an.</string>
     <string name="guide_notif_pc_2">Tippe eine Antwort direkt auf der Karte ein und drücke „Senden“ oder verwirf sie, um sie auf beiden Geräten zu löschen.</string>
     <string name="guide_notif_opt_1">Erlauben / Verwalten: Öffnet die Android-Einstellungen für den Benachrichtigungszugriff.</string>
     <string name="guide_notif_opt_2">Benachrichtigungs-Schalter pro PC: Legt fest, ob ein gekoppelter PC Benachrichtigungen erhält.</string>
@@ -1036,10 +1036,10 @@
     <string name="guide_files_need_1">Gekoppelter PC (Offline-Dateien warten bis zu 7 Tage in der Sendewarteschlange).</string>
     <string name="guide_files_phone_1">Tippe auf der Startseite auf der Karte deines gekoppelten PCs auf „Dateien senden“ oder „Ordner senden“.</string>
     <string name="guide_files_phone_2">Pausiere, setze fort oder brich aktive Übertragungen in der Karte „Übertragungen“ auf der Startseite ab.</string>
-    <string name="guide_files_pc_1">Ziehe Dateien auf das NectarLink-Fenster oder auf die Nectar Island am oberen Bildschirmrand deines PCs.</string>
+    <string name="guide_files_pc_1">Ziehe Dateien auf das Panal-Fenster oder auf die Nectar Island am oberen Bildschirmrand deines PCs.</string>
     <string name="guide_files_opt_1">Dateien senden / Ordner senden: Überträgt einzelne Dateien oder komplette Ordnerstrukturen.</string>
     <string name="guide_files_opt_2">Pause / Fortsetzen: Setzt unterbrochene Übertragungen fort, ohne bereits übertragene Bytes erneut zu senden.</string>
-    <string name="guide_files_privacy">Dateien werden über QUIC TLS 1.3 mit BLAKE3-Integritätsprüfung in den Ordner Download/Nectarlink übertragen.</string>
+    <string name="guide_files_privacy">Dateien werden über QUIC TLS 1.3 mit BLAKE3-Integritätsprüfung in den Ordner Download/Panal übertragen.</string>
     <string name="guide_files_limits">Bis zu 5.000 Dateien pro Stapel.</string>
 
     <!-- 8. Send queue -->
@@ -1090,7 +1090,7 @@
     <string name="guide_pc_files_needs">Verbundener gekoppelter PC mit aktivierter Speicherfreigabe</string>
     <string name="guide_pc_files_need_1">Verbundener gekoppelter PC, der seine Ordner freigibt („Dein PC in der Hosentasche“).</string>
     <string name="guide_pc_files_phone_1">Tippe auf der Startseite auf der Karte deines gekoppelten PCs auf „PC-Dateien durchsuchen“ und tippe auf eine Datei, um sie herunterzuladen.</string>
-    <string name="guide_pc_files_pc_1">Aktiviere „Dein PC in der Hosentasche“ in den NectarLink-Einstellungen auf deinem PC.</string>
+    <string name="guide_pc_files_pc_1">Aktiviere „Dein PC in der Hosentasche“ in den Panal-Einstellungen auf deinem PC.</string>
     <string name="guide_pc_files_opt_1">Ansicht „PC-Dateien durchsuchen“: Navigiere durch PC-Ordner und lade Dateien in „Downloads“ herunter.</string>
     <string name="guide_pc_files_privacy">Heruntergeladene Dateien werden lokal im Downloads-Ordner deines Geräts gespeichert.</string>
     <string name="guide_pc_files_limits">Erfordert, dass der gekoppelte PC online ist.</string>
@@ -1213,7 +1213,7 @@
     <string name="guide_assist_summary">Lass Maus und Tastatur deines PCs über den Bedienungshilfendienst auf diesem Gerät tippen, wischen und schreiben.</string>
     <string name="guide_assist_where">Einstellungen › Berechtigungen › Steuerung vom PC › Maus und Tastatur deines PCs verwenden</string>
     <string name="guide_assist_needs">Bedienungshilfendienst aktiviert</string>
-    <string name="guide_assist_need_1">NectarLink-Bedienungshilfendienst in den Android-Einstellungen aktiviert.</string>
+    <string name="guide_assist_need_1">Panal-Bedienungshilfendienst in den Android-Einstellungen aktiviert.</string>
     <string name="guide_assist_phone_1">Öffne Einstellungen › Berechtigungen › Steuerung vom PC und tippe unter „Maus und Tastatur deines PCs verwenden“ auf „Erlauben“.</string>
     <string name="guide_assist_pc_1">Klicke, ziehe, scrolle und tippe direkt im Fenster der Gerätespiegelung auf deinem PC.</string>
     <string name="guide_assist_opt_1">Tippen beenden: Beendet die PC-Tastatureingabe über das Banner auf der Startseite.</string>
@@ -1386,7 +1386,7 @@
     <string name="banking_paused_text">Entwickleroptionen, Debugging und der Bedienungshilfendienst von Panal sind ausgeschaltet, bis du die App verlässt.</string>
     <string name="banking_turn_back_on">Wieder einschalten</string>
     <string name="action_done">Fertig</string>
-    <!-- The phone's name as PCs see it when NectarLink runs in another Android profile: "Pixel 9a (Work)". -->
+    <!-- The phone's name as PCs see it when Panal runs in another Android profile: "Pixel 9a (Work)". -->
     <string name="device_name_in_profile">%1$s (%2$s)</string>
     <string name="profile_work">Arbeit</string>
     <string name="profile_other">Zweites Profil</string>

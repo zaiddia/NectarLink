@@ -1,12 +1,12 @@
 ; SPDX-License-Identifier: GPL-3.0-or-later
 ;
-; The NectarLink installer for Windows (built by scripts/package.ps1).
+; The Panal installer for Windows (built by scripts/package.ps1).
 ;
 ; Two ways to run it:
 ;
 ; - Opened by the user: no NSIS pages. It unpacks the app to a temporary
-;   folder and runs it there, as "Nectarlink Setup.exe" with --setup, which
-;   draws NectarLink's own setup window (desktop/app/src/setup.rs). That
+;   folder and runs it there, as "Panal Setup.exe" with --setup, which
+;   draws Panal's own setup window (desktop/app/src/setup.rs). That
 ;   window runs this installer again, elevated, as below.
 ; - With /S (that window, or the app's updater): installs into Program Files
 ;   for every user of the PC, without a window. /PROGRESS=<file> writes each
@@ -45,12 +45,12 @@ SetCompressor /SOLID zlib
 
 ; APP names the install folder, registry keys and the firewall rule; DISPLAY is
 ; the name people see.
-!define APP "Nectarlink"
+!define APP "Panal"
 !define DISPLAY "Panal"
-!define EXE "nectarlink-desktop.exe"
-!define SETUP_EXE "Nectarlink Setup.exe"
+!define EXE "panal.exe"
+!define SETUP_EXE "Panal Setup.exe"
 !define UNINSTALL_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APP}"
-!define FIREWALL_RULE "Nectarlink"
+!define FIREWALL_RULE "Panal"
 
 Name "${DISPLAY}"
 OutFile "${OUTFILE}"
@@ -72,7 +72,7 @@ VIAddVersionKey "LegalCopyright" "GPL-3.0-or-later"
 VIAddVersionKey "FileVersion" "${VERSION}"
 VIAddVersionKey "ProductVersion" "${DISPLAY_VERSION}"
 
-; 1: show NectarLink's own setup window. 0: install now (/S).
+; 1: show Panal's own setup window. 0: install now (/S).
 Var Interactive
 ; Where each step is written, for the setup window (/PROGRESS=<file>).
 Var ProgressFile
@@ -139,7 +139,7 @@ Function .onInit
     ${EndIf}
   ${Else}
     StrCpy $Interactive 1
-    ; No NSIS window: the window is NectarLink's own.
+    ; No NSIS window: the window is Panal's own.
     SetSilent silent
   ${EndIf}
 FunctionEnd
@@ -339,7 +339,7 @@ Section "Install"
       ${If} $INSTDIR != $PreviousDir
         Call CreateLockedInstallDir
         ${If} ${Errors}
-          !insertmacro Progress "error Setup couldn't make that folder safe for NectarLink. Choose another folder."
+          !insertmacro Progress "error Setup couldn't make that folder safe for Panal. Choose another folder."
           SetErrorLevel 2
           Quit
         ${EndIf}
@@ -384,7 +384,7 @@ Section "Install"
   !insertmacro Progress "step updates"
   ${If} $AdminOnly != 1
     ; Updates ask for permission in this folder (see the top of this file).
-    nsExec::Exec 'schtasks /Delete /TN "Nectarlink Update" /F'
+    nsExec::Exec 'schtasks /Delete /TN "Panal Update" /F'
     Goto updates_done
   ${EndIf}
   InitPluginsDir
@@ -412,7 +412,7 @@ Section "Install"
   FileWriteUTF16LE $0 '  </Actions>$\r$\n'
   FileWriteUTF16LE $0 '</Task>$\r$\n'
   FileClose $0
-  nsExec::Exec 'schtasks /Create /TN "Nectarlink Update" /XML "$PLUGINSDIR\update-task.xml" /F'
+  nsExec::Exec 'schtasks /Create /TN "Panal Update" /XML "$PLUGINSDIR\update-task.xml" /F'
   updates_done:
 
   !insertmacro Progress "step shortcuts"
@@ -453,7 +453,7 @@ Section "Install"
   WriteRegStr HKLM "${UNINSTALL_KEY}" "DisplayIcon" "$INSTDIR\${EXE}"
   WriteRegStr HKLM "${UNINSTALL_KEY}" "InstallLocation" "$INSTDIR"
   WriteRegStr HKLM "${UNINSTALL_KEY}" "URLInfoAbout" "https://github.com/zaiddia/NectarLink"
-  ; Windows Settings > Apps opens NectarLink's own uninstall window.
+  ; Windows Settings > Apps opens Panal's own uninstall window.
   WriteRegStr HKLM "${UNINSTALL_KEY}" "UninstallString" '"$INSTDIR\${EXE}" --remove'
   WriteRegStr HKLM "${UNINSTALL_KEY}" "QuietUninstallString" '"$INSTDIR\uninstall.exe" /S'
   WriteRegDWORD HKLM "${UNINSTALL_KEY}" "NoModify" 1
@@ -482,9 +482,9 @@ Section "Uninstall"
   ${EndIf}
 
   !insertmacro Progress "step cleanup"
-  nsExec::Exec 'powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -Command "try { Get-AppxPackage -Name \"Nectarlink.Desktop\" -ErrorAction SilentlyContinue | Remove-AppxPackage -ErrorAction SilentlyContinue } catch {}"'
+  nsExec::Exec 'powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -Command "try { Get-AppxPackage -Name \"Panal.Desktop\" -ErrorAction SilentlyContinue | Remove-AppxPackage -ErrorAction SilentlyContinue } catch {}"'
   nsExec::Exec 'netsh advfirewall firewall delete rule name="${FIREWALL_RULE}"'
-  nsExec::Exec 'schtasks /Delete /TN "Nectarlink Update" /F'
+  nsExec::Exec 'schtasks /Delete /TN "Panal Update" /F'
   Delete "$SMPROGRAMS\${DISPLAY}.lnk"
   Delete "$DESKTOP\${DISPLAY}.lnk"
   ; Only ever a folder of our own (a silent install can be pointed

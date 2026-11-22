@@ -13,7 +13,7 @@ import android.content.pm.PackageManager
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
-import app.nectarlink.android.NectarlinkApplication
+import app.nectarlink.android.PanalApplication
 import app.nectarlink.android.R
 import app.nectarlink.core.Transfer
 import app.nectarlink.core.TransferDirection
@@ -221,7 +221,7 @@ internal object TransferNotifications {
     class CancelReceiver : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
             val id = intent.getStringExtra(EXTRA_ID) ?: return
-            (context.applicationContext as NectarlinkApplication).core.cancelTransfer(id)
+            (context.applicationContext as PanalApplication).core.cancelTransfer(id)
         }
     }
 }

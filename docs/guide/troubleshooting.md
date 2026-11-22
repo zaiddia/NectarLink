@@ -1,123 +1,127 @@
-# Troubleshooting
+# Solución de problemas
 
-If your phone and PC cannot find each other, disconnect when your phone screen turns off, or have trouble with a specific feature, follow the steps on this page.
+Si el teléfono y el PC no se encuentran, se desconectan cuando se apaga la pantalla del teléfono o tienes problemas con una función concreta, sigue los pasos de esta página.
 
-## 1. Run the `Connection Doctor` First
+## 1. Ejecuta primero el `Doctor de conexión`
 
-NectarLink includes a built-in diagnostic tool on Windows that automatically detects the most common network blockers and fixes what it can.
+Panal incluye en Windows una herramienta de diagnóstico que detecta los bloqueos de red más habituales y arregla lo que puede.
 
-1. On your PC, open **Settings › Connection & About**.
-2. Next to **Connection Doctor**, click **Check**.
-3. The `Connection Doctor` inspects four things and shows plain-language results with action buttons:
-   - **Windows or Linux Firewall**: Checks whether `nectarlink-desktop` is allowed to receive incoming UDP (QUIC) and mDNS packets (Windows Firewall on Windows, or `ufw` / `firewalld` on Linux). If a firewall rule is missing or blocked, click **Fix** to register the rule (requires Administrator / Polkit approval).
-   - **Network Profile and Local Discovery (`Public` vs. `Private` on Windows, `avahi-daemon` on Linux)**: Windows 11 often marks home Wi-Fi networks as **Public** by default, which blocks local device discovery and incoming connections. If your home Wi-Fi is set to **Public**, switch it to **Private** in **Windows Settings › Network & internet › Wi-Fi › `<Your Network>` properties › Network profile type**. On Linux, Connection Doctor also checks that `avahi-daemon` (mDNS), `fusermount3` (phone storage mount), and PipeWire / PulseAudio are available.
-   - **Active VPN Interfaces**: Full-tunnel corporate or privacy VPNs often route local subnet traffic (`192.168.x.x` / `10.x.x.x`) into the VPN tunnel so your PC and phone cannot reach each other directly. Enable **Split tunneling** (or "Allow LAN traffic") in your VPN client's settings, or connect your phone over a USB cable (`On USB`), or turn on **Connect over mobile data** on both devices.
-   - **Suspected Wi-Fi AP Isolation (Guest / Campus Wi-Fi)**: If your PC can hear your phone's multicast mDNS broadcasts (seen within the last 2 minutes) but every direct QUIC connection attempt times out, your Wi-Fi router has **AP Isolation** (Client Isolation) turned on. AP Isolation is common on hotel, campus, cafe, and "Guest" Wi-Fi networks. To connect on an isolated Wi-Fi network, either switch both devices to your main home Wi-Fi SSID, plug in a USB cable, or turn on **Connect over mobile data** on both devices.
+1. En el PC, abre **Ajustes › Conexión y Acerca de**.
+2. Junto a **Doctor de conexión**, haz clic en **Comprobar**.
+3. El `Doctor de conexión` revisa cuatro cosas y muestra los resultados en lenguaje sencillo, con botones de acción:
+   - **Firewall de Windows o de Linux**: comprueba si `panal` puede recibir paquetes UDP (QUIC) y mDNS entrantes (Firewall de Windows en Windows, o `ufw` / `firewalld` en Linux). Si falta una regla o está bloqueada, haz clic en **Arreglar** para registrarla (requiere aprobación de administrador / Polkit).
+   - **Perfil de red y descubrimiento local (`Público` o `Privado` en Windows, `avahi-daemon` en Linux)**: Windows 11 suele marcar por defecto las redes Wi-Fi de casa como **Públicas**, lo que bloquea el descubrimiento de dispositivos locales y las conexiones entrantes. Si tu Wi-Fi de casa está como **Pública**, cámbiala a **Privada** en **Configuración de Windows › Red e Internet › Wi-Fi › Propiedades de `<Tu red>` › Tipo de perfil de red**. En Linux, el Doctor de conexión también comprueba que estén disponibles `avahi-daemon` (mDNS), `fusermount3` (montaje del almacenamiento del teléfono) y PipeWire / PulseAudio.
+   - **Interfaces VPN activas**: las VPN corporativas o de privacidad de túnel completo suelen enviar el tráfico de la subred local (`192.168.x.x` / `10.x.x.x`) por el túnel, así que el PC y el teléfono no pueden verse directamente. Activa el **túnel dividido** (o "Permitir tráfico de la red local") en los ajustes del cliente VPN, conecta el teléfono por cable USB (`Por USB`) o activa **Conectar con datos móviles** en ambos dispositivos.
+   - **Posible aislamiento de puntos de acceso Wi-Fi (Wi-Fi de invitados o de campus)**: si el PC oye los anuncios mDNS del teléfono (en los últimos 2 minutos) pero todos los intentos de conexión QUIC directa caducan, tu router Wi-Fi tiene activado el **aislamiento de AP** (aislamiento de clientes). Es habitual en hoteles, campus, cafeterías y redes Wi-Fi de "Invitados". Para conectar en una Wi-Fi aislada, pasa ambos dispositivos a la Wi-Fi principal de casa, conecta un cable USB o activa **Conectar con datos móviles** en ambos dispositivos.
 
-## 2. Phone Disconnects When Its Screen Is Off (Per-OEM Battery Guides)
+## 2. El teléfono se desconecta con la pantalla apagada (guías de batería por fabricante)
 
-If NectarLink stays connected while the Android app is open on screen, but drops its connection a few minutes after you lock your phone (causing inline replies, notifications, or file transfers from your PC to wait or time out), Android or your phone manufacturer's battery manager is putting NectarLink to sleep.
+Si Panal sigue conectada mientras la app de Android está abierta en pantalla, pero pierde la conexión unos minutos después de bloquear el teléfono (y las respuestas rápidas, las notificaciones o las transferencias desde el PC esperan o caducan), Android o el gestor de batería del fabricante está durmiendo a Panal.
 
-### Step 1: Allow Standard Android Background Access
+### Paso 1: permite el acceso estándar en segundo plano de Android
 
-1. On your phone, open **NectarLink › Settings › Permissions › Background & battery**.
-2. Next to **Stay reachable in the background**, tap **Allow** and confirm Android's prompt to let NectarLink run without battery restrictions (`Unrestricted`).
+1. En el teléfono, abre **Panal › Ajustes › Permisos › Segundo plano y batería**.
+2. Junto a **Seguir disponible en segundo plano**, toca **Permitir** y confirma el aviso de Android para que Panal funcione sin restricciones de batería (`Sin restricciones`).
 
-### Step 2: Apply Your Phone Brand's Extra Battery Setting
+### Paso 2: aplica el ajuste de batería extra de tu marca
 
-Several Android manufacturers add their own proprietary background task killers on top of standard Android. NectarLink detects your phone's manufacturer and shows the matching guide right inside **Settings › Permissions › Background & battery** (tap **Battery settings** there to jump directly to the system screen):
+Varios fabricantes de Android añaden sus propios cierres de tareas en segundo plano encima del Android estándar. Panal detecta el fabricante del teléfono y muestra la guía correspondiente dentro de **Ajustes › Permisos › Segundo plano y batería** (toca allí **Ajustes de batería** para ir directamente a la pantalla del sistema):
 
-| Phone Brand | Required Settings |
+| Marca | Ajustes necesarios |
 | :--- | :--- |
-| **Samsung (One UI)** | 1. Open **Android Settings › Apps › NectarLink › Battery** and select **Unrestricted**.<br>2. Open **Android Settings › Device care › Battery › Background usage limits** and make sure NectarLink is not in **Sleeping apps** or **Deep sleeping apps** (add it to **Never auto sleeping apps**). |
-| **Google Pixel** | Open **Android Settings › Apps › NectarLink › App battery usage**, tap **Allow background usage** (the row text itself, not just the toggle), and select **Unrestricted**. |
-| **Xiaomi / Redmi / POCO (HyperOS / MIUI)** | 1. Open **Android Settings › Apps › Manage apps › NectarLink** and turn **Autostart** (or **Background autostart**) **On**.<br>2. Tap **Battery saver** and select **No restrictions**. |
-| **OnePlus (OxygenOS)** | Open **Android Settings › Apps › App management › NectarLink › Battery usage** and turn on both **Allow background activity** and **Allow auto-launch**. |
-| **Oppo / Realme (ColorOS / Realme UI)** | Open **Android Settings › Apps › App management › NectarLink › Battery usage** and turn on both **Allow background activity** and **Allow auto-launch**. |
-| **Vivo / iQOO (Funtouch OS / OriginOS)** | Open **Android Settings › Apps › NectarLink › Battery**, select **Unrestricted** (or **High background power usage**), and enable **Autostart** in Background power consumption management. |
-| **Huawei / Honor (EMUI)** | Open **Phone Manager (or System Optimizer) › App launch**, turn **Off** **Manage automatically** for NectarLink, and keep all three toggles (**Auto-launch**, **Secondary launch**, and **Run in background**) turned **On**. |
+| **Samsung (One UI)** | 1. Abre **Ajustes de Android › Aplicaciones › Panal › Batería** y elige **Sin restricciones**.<br>2. Abre **Ajustes de Android › Mantenimiento del dispositivo › Batería › Límites de uso en segundo plano** y asegúrate de que Panal no está en **Aplicaciones inactivas** ni en **Aplicaciones en inactividad profunda** (añádela a **Aplicaciones que nunca estarán inactivas**). |
+| **Google Pixel** | Abre **Ajustes de Android › Aplicaciones › Panal › Uso de batería de la aplicación**, toca **Permitir uso en segundo plano** (el texto de la fila, no solo el interruptor) y elige **Sin restricciones**. |
+| **Xiaomi / Redmi / POCO (HyperOS / MIUI)** | 1. Abre **Ajustes de Android › Aplicaciones › Administrar aplicaciones › Panal** y activa **Inicio automático** (o **Inicio automático en segundo plano**).<br>2. Toca **Ahorro de batería** y elige **Sin restricciones**. |
+| **OnePlus (OxygenOS)** | Abre **Ajustes de Android › Aplicaciones › Gestión de aplicaciones › Panal › Uso de batería** y activa **Permitir actividad en segundo plano** y **Permitir inicio automático**. |
+| **Oppo / Realme (ColorOS / Realme UI)** | Abre **Ajustes de Android › Aplicaciones › Gestión de aplicaciones › Panal › Uso de batería** y activa **Permitir actividad en segundo plano** y **Permitir inicio automático**. |
+| **Vivo / iQOO (Funtouch OS / OriginOS)** | Abre **Ajustes de Android › Aplicaciones › Panal › Batería**, elige **Sin restricciones** (o **Alto consumo en segundo plano**) y activa **Inicio automático** en la gestión del consumo en segundo plano. |
+| **Huawei / Honor (EMUI)** | Abre **Gestor del teléfono (u Optimizador del sistema) › Inicio de aplicaciones**, desactiva **Gestionar automáticamente** para Panal y deja activados los tres interruptores (**Inicio automático**, **Inicio secundario** y **Ejecutar en segundo plano**). |
 
-## 3. Android Sideloading: Play Protect Blocks and Android 13+ "Restricted Settings"
+Los nombres exactos de los menús pueden variar un poco según la versión y el idioma del sistema.
 
-### Google Play Protect Blocks the APK Without an "Install anyway" Button
+## 3. Instalar el APK a mano: bloqueos de Play Protect y "Ajustes restringidos" de Android 13+
 
-When you download `Nectarlink-<version>-android.apk` in a mobile browser, Google Play Protect may show a prompt:
+### Google Play Protect bloquea el APK sin botón "Instalar de todos modos"
 
-- **If "More details" is shown**: Tap **More details › Install anyway**.
-- **If there is no "Install anyway" button (only "OK")**: Google Play Protect's **Enhanced Fraud Protection**, on in 185 markets including India, automatically blocks browser-sideloaded APKs that declare `READ_SMS`, `BIND_NOTIFICATION_LISTENER_SERVICE`, or `BIND_ACCESSIBILITY_SERVICE` in `AndroidManifest.xml`. To install:
-  1. **Option A (On phone)**: Open **Google Play Store**, tap your **profile icon** (top right) › **Play Protect** › **Settings** (gear icon), and temporarily toggle off **Scan apps with Play Protect** (choose **Pause**). Install `Nectarlink-<version>-android.apk`, then turn **Scan apps with Play Protect** back on.
-  2. **Option B (Over USB from PC)**: Connect your phone with USB debugging enabled and run `adb install -r Nectarlink-<version>-android.apk`.
+Cuando descargas `Panal-<versión>-android.apk` en un navegador del móvil, Google Play Protect puede mostrar un aviso:
 
-### Android 13+ "Restricted Settings" (Grayed-Out Notification or Accessibility Switch)
+- **Si aparece "Más detalles"**: toca **Más detalles › Instalar de todos modos**.
+- **Si no hay botón "Instalar de todos modos" (solo "Aceptar")**: la **Protección mejorada contra fraudes** de Google Play Protect, activa en 185 mercados (India entre ellos), bloquea solos los APK instalados desde el navegador que declaran `READ_SMS`, `BIND_NOTIFICATION_LISTENER_SERVICE` o `BIND_ACCESSIBILITY_SERVICE` en `AndroidManifest.xml`. Para instalarlo:
+  1. **Opción A (en el teléfono)**: abre **Google Play Store**, toca el **icono de tu perfil** (arriba a la derecha) › **Play Protect** › **Ajustes** (icono de engranaje) y desactiva temporalmente **Analizar aplicaciones con Play Protect** (elige **Pausar**). Instala `Panal-<versión>-android.apk` y vuelve a activar **Analizar aplicaciones con Play Protect**.
+  2. **Opción B (por USB desde el PC)**: conecta el teléfono con la depuración USB activada y ejecuta `adb install -r Panal-<versión>-android.apk`.
 
-On Android 13 and newer, if you install an APK downloaded from a browser or GitHub Releases, Android disables the **Notification access** and **Accessibility** switches until you explicitly allow restricted settings for that app:
+### "Ajustes restringidos" de Android 13+ (interruptor de notificaciones o accesibilidad en gris)
 
-1. Tap **Allow** on the **Show notifications on your PC** or **Use your PC's mouse and keyboard** row in NectarLink so Android sees that you tried to turn it on once.
-2. Return to NectarLink's **Settings › Permissions** and tap **App info** (or open **Android Settings › Apps › NectarLink**).
-3. Tap the **three-dot menu** in the top-right corner of the App info screen and tap **Allow restricted settings**.
-4. Authenticate with your fingerprint, face, or PIN.
-5. Go back to NectarLink and tap **Allow** again. The switch can now be turned on normally.
+En Android 13 y posterior, si instalas un APK descargado desde un navegador o desde GitHub Releases, Android desactiva los interruptores de **Acceso a notificaciones** y **Accesibilidad** hasta que permitas expresamente los ajustes restringidos para esa app:
 
-## 4. Troubleshooting `Elevated` (Wireless Debugging)
+1. Toca **Permitir** en la fila **Mostrar notificaciones en tu PC** o **Usar el ratón y el teclado del PC** de Panal para que Android vea que intentaste activarlo una vez.
+2. Vuelve a **Ajustes › Permisos** de Panal y toca **Información de la app** (o abre **Ajustes de Android › Aplicaciones › Panal**).
+3. Toca el **menú de tres puntos** de la esquina superior derecha de la pantalla de información de la app y toca **Permitir ajustes restringidos**.
+4. Identifícate con tu huella, tu cara o tu PIN.
+5. Vuelve a Panal y toca otra vez **Permitir**. Ahora el interruptor se puede activar con normalidad.
 
-### The 6-Digit Pairing Code Notification Does Not Appear or Fails
+## 4. Problemas con `Elevated` (depuración inalámbrica)
 
-- **Keep the code dialog open on screen**: Android invalidates the 6-digit Wireless Debugging pairing code the moment you navigate away from the **Pair device with pairing code** dialog. Keep that dialog visible on screen, pull down your notification shade over it, tap **Enter code** on NectarLink's notification, and type the 6 digits there.
-- **Make sure Wi-Fi is connected**: Android's built-in Wireless Debugging only runs while connected to a Wi-Fi network.
-- **If the phone says "The phone forgot NectarLink's pairing"**: If you tapped **Forget all** under Paired devices in Android's Wireless Debugging settings, open NectarLink's **Settings › Permissions › Control from your PC** and tap **Set up** to pair Wireless Debugging again.
+### La notificación del código de emparejamiento de 6 dígitos no aparece o falla
 
-### `Elevated` Stops After Turning Developer Options Off
+- **Deja el diálogo del código abierto en pantalla**: Android invalida el código de emparejamiento de 6 dígitos de la depuración inalámbrica en cuanto sales del diálogo **Vincular dispositivo con código de vinculación**. Deja ese diálogo visible, baja el panel de notificaciones encima, toca **Introducir código** en la notificación de Panal y escribe allí los 6 dígitos.
+- **Comprueba que la Wi-Fi está conectada**: la depuración inalámbrica de Android solo funciona conectada a una red Wi-Fi.
+- **Si el teléfono dice "El teléfono olvidó el emparejamiento de Panal"**: si tocaste **Olvidar todo** en Dispositivos vinculados de los ajustes de depuración inalámbrica de Android, abre **Ajustes › Permisos › Control desde tu PC** en Panal y toca **Configurar** para volver a emparejar la depuración inalámbrica.
 
-- If you turn the master **Developer options** switch off in Android Settings, Android stops Wireless Debugging and terminates the `Elevated` shell helper. Keep **Developer options** turned on if you use `Elevated` features. (When you reboot your phone or reconnect to Wi-Fi with Developer options on, NectarLink automatically re-enables Wireless Debugging and restarts `Elevated` by itself.)
+### `Elevated` se detiene al desactivar las opciones de desarrollador
 
-### A Banking App Won't Open
+- Si desactivas el interruptor general de **Opciones de desarrollador** en los Ajustes de Android, Android detiene la depuración inalámbrica y cierra el ayudante de shell `Elevated`. Mantén activadas las **Opciones de desarrollador** si usas funciones `Elevated`. (Cuando reinicias el teléfono o te reconectas a la Wi-Fi con las opciones de desarrollador activadas, Panal vuelve a activar sola la depuración inalámbrica y reinicia `Elevated`.)
 
-Many banking apps refuse to run while **Developer options**, USB or Wireless Debugging, or an accessibility service is on, all of which `Elevated` and Assist use. NectarLink can switch them off while those apps are open:
+### Una app del banco no se abre
 
-1. Open **Settings › Permissions › Control from your PC › Pause for banking apps** and tap **Choose apps**.
-2. Pick your banking and payment apps. NectarLink needs `Elevated` set up once, and usage access (tap **Allow** if it asks), to see which app is open.
-3. Open a banking app as usual. NectarLink turns off Developer options, debugging and its accessibility service while it's open, and turns back on exactly what was on when you leave. A notification shows while it's paused, with **Turn back on**.
+Muchas apps bancarias se niegan a funcionar con las **Opciones de desarrollador**, la depuración USB o inalámbrica o un servicio de accesibilidad activos, y `Elevated` y Assist usan todo eso. Panal puede desactivarlos mientras esas apps están abiertas:
 
-If an app checks before NectarLink notices it, tap **Add shortcut** next to it and open it from that home screen shortcut: NectarLink pauses first, then opens the app.
+1. Abre **Ajustes › Permisos › Control desde tu PC › Pausar para apps bancarias** y toca **Elegir apps**.
+2. Elige tus apps bancarias y de pago. Panal necesita haber configurado `Elevated` una vez, y el acceso de uso (toca **Permitir** si lo pide), para saber qué app está abierta.
+3. Abre la app del banco como siempre. Panal desactiva las opciones de desarrollador, la depuración y su servicio de accesibilidad mientras está abierta, y vuelve a activar exactamente lo que estaba activado cuando sales. Mientras está en pausa aparece una notificación con **Volver a activar**.
 
-Some banking apps also refuse to run on a phone that was ever rooted (on Samsung phones, a tripped Knox flag). NectarLink can't change that.
+Si una app comprueba antes de que Panal la detecte, toca **Añadir acceso directo** a su lado y ábrela desde ese acceso directo de la pantalla de inicio: Panal se pausa primero y después abre la app.
 
-## 5. Troubleshooting USB Auto-Pair and `On USB` Transport
+Algunas apps bancarias tampoco funcionan en un teléfono que haya tenido root alguna vez (en Samsung, con el indicador Knox activado). Panal no puede cambiar eso.
 
-If plugging your phone into your PC with a USB cable does not trigger USB auto-pair or switch your connection to `On USB`:
+## 5. Problemas con el emparejamiento automático por USB y el transporte `Por USB`
 
-1. **Check the USB cable**: Use a USB cable that carries data (some charging-only cables lack data wires).
-2. **Enable USB debugging on the phone**: Open **Android Settings › Developer options** and turn on **USB debugging**.
-3. **Approve the RSA key prompt on the phone**: Wake your phone screen when plugging it into the PC, check **Always allow from this computer**, and tap **Allow** on Android's **Allow USB debugging?** dialog.
+Si al conectar el teléfono al PC con un cable USB no se activa el emparejamiento automático por USB ni la conexión pasa a `Por USB`:
 
-## 6. Troubleshooting Screen Mirroring and Audio
+1. **Revisa el cable USB**: usa un cable que transmita datos (algunos cables solo de carga no tienen los hilos de datos).
+2. **Activa la depuración USB en el teléfono**: abre **Ajustes de Android › Opciones de desarrollador** y activa **Depuración USB**.
+3. **Aprueba el aviso de la clave RSA en el teléfono**: enciende la pantalla del teléfono al conectarlo al PC, marca **Permitir siempre desde este ordenador** y toca **Permitir** en el diálogo **¿Permitir depuración USB?** de Android.
 
-### Mirroring Is View-Only (Mouse Clicks Do Nothing)
+## 6. Problemas con la duplicación de pantalla y el audio
 
-- At the `Standard` power level, Android does not allow apps to inject touch or key events into other apps. To control your phone with your PC mouse and keyboard during mirroring, enable either **`Assist`** (**Settings › Permissions › Control from your PC › Use your PC's mouse and keyboard**) or **`Elevated`** (**Real touch and keys (Wireless debugging)**) on your phone.
+### La duplicación es solo visual (los clics no hacen nada)
 
-### Mirror Window Shows a Black Screen
+- Con el nivel de control `Standard`, Android no permite que las apps inyecten toques ni teclas en otras apps. Para controlar el teléfono con el ratón y el teclado del PC durante la duplicación, activa **`Assist`** (**Ajustes › Permisos › Control desde tu PC › Usar el ratón y el teclado del PC**) o **`Elevated`** (**Toque y teclas reales (depuración inalámbrica)**) en el teléfono.
 
-- If the whole mirror window stays black only while a specific app (such as a banking app, password manager, or DRM video player) is open on your phone, that app sets Android's `FLAG_SECURE` window flag to block screen capture. Switching back to your phone's home screen restores the image immediately.
+### La ventana de duplicación se ve en negro
 
-### No Sound on PC During Screen Mirroring
+- Si toda la ventana se queda en negro solo mientras una app concreta (como una app bancaria, un gestor de contraseñas o un reproductor de vídeo con DRM) está abierta en el teléfono, esa app activa la marca de ventana `FLAG_SECURE` de Android para bloquear la captura de pantalla. Al volver a la pantalla de inicio del teléfono, la imagen vuelve al momento.
 
-- Make sure your phone is running **Android 10 or newer** (earlier Android versions do not support internal audio capture).
-- Check that the speaker icon in the `mirror` window toolbar on your PC is not muted, and that your phone's media volume is turned up.
-- Note that some Android apps explicitly block third-party `AudioPlaybackCapture` in their manifest (see [Known Limitations](known-limitations.md)).
+### No hay sonido en el PC durante la duplicación
 
-## 7. Troubleshooting Phone as Webcam (`NectarLink Webcam`)
+- Asegúrate de que el teléfono tiene **Android 10 o posterior** (las versiones anteriores no admiten la captura de audio interno).
+- Comprueba que el icono del altavoz de la barra de la ventana `mirror` no está silenciado y que el volumen multimedia del teléfono está subido.
+- Ten en cuenta que algunas apps de Android bloquean expresamente en su manifiesto el `AudioPlaybackCapture` de terceros (consulta [Limitaciones conocidas](known-limitations.md)).
 
-### `NectarLink Webcam` Does Not Appear in Zoom, Teams, Meet, or OBS
+## 7. Problemas con el teléfono como webcam (`Panal Webcam`)
 
-1. Open NectarLink on your PC and go to **Settings › Camera & Audio**.
-2. Check the **Virtual camera add-on** row. If it shows **Set up** instead of **Ready**, click **Set up** and approve the Windows Administrator prompt.
-3. Restart Zoom, Teams, your web browser, or OBS so the application refreshes its list of Windows Media Foundation video capture devices.
+### `Panal Webcam` no aparece en Zoom, Teams, Meet ni OBS
 
-### Clicking "Start Webcam" on the PC Waits on "Asking..."
+1. Abre Panal en el PC y ve a **Ajustes › Cámara y audio**.
+2. Mira la fila **Complemento de cámara virtual**. Si muestra **Configurar** en lugar de **Lista**, haz clic en **Configurar** y aprueba la petición de administrador de Windows.
+3. Reinicia Zoom, Teams, el navegador u OBS para que la aplicación actualice su lista de dispositivos de captura de vídeo de Media Foundation.
 
-- By design, a PC cannot turn on your phone's camera silently. Look at your phone and tap the **`<PC>` wants to use your camera** notification (or open NectarLink on your phone and tap **Webcam › Start webcam**).
+### Al hacer clic en "Iniciar webcam" en el PC se queda en "Preguntando..."
 
-## 8. Inspecting Diagnostic Logs
+- Por diseño, un PC no puede encender la cámara del teléfono en silencio. Mira el teléfono y toca la notificación **`<PC>` quiere usar tu cámara** (o abre Panal en el teléfono y toca **Webcam › Iniciar webcam**).
 
-If you need to report a bug, open **Settings › Connection & About** on your PC and click **Open logs** (next to the NectarLink version row) to open the local log directory in File Explorer. NectarLink never logs notification text, SMS message bodies, or clipboard contents to its log files.
+## 8. Revisar los registros de diagnóstico
+
+Si necesitas informar de un error, abre **Ajustes › Conexión y Acerca de** en el PC y haz clic en **Abrir registros** (junto a la fila de la versión de Panal) para abrir la carpeta local de registros en el Explorador de archivos. Panal nunca guarda en sus registros el texto de las notificaciones, el contenido de los SMS ni el del portapapeles.
+
+Los errores de Panal se comunican en [zaiddia/NectarLink](https://github.com/zaiddia/NectarLink/issues), no en el repositorio de la app original.

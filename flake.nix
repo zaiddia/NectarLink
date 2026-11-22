@@ -1,5 +1,5 @@
 {
-  description = "NectarLink - Android and Linux PC working as one";
+  description = "Panal - Android and Linux PC working as one";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -85,7 +85,7 @@ EOF
               libx11
               libxkbcommon
               ffmpeg
-            ])}" $out/bin/nectarlink-desktop
+            ])}" $out/bin/panal
           '';
 
           postInstall = ''
@@ -98,16 +98,16 @@ EOF
             done
 
             # Desktop integration
-            install -Dm644 desktop/packaging/linux/nectarlink.desktop $out/share/applications/nectarlink.desktop
-            install -Dm644 desktop/packaging/linux/org.nectarlink.desktop.metainfo.xml $out/share/metainfo/org.nectarlink.desktop.metainfo.xml
+            install -Dm644 desktop/packaging/linux/panal.desktop $out/share/applications/panal.desktop
+            install -Dm644 desktop/packaging/linux/io.github.zaiddia.Panal.metainfo.xml $out/share/metainfo/io.github.zaiddia.Panal.metainfo.xml
 
             # Icons
             if [ -f assets/brand/icon.svg ]; then
-              install -Dm644 assets/brand/icon.svg $out/share/icons/hicolor/scalable/apps/nectarlink.svg
+              install -Dm644 assets/brand/icon.svg $out/share/icons/hicolor/scalable/apps/panal.svg
               install -Dm644 assets/brand/icon.svg $out/share/pixmaps/nectarlink.svg
             fi
             if [ -f assets/brand/icon-512.png ]; then
-              install -Dm644 assets/brand/icon-512.png $out/share/icons/hicolor/512x512/apps/nectarlink.png
+              install -Dm644 assets/brand/icon-512.png $out/share/icons/hicolor/512x512/apps/panal.png
               install -Dm644 assets/brand/icon-512.png $out/share/pixmaps/nectarlink.png
             fi
           '';
@@ -118,7 +118,7 @@ EOF
             license = licenses.gpl3Plus;
             maintainers = with maintainers; [ ];
             platforms = platforms.linux;
-            mainProgram = "nectarlink-desktop";
+            mainProgram = "panal";
           };
         };
     in
@@ -139,14 +139,14 @@ EOF
 
         apps.default = {
           type = "app";
-          program = "${self.packages.${system}.default}/bin/nectarlink-desktop";
-          meta.description = "NectarLink desktop application";
+          program = "${self.packages.${system}.default}/bin/panal";
+          meta.description = "Panal desktop application";
         };
 
         apps.cli = {
           type = "app";
           program = "${self.packages.${system}.default}/bin/nectarlink";
-          meta.description = "NectarLink command-line client";
+          meta.description = "Panal command-line client";
         };
 
         devShells.default = pkgs.mkShell {

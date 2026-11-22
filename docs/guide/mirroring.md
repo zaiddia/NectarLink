@@ -1,107 +1,107 @@
-# Mirroring and App Windows
+# Duplicación y ventanas de apps
 
-NectarLink streams your phone's screen to your PC in a dedicated window at up to 60 frames per second with hardware video encoding (H.264, H.265, or AV1) and live audio forwarding. Depending on your Android power level, you can view your screen, control it with your PC mouse and keyboard, open individual Android apps in their own desktop windows (`app window`), launch a full desktop layout (DeX mode), or reverse-mirror your PC's screen to your phone.
+Panal transmite la pantalla del teléfono al PC en una ventana propia hasta a 60 fotogramas por segundo, con codificación de vídeo por hardware (H.264, H.265 o AV1) y reenvío de audio en directo. Según el nivel de control de Android, puedes ver la pantalla, controlarla con el ratón y el teclado del PC, abrir apps de Android en sus propias ventanas de escritorio (`app window`), lanzar un escritorio completo (modo DeX) o duplicar al revés la pantalla del PC en el teléfono.
 
 <p align="center">
-  <img src="images/mirroring-window.png" alt="Phone screen mirrored in a window on Windows 11" width="760">
+  <img src="images/mirroring-window.png" alt="Pantalla del teléfono duplicada en una ventana de Windows 11" width="760">
 </p>
 
-## What You Need
+## Qué necesitas
 
-| Feature | Requirements |
+| Función | Requisitos |
 | :--- | :--- |
-| **View phone screen and audio on PC (`mirror`)** | `Standard` power level. **Screen mirroring** toggle enabled in PC **Settings › Devices** (on by default). At `Standard` or `Assist`, Android displays a system **Start recording or casting** prompt on your phone each time mirroring starts. With `Elevated`, NectarLink grants `PROJECT_MEDIA` automatically so mirroring starts without a phone prompt. |
-| **Tap, swipe, scroll, and type from PC** | `Assist` (Android Accessibility Service enabled in **Settings › Permissions › Control from your PC**) or `Elevated` (Wireless Debugging). `Elevated` adds real-time touch dragging, UHID physical keyboard layouts, XInput gamepad passthrough, and stylus pressure/tilt. |
-| **Turn off physical phone screen while mirroring** | `Elevated` power level. |
-| **Phone apps in individual PC windows (`app window`)** | `Elevated` power level on Android 11 or newer. |
-| **Reverse mirroring (PC screen on phone)** | Per-device **Share PC screen to phone** (`pc_mirror`) toggle in PC **Settings › Devices** (off by default), or one-time approval on the PC's consent dialog when requested from the phone. Controlling the PC from the reverse-mirror view also requires **Remote mouse, keyboard & Deck** (`remote_input`, off by default). |
+| **Ver la pantalla y el audio del teléfono en el PC (`mirror`)** | Nivel de control `Standard`. Interruptor **Duplicación de pantalla** activado en **Ajustes › Dispositivos** del PC (activado por defecto). Con `Standard` o `Assist`, Android muestra en el teléfono el aviso del sistema **Empezar a grabar o enviar** cada vez que empieza la duplicación. Con `Elevated`, Panal concede `PROJECT_MEDIA` automáticamente y la duplicación empieza sin aviso en el teléfono. |
+| **Tocar, deslizar, desplazar y escribir desde el PC** | `Assist` (servicio de accesibilidad de Android activado en **Ajustes › Permisos › Control desde tu PC**) o `Elevated` (depuración inalámbrica). `Elevated` añade arrastre táctil en tiempo real, distribuciones de teclado físico UHID, mandos XInput y presión e inclinación del lápiz. |
+| **Apagar la pantalla física del teléfono durante la duplicación** | Nivel de control `Elevated`. |
+| **Apps del teléfono en ventanas propias del PC (`app window`)** | Nivel de control `Elevated` en Android 11 o posterior. |
+| **Duplicación inversa (pantalla del PC en el teléfono)** | Interruptor por dispositivo **Compartir la pantalla del PC con el teléfono** (`pc_mirror`) en **Ajustes › Dispositivos** del PC (desactivado por defecto), o aprobación puntual en el diálogo de consentimiento del PC cuando se pide desde el teléfono. Controlar el PC desde la vista inversa también requiere **Ratón, teclado y Deck remotos** (`remote_input`, desactivado por defecto). |
 
-## Step-by-Step Use
+## Uso paso a paso
 
-### Mirroring Your Phone Screen to Your PC
+### Duplicar la pantalla del teléfono en el PC
 
-1. On your PC, click **Mirror screen** on the **Home** screen (or press `Ctrl+Alt+Space` and choose **Mirror phone screen**). You can also start mirroring from your phone by tapping **Mirror to PC** on the Android Home screen.
-2. If your phone is at `Standard` or `Assist`, tap the notification on your phone and approve Android's screen-sharing dialog. If your phone is at `Elevated`, the `mirror` window opens immediately on your PC without a prompt on the phone.
-3. Your phone's screen streams at up to 1920 pixels on the long edge and 60 fps. NectarLink automatically negotiates the best hardware codec supported by both devices (**AV1**, **H.265/HEVC**, or **H.264/AVC**) and adapts when you rotate your phone between portrait and landscape.
-4. On Android 10 and newer, your phone's media and game audio plays through your PC's speakers automatically during mirroring. Click the speaker icon in the `mirror` window toolbar at any time to mute or unmute the phone's audio on your PC.
+1. En el PC, haz clic en **Duplicar pantalla** en la pantalla de **Inicio** (o pulsa `Ctrl+Alt+Espacio` y elige **Duplicar la pantalla del teléfono**). También puedes empezar desde el teléfono tocando **Duplicar en el PC** en la pantalla de Inicio de Android.
+2. Si el teléfono está en `Standard` o `Assist`, toca la notificación del teléfono y aprueba el diálogo de compartir pantalla de Android. Si está en `Elevated`, la ventana `mirror` se abre al momento en el PC sin aviso en el teléfono.
+3. La pantalla del teléfono se transmite hasta a 1920 píxeles en el lado largo y 60 fps. Panal negocia solo el mejor códec por hardware que admiten ambos dispositivos (**AV1**, **H.265/HEVC** o **H.264/AVC**) y se adapta cuando giras el teléfono entre vertical y horizontal.
+4. En Android 10 y posterior, el audio multimedia y de juegos del teléfono suena por los altavoces del PC durante la duplicación. Haz clic en el icono del altavoz de la barra de la ventana `mirror` para silenciar o reactivar el audio del teléfono en el PC.
 
-### Controlling Your Phone from the Mirror Window
+### Controlar el teléfono desde la ventana de duplicación
 
-Once `Assist` or `Elevated` is enabled on your phone:
+Con `Assist` o `Elevated` activado en el teléfono:
 
-- **Left-click and drag**: Taps or swipes the screen. At `Elevated`, pointer movement streams continuously in real time so you can drag icons, scrub video timelines, or draw without stutter.
-- **Mouse wheel / two-finger trackpad scroll**: Scrolls vertically or horizontally under the cursor.
-- **Right-click**: Triggers Android **Back**.
-- **Middle-click**: Triggers Android **Home**.
-- **Keyboard typing and shortcuts**: Type directly into any focused Android field. At `Elevated` (when `/dev/uhid` is permitted by your phone's kernel/SELinux policy), NectarLink registers a virtual physical HID keyboard and gamepad so non-US keyboard layouts, key combinations, and connected Xbox/XInput controllers work natively inside Android apps and games.
-- **Clipboard and file drop inside the mirror**: Pressing `Ctrl+C` or `Ctrl+V` while the `mirror` window is focused syncs your clipboard, and dragging files from Windows File Explorer onto the `mirror` window sends them straight to `Download/Nectarlink` on your phone.
-- **Stylus / Pen**: Windows Ink pen pressure, tilt, and barrel buttons are forwarded to the phone screen at `Elevated`.
+- **Clic izquierdo y arrastrar**: toca o desliza en la pantalla. Con `Elevated`, el movimiento del puntero se transmite en tiempo real para arrastrar iconos, mover la línea de tiempo de un vídeo o dibujar sin tirones.
+- **Rueda del ratón / desplazamiento con dos dedos en el panel táctil**: desplaza en vertical u horizontal bajo el cursor.
+- **Clic derecho**: **Atrás** de Android.
+- **Clic central**: **Inicio** de Android.
+- **Escribir y atajos de teclado**: escribe directamente en cualquier campo enfocado de Android. Con `Elevated` (cuando el kernel y la política SELinux del teléfono permiten `/dev/uhid`), Panal registra un teclado HID físico virtual y un mando, así las distribuciones de teclado no estadounidenses, las combinaciones de teclas y los mandos Xbox/XInput funcionan de forma nativa en apps y juegos de Android.
+- **Portapapeles y soltar archivos en la duplicación**: pulsar `Ctrl+C` o `Ctrl+V` con la ventana `mirror` enfocada sincroniza el portapapeles, y arrastrar archivos del Explorador de Windows a la ventana `mirror` los envía directamente a `Download/Panal` en el teléfono.
+- **Lápiz**: la presión, la inclinación y los botones del lápiz de Windows Ink se reenvían a la pantalla del teléfono con `Elevated`.
 
-### Mirror Toolbar and Keyboard Shortcuts
+### Barra de la duplicación y atajos de teclado
 
-The `mirror` window header includes quick controls and keyboard shortcuts:
+La cabecera de la ventana `mirror` incluye controles rápidos y atajos:
 
-| Action | Shortcut | What It Does |
+| Acción | Atajo | Qué hace |
 | :--- | :--- | :--- |
-| **Copy screenshot** | `Ctrl+Shift+C` | Captures the current mirrored frame directly onto the Windows clipboard as a PNG image. |
-| **Save screenshot** | `Ctrl+S` | Saves a PNG screenshot of the mirrored screen to `Downloads\Nectarlink`. |
-| **Record video (MP4)** | `Ctrl+R` | Records the live mirror stream and phone audio to an `.mp4` file in `Downloads\Nectarlink` using lossless H.264 stream passthrough (zero video re-encoding overhead on your PC). Press `Ctrl+R` again to stop and save. |
-| **Keep phone awake** | Toolbar icon | Prevents your phone's screen timeout from locking the device while mirroring is active. |
-| **Turn phone screen off** | Toolbar icon (`Elevated`) | Blanks your phone's physical OLED/LCD display while the `mirror` window continues running on your PC, and turns the physical display back on automatically when mirroring stops. |
-| **Lock phone** | Toolbar icon | Locks the phone, as its power button would. Shows when you can control the phone. |
-| **Play the sound on the phone / here** | Toolbar icon | Stops sending the phone's sound to the PC so the phone plays it again, or brings it back to the PC. While it's on the phone, new mirroring leaves it there. |
+| **Copiar captura** | `Ctrl+Mayús+C` | Copia el fotograma actual al portapapeles de Windows como imagen PNG. |
+| **Guardar captura** | `Ctrl+S` | Guarda una captura PNG de la pantalla duplicada en `Descargas\Panal`. |
+| **Grabar vídeo (MP4)** | `Ctrl+R` | Graba la transmisión en directo y el audio del teléfono en un `.mp4` en `Descargas\Panal` pasando el flujo H.264 sin pérdidas (sin recodificar vídeo en el PC). Pulsa `Ctrl+R` otra vez para detener y guardar. |
+| **Mantener el teléfono despierto** | Icono de la barra | Evita que el tiempo de espera de la pantalla bloquee el teléfono mientras dura la duplicación. |
+| **Apagar la pantalla del teléfono** | Icono de la barra (`Elevated`) | Apaga la pantalla física OLED/LCD del teléfono mientras la ventana `mirror` sigue funcionando en el PC, y la vuelve a encender sola al terminar. |
+| **Bloquear el teléfono** | Icono de la barra | Bloquea el teléfono, como su botón de encendido. Aparece cuando puedes controlar el teléfono. |
+| **Reproducir el sonido en el teléfono / aquí** | Icono de la barra | Deja de enviar el sonido del teléfono al PC para que vuelva a sonar en el teléfono, o lo devuelve al PC. Mientras está en el teléfono, las duplicaciones nuevas lo dejan ahí. |
 
-### Opening Phone Apps in Their Own PC Windows (`app window`)
+### Abrir apps del teléfono en sus propias ventanas del PC (`app window`)
 
-With `Elevated` on Android 11 or newer, you can run individual phone apps in separate Windows 11 windows without mirroring your whole phone screen:
-
-<p align="center">
-  <img src="images/app-window.png" alt="An Android app running in its own independent window on Windows 11" width="760">
-</p>
-
-1. Click **Apps** in the PC sidebar to see every app on your phone. You can also click **Open an app** on **Home**, or any phone notification in the feed, Notification history, or a Windows notification popup.
-2. **Apps** shows a **Recent** row (apps you opened from the PC and apps that recently posted notifications) above your phone's full app list. Type to search, and press Enter to open the first match. Apps already open on the PC are marked with a dot.
+Con `Elevated` en Android 11 o posterior, puedes ejecutar apps del teléfono en ventanas separadas de Windows 11 sin duplicar toda la pantalla:
 
 <p align="center">
-  <img src="images/apps-page.png" alt="The Apps page on the PC listing the phone's apps" width="760">
+  <img src="images/app-window.png" alt="Una app de Android en su propia ventana independiente en Windows 11" width="760">
 </p>
 
-3. Click any app. NectarLink creates an isolated virtual display on your phone and opens that app on your PC in its own `app window` with its own Windows taskbar icon.
-4. The app runs independently beside whatever is shown on your phone's physical screen, and typing from your PC does not pop up the on-screen soft keyboard on your phone.
-5. Resize the `app window` on your PC and the Android app dynamically re-lays out to match the new aspect ratio. NectarLink remembers each app's window size and screen position for the next time you open it. You can open multiple `app window` instances side by side in tabs or separate windows.
-6. The phone's sound comes to your PC with its app windows, and the phone itself goes quiet. It's the phone's whole sound, so with several app windows open you hear all of them. The speaker icon in any `app window` toolbar mutes it on the PC, and the sound stops when you close the last `app window`.
+1. Haz clic en **Apps** en la barra lateral del PC para ver todas las apps del teléfono. También puedes hacer clic en **Abrir una app** en **Inicio**, o en cualquier notificación del teléfono en el feed, en el Historial de notificaciones o en un aviso emergente de Windows.
+2. **Apps** muestra una fila **Recientes** (apps que abriste desde el PC y apps que han publicado notificaciones hace poco) sobre la lista completa de apps del teléfono. Escribe para buscar y pulsa Intro para abrir la primera coincidencia. Las apps ya abiertas en el PC llevan un punto.
 
-### Desktop Display Mode (DeX / Desktop Mode)
+<p align="center">
+  <img src="images/apps-page.png" alt="La página Apps del PC con las apps del teléfono" width="760">
+</p>
 
-On phones that support a desktop launcher layout on secondary displays (such as Samsung DeX or Android 14+ Desktop Mode), you can launch a 16:9 desktop workspace in a window on your PC from the mirroring menu (`Elevated`).
+3. Haz clic en cualquier app. Panal crea una pantalla virtual aislada en el teléfono y abre esa app en el PC en su propia `app window`, con su propio icono en la barra de tareas de Windows.
+4. La app funciona de forma independiente de lo que se ve en la pantalla física del teléfono, y escribir desde el PC no abre el teclado en pantalla del teléfono.
+5. Cambia el tamaño de la `app window` en el PC y la app de Android se recoloca para ajustarse a la nueva proporción. Panal recuerda el tamaño y la posición de la ventana de cada app para la próxima vez. Puedes abrir varias `app window` a la vez en pestañas o ventanas separadas.
+6. El sonido del teléfono llega al PC con sus ventanas de apps, y el teléfono se queda en silencio. Es todo el sonido del teléfono, así que con varias ventanas abiertas las oyes todas. El icono del altavoz de la barra de cualquier `app window` lo silencia en el PC, y el sonido se detiene al cerrar la última `app window`.
 
-### Reverse Mirroring: Viewing Your PC Screen on Your Phone
+### Modo de escritorio (DeX / modo escritorio)
 
-You can also view (and optionally control) your PC's desktop from your phone:
+En los teléfonos que admiten un lanzador de escritorio en pantallas secundarias (como Samsung DeX o el modo escritorio de Android 14+), puedes lanzar un escritorio 16:9 en una ventana del PC desde el menú de duplicación (`Elevated`).
 
-1. On your phone, open **NectarLink** and tap **View PC screen** under **Screen, Camera & Input** (or open the **Control PC** screen and switch to the screen view).
-2. **Explicit PC Consent**: Because a PC screen is sensitive, reverse mirroring is **off by default** (**Share PC screen to phone** in **Settings › Devices**). If it is not already enabled for your phone, your PC displays a modal consent prompt asking whether to **Not now**, **Allow** (for this session only, cleared automatically on disconnect), or **Allow for this device** (enables **Share PC screen to phone** for that phone).
-3. **Sharing indicator**: Throughout any active reverse-mirroring session, the PC window's title bar shows a live pill (**Sharing screen with `<Phone>`**) with a **Stop** button.
-4. **Input Gating**: Viewing the PC screen from your phone is read-only unless you have also enabled **Remote mouse, keyboard & Deck** (`remote_input`) for that phone on your PC.
-5. **Primary display**: The phone sees the PC's primary display. On a PC with several monitors, the others are not shared. To share a different monitor, make it the primary display in Windows **Settings › System › Display**.
-6. **Slow connections**: On a slow link (mobile data through the relay), the PC lowers the video bitrate until the picture flows smoothly, and raises it again once the link recovers.
+### Duplicación inversa: ver la pantalla del PC en el teléfono
 
-## What the Options Do
+También puedes ver (y, si quieres, controlar) el escritorio del PC desde el teléfono:
 
-- **Screen mirroring** (`Settings › Devices` on PC, default: **On**): Allows your PC and phone to start phone-to-PC screen mirroring and `app window` sessions.
-- **Share PC screen to phone** (`Settings › Devices` on PC, default: **Off**): Allows the selected phone to view this PC's screen without showing the one-time consent dialog each time.
-- **Remote mouse, keyboard & Deck** (`Settings › Devices` on PC, default: **Off**): Allows the selected phone to send touch/mouse clicks and keystrokes to this PC (including during reverse mirroring).
-- **Use your PC's mouse and keyboard** (`Settings › Permissions › Control from your PC` on Android): Opens Android Accessibility settings to enable or disable `Assist` mode.
-- **Real touch and keys (Wireless debugging)** (`Settings › Permissions › Control from your PC` on Android): Guides you through setting up or turning off `Elevated` mode.
+1. En el teléfono, abre **Panal** y toca **Ver la pantalla del PC** en **Pantalla, cámara y entrada** (o abre la pantalla **Controlar el PC** y cambia a la vista de pantalla).
+2. **Consentimiento expreso del PC**: como la pantalla de un PC es sensible, la duplicación inversa está **desactivada por defecto** (**Compartir la pantalla del PC con el teléfono** en **Ajustes › Dispositivos**). Si no está activada para tu teléfono, el PC muestra un diálogo de consentimiento con las opciones **Ahora no**, **Permitir** (solo para esta sesión, se borra solo al desconectar) o **Permitir para este dispositivo** (activa **Compartir la pantalla del PC con el teléfono** para ese teléfono).
+3. **Indicador de compartir**: mientras dura una sesión de duplicación inversa, la barra de título de la ventana del PC muestra una píldora (**Compartiendo la pantalla con `<Teléfono>`**) con un botón **Detener**.
+4. **Control de la entrada**: ver la pantalla del PC desde el teléfono es solo lectura salvo que también hayas activado **Ratón, teclado y Deck remotos** (`remote_input`) para ese teléfono en el PC.
+5. **Pantalla principal**: el teléfono ve la pantalla principal del PC. En un PC con varios monitores, los demás no se comparten. Para compartir otro monitor, conviértelo en la pantalla principal en **Configuración › Sistema › Pantalla** de Windows.
+6. **Conexiones lentas**: en un enlace lento (datos móviles a través del relé), el PC baja la tasa de bits del vídeo hasta que la imagen fluye bien, y la vuelve a subir cuando el enlace se recupera.
 
-## Data and Privacy
+## Qué hacen las opciones
 
-- **Live streaming only**: Video frames and audio samples are encoded in hardware, transmitted directly over your end-to-end encrypted QUIC connection, and decoded into GPU textures in memory. Nothing is recorded to disk unless you explicitly press **Save screenshot** (`Ctrl+S`) or **Record video** (`Ctrl+R`).
-- **Session log in `Timeline`**: When a mirroring session ends, `Timeline` records a single summary entry noting the device name and session duration (without storing any video or screenshots).
-- **Consent and visibility**: Phone-to-PC mirroring shows a persistent **Sharing your screen with `<PC>`** notification on your phone with a **Stop** button (and an **app is open in a window on a PC** notification with **Close all** when using `app window` streaming). PC-to-phone reverse mirroring requires PC consent and shows a persistent **Stop sharing** banner on the PC.
+- **Duplicación de pantalla** (`Ajustes › Dispositivos` en el PC, por defecto: **activado**): permite al PC y al teléfono iniciar la duplicación del teléfono en el PC y las sesiones `app window`.
+- **Compartir la pantalla del PC con el teléfono** (`Ajustes › Dispositivos` en el PC, por defecto: **desactivado**): permite al teléfono seleccionado ver la pantalla de este PC sin mostrar cada vez el diálogo de consentimiento.
+- **Ratón, teclado y Deck remotos** (`Ajustes › Dispositivos` en el PC, por defecto: **desactivado**): permite al teléfono seleccionado enviar toques, clics y pulsaciones de teclas a este PC (también durante la duplicación inversa).
+- **Usar el ratón y el teclado del PC** (`Ajustes › Permisos › Control desde tu PC` en Android): abre los ajustes de accesibilidad de Android para activar o desactivar el modo `Assist`.
+- **Toque y teclas reales (depuración inalámbrica)** (`Ajustes › Permisos › Control desde tu PC` en Android): te guía para configurar o desactivar el modo `Elevated`.
 
-## Limits
+## Datos y privacidad
 
-- **`FLAG_SECURE` Protected Content**: Android apps that set the `FLAG_SECURE` window flag (such as banking apps, password managers, and DRM-protected video streaming apps like Netflix) render black inside `Standard` and `Assist` `MediaProjection` streams by Android OS design.
-- **Audio Capture Rules and `REMOTE_SUBMIX`**: Standard Android 10+ `AudioPlaybackCapture` captures apps that allow playback capture (`USAGE_MEDIA`, `USAGE_GAME`). Apps that opt out of playback capture in their manifest cannot be captured at `Standard` or `Assist`. At `Elevated`, NectarLink attempts internal audio capture via `REMOTE_SUBMIX` (`UID 2000`), which works on AOSP/Pixel builds but may be blocked by custom SELinux policies on some OEM ROMs (falling back automatically to standard playback capture).
-- **UHID Kernel/SELinux Access**: Virtual physical keyboard (`--uhid-key`) and gamepad (`--uhid-gamepad`) injection at `Elevated` open `/dev/uhid` as `shell` (`UID 2000`). On OEM ROMs whose SELinux policy denies `shell` access to `/dev/uhid`, NectarLink falls back automatically to standard Android `InputManager` key and motion injection.
+- **Solo transmisión en directo**: los fotogramas de vídeo y las muestras de audio se codifican por hardware, se transmiten directamente por tu conexión QUIC cifrada de extremo a extremo y se decodifican en texturas de GPU en memoria. No se graba nada en el disco salvo que pulses expresamente **Guardar captura** (`Ctrl+S`) o **Grabar vídeo** (`Ctrl+R`).
+- **Registro de sesión en la `Línea de tiempo`**: al terminar una sesión de duplicación, la `Línea de tiempo` guarda una sola entrada de resumen con el nombre del dispositivo y la duración (sin guardar vídeo ni capturas).
+- **Consentimiento y visibilidad**: la duplicación del teléfono en el PC muestra en el teléfono una notificación persistente **Compartiendo tu pantalla con `<PC>`** con un botón **Detener** (y una notificación **una app está abierta en una ventana de un PC** con **Cerrar todo** al usar `app window`). La duplicación inversa del PC en el teléfono requiere el consentimiento del PC y muestra en el PC un aviso persistente **Dejar de compartir**.
+
+## Límites
+
+- **Contenido protegido con `FLAG_SECURE`**: las apps de Android que activan la marca de ventana `FLAG_SECURE` (como apps bancarias, gestores de contraseñas y apps de vídeo con DRM como Netflix) se ven en negro en las transmisiones `MediaProjection` con `Standard` y `Assist`, por diseño de Android.
+- **Reglas de captura de audio y `REMOTE_SUBMIX`**: el `AudioPlaybackCapture` estándar de Android 10+ captura las apps que permiten la captura de reproducción (`USAGE_MEDIA`, `USAGE_GAME`). Las apps que la rechazan en su manifiesto no se pueden capturar con `Standard` ni `Assist`. Con `Elevated`, Panal intenta la captura interna de audio mediante `REMOTE_SUBMIX` (`UID 2000`), que funciona en compilaciones AOSP/Pixel pero puede estar bloqueada por políticas SELinux propias en algunas ROM de fabricante (en ese caso vuelve sola a la captura de reproducción estándar).
+- **Acceso de kernel/SELinux a UHID**: la inyección de teclado físico virtual (`--uhid-key`) y de mando (`--uhid-gamepad`) con `Elevated` abre `/dev/uhid` como `shell` (`UID 2000`). En las ROM de fabricante cuya política SELinux niega a `shell` el acceso a `/dev/uhid`, Panal vuelve sola a la inyección estándar de teclas y movimiento de `InputManager` de Android.

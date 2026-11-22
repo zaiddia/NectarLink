@@ -7,9 +7,9 @@
     <string name="pair_show_hint">在你的另一部手机或平板上打开 Panal，轻触“配对”，然后扫描此代码。</string>
     <string name="pair_show_qr_desc">供另一部手机或平板使用的配对代码</string>
     <string name="action_show_code">改为配对手机或平板</string>
-    <string name="pair_scan_hint">在电脑上打开NectarLink，将摄像头对准它显示的二维码。另一部手机或平板会在“配对手机或平板”中显示它的二维码。</string>
+    <string name="pair_scan_hint">在电脑上打开Panal，将摄像头对准它显示的二维码。另一部手机或平板会在“配对手机或平板”中显示它的二维码。</string>
     <string name="pair_nearby_title">就近配对</string>
-    <string name="pair_nearby_hint">在电脑上打开NectarLink并停留在配对界面，它就会出现在这里。</string>
+    <string name="pair_nearby_hint">在电脑上打开Panal并停留在配对界面，它就会出现在这里。</string>
     <string name="pair_looking">正在查找电脑…</string>
     <string name="pair_joining">正在配对…</string>
     <string name="pair_connecting">正在连接 %1$s…</string>
@@ -23,9 +23,9 @@
     <string name="pair_failed_declined">其中一台设备拒绝了配对。</string>
     <string name="pair_failed_expired">配对码已过期，请在电脑上显示新的配对码。</string>
     <string name="pair_failed_unreachable">无法连接到电脑，请确认两者在同一网络。</string>
-    <string name="pair_failed_other">这不是NectarLink配对码，或者出现了问题。</string>
+    <string name="pair_failed_other">这不是Panal配对码，或者出现了问题。</string>
     <string name="your_pc">你的电脑</string>
-    <string name="camera_permission_needed">NectarLink需要使用摄像头扫描配对码，不会录制任何内容。</string>
+    <string name="camera_permission_needed">Panal需要使用摄像头扫描配对码，不会录制任何内容。</string>
     <string name="home_title">首页</string>
     <string name="link_online">已连接</string>
     <string name="link_online_rtt">已连接 · %1$d 毫秒</string>
@@ -56,7 +56,7 @@
     <string name="settings_notifications">通知</string>
     <string name="notifications_title">在电脑上显示通知</string>
     <string name="notifications_on">已开启。通知会显示在已配对的电脑上，可在那里回复或清除。</string>
-    <string name="notifications_off">NectarLink需要通知使用权，才能把本手机的通知显示在电脑上。</string>
+    <string name="notifications_off">Panal需要通知使用权，才能把本手机的通知显示在电脑上。</string>
     <string name="notifications_restricted">开关是灰色的？打开应用信息，点按 ⋮，选择“允许受限设置”，然后重试。</string>
     <string name="action_allow">允许</string>
     <string name="clip_share_label">发送到电脑</string>
@@ -75,7 +75,7 @@
     <string name="settings_control">从电脑控制</string>
     <string name="control_title">使用电脑的鼠标和键盘</string>
     <string name="control_on">已开启：当手机屏幕显示在电脑上时，你可以从电脑上点按、滑动和输入。</string>
-    <string name="control_off">在电脑显示本手机屏幕时，从电脑上点按、滑动和输入。请在无障碍设置中启用NectarLink。</string>
+    <string name="control_off">在电脑显示本手机屏幕时，从电脑上点按、滑动和输入。请在无障碍设置中启用Panal。</string>
     <string name="dnd_access_title">勿扰模式和静音模式</string>
     <string name="dnd_access_on">已开启：电脑可以开启或关闭勿扰模式，并将铃声设为静音。</string>
     <string name="dnd_access_off">允许电脑开启或关闭勿扰模式，并将铃声设为静音。</string>
@@ -83,7 +83,7 @@
     <string name="write_settings_on">已开启：电脑可以调节本手机的屏幕亮度。</string>
     <string name="write_settings_off">允许电脑调节本手机的屏幕亮度。</string>
     <string name="local_network_title">在此网络上访问你的电脑</string>
-    <string name="local_network_text">应用与网络中的设备通信前，Android会先询问。NectarLink需要此权限才能访问你的电脑。</string>
+    <string name="local_network_text">应用与网络中的设备通信前，Android会先询问。Panal需要此权限才能访问你的电脑。</string>
     <string name="channel_elevated">无线调试设置</string>
     <string name="elevated_title">真实触控与按键（无线调试）</string>
     <string name="elevated_not_set_up">从电脑实现实时触控、全部按键，以及通话中的静音、保持和拨号盘。使用Android自带的无线调试。</string>
@@ -91,12 +91,12 @@
     <string name="elevated_starting">正在启动…</string>
     <string name="elevated_running">已开启：电脑的鼠标和键盘就像真实的触摸屏和键盘一样工作。</string>
     <string name="elevated_failed">无法启动，请确认无线调试已开启，然后重试。</string>
-    <string name="elevated_not_paired">手机已忘记NectarLink的配对信息，请重新设置。</string>
+    <string name="elevated_not_paired">手机已忘记Panal的配对信息，请重新设置。</string>
     <string name="elevated_set_up">设置</string>
     <string name="elevated_use_root">使用Root</string>
     <string name="elevated_root_hint">这台手机已Root，Elevated也可以改用Root启动：无需配对，重启后或离开Wi-Fi时也会自动恢复。权限与使用无线调试时相同。</string>
     <string name="elevated_running_root">已通过Root开启：电脑的鼠标和键盘就像真实的触摸屏和键盘一样工作。</string>
-    <string name="elevated_root_failed">未获得Root授权，或Root管理器无法以shell用户身份启动NectarLink的辅助程序。你可以改用无线调试进行设置。</string>
+    <string name="elevated_root_failed">未获得Root授权，或Root管理器无法以shell用户身份启动Panal的辅助程序。你可以改用无线调试进行设置。</string>
     <string name="elevated_use_shizuku">使用 Shizuku</string>
     <string name="elevated_shizuku_hint">已安装 Shizuku，因此 Elevated 可以改为通过它启动：无需单独配对，只要 Shizuku 在运行，离开 Wi-Fi 也能继续使用。它获得的权限与无线调试相同。</string>
     <string name="elevated_running_shizuku">已开启（通过 Shizuku）：电脑的鼠标和键盘就像真正的触摸屏和键盘一样工作。</string>
@@ -108,9 +108,9 @@
     <string name="elevated_turn_off">关闭</string>
     <string name="elevated_try_again">重试</string>
     <string name="elevated_steps_title">设置无线调试</string>
-    <string name="elevated_steps">Android标记为敏感而隐藏的一次性验证码通知也会发送到你的电脑。\n\n1. 开启开发者选项：在设置 › 关于手机中，连续点按版本号7次。\n2. 在开发者选项中开启无线调试（需连接Wi-Fi），打开它并点按“使用配对码配对设备”。\n3. 在NectarLink的通知中输入6位配对码，期间不要关闭配对码。</string>
+    <string name="elevated_steps">Android标记为敏感而隐藏的一次性验证码通知也会发送到你的电脑。\n\n1. 开启开发者选项：在设置 › 关于手机中，连续点按版本号7次。\n2. 在开发者选项中开启无线调试（需连接Wi-Fi），打开它并点按“使用配对码配对设备”。\n3. 在Panal的通知中输入6位配对码，期间不要关闭配对码。</string>
     <string name="elevated_open_developer">打开开发者选项</string>
-    <string name="elevated_pair_title">将NectarLink与无线调试配对</string>
+    <string name="elevated_pair_title">将Panal与无线调试配对</string>
     <string name="elevated_pair_text">在无线调试中，点按“使用配对码配对设备”，然后在此输入配对码。</string>
     <string name="elevated_pair_action">输入配对码</string>
     <string name="elevated_pair_hint">6位配对码</string>
@@ -156,7 +156,7 @@
     <string name="transfer_pause">暂停</string>
     <string name="transfer_resume">继续</string>
     <string name="transfer_paused_progress">已暂停 · %1$s / %2$s</string>
-    <string name="transfer_received_from">来自 %1$s · 位于Download/Nectarlink</string>
+    <string name="transfer_received_from">来自 %1$s · 位于Download/Panal</string>
     <string name="transfer_sent_to">已发送到 %1$s</string>
     <string name="transfer_cancelled">已取消</string>
     <string name="transfer_denied">%1$s 不接受来自本手机的文件。</string>
@@ -177,7 +177,7 @@
     <string name="clip_empty">剪贴板中没有文本或图片。</string>
     <string name="clip_image_too_large">图片太大，无法发送。</string>
     <string name="clip_image_unreadable">无法读取该图片。</string>
-    <string name="clip_image_unsupported">请更新 %1$s 上的NectarLink以发送图片。</string>
+    <string name="clip_image_unsupported">请更新 %1$s 上的Panal以发送图片。</string>
     <string name="clip_nothing_shared">没有可发送的文本。</string>
     <string name="clipboard_history_title">剪贴板历史记录</string>
     <string name="clipboard_history_subtitle">与电脑共享的最近50条剪贴内容，加密保存在本手机上。</string>
@@ -207,7 +207,7 @@
     <string name="clip_action_track">查询物流</string>
     <string name="clip_action_email">邮件</string>
     <string name="background_title">在后台保持可连接</string>
-    <string name="background_text">Android为省电暂停了NectarLink，导致电脑无法连接。请允许它在后台运行。</string>
+    <string name="background_text">Android为省电暂停了Panal，导致电脑无法连接。请允许它在后台运行。</string>
     <string name="background_on">已允许在后台保持连接</string>
     <string name="settings_background_title">后台与电池</string>
     <string name="settings_run_in_background">在后台运行</string>
@@ -943,7 +943,7 @@
     <string name="guide_files_pc_1">将文件拖到电脑上的 Panal 窗口或顶部边缘岛。</string>
     <string name="guide_files_opt_1">发送文件 / 发送文件夹：传输单个文件或完整文件夹树。</string>
     <string name="guide_files_opt_2">暂停 / 继续：继续中断的传输，不重发已完成的部分。</string>
-    <string name="guide_files_privacy">文件通过 QUIC TLS 1.3 传输，并使用 BLAKE3 完整性校验，保存到 Download/Nectarlink。</string>
+    <string name="guide_files_privacy">文件通过 QUIC TLS 1.3 传输，并使用 BLAKE3 完整性校验，保存到 Download/Panal。</string>
     <string name="guide_files_limits">每批最多 5,000 个文件。</string>
     <string name="guide_queue_title">发送队列</string>
     <string name="guide_queue_summary">在电脑离线时排队文件、链接、剪贴板内容和录音，待其重新连接后送达。</string>
@@ -1229,21 +1229,21 @@
     <string name="settings_wireless_debugging_hint">允许无线调试后，剪贴板才能在后台同步；也可以在通知里点「发送剪贴板」</string>
     <!-- Pause for banking apps -->
     <string name="banking_title">为银行应用暂停</string>
-    <string name="banking_text">部分银行应用在开发者选项、调试或无障碍服务开启时无法打开。在这里选择这些应用：打开它们时，NectarLink会关闭这些设置，离开后再重新开启。</string>
+    <string name="banking_text">部分银行应用在开发者选项、调试或无障碍服务开启时无法打开。在这里选择这些应用：打开它们时，Panal会关闭这些设置，离开后再重新开启。</string>
     <plurals name="banking_chosen">
         <item quantity="other">已选择%1$d个应用</item>
     </plurals>
-    <string name="banking_needs_elevated">需要先设置一次无线调试，NectarLink才能更改这些设置。</string>
-    <string name="banking_needs_usage">请允许使用情况访问权限，以便NectarLink知道银行应用何时打开。</string>
+    <string name="banking_needs_elevated">需要先设置一次无线调试，Panal才能更改这些设置。</string>
+    <string name="banking_needs_usage">请允许使用情况访问权限，以便Panal知道银行应用何时打开。</string>
     <string name="banking_paused_now">已为银行应用暂停。</string>
     <string name="banking_choose">选择应用</string>
     <string name="banking_pick_title">银行应用</string>
     <string name="banking_search">搜索应用</string>
     <string name="banking_shortcut">添加快捷方式</string>
-    <string name="banking_shortcut_hint">如果应用仍然无法打开，请通过它的快捷方式打开：NectarLink会先暂停，再打开它。</string>
+    <string name="banking_shortcut_hint">如果应用仍然无法打开，请通过它的快捷方式打开：Panal会先暂停，再打开它。</string>
     <string name="banking_channel">为银行应用暂停</string>
     <string name="banking_paused_title">已为银行应用暂停</string>
-    <string name="banking_paused_text">在你离开该应用之前，开发者选项、调试和NectarLink的无障碍服务将保持关闭。</string>
+    <string name="banking_paused_text">在你离开该应用之前，开发者选项、调试和Panal的无障碍服务将保持关闭。</string>
     <string name="banking_turn_back_on">重新开启</string>
     <string name="action_done">完成</string>
     <string name="device_name_in_profile">%1$s（%2$s）</string>

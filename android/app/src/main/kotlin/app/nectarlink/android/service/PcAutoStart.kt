@@ -7,7 +7,7 @@ import android.os.Build
 import android.os.SystemClock
 import android.util.Log
 import androidx.core.content.edit
-import app.nectarlink.android.NectarlinkApplication
+import app.nectarlink.android.PanalApplication
 import app.nectarlink.android.elevated.Elevated
 import app.nectarlink.android.mic.MicService
 import app.nectarlink.android.webcam.WebcamService
@@ -37,7 +37,7 @@ object PcAutoStart {
     private const val PENDING_MS = 15_000L
 
     /** The one shell command the helper runs for this (allowed by name in InputServer). */
-    const val OPEN_COMMAND = "am start -n app.nectarlink/app.nectarlink.android.service.PcStartActivity"
+    const val OPEN_COMMAND = "am start -n app.panal/app.nectarlink.android.service.PcStartActivity"
 
     @Volatile private var pending: Pending? = null
     @Volatile private var loaded = false
@@ -121,7 +121,7 @@ class PcStartActivity : Activity() {
     private fun start() {
         val request = PcAutoStart.take() ?: return
         if (!PcAutoStart.isOn(this, request.pcId)) return
-        val core = (application as NectarlinkApplication).core
+        val core = (application as PanalApplication).core
         val state = core.state.value
         when (request.kind) {
             PcAutoStart.Kind.WEBCAM -> {

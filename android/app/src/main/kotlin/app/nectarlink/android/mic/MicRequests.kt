@@ -15,7 +15,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
-import app.nectarlink.android.NectarlinkApplication
+import app.nectarlink.android.PanalApplication
 import app.nectarlink.android.R
 
 /**
@@ -82,7 +82,7 @@ class MicStartActivity : ComponentActivity() {
     private val permission = registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
         pcId?.let { pc ->
             // Declined: the PC hears the microphone is off instead of waiting it out.
-            if (granted) MicService.start(this, pc) else (application as NectarlinkApplication).core.micStop(pc)
+            if (granted) MicService.start(this, pc) else (application as PanalApplication).core.micStop(pc)
         }
         finish()
     }
@@ -95,7 +95,7 @@ class MicStartActivity : ComponentActivity() {
             return
         }
         pcId = pc
-        (application as NectarlinkApplication).core.clearMicRequest(pc)
+        (application as PanalApplication).core.clearMicRequest(pc)
         if (MicService.hasPermission(this)) {
             MicService.start(this, pc)
             finish()
@@ -113,6 +113,6 @@ class MicStartActivity : ComponentActivity() {
 class MicDeclineReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         val pc = intent.getStringExtra(MicStartActivity.EXTRA_PC) ?: return
-        (context.applicationContext as NectarlinkApplication).core.declineMicRequest(pc)
+        (context.applicationContext as PanalApplication).core.declineMicRequest(pc)
     }
 }

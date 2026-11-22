@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 // Linux equivalent of Jump List tasks via freedesktop.org `.desktop` Desktop Actions
-// (`~/.local/share/applications/nectarlink.desktop` + hicolor app icon).
+// (`~/.local/share/applications/panal.desktop` + hicolor app icon).
 //
 // Desktop environments (GNOME Dash, KDE Plasma Task Manager, Cinnamon, XFCE) expose
 // `[Desktop Action <id>]` entries in the launcher right-click menu, providing full
@@ -10,7 +10,7 @@
 
 use std::path::{Path, PathBuf};
 
-/// The command-line flag Jump List tasks pass back to NectarLink.
+/// The command-line flag Jump List tasks pass back to Panal.
 pub const ARG: &str = "--task";
 
 /// Jump-list tasks exposed on the launcher / dock right-click menu.
@@ -21,7 +21,7 @@ pub const TASKS: &[(&str, &str, &str)] = &[
     ("send-clipboard", "Send clipboard to phone", "Send what's currently copied on this PC to your phone"),
     ("find-phone", "Find my phone", "Make your paired phone ring"),
     ("take-photo", "Take photo with phone", "Capture a photo with your phone camera and paste it here"),
-    ("open-timeline", "Open Timeline", "Open the chronological activity feed in NectarLink"),
+    ("open-timeline", "Open Timeline", "Open the chronological activity feed in Panal"),
 ];
 
 fn applications_dir() -> Option<PathBuf> {
@@ -31,11 +31,11 @@ fn applications_dir() -> Option<PathBuf> {
 
 fn hicolor_icon_path() -> Option<PathBuf> {
     let base = dirs::data_local_dir().filter(|p| p.is_absolute())?;
-    Some(base.join("icons/hicolor/256x256/apps/nectarlink.png"))
+    Some(base.join("icons/hicolor/256x256/apps/panal.png"))
 }
 
 fn ensure_desktop_icon() -> PathBuf {
-    let icon_path = hicolor_icon_path().unwrap_or_else(|| PathBuf::from("nectarlink"));
+    let icon_path = hicolor_icon_path().unwrap_or_else(|| PathBuf::from("panal"));
     if icon_path.is_absolute() && !icon_path.exists() {
         let _ = super::icon::write_png(&icon_path, 256);
     }
@@ -75,7 +75,7 @@ pub fn build_desktop_file(exe: &Path, icon_path: &Path, custom_data_dir: Option<
         "[Desktop Entry]\n\
          Type=Application\n\
          Version=1.1\n\
-         Name=NectarLink\n\
+         Name=Panal\n\
          GenericName=Phone Companion\n\
          Comment=Connect your Android phone and Linux PC\n\
          Exec=\"{exe_str}\" %U\n\
@@ -99,7 +99,7 @@ pub fn build_desktop_file(exe: &Path, icon_path: &Path, custom_data_dir: Option<
     content
 }
 
-/// Write `nectarlink.desktop` into `dir` pointing at `exe` and `icon_path`.
+/// Write `panal.desktop` into `dir` pointing at `exe` and `icon_path`.
 /// Extracted so unit tests can verify `.desktop` generation inside a temp directory.
 pub fn write_desktop_file_to(
     dir: &Path,
@@ -108,7 +108,7 @@ pub fn write_desktop_file_to(
     custom_data_dir: Option<&Path>,
 ) -> std::io::Result<PathBuf> {
     std::fs::create_dir_all(dir)?;
-    let desktop_path = dir.join("nectarlink.desktop");
+    let desktop_path = dir.join("panal.desktop");
     let content = build_desktop_file(exe, icon_path, custom_data_dir);
 
     #[cfg(unix)]
@@ -134,7 +134,7 @@ pub fn write_desktop_file_to(
 /// Remove the user-level `.desktop` file and icon installed by [`register`].
 pub fn unregister() {
     if let Some(dir) = applications_dir() {
-        let _ = std::fs::remove_file(dir.join("nectarlink.desktop"));
+        let _ = std::fs::remove_file(dir.join("panal.desktop"));
     }
     if let Some(icon) = hicolor_icon_path() {
         let _ = std::fs::remove_file(icon);
@@ -165,9 +165,9 @@ mod tests {
 
     #[test]
     fn custom_profile_quotes_data_dir() {
-        let p = Path::new("/home/Alice Smith/.local/share/NectarLink Dev");
+        let p = Path::new("/home/Alice Smith/.local/share/Panal Dev");
         let args = build_task_arguments("find-phone", Some(p));
-        assert_eq!(args, "--data-dir \"/home/Alice Smith/.local/share/NectarLink Dev\" --task find-phone");
+        assert_eq!(args, "--data-dir \"/home/Alice Smith/.local/share/Panal Dev\" --task find-phone");
     }
 
     #[test]
@@ -185,8 +185,8 @@ mod tests {
     #[test]
     fn write_desktop_file_generates_valid_actions_and_sections() {
         let tmp = tempfile::tempdir().expect("tempdir");
-        let exe = Path::new("/usr/bin/nectarlink-desktop");
-        let icon = Path::new("/home/user/.local/share/icons/hicolor/256x256/apps/nectarlink.png");
+        let exe = Path::new("/usr/bin/panal");
+        let icon = Path::new("/home/user/.local/share/icons/hicolor/256x256/apps/panal.png");
 
         let desktop_path = write_desktop_file_to(tmp.path(), exe, icon, None).expect("write desktop file");
         assert!(desktop_path.exists());
@@ -204,7 +204,7 @@ mod tests {
             assert!(text.contains(&format!("[Desktop Action {action}]")), "missing section for {action}");
             assert!(text.contains(&format!("Name={title}")), "missing title for {action}");
             assert!(
-                text.contains(&format!("Exec=\"/usr/bin/nectarlink-desktop\" --task {action}")),
+                text.contains(&format!("Exec=\"/usr/bin/panal\" --task {action}")),
                 "missing Exec for {action}"
             );
         }

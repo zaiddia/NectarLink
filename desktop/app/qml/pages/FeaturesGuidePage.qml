@@ -4,7 +4,7 @@ import QtQuick.Layouts
 import app.nectarlink
 
 // In-app Features Guide page: searchable and filterable reference to every
-// NectarLink feature, live capability status when a phone is connected,
+// Panal feature, live capability status when a phone is connected,
 // "Show me" navigation, and "Learn more" reader sheet with handbook tabs.
 Item {
     id: guide
@@ -257,7 +257,7 @@ Item {
             area: "camera_audio",
             capKey: "webcam",
             toggleKey: "",
-            summary: qsTr("Use your phone camera as the NectarLink Virtual Camera in Zoom, Teams, Meet, and OBS."),
+            summary: qsTr("Use your phone camera as the Panal Virtual Camera in Zoom, Teams, Meet, and OBS."),
             whereLabel: qsTr("Home › Phone as webcam"),
             needsLabel: qsTr("Camera permission on phone and Virtual Camera registered on PC"),
             targetId: "settings:camera_audio:webcam",
@@ -583,7 +583,7 @@ Item {
 
             Txt {
                 Layout.fillWidth: true
-                text: qsTr("Every feature in NectarLink, what it needs, and where to find it.")
+                text: qsTr("Every feature in Panal, what it needs, and where to find it.")
                 role: "body"
                 color: Theme.surfaceContentVariant
                 wrapMode: Text.WordWrap

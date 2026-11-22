@@ -27,7 +27,7 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.ServiceCompat
 import androidx.core.content.ContextCompat
-import app.nectarlink.android.NectarlinkApplication
+import app.nectarlink.android.PanalApplication
 import app.nectarlink.android.R
 import app.nectarlink.android.ui.MainActivity
 import app.nectarlink.core.RecordingMarker
@@ -125,7 +125,7 @@ class RecorderService : Service() {
         }
         ServiceCompat.startForeground(this, NOTIFICATION_ID, buildNotification(pcId, paused = false, elapsedMs = 0L), type)
 
-        val app = application as NectarlinkApplication
+        val app = application as PanalApplication
         encodeJob = scope.launch(Dispatchers.IO) {
             val outFile = app.core.recordings.newRecordingFile()
             val durationMs = recordM4a(outFile, pcId)
@@ -335,7 +335,7 @@ class RecorderService : Service() {
     }
 
     private fun buildNotification(pcId: String, paused: Boolean, elapsedMs: Long): Notification {
-        val core = (application as NectarlinkApplication).core
+        val core = (application as PanalApplication).core
         val pcName = core.state.value.nameOf(pcId).orEmpty().ifEmpty { getString(R.string.your_pc) }
 
         val openIntent = Intent(this, MainActivity::class.java).apply {

@@ -25,7 +25,7 @@ if (-not $Setup) {
     $Setup = (Get-ChildItem (Join-Path $PSScriptRoot '..\target\package\*-x64-setup.exe') | Select-Object -First 1).FullName
 }
 if (-not $Setup -or -not (Test-Path $Setup)) { throw "no x64 setup installer to test under target\package" }
-if ($Setup -notmatch 'Nectarlink-(.+)-x64-setup\.exe$') { throw "can't read the version from $Setup" }
+if ($Setup -notmatch 'Panal-(.+)-x64-setup\.exe$') { throw "can't read the version from $Setup" }
 $newVersion = $Matches[1]
 
 $api = 'https://api.github.com/repos/thtbee/nectarlink/releases'
@@ -37,7 +37,7 @@ if ($oldVersion -eq $newVersion) {
     Write-Host "This build is $newVersion, the latest release itself: nothing to update from."
     exit 0
 }
-$oldName = "Nectarlink-$oldVersion-x64-setup.exe"
+$oldName = "Panal-$oldVersion-x64-setup.exe"
 $work = Join-Path ($(if ($env:RUNNER_TEMP) { $env:RUNNER_TEMP } else { $env:TEMP })) 'nectarlink-upgrade'
 Remove-Item -Recurse -Force $work -ErrorAction SilentlyContinue
 New-Item -ItemType Directory -Force $work | Out-Null
@@ -49,9 +49,9 @@ Invoke-WebRequest (& $asset 'SHA256SUMS.txt') -OutFile $sums -Headers @{ 'User-A
 $listed = (Get-Content $sums | Where-Object { $_ -match "^([0-9a-f]{64})\s+\*?$([regex]::Escape($oldName))$" } | ForEach-Object { $Matches[1] }) | Select-Object -First 1
 Check "$oldName is the published one (SHA-256)" ($listed -and (Get-FileHash $oldSetup -Algorithm SHA256).Hash.ToLower() -eq $listed)
 
-$dir = Join-Path $env:ProgramFiles 'Nectarlink'
-$exe = Join-Path $dir 'nectarlink-desktop.exe'
-$uninstallKey = 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\Nectarlink'
+$dir = Join-Path $env:ProgramFiles 'Panal'
+$exe = Join-Path $dir 'panal.exe'
+$uninstallKey = 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\Panal'
 $data = Join-Path $work 'data'
 function DisplayVersion { (Get-ItemProperty $uninstallKey -ErrorAction SilentlyContinue).DisplayVersion }
 function RunOnce([string]$what) {
@@ -76,11 +76,11 @@ Start-Process $Setup -ArgumentList '/S' -Wait
 Check "$newVersion replaced it" ((DisplayVersion) -eq $newVersion)
 $scheduler = New-Object -ComObject Schedule.Service
 $scheduler.Connect()
-$task = try { $scheduler.GetFolder('\').GetTask('Nectarlink Update') } catch { $null }
+$task = try { $scheduler.GetFolder('\').GetTask('Panal Update') } catch { $null }
 Check "the update task is there after the update" ($null -ne $task -and $task.Definition.Actions.Item(1).Path.Trim('"') -eq $exe)
 # Windows' camera service can hold the webcam DLL open; the update must still
 # put the new one in place rather than skip it.
-$staged = Join-Path (Split-Path $Setup) 'Nectarlink'
+$staged = Join-Path (Split-Path $Setup) 'Panal'
 if (Test-Path $staged) {
     $stale = @(Get-ChildItem $staged -Recurse -File | Where-Object {
         $installed = Join-Path $dir $_.FullName.Substring($staged.Length + 1)

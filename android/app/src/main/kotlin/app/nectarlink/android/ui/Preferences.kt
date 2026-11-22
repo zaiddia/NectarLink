@@ -113,7 +113,7 @@ class Preferences(context: Context) {
     fun updateVolumeKeysControlPc(enabled: Boolean) {
         prefs.edit { putBoolean(VOLUME_KEYS_CONTROL_PC, enabled) }
         _volumeKeysControlPc.value = enabled
-        (appContext as app.nectarlink.android.NectarlinkApplication).core.pcMedia.volumeKeys(enabled)
+        (appContext as app.nectarlink.android.PanalApplication).core.pcMedia.volumeKeys(enabled)
     }
 
     fun updateBackgroundServiceEnabled(enabled: Boolean) {

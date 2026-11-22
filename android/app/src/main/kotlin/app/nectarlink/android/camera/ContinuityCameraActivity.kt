@@ -84,12 +84,12 @@ import androidx.core.content.ContextCompat
 import androidx.core.graphics.scale
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import app.nectarlink.android.NectarlinkApplication
+import app.nectarlink.android.PanalApplication
 import app.nectarlink.android.R
 import app.nectarlink.android.ui.Preferences
 import app.nectarlink.android.ui.detached
 import app.nectarlink.android.ui.theme.LocalReducedMotion
-import app.nectarlink.android.ui.theme.NectarlinkTheme
+import app.nectarlink.android.ui.theme.PanalTheme
 import java.io.ByteArrayOutputStream
 import java.util.concurrent.Executors
 import kotlin.math.hypot
@@ -137,7 +137,7 @@ class ContinuityCameraActivity : ComponentActivity() {
             permissionLauncher.launch(Manifest.permission.CAMERA)
         }
 
-        val app = application as NectarlinkApplication
+        val app = application as PanalApplication
         val preferences = Preferences(this)
 
         setContent {
@@ -153,7 +153,7 @@ class ContinuityCameraActivity : ComponentActivity() {
                 }
             }
 
-            NectarlinkTheme(appearance) {
+            PanalTheme(appearance) {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background,
@@ -224,7 +224,7 @@ class ContinuityCameraActivity : ComponentActivity() {
         if (isFinishing && !completedOrCancelled && pcId.isNotEmpty() && requestId.isNotEmpty()) {
             completedOrCancelled = true
             ContinuityCameraRequests.clearActive(pcId, requestId)
-            (application as? NectarlinkApplication)?.core?.cancelCameraCapture(
+            (application as? PanalApplication)?.core?.cancelCameraCapture(
                 pcId = pcId,
                 requestId = requestId,
                 reason = getString(R.string.continuity_camera_cancelled),
@@ -251,7 +251,7 @@ class ContinuityCameraActivity : ComponentActivity() {
             completedOrCancelled = true
             ContinuityCameraRequests.clearActive(pcId, requestId)
             ContinuityCameraRequests.dismissNotification(this, pcId)
-            (application as? NectarlinkApplication)?.core?.cancelCameraCapture(
+            (application as? PanalApplication)?.core?.cancelCameraCapture(
                 pcId = pcId,
                 requestId = requestId,
                 reason = reason,

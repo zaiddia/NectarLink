@@ -1,69 +1,71 @@
-# NectarLink User Guide
+# Guía de usuario de Panal
 
-NectarLink connects your Android phone and your PC directly over your local network. It handles notifications, messages, calls, clipboard sharing, file transfers, photo browsing, screen mirroring, camera streaming, audio routing, and cross-device input in one open-source application.
+Panal conecta tu teléfono Android y tu PC directamente por tu red local. Reúne en una sola aplicación de código abierto las notificaciones, los mensajes, las llamadas, el portapapeles compartido, la transferencia de archivos, la exploración de fotos, la duplicación de pantalla, la cámara, el audio y el control entre dispositivos.
+
+Panal está basado en [NectarLink](https://github.com/thtbee/nectarlink) de thtbee. Las capturas de esta guía son de la app original y pueden mostrar el nombre y el logo de NectarLink.
 
 <p align="center">
-  <img src="images/home-bloom.png" alt="NectarLink for Windows home screen in the Bloom theme" width="760">
+  <img src="images/home-bloom.png" alt="Pantalla de Inicio de la app de PC con el tema Bloom" width="760">
 </p>
 
-## Why This Guide Is Organized This Way
+## Por qué esta guía está organizada así
 
-Documentation for NectarLink is split into two parts so you can find answers quickly:
+La documentación se divide en dos partes para que encuentres las respuestas rápido:
 
-1. **User Guide (`docs/guide/`)**: Organized by everyday tasks and feature areas. Each page explains what a feature does, why it is useful, what permissions or settings it requires, how to use it step by step, where your data is stored, and what platform limits apply. This layout matches the navigation inside the Windows and Android apps and can be rendered directly on GitHub or published as a static documentation site.
-2. **Technical Reference ([`docs/technical/`](../technical/README.md))**: Written for developers, security auditors, and contributors. It covers internal crate architecture, the wire protocol, FFI bridges, database schemas, performance budgets, and build instructions.
+1. **Guía de usuario (`docs/guide/`)**: organizada por tareas cotidianas y áreas de funciones. Cada página explica qué hace una función, por qué es útil, qué permisos o ajustes necesita, cómo usarla paso a paso, dónde se guardan tus datos y qué límites impone cada plataforma. Sigue la misma navegación que las apps de PC y Android, y se puede leer directamente en GitHub.
+2. **Referencia técnica ([`docs/technical/`](../technical/README.md))**: escrita para desarrolladores, auditores de seguridad y colaboradores, en inglés. Cubre la arquitectura interna, el protocolo, los puentes FFI, los esquemas de base de datos, los presupuestos de rendimiento y las instrucciones de compilación.
 
-Separating task-oriented workflows from implementation internals keeps everyday instructions concise while giving engineers full access to system specifications.
+Separar las tareas del día a día de los detalles internos mantiene las instrucciones breves y deja a los ingenieros toda la especificación del sistema.
 
-## Table of Contents
+## Contenido
 
-### Setup and Foundations
+### Configuración y fundamentos
 
-- [Getting Started](getting-started.md): System requirements, installing on Windows 11 and Android, the first-run walkthrough, pairing methods (QR code, 6-digit nearby code, USB auto-pair), and choosing an Android power level (`Standard`, `Assist`, or `Elevated`).
+- [Primeros pasos](getting-started.md): requisitos del sistema, instalación en Windows, Linux y Android, la guía del primer inicio, los métodos de emparejamiento (código QR, código de 6 dígitos cercano, emparejamiento automático por USB) y cómo elegir el nivel de control de Android (`Standard`, `Assist` o `Elevated`).
 
-### Everyday Features
+### Funciones del día a día
 
-- [Notifications](notifications.md): Live notification feed, Windows popups, inline replies, action buttons, Live Updates and timers, one-time verification code detection, per-app mute rules, notification profiles, and forwarding PC notifications to your phone.
-- [Messages](messages.md): SMS and MMS conversations, Unified Conversations from chat apps (`MessagingStyle` and `RemoteInput`), image attachments, contact search, and one-time codes.
-- [Calls](calls.md): Incoming call banners on your PC, answering or declining calls, rejecting with an SMS reply, placing calls from the PC dialer or contacts, call history, `Elevated` in-call controls, and why voice audio remains on the phone.
-- [Clipboard](clipboard.md): Sharing plain text, HTML, images, and copied files between PC and phone, Quick Settings tile and share sheet sending, `Elevated` automatic background sync, smart context chips, encrypted 50-item history, and automatic exclusion of passwords and one-time codes.
-- [Files and Transfers](files-and-transfers.md): Sending files and folders both ways, drag and drop, File Explorer `Send to` integration, pause and resume, BLAKE3 integrity verification, the persistent send queue and `Waiting to send` panel, mounting phone storage in File Explorer, browsing PC files from your phone, folder sync, and LocalSend compatibility.
-- [Photos](photos.md): Browsing the phone camera roll, screenshots, and albums on your PC, full-resolution inspection, dragging photos directly into File Explorer or desktop apps, and new photo alerts.
+- [Notificaciones](notifications.md): el panel de notificaciones en vivo, las ventanas emergentes del escritorio, las respuestas rápidas, los botones de acción, las actualizaciones en vivo y temporizadores, la detección de códigos de verificación, las reglas por app, los perfiles de notificaciones y el reenvío de notificaciones del PC al teléfono.
+- [Mensajes](messages.md): conversaciones SMS y MMS, conversaciones unificadas de apps de chat (`MessagingStyle` y `RemoteInput`), imágenes adjuntas, búsqueda de contactos y códigos de un solo uso.
+- [Llamadas](calls.md): avisos de llamadas entrantes en el PC, contestar o rechazar, rechazar con un SMS, llamar desde el marcador o los contactos del PC, historial de llamadas, controles en llamada con `Elevated` y por qué el audio de voz se queda en el teléfono.
+- [Portapapeles](clipboard.md): compartir texto, HTML, imágenes y archivos copiados entre el PC y el teléfono, enviar con el botón de Ajustes rápidos y el menú Compartir, sincronización automática en segundo plano con `Elevated`, sugerencias inteligentes, historial cifrado de 50 elementos y exclusión automática de contraseñas y códigos de un solo uso.
+- [Archivos y transferencias](files-and-transfers.md): enviar archivos y carpetas en ambos sentidos, arrastrar y soltar, la integración con **Enviar a** del Explorador de archivos, pausar y reanudar, verificación de integridad BLAKE3, la cola de envío persistente y el panel **Pendiente de enviar**, montar el almacenamiento del teléfono en el Explorador de archivos, explorar los archivos del PC desde el teléfono, sincronizar carpetas y la compatibilidad con LocalSend.
+- [Fotos](photos.md): explorar el carrete, las capturas y los álbumes del teléfono en el PC, verlos a resolución completa, arrastrar fotos al Explorador de archivos o a otras apps, y avisos de fotos nuevas.
 
-### Screen, Camera, Audio, and Input
+### Pantalla, cámara, audio y entrada
 
-- [Mirroring and App Windows](mirroring.md): Mirroring your phone screen at up to 60 fps (H.264, H.265, AV1), forwarding phone audio, taking screenshots and MP4 recordings, keeping the phone awake or turning its physical screen off, remote touch and keyboard input (`Assist` and `Elevated`), opening individual phone apps in their own `app window`, DeX desktop mode, and reverse mirroring your PC screen to your phone.
-- [Cameras and Audio](cameras-and-audio.md): Using your phone as a Windows webcam (`NectarLink Webcam` virtual camera add-on), lens and zoom controls, Continuity Camera for capturing photos and scanning documents with corner crop and black-and-white enhancement, using your phone as a low-latency wireless speaker for PC audio, and recording voice notes with timestamped markers.
-- [Input and Control](input-and-control.md): Controlling your PC from your phone (touchpad, gyroscope air mouse, keyboard with modifier bar, voice dictation, presentation remote with laser pointer), typing on your phone from your PC keyboard, the `Deck` macro pad, phone system controls on PC Home, Desk Mode stand display, and Lock, Sleep, and Wake-on-LAN actions.
-- [Desktop Surfaces and Automation](desktop-surfaces.md): The slide-out `Shelf` edge panel, Flick to send gestures, `Nectar Island` top-of-screen activity pill, the searchable cross-device `Timeline`, the global `Command Palette` (`Ctrl+Alt+Space`), rich `Handoff` for links, maps, videos, and documents, `notify-when` task completion alerts, trigger-action automations, the local HTTP API, and the command-line client.
+- [Duplicación y ventanas de apps](mirroring.md): duplicar la pantalla del teléfono hasta 60 fps (H.264, H.265, AV1), reenviar el audio del teléfono, capturas y grabaciones MP4, mantener el teléfono encendido o apagar su pantalla, control táctil y de teclado a distancia (`Assist` y `Elevated`), abrir apps del teléfono en su propia `app window`, el modo escritorio DeX y la duplicación inversa de la pantalla del PC en el teléfono.
+- [Cámaras y audio](cameras-and-audio.md): usar el teléfono como cámara web de Windows (el complemento de cámara virtual `Panal Webcam`), controles de lente y zoom, Continuity Camera para tomar fotos y escanear documentos con recorte de esquinas y mejora en blanco y negro, usar el teléfono como altavoz inalámbrico de baja latencia para el PC, y grabar notas de voz con marcadores de tiempo.
+- [Entrada y control](input-and-control.md): controlar el PC desde el teléfono (touchpad, mouse aéreo con giroscopio, teclado con barra de modificadores, dictado por voz, control de presentaciones con puntero láser), escribir en el teléfono con el teclado del PC, el teclado de macros `Deck`, los controles del teléfono en el Inicio del PC, el Modo escritorio en un soporte, y las acciones Bloquear, Suspender y Wake-on-LAN.
+- [Superficies del escritorio y automatización](desktop-surfaces.md): la Bandeja (`Shelf`) del borde de la pantalla, el gesto de lanzar para enviar, la píldora de actividad `Nectar Island`, la `Timeline` (Línea de tiempo) con búsqueda entre dispositivos, la `Command Palette` (Paleta de comandos, `Ctrl+Alt+Space`), el `Handoff` de enlaces, mapas, videos y documentos, los avisos de tareas terminadas `notify-when`, las automatizaciones de disparador y acción, la API HTTP local y el cliente de línea de comandos.
 
-### Configuration, Privacy, and Support
+### Configuración, privacidad y ayuda
 
-- [Settings Reference](settings.md): Every setting in the PC app (all 9 categories) and the Android app explained one by one.
-- [Privacy and Security](privacy-and-security.md): Plain-language overview of Ed25519 device identity keys, cryptographic pairing, QUIC TLS 1.3 end-to-end encryption, local-first networking, automatic update checks, opt-in **Connect over mobile data**, per-device permissions, consent prompts, and local data retention.
-- [Troubleshooting](troubleshooting.md): Running the `Connection Doctor`, resolving firewall, public network, VPN, and Wi-Fi AP isolation issues, configuring per-OEM Android battery settings, and fixing `Elevated` Wireless Debugging, USB transport, audio, and virtual camera issues.
-- [Frequently Asked Questions (FAQ)](faq.md): Direct answers to common questions about accounts, networks, battery usage, multiple devices, and platform support.
-- [Known Limitations](known-limitations.md): Honest summary of operating system and hardware constraints across Windows 11 and Android.
+- [Referencia de ajustes](settings.md): cada ajuste de la app de PC (las 9 categorías) y de la app de Android, explicado uno a uno.
+- [Privacidad y seguridad](privacy-and-security.md): explicación sencilla de las claves de identidad Ed25519, el emparejamiento criptográfico, el cifrado de extremo a extremo con QUIC y TLS 1.3, la red local primero, la búsqueda automática de actualizaciones, la opción **Conectar con datos móviles**, los permisos por dispositivo, los avisos de consentimiento y la retención de datos local.
+- [Solución de problemas](troubleshooting.md): usar `Connection Doctor`, resolver problemas de firewall, red pública, VPN y aislamiento de AP del Wi‑Fi, ajustar la batería de Android según el fabricante, y arreglar la depuración inalámbrica de `Elevated`, el transporte USB, el audio y la cámara virtual.
+- [Preguntas frecuentes](faq.md): respuestas directas sobre cuentas, redes, consumo de batería, varios dispositivos y plataformas compatibles.
+- [Limitaciones conocidas](known-limitations.md): resumen honesto de las limitaciones del sistema operativo y del hardware en Windows y Android.
 
-## Glossary
+## Glosario
 
-NectarLink uses consistent terms across the PC app, the Android app, and this guide:
+Panal usa los mismos términos en la app de PC, en la app de Android y en esta guía:
 
-| Term | Definition |
+| Término | Definición |
 | :--- | :--- |
-| `pair` | The one-time cryptographic ceremony that links a phone and a PC. Pairing exchanges Ed25519 public keys and verifies a shared secret via a QR code token or a 6-digit confirmation code. |
-| `paired device` | A phone or PC that has completed pairing and is stored in your local trust store. Only a `paired device` can open an encrypted NectarLink session with your device. |
-| `Standard` | The default Android power level. It uses ordinary Android runtime permissions and notification listener access, requiring no accessibility service and no developer options. |
-| `Assist` | The second Android power level. It adds NectarLink's Android Accessibility Service (**Use your PC's mouse and keyboard** under **Control from your PC**) so your PC mouse and keyboard can tap, swipe, scroll, and type during screen mirroring without developer setup. |
-| `Elevated` | The third Android power level (**Real touch and keys (Wireless debugging)** under **Control from your PC**). It uses Android's built-in Wireless Debugging (or USB `adb`) to run a local shell helper (`UID 2000`, no root). It enables real-time touch dragging, UHID physical keyboard and gamepad input, `app window` streaming, automatic background phone-to-PC clipboard sync, sensitive notification OTP detection on Android 15+, Wi-Fi and Bluetooth toggles, and in-call mute/hold/speaker controls. |
-| `mirror` | A live video and audio stream of your phone's primary screen inside a dedicated window on your PC (or, with **Share PC screen to phone**, your PC's screen on your phone). |
-| `app window` | A single Android application streamed to its own independent window on your PC using an Android virtual display (`Elevated` on Android 11+), running alongside whatever is on the phone's physical screen. |
-| `Deck` | A customizable button grid on your phone that acts as a macro pad and live audio controller for your PC. |
-| `Shelf` (**File shelf**) | A slide-out edge panel on your PC (`Ctrl+Alt+S`) that holds your phone's latest photo, latest screenshot, current clipboard item, and recent files for quick drag-and-drop sharing without stealing window focus. |
-| `Timeline` | A searchable local history of everything shared between your devices, including files, clipboard items, links, saved photos, voice recordings, and mirroring or webcam sessions. |
-| `island` (**Nectar Island**) | An optional compact pill at the top center of your PC monitor that displays live phone calls, file transfer progress, media playback, timers, and alerts. |
-| `Waiting to send` | A persistent queue panel on Home (both PC and Android) that holds files, clipboard items, links, and task alerts sent while the target device was offline, delivering them automatically in order as soon as the device reconnects. |
-| `Command Palette` | A keyboard-driven launcher on your PC (`Ctrl+Alt+Space`) for running any NectarLink action, sending text or files, starting mirroring, or jumping to settings from any application. |
-| `Connection Doctor` | A diagnostic tool in the PC app (**Settings › Connection & About › Connection Doctor**) and Android app that checks firewall rules, network profile type, VPN routing, Wi-Fi AP isolation, and Android background battery restrictions. |
-| **Connect over mobile data** | An opt-in setting (**Settings › Connection & About › Connect over mobile data** on the PC and **Settings › Devices › Connect over mobile data** on Android, off by default on both) that allows paired devices to stay connected across different networks (such as LTE/5G and home broadband) using end-to-end encrypted relay packets when a direct LAN path is unavailable. |
-| `Handoff` | Sending an active web link, map location (`geo:` URI), video link with its current playback timestamp, or document to a paired device so it opens immediately in the default application on the receiving side. |
+| `pair` (emparejar) | La ceremonia criptográfica, que se hace una sola vez, que vincula un teléfono y un PC. Intercambia claves públicas Ed25519 y verifica un secreto compartido con un token de código QR o un código de confirmación de 6 dígitos. |
+| `paired device` (dispositivo emparejado) | Un teléfono o PC que completó el emparejamiento y está guardado en tu almacén de confianza local. Solo un dispositivo emparejado puede abrir una sesión cifrada de Panal con el tuyo. |
+| `Standard` (Estándar) | El nivel de control predeterminado de Android. Usa los permisos normales de Android y el acceso a notificaciones, sin servicio de accesibilidad ni opciones de desarrollador. |
+| `Assist` | El segundo nivel de control de Android. Añade el servicio de accesibilidad de Panal (**Usa el mouse y el teclado de tu PC** en **Control desde tu PC**) para que el mouse y el teclado del PC puedan tocar, deslizar, desplazarse y escribir durante la duplicación de pantalla, sin configuración de desarrollador. |
+| `Elevated` | El tercer nivel de control de Android (**Toque y teclas reales (depuración inalámbrica)** en **Control desde tu PC**). Usa la depuración inalámbrica de Android (o `adb` por USB) para ejecutar un asistente local de shell (`UID 2000`, sin root). Permite arrastrar en tiempo real, teclado físico y mando por UHID, `app window`, sincronización automática del portapapeles del teléfono al PC en segundo plano, detección de códigos en notificaciones sensibles en Android 15 o superior, los interruptores de Wi‑Fi y Bluetooth, y los controles de silenciar, retener y altavoz en llamada. |
+| `mirror` (duplicar) | Una transmisión en vivo de video y audio de la pantalla principal del teléfono en una ventana propia del PC (o, con **Compartir la pantalla del PC con el teléfono**, la pantalla del PC en el teléfono). |
+| `app window` (ventana de app) | Una sola app de Android transmitida en su propia ventana independiente del PC mediante una pantalla virtual de Android (`Elevated` en Android 11 o superior), que funciona a la vez que lo que haya en la pantalla física del teléfono. |
+| `Deck` | Una cuadrícula de botones personalizable en el teléfono que hace de teclado de macros y de control de audio en vivo para el PC. |
+| `Shelf` (**Bandeja de archivos**) | Un panel lateral del PC (`Ctrl+Alt+S`) con la última foto del teléfono, la última captura, el recorte actual del portapapeles y los archivos recientes, para compartir arrastrando y soltando sin quitar el foco a la ventana. |
+| `Timeline` (Línea de tiempo) | Un historial local con búsqueda de todo lo compartido entre tus dispositivos: archivos, recortes, enlaces, fotos guardadas, grabaciones de voz y sesiones de duplicación o cámara web. |
+| `island` (**Nectar Island**) | Una píldora compacta opcional arriba en el centro del monitor del PC que muestra llamadas, el progreso de las transferencias, la multimedia, temporizadores y avisos. |
+| **Pendiente de enviar** | Un panel de cola persistente en Inicio (en el PC y en Android) con los archivos, recortes, enlaces y avisos de tareas enviados mientras el otro dispositivo estaba sin conexión. Los entrega solos, en orden, en cuanto el dispositivo se reconecta. |
+| `Command Palette` (Paleta de comandos) | Un lanzador con el teclado en el PC (`Ctrl+Alt+Space`) para ejecutar cualquier acción de Panal, enviar texto o archivos, empezar a duplicar o ir a un ajuste desde cualquier aplicación. |
+| `Connection Doctor` | Una herramienta de diagnóstico de la app de PC (**Ajustes › Conexión y Acerca de › Connection Doctor**) y de la app de Android que revisa las reglas del firewall, el tipo de perfil de red, las rutas de la VPN, el aislamiento de AP del Wi‑Fi y las restricciones de batería en segundo plano de Android. |
+| **Conectar con datos móviles** | Un ajuste opcional (**Ajustes › Conexión y Acerca de › Conectar con datos móviles** en el PC y **Ajustes › Dispositivos › Conectar con datos móviles** en Android, desactivado en ambos por defecto) que mantiene conectados los dispositivos emparejados en redes distintas (por ejemplo, LTE/5G y la fibra de casa) mediante paquetes de relé cifrados de extremo a extremo cuando no hay un camino directo por la red local. |
+| `Handoff` | Enviar un enlace web, una ubicación de mapa (URI `geo:`), un enlace de video con su momento de reproducción actual o un documento a un dispositivo emparejado para que se abra al instante en la app predeterminada del otro lado. |

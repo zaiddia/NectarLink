@@ -11,7 +11,7 @@
 //! { "schema": 1, "channel": "nightly", "version": "0.1.5-nightly.7",
 //!   "name": "Amber Clover", "published": "2026-11-03T10:17:00Z",
 //!   "notes": "https://github.com/zaiddia/NectarLink/releases/tag/v0.1.5-nightly.7",
-//!   "files": [{ "name": "Nectarlink-0.1.5-nightly.7-x64-setup.exe",
+//!   "files": [{ "name": "Panal-0.1.5-nightly.7-x64-setup.exe",
 //!               "url": "https://github.com/zaiddia/NectarLink/releases/download/…",
 //!               "sha256": "…", "size": 41234567 }] }
 //! ```
@@ -150,8 +150,8 @@ mod tests {
             published: None,
             notes: "https://github.com/zaiddia/NectarLink/releases/tag/v1".into(),
             files: vec![FeedFile {
-                name: "Nectarlink-0.1.5-nightly.7-x64-setup.exe".into(),
-                url: format!("{RELEASE_DOWNLOADS}v0.1.5-nightly.7/Nectarlink-0.1.5-nightly.7-x64-setup.exe"),
+                name: "Panal-0.1.5-nightly.7-x64-setup.exe".into(),
+                url: format!("{RELEASE_DOWNLOADS}v0.1.5-nightly.7/Panal-0.1.5-nightly.7-x64-setup.exe"),
                 sha256: "A".repeat(64),
                 size: 1,
             }],
@@ -183,7 +183,7 @@ mod tests {
         let mut f = feed("nightly", "0.1.5-nightly.7");
         let good = f.files[0].clone();
         f.files = vec![
-            FeedFile { url: "https://evil.example/Nectarlink-setup.exe".into(), ..good.clone() },
+            FeedFile { url: "https://evil.example/Panal-setup.exe".into(), ..good.clone() },
             FeedFile { url: format!("{RELEASE_DOWNLOADS}../../other/x.exe"), ..good.clone() },
             FeedFile { name: "..\\setup.exe".into(), ..good.clone() },
             FeedFile { sha256: "xyz".into(), ..good.clone() },
@@ -199,8 +199,8 @@ mod tests {
     fn real_json_parses() {
         let json = br#"{"schema":1,"channel":"nightly","version":"0.1.5-nightly.7","name":"Amber Clover",
             "published":"2026-11-03T10:17:00Z","notes":"https://github.com/zaiddia/NectarLink/releases/tag/v0.1.5-nightly.7",
-            "files":[{"name":"Nectarlink-0.1.5-nightly.7-android.apk",
-            "url":"https://github.com/zaiddia/NectarLink/releases/download/v0.1.5-nightly.7/Nectarlink-0.1.5-nightly.7-android.apk",
+            "files":[{"name":"Panal-0.1.5-nightly.7-android.apk",
+            "url":"https://github.com/zaiddia/NectarLink/releases/download/v0.1.5-nightly.7/Panal-0.1.5-nightly.7-android.apk",
             "sha256":"0000000000000000000000000000000000000000000000000000000000000000","size":12}],"later":"ignored"}"#;
         let parsed: Feed = serde_json::from_slice(json).unwrap();
         assert_eq!(validated(parsed, Channel::Nightly).unwrap().files.len(), 1);

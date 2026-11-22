@@ -1,268 +1,268 @@
-# Settings Reference
+# Referencia de ajustes
 
-This page explains every setting in the PC app (Windows and Linux) and the Android app one by one, including its exact in-app label, default value, and what changing it does.
+Esta página explica uno a uno todos los ajustes de la app del PC (Windows y Linux) y de la app de Android, con su nombre exacto en la app, su valor predeterminado y lo que hace al cambiarlo.
 
 <p align="center">
-  <img src="images/settings-appearance.png" alt="Categorized two-pane Settings screen in NectarLink for Windows" width="760">
+  <img src="images/settings-appearance.png" alt="Pantalla de Ajustes de dos paneles por categorías en Panal para Windows" width="760">
 </p>
 
-## Windows 11 App Settings
+## Ajustes de la app de Windows 11
 
-On Windows, **Settings** uses a two-pane layout with 9 categories in the left navigation rail (or a scrollable top pill bar when the window is narrower than 680 pixels). Preferences are stored atomically in `%LOCALAPPDATA%\Nectarlink\desktop-settings.json`, while per-device permissions live in your local SQLite database (`nectarlink.db`).
+En Windows, **Ajustes** usa una distribución de dos paneles con 9 categorías en la barra lateral izquierda (o una barra de píldoras desplazable arriba cuando la ventana mide menos de 680 píxeles de ancho). Las preferencias se guardan de forma atómica en `%LOCALAPPDATA%\Panal\desktop-settings.json`, y los permisos por dispositivo viven en la base de datos SQLite local (`nectarlink.db`).
 
 ---
 
-### 1. Appearance
+### 1. Apariencia
 
-Controls the visual theme, light/dark mode, accent palette, OLED black surfaces, and Windows 11 Mica backdrop.
+Controla el tema visual, el modo claro u oscuro, la paleta de acento, las superficies negras OLED y el fondo Mica de Windows 11.
 
-| Setting | Options / Default | What It Does |
+| Ajuste | Opciones / Predeterminado | Qué hace |
 | :--- | :--- | :--- |
-| **Theme** | `Hive`, `Bloom` (default), `Glass`, `Graphite` | Selects the visual style. **Hive** is honey on charcoal (dark) or warm wax (light), with a living honeycomb behind the whole window that grows from the logo, breathes, and sends soft pulses of light; its colors are fixed, so the color options below are hidden. **Bloom** uses soft, tinted Material You surfaces. **Glass** renders translucent cards over the Windows backdrop, each with a lit glass rim: a specular edge from the top left, a softer reflection at the bottom right, and a faint inner glow. **Graphite** uses high-contrast monochrome ink-on-paper surfaces. |
-| **Mode** | `System` (default), `Light`, `Dark` | Follows Windows 11's system light/dark mode or locks NectarLink to Light or Dark. |
-| **Color** *(shown in Bloom and Glass)* | **Wallpaper** (default), **Honey**, **Lavender**, **Ocean**, **Sage**, **Black**, **Media artwork**, or **Phone color pills** | Picks the accent seed color. **Wallpaper** extracts colors from your desktop wallpaper. **Media artwork** dynamically adapts the app's palette to the album art of whatever song is currently playing. **Phone color pills** sync live with each paired phone's Material You wallpaper palette. |
-| **Pure black (AMOLED)** | **Off** (default) | Shown inline as an **AMOLED** pill when the **Black** color swatch is selected in Bloom/Glass, or as a dedicated row in **Graphite Dark**. Replaces dark gray backgrounds with pure `#000000` black for OLED monitors. |
-| **Animated comb** *(Hive)* | **On** (default) | Lets Hive's honeycomb breathe and pulse. It also holds still while animations are off in Windows, while energy saver is on, and while the window isn't in front. Shown in place of **Mica backdrop**, which Hive doesn't use. |
-| **Mica backdrop** | **On** (default) | Uses Windows 11's native Desktop Window Manager (DWM) Mica material to subtly tint the window background with your desktop wallpaper. |
+| **Tema** | `Nova`, `Hive`, `Bloom` (predeterminado), `Glass`, `Graphite` | Elige el estilo visual. **Nova** es el tema futurista de Panal: neón cian y violeta sobre un fondo espacial oscuro, con una retícula holográfica y brillos suaves. **Hive** es miel sobre carbón (oscuro) o cera cálida (claro), con un panal vivo detrás de toda la ventana que crece desde el logotipo, respira y emite suaves pulsos de luz; sus colores son fijos, así que las opciones de color de abajo se ocultan. **Bloom** usa superficies suaves y tintadas de Material You. **Glass** dibuja tarjetas translúcidas sobre el fondo de Windows, cada una con un borde de cristal iluminado: un reflejo especular desde arriba a la izquierda, un reflejo más suave abajo a la derecha y un leve brillo interior. **Graphite** usa superficies monocromas de alto contraste, como tinta sobre papel. |
+| **Modo** | `Sistema` (predeterminado), `Claro`, `Oscuro` | Sigue el modo claro u oscuro del sistema Windows 11 o fija Panal en Claro u Oscuro. |
+| **Color** *(en Bloom y Glass)* | **Fondo de pantalla** (predeterminado), **Miel**, **Lavanda**, **Océano**, **Salvia**, **Negro**, **Carátula multimedia** o **Píldoras de color del teléfono** | Elige el color semilla del acento. **Fondo de pantalla** extrae los colores del fondo de escritorio. **Carátula multimedia** adapta la paleta de la app a la carátula de la canción que suena. **Píldoras de color del teléfono** se sincronizan en directo con la paleta Material You del fondo de cada teléfono emparejado. |
+| **Negro puro (AMOLED)** | **Desactivado** (predeterminado) | Aparece como píldora **AMOLED** cuando eliges la muestra **Negro** en Bloom/Glass, o como fila propia en **Graphite oscuro**. Sustituye los fondos gris oscuro por negro puro `#000000` para monitores OLED. |
+| **Panal animado** *(Hive)* | **Activado** (predeterminado) | Deja que el panal de Hive respire y palpite. También se queda quieto cuando las animaciones están desactivadas en Windows, con el ahorro de energía activo y cuando la ventana no está delante. Aparece en lugar de **Fondo Mica**, que Hive no usa. |
+| **Fondo Mica** | **Activado** (predeterminado) | Usa el material Mica nativo del Administrador de ventanas de escritorio (DWM) de Windows 11 para teñir sutilmente el fondo de la ventana con tu fondo de escritorio. |
 
 ---
 
 ### 2. General
 
-Controls startup behavior, the system tray, `Nectar Island`, battery notifications, and clipboard automation.
+Controla el inicio, la bandeja del sistema, la `Nectar Island`, los avisos de batería y la automatización del portapapeles.
 
-| Setting | Default | What It Does |
+| Ajuste | Predeterminado | Qué hace |
 | :--- | :--- | :--- |
-| **Start with Windows** | **On** for installed copies | Launches NectarLink quietly in the Windows system tray when you sign in to your PC. |
-| **Stay in system tray** | **On** | Keeps NectarLink running in the system tray (unloading the UI window to ~5 to 10 MB working set) when you close the main window, so your phone stays connected. When turned off, closing the window quits the app completely. |
-| **Nectar Island** | **Off** | Shows a compact pill at the top center of your primary monitor during active phone events. Automatically hides during full-screen games/videos or Windows Do Not Disturb. |
-| **Island triggers** *(shown when Nectar Island is On)* | **Calls**: On, **Transfers**: On, **Media**: On, **Alerts**: Off | Toggles which phone events expand `Nectar Island`: incoming/active **Calls**, active file **Transfers**, now-playing **Media**, and phone notification **Alerts** (including OTPs, timers, and recordings). |
-| **Battery alerts** | **On** | Shows a desktop notification when a connected phone's battery drops low or reaches a full charge. |
-| **Sync clipboard to phone** | **On** | Automatically sends text and images copied on this PC (`Ctrl+C`) to connected phones. |
-| **Clipboard follows control** | **On** | Sends the PC clipboard to the phone when you start controlling it: the mouse moves into its mirror window, or a remote control session starts. |
-| **Copy one-time codes** | **Off** | Automatically copies 4-to-8-digit verification codes detected in incoming phone notifications and SMS messages onto your PC clipboard. |
-| **Copy received files** | **On** | Automatically places small incoming files received from your phone onto the Windows clipboard (`CF_HDROP`) so you can press `Ctrl+V` to paste them anywhere. |
-| **Suggest clipboard actions** | **On** | Offers one-click context chips (**Open**, **Open in Maps**, **Call**, **Track**, **Email**) when a web link, street address, phone number, parcel tracking number, or email address arrives from your phone's clipboard. |
+| **Iniciar con Windows** | **Activado** en copias instaladas | Abre Panal en silencio en la bandeja del sistema de Windows al iniciar sesión en el PC. |
+| **Seguir en la bandeja del sistema** | **Activado** | Mantiene Panal en ejecución en la bandeja del sistema (descargando la ventana hasta unos 5-10 MB de memoria) al cerrar la ventana principal, para que el teléfono siga conectado. Si lo desactivas, cerrar la ventana cierra la app por completo. |
+| **Nectar Island** | **Desactivado** | Muestra una píldora compacta en la parte superior central del monitor principal durante la actividad del teléfono. Se oculta sola con juegos o vídeos a pantalla completa o con No molestar de Windows. |
+| **Activadores de la isla** *(con Nectar Island activada)* | **Llamadas**: sí, **Transferencias**: sí, **Multimedia**: sí, **Alertas**: no | Elige qué eventos del teléfono despliegan la `Nectar Island`: **Llamadas** entrantes o activas, **Transferencias** de archivos en curso, **Multimedia** en reproducción y **Alertas** de notificaciones del teléfono (incluidos OTP, temporizadores y grabaciones). |
+| **Avisos de batería** | **Activado** | Muestra una notificación de escritorio cuando la batería de un teléfono conectado baja o llega a carga completa. |
+| **Sincronizar el portapapeles con el teléfono** | **Activado** | Envía solo a los teléfonos conectados el texto y las imágenes copiados en este PC (`Ctrl+C`). |
+| **El portapapeles sigue al control** | **Activado** | Envía el portapapeles del PC al teléfono cuando empiezas a controlarlo: el ratón entra en su ventana de duplicación o empieza una sesión de control remoto. |
+| **Copiar códigos de un solo uso** | **Desactivado** | Copia solos al portapapeles del PC los códigos de verificación de 4 a 8 dígitos detectados en las notificaciones y los SMS que llegan al teléfono. |
+| **Copiar archivos recibidos** | **Activado** | Coloca solos en el portapapeles de Windows (`CF_HDROP`) los archivos pequeños recibidos del teléfono, para que pulses `Ctrl+V` y los pegues donde quieras. |
+| **Sugerir acciones del portapapeles** | **Activado** | Ofrece etiquetas de acción (**Abrir**, **Abrir en Mapas**, **Llamar**, **Seguir**, **Correo**) cuando llega del portapapeles del teléfono un enlace web, una dirección postal, un número de teléfono, un número de seguimiento de paquete o una dirección de correo. |
 
 ---
 
-### 3. Devices
+### 3. Dispositivos
 
-Lists your paired phones (with a device selector pill bar at the top when more than one phone is paired), a **Pair a new device** button, an **Unpair** button, and 19 per-device feature permission toggles grouped into three sections.
+Lista los teléfonos emparejados (con una barra de píldoras para elegir dispositivo arriba si hay más de uno), un botón **Emparejar un dispositivo nuevo**, un botón **Desemparejar** y 19 interruptores de permisos por dispositivo agrupados en tres secciones.
 
 <p align="center">
-  <img src="images/settings-devices.png" alt="Per-device feature permission toggles in Settings › Devices on Windows" width="760">
+  <img src="images/settings-devices.png" alt="Interruptores de permisos por dispositivo en Ajustes › Dispositivos en Windows" width="760">
 </p>
 
-#### Group A: Calls, messages & notifications
+#### Grupo A: llamadas, mensajes y notificaciones
 
-| Per-Device Toggle | Default | What It Controls for the Selected Phone |
+| Interruptor por dispositivo | Predeterminado | Qué controla para el teléfono seleccionado |
 | :--- | :--- | :--- |
-| **Notifications** (`notifications`) | **On** | Receiving phone notifications on the PC, inline replies, action buttons, and optional PC-to-phone notification forwarding. |
-| **Messages** (`messages`) | **On** | Syncing SMS/MMS conversations and Unified Conversations, and sending text or MMS replies from the PC. |
-| **Calls** (`calls`) | **On** | Incoming call banners, caller ID, recent call history, dialing from the PC, and in-call controls. |
-| **Contacts** (`contacts`) | **On** | Syncing phone contacts and avatars for Calls and Messages. |
+| **Notificaciones** (`notifications`) | **Activado** | Recibir las notificaciones del teléfono en el PC, las respuestas rápidas, los botones de acción y el reenvío opcional de notificaciones del PC al teléfono. |
+| **Mensajes** (`messages`) | **Activado** | Sincronizar las conversaciones SMS/MMS y las conversaciones unificadas, y enviar respuestas de texto o MMS desde el PC. |
+| **Llamadas** (`calls`) | **Activado** | Avisos de llamada entrante, identificador de llamadas, historial reciente, llamar desde el PC y controles durante la llamada. |
+| **Contactos** (`contacts`) | **Activado** | Sincronizar los contactos y avatares del teléfono para Llamadas y Mensajes. |
 
-#### Group B: Files, photos & clipboard
+#### Grupo B: archivos, fotos y portapapeles
 
-| Per-Device Toggle | Default | What It Controls for the Selected Phone |
+| Interruptor por dispositivo | Predeterminado | Qué controla para el teléfono seleccionado |
 | :--- | :--- | :--- |
-| **Clipboard** (`clipboard`) | **On** | Sharing copied text, HTML, images, and files between this PC and the selected phone. |
-| **Files** (`files`) | **On** | Sending and receiving files, folders, and `Handoff` links/documents. |
-| **Photos** (`photos`) | **On** | Browsing the phone's camera roll, screenshots, and albums in the **Photos** page and receiving new photo alerts. |
-| **Voice recordings** (`recordings`) | **On** | Receiving voice notes recorded on the phone. |
-| **File Explorer integration** (`storage`) | **Off** | Mounting the phone's storage under `%USERPROFILE%\Nectarlink\<Phone name>` via Windows Cloud Files (includes an **Open** button when enabled), and allowing the phone to browse shared PC folders when **Your PC in your pocket** is also turned on. |
-| **Remote PC file access** (`remote_files`) | **Off** | Allowing storage browsing when the phone and PC are connected over mobile data / relay (**Connect over mobile data**) rather than your local Wi-Fi network. |
+| **Portapapeles** (`clipboard`) | **Activado** | Compartir texto, HTML, imágenes y archivos copiados entre este PC y el teléfono seleccionado. |
+| **Archivos** (`files`) | **Activado** | Enviar y recibir archivos, carpetas y enlaces o documentos de `Handoff`. |
+| **Fotos** (`photos`) | **Activado** | Ver la galería, las capturas y los álbumes del teléfono en la página **Fotos** y recibir avisos de fotos nuevas. |
+| **Grabaciones de voz** (`recordings`) | **Activado** | Recibir las notas de voz grabadas en el teléfono. |
+| **Integración con el Explorador de archivos** (`storage`) | **Desactivado** | Montar el almacenamiento del teléfono en `%USERPROFILE%\Panal\<Nombre del teléfono>` con Cloud Files de Windows (incluye un botón **Abrir** al activarlo) y permitir que el teléfono vea las carpetas compartidas del PC cuando **Tu PC en el bolsillo** también está activado. |
+| **Acceso remoto a archivos del PC** (`remote_files`) | **Desactivado** | Permitir ver el almacenamiento cuando el teléfono y el PC están conectados por datos móviles o relé (**Conectar con datos móviles**) en lugar de por tu Wi-Fi local. |
 
-#### Group C: Screen, camera & control
+#### Grupo C: pantalla, cámara y control
 
-| Per-Device Toggle | Default | What It Controls for the Selected Phone |
+| Interruptor por dispositivo | Predeterminado | Qué controla para el teléfono seleccionado |
 | :--- | :--- | :--- |
-| **Media controls** (`media`) | **On** | Showing now-playing media and transport controls in both directions, and streaming PC audio via **Phone as speaker**. |
-| **Phone controls** (`toggles`) | **On** | Viewing and changing the phone's volume, ringer mode, Do Not Disturb, flashlight, brightness, Wi-Fi, and Bluetooth from PC Home. |
-| **Screen mirroring** (`mirroring`) | **On** | Mirroring the phone's screen and opening phone apps in windows (`app window`) on this PC. |
-| **Share PC screen to phone** (`pc_mirror`) | **Off** | Allowing this phone to view this PC's screen (reverse mirroring) without showing a one-time consent dialog on every session. |
-| **Webcam** (`webcam`) | **On** | Using this phone's camera as a webcam and triggering Continuity Camera photo/document captures. |
-| **Phone as microphone** (`mic`) | **On** | Using this phone's microphone on this PC. Starting it from the PC still needs a tap on the phone. |
-| **Lock, sleep & wake PC** (`pc_actions`) | **On** | Allowing this phone to lock or sleep this PC and receive its MAC addresses for Wake-on-LAN. |
-| **Remote mouse, keyboard & Deck** (`remote_input`) | **Off** | Allowing this phone to move the PC cursor, type keystrokes, use presentation controls, and press standard `Deck` tiles. |
-| **Run Deck shell commands** (`commands`) | **Off** | Allowing this phone to trigger `Deck` tiles that execute custom shell commands on this PC. Only enable for a phone you trust. |
+| **Controles multimedia** (`media`) | **Activado** | Mostrar la multimedia en reproducción y sus controles en ambos sentidos, y enviar el audio del PC con **Teléfono como altavoz**. |
+| **Controles del teléfono** (`toggles`) | **Activado** | Ver y cambiar desde el Inicio del PC el volumen, el modo de timbre, No molestar, la linterna, el brillo, la Wi-Fi y el Bluetooth del teléfono. |
+| **Duplicación de pantalla** (`mirroring`) | **Activado** | Duplicar la pantalla del teléfono y abrir apps del teléfono en ventanas (`app window`) en este PC. |
+| **Compartir la pantalla del PC con el teléfono** (`pc_mirror`) | **Desactivado** | Permitir que este teléfono vea la pantalla de este PC (duplicación inversa) sin mostrar un diálogo de consentimiento en cada sesión. |
+| **Webcam** (`webcam`) | **Activado** | Usar la cámara de este teléfono como webcam y lanzar capturas de foto o documento con la Cámara de continuidad. |
+| **Teléfono como micrófono** (`mic`) | **Activado** | Usar el micrófono de este teléfono en este PC. Iniciarlo desde el PC sigue requiriendo un toque en el teléfono. |
+| **Bloquear, suspender y encender el PC** (`pc_actions`) | **Activado** | Permitir que este teléfono bloquee o suspenda este PC y reciba sus direcciones MAC para Wake-on-LAN. |
+| **Ratón, teclado y Deck remotos** (`remote_input`) | **Desactivado** | Permitir que este teléfono mueva el cursor del PC, escriba, use los controles de presentación y pulse los botones normales de `Deck`. |
+| **Ejecutar comandos de shell desde Deck** (`commands`) | **Desactivado** | Permitir que este teléfono lance botones de `Deck` que ejecutan comandos de shell propios en este PC. Actívalo solo para un teléfono de confianza. |
 
 ---
 
-### 4. Camera & Audio
+### 4. Cámara y audio
 
-Configures **Phone as speaker**, call media pausing, the **NectarLink Webcam** virtual camera add-on, and live camera stream settings.
+Configura **Teléfono como altavoz**, la pausa de multimedia durante las llamadas, el complemento de cámara virtual **Panal Webcam** y los ajustes de la cámara en directo.
 
-| Setting | Options / Default | What It Does |
+| Ajuste | Opciones / Predeterminado | Qué hace |
 | :--- | :--- | :--- |
-| **Stream PC audio to phone** | **Off** (default) | Streams real-time Windows system audio (uncompressed 16-bit stereo) to your connected phone so you can listen through your phone's speakers or headphones. |
-| **Pause media during calls** | **On** (default) | Automatically pauses media playing on this PC when your phone rings or is in an active call, and resumes when the call ends. |
-| **Virtual camera add-on** | **Set up** / **Remove** | Registers or unregisters `nectarlink_vcam.dll` with Windows 11 Media Foundation (requires a one-time Administrator prompt) so **NectarLink Webcam** appears in Zoom, Teams, Meet, and OBS. |
-| **Phone** *(shown when more than one phone is paired)* | First paired phone | Picks which paired phone provides the webcam video feed. |
-| **Camera** | `Back` (default), `Front` | Selects the phone's rear or front camera lens. |
-| **Mirror image** | **Off** (default) | Flips the webcam video horizontally. |
-| **Resolution** | `720p` (default), `1080p`, `4K` | Sets the vertical resolution (`720`, `1080`, or `2160`) of the webcam video stream at 30 fps. |
-| **Start webcam / Stop webcam & Preview** | Live 16:9 preview | Starts or stops the webcam stream and displays a live preview directly inside Settings. |
+| **Enviar el audio del PC al teléfono** | **Desactivado** (predeterminado) | Envía en tiempo real el audio del sistema Windows (estéreo de 16 bits sin comprimir) al teléfono conectado para que lo escuches por sus altavoces o auriculares. |
+| **Pausar multimedia durante las llamadas** | **Activado** (predeterminado) | Pausa sola la multimedia de este PC cuando suena el teléfono o hay una llamada activa, y la reanuda al terminar. |
+| **Complemento de cámara virtual** | **Configurar** / **Quitar** | Registra o quita `nectarlink_vcam.dll` en Media Foundation de Windows 11 (requiere una única petición de administrador) para que **Panal Webcam** aparezca en Zoom, Teams, Meet y OBS. |
+| **Teléfono** *(con más de un teléfono emparejado)* | Primer teléfono emparejado | Elige qué teléfono emparejado aporta el vídeo de la webcam. |
+| **Cámara** | `Trasera` (predeterminado), `Frontal` | Elige el objetivo trasero o frontal del teléfono. |
+| **Imagen en espejo** | **Desactivado** (predeterminado) | Voltea horizontalmente el vídeo de la webcam. |
+| **Resolución** | `720p` (predeterminado), `1080p`, `4K` | Define la resolución vertical (`720`, `1080` o `2160`) del vídeo de la webcam a 30 fps. |
+| **Iniciar webcam / Detener webcam y Vista previa** | Vista previa 16:9 en directo | Inicia o detiene la webcam y muestra una vista previa en directo dentro de Ajustes. |
 
 ---
 
-### 5. Notifications
+### 5. Notificaciones
 
-Configures Do Not Disturb synchronization, PC-to-phone notification forwarding, Windows Quiet Hours, and per-app notification rules.
+Configura la sincronización de No molestar, el reenvío de notificaciones del PC al teléfono, las horas de silencio de Windows y las reglas de notificación por app.
 
-| Setting | Options / Default | What It Does |
+| Ajuste | Opciones / Predeterminado | Qué hace |
 | :--- | :--- | :--- |
-| **Follow phone Do not disturb** | **Off** (default) | Mutes Windows notification popups on this PC whenever your phone is in Do Not Disturb mode (notifications still wait quietly in the NectarLink feed). |
-| **Forward PC notifications** | **Off** (default) | Forwards Windows desktop notifications to your connected phone while you are away from your desk. |
-| **Quiet hours** | **Set a schedule** button | Opens Windows 11 **System › Notifications** settings to configure automatic Focus / Do Not Disturb schedules. |
-| **Per-app notification rules** | `Show` (default), `No pop-ups`, `Hide` | For every phone app that has posted a notification: **Show** displays both Windows popups and feed cards; **No pop-ups** keeps alerts in the NectarLink feed without desktop popups; **Hide** blocks that app's notifications completely. |
+| **Seguir el No molestar del teléfono** | **Desactivado** (predeterminado) | Silencia los avisos emergentes de Windows en este PC mientras el teléfono está en No molestar (las notificaciones siguen esperando en silencio en el feed de Panal). |
+| **Reenviar notificaciones del PC** | **Desactivado** (predeterminado) | Reenvía las notificaciones de escritorio de Windows al teléfono conectado mientras estás lejos del escritorio. |
+| **Horas de silencio** | Botón **Definir un horario** | Abre **Sistema › Notificaciones** de Windows 11 para configurar horarios automáticos de Concentración / No molestar. |
+| **Reglas de notificación por app** | `Mostrar` (predeterminado), `Sin avisos emergentes`, `Ocultar` | Para cada app del teléfono que haya publicado una notificación: **Mostrar** enseña los avisos emergentes de Windows y las tarjetas del feed; **Sin avisos emergentes** deja las alertas en el feed de Panal sin avisos de escritorio; **Ocultar** bloquea por completo las notificaciones de esa app. |
 
 ---
 
-### 6. Files & Sync
+### 6. Archivos y sincronización
 
-Configures File Explorer integration, PC folder sharing, LocalSend, voice recording output, and automatic folder synchronization.
+Configura la integración con el Explorador de archivos, el uso compartido de carpetas del PC, LocalSend, la salida de las grabaciones de voz y la sincronización automática de carpetas.
 
-| Setting | Options / Default | What It Does |
+| Ajuste | Opciones / Predeterminado | Qué hace |
 | :--- | :--- | :--- |
-| **File Explorer Send to** | **On** (default) | Adds your paired phones to the right-click **Send to** menu in Windows File Explorer. |
-| **Your PC in your pocket** | **Off** (default) | Shares your PC's `Downloads`, `Documents`, `Desktop`, `Pictures`, and `NectarLink Shared` folders with paired phones that have **File Explorer integration** enabled. |
-| **LocalSend on local network** | **Off** (default) | Enables the built-in LocalSend v2.1 client and server (UDP/TCP port `53317`) to send and receive files with nearby LocalSend devices on your Wi-Fi network without pairing. |
-| **Open files shared from the phone** | **Off** (default) | When you share a single photo or document from the phone, opens it in its default Windows app as soon as it arrives. When off, the file is saved to `Downloads\Nectarlink` without opening anything. |
-| **Voice recordings** | Format: `M4A` (default), `MP3`, `WAV`, `FLAC`; Folder: **Choose folder** / **Reset** | Sets where incoming voice notes from your phone are saved (`Documents\Nectarlink Recordings` or `Downloads\Nectarlink` by default) and automatically converts them to MP3, WAV, or FLAC if selected. |
-| **Synced folders** | **Sync now**, **Add DCIM to Pictures**, per-rule toggle & **Remove** | Configures one-way (**One-way (phone to PC)**) or two-way (**Two-way sync**, keeping conflict copies) automatic folder synchronization rules with BLAKE3 integrity verification. |
+| **Enviar a desde el Explorador de archivos** | **Activado** (predeterminado) | Añade los teléfonos emparejados al menú **Enviar a** del clic derecho en el Explorador de archivos de Windows. |
+| **Tu PC en el bolsillo** | **Desactivado** (predeterminado) | Comparte las carpetas `Descargas`, `Documentos`, `Escritorio`, `Imágenes` y `Panal Shared` del PC con los teléfonos emparejados que tengan activada la **Integración con el Explorador de archivos**. |
+| **LocalSend en la red local** | **Desactivado** (predeterminado) | Activa el cliente y servidor LocalSend v2.1 integrado (puerto UDP/TCP `53317`) para enviar y recibir archivos sin emparejar con dispositivos LocalSend cercanos en tu Wi-Fi. |
+| **Abrir los archivos compartidos desde el teléfono** | **Desactivado** (predeterminado) | Cuando compartes una sola foto o documento desde el teléfono, lo abre en su app predeterminada de Windows en cuanto llega. Desactivado, el archivo se guarda en `Descargas\Panal` sin abrir nada. |
+| **Grabaciones de voz** | Formato: `M4A` (predeterminado), `MP3`, `WAV`, `FLAC`; Carpeta: **Elegir carpeta** / **Restablecer** | Define dónde se guardan las notas de voz que llegan del teléfono (`Documentos\Panal Recordings` o `Descargas\Panal` por defecto) y las convierte solas a MP3, WAV o FLAC si lo eliges. |
+| **Carpetas sincronizadas** | **Sincronizar ahora**, **Añadir DCIM a Imágenes**, interruptor por regla y **Quitar** | Configura reglas de sincronización automática de carpetas en un sentido (**En un sentido (del teléfono al PC)**) o en ambos (**Sincronización en ambos sentidos**, con copias de conflicto) con verificación de integridad BLAKE3. |
 
 ---
 
-### 7. Shortcuts & Rules
+### 7. Atajos y reglas
 
-Configures global Windows keyboard shortcuts and trigger-action automation rules.
+Configura los atajos de teclado globales de Windows y las reglas de automatización de disparador y acción.
 
-| Setting | Default | What It Does |
+| Ajuste | Predeterminado | Qué hace |
 | :--- | :--- | :--- |
-| **Command palette** | `Ctrl+Alt+Space` | Global Windows shortcut to open the `Command Palette` from any app. Click the box and press a new key combination to change it, or click **Reset**. |
-| **File shelf** | `Ctrl+Alt+S` | Global Windows shortcut to slide out the `Shelf` edge panel. |
-| **Take photo** | `Ctrl+Alt+C` | Global Windows shortcut to trigger Continuity Camera in Photo mode on your phone. |
-| **Scan document** | `Ctrl+Alt+D` | Global Windows shortcut to trigger Continuity Camera in Document Scan mode on your phone. |
-| **Trigger-action rules** | Empty by default (includes quick buttons for **Lock PC on disconnect** and **Pause media on ring**) | Runs automated actions on your PC (`Lock this PC`, `Sleep this PC`, `Pause PC media`, `Resume PC media`, `Mute PC audio`, `Unmute PC audio`, `Show notification`, `Run command`) when a phone event occurs (`When phone connects`, `When phone disconnects`, `When phone rings`, `When call ends`, `When phone battery is low`, `When phone is charged`). |
-| **OBS Studio** | Port `4455`, no password | Where Deck tiles with `obs:` commands (`obs:record`, `obs:stream`, `obs:scene:<name>`) reach OBS's WebSocket server on this PC. Enter the password from OBS's **Tools › WebSocket Server Settings** and click **Save**; it is stored encrypted with Windows DPAPI. **Test connection** checks the port and password. |
+| **Paleta de comandos** | `Ctrl+Alt+Espacio` | Atajo global de Windows para abrir la `Paleta de comandos` desde cualquier app. Haz clic en el cuadro y pulsa una combinación nueva para cambiarlo, o haz clic en **Restablecer**. |
+| **Bandeja de archivos** | `Ctrl+Alt+S` | Atajo global de Windows para desplegar el panel lateral `Bandeja`. |
+| **Hacer foto** | `Ctrl+Alt+C` | Atajo global de Windows para lanzar la Cámara de continuidad en modo Foto en el teléfono. |
+| **Escanear documento** | `Ctrl+Alt+D` | Atajo global de Windows para lanzar la Cámara de continuidad en modo Escaneo de documentos en el teléfono. |
+| **Reglas de disparador y acción** | Vacío por defecto (con botones rápidos para **Bloquear el PC al desconectar** y **Pausar multimedia al sonar**) | Ejecuta acciones automáticas en el PC (`Bloquear este PC`, `Suspender este PC`, `Pausar la multimedia del PC`, `Reanudar la multimedia del PC`, `Silenciar el audio del PC`, `Reactivar el audio del PC`, `Mostrar notificación`, `Ejecutar comando`) cuando ocurre un evento del teléfono (`Cuando el teléfono se conecta`, `Cuando el teléfono se desconecta`, `Cuando suena el teléfono`, `Cuando termina una llamada`, `Cuando la batería del teléfono está baja`, `Cuando el teléfono está cargado`). |
+| **OBS Studio** | Puerto `4455`, sin contraseña | Dónde llegan los botones de Deck con comandos `obs:` (`obs:record`, `obs:stream`, `obs:scene:<nombre>`) al servidor WebSocket de OBS en este PC. Escribe la contraseña de **Herramientas › Ajustes del servidor WebSocket** de OBS y haz clic en **Guardar**; se guarda cifrada con DPAPI de Windows. **Probar conexión** comprueba el puerto y la contraseña. |
 
 <p align="center">
-  <img src="images/settings-obs.png" alt="Shortcuts and Rules settings with the OBS Studio card" width="760">
+  <img src="images/settings-obs.png" alt="Ajustes de Atajos y reglas con la tarjeta de OBS Studio" width="760">
 </p>
 
 ---
 
-### 8. Storage & Privacy
+### 8. Almacenamiento y privacidad
 
-Displays live item counts and disk usage for every local history store and cache, with individual **Clear** buttons and a master **Clear everything** action.
+Muestra en directo el número de elementos y el espacio en disco de cada historial y caché local, con botones **Borrar** individuales y una acción general **Borrar todo**.
 
 <p align="center">
-  <img src="images/settings-storage.png" alt="Storage and Privacy settings on Windows showing retention periods and Clear buttons" width="760">
+  <img src="images/settings-storage.png" alt="Ajustes de Almacenamiento y privacidad en Windows con los periodos de conservación y los botones Borrar" width="760">
 </p>
 
-| Setting | Retention / Default | What It Does |
+| Ajuste | Conservación / Predeterminado | Qué hace |
 | :--- | :--- | :--- |
-| **Clipboard history** | **On** (default) / up to 50 clips / 128 MB / kept 7 days | Toggles the Windows DPAPI encrypted local clipboard history (`clipboard_history.enc` and `clipboard_images/<id>.enc`) and provides a **Clear** button. |
-| **Notification history** | **On** (default) / up to 300 alerts / kept 24 hours | Toggles 24-hour retention of dismissed phone notifications (`notification-history.json`) and cached notification images on this PC, with a **Clear** button. |
-| **Cross-device timeline** | `30d`, `90d` (default), `1y`, `All` (max 5,000 items) | Sets how long `Timeline` activity entries are kept before auto-purging, with **Open** and **Clear** buttons. |
-| **Cached messages** | Kept 90 days | Shows the count and disk size of cached SMS and Unified Conversation threads and MMS attachments, with a **Clear** button. |
-| **Photo thumbnails** | Kept 30 days | Shows the count and disk size of cached gallery thumbnails in `%LOCALAPPDATA%\Nectarlink\cache\photos\`, with a **Clear** button. |
-| **Transfer history** | Kept with `Timeline` | Shows the number of logged file transfer records and lets you **Clear** the log (never deletes saved files in `Downloads`). |
-| **Clear all local history & caches** | **Clear everything...** button | Wipes clipboard history, `Timeline`, notification history, cached messages, photo thumbnails, and transfer history on this PC in one step while keeping your paired devices, settings, and downloaded files intact. |
+| **Historial del portapapeles** | **Activado** (predeterminado) / hasta 50 recortes / 128 MB / 7 días | Activa o desactiva el historial local del portapapeles cifrado con DPAPI de Windows (`clipboard_history.enc` y `clipboard_images/<id>.enc`) y ofrece un botón **Borrar**. |
+| **Historial de notificaciones** | **Activado** (predeterminado) / hasta 300 alertas / 24 horas | Activa o desactiva la conservación durante 24 horas de las notificaciones descartadas del teléfono (`notification-history.json`) y las imágenes de notificación en caché en este PC, con un botón **Borrar**. |
+| **Línea de tiempo entre dispositivos** | `30 d`, `90 d` (predeterminado), `1 año`, `Todo` (máx. 5.000 elementos) | Define cuánto se conservan las entradas de la `Línea de tiempo` antes del borrado automático, con botones **Abrir** y **Borrar**. |
+| **Mensajes en caché** | 90 días | Muestra el número y el tamaño en disco de las conversaciones SMS y unificadas en caché y de los adjuntos MMS, con un botón **Borrar**. |
+| **Miniaturas de fotos** | 30 días | Muestra el número y el tamaño en disco de las miniaturas de la galería en caché en `%LOCALAPPDATA%\Panal\cache\photos\`, con un botón **Borrar**. |
+| **Historial de transferencias** | Se conserva con la `Línea de tiempo` | Muestra cuántos registros de transferencias hay y te permite **Borrar** el registro (nunca borra archivos guardados en `Descargas`). |
+| **Borrar todo el historial y las cachés locales** | Botón **Borrar todo...** | Elimina de una vez en este PC el historial del portapapeles, la `Línea de tiempo`, el historial de notificaciones, los mensajes en caché, las miniaturas de fotos y el historial de transferencias, sin tocar los dispositivos emparejados, los ajustes ni los archivos descargados. |
 
 ---
 
-### 9. Connection & About
+### 9. Conexión y Acerca de
 
-Provides network diagnostics, **Connect over mobile data**, Wake-on-LAN readiness, the local HTTP automation API, version info, logs, and updates.
+Ofrece diagnóstico de red, **Conectar con datos móviles**, el estado de Wake-on-LAN, la API HTTP de automatización local, la versión, los registros y las actualizaciones.
 
 <p align="center">
-  <img src="images/settings-connection.png" alt="Connection and About settings on Windows" width="760">
+  <img src="images/settings-connection.png" alt="Ajustes de Conexión y Acerca de en Windows" width="760">
 </p>
 
-| Setting | Default | What It Does |
+| Ajuste | Predeterminado | Qué hace |
 | :--- | :--- | :--- |
-| **Connection Doctor** | **Check** button | Runs a live check of Windows Firewall rules, network profile type (Public vs Private), active VPN interfaces, and suspected Wi-Fi AP isolation, and fixes firewall or network profile issues with one click. |
-| **Connect over mobile data** | **Off** | Allows this PC and paired phones to stay connected over LTE/5G or across separate networks via end-to-end encrypted relay packets when direct LAN/USB is unavailable. |
-| **Wake from your phone** | Read-only status indicator (`Ready`, `Off in Windows`, `Check settings`, `No adapter`) | Inspects your active Windows network adapter and tells you whether Wake on LAN is enabled in Device Manager so your phone can wake this PC from sleep. |
-| **Local automation API** | **Off** (default port `53320`) | Starts the loopback-only HTTP/JSON server (`127.0.0.1:<port>`) for PowerToys, AutoHotkey, and scripts, and writes the 256-bit Bearer token to `%LOCALAPPDATA%\Nectarlink\api-token.json`. |
-| **NectarLink `<version>`** | **Check for updates** and **Open logs** buttons | Shows the app version and this PC's device name, checks GitHub Releases for SHA-256 verified updates, or opens the local diagnostic logs folder. |
-| **Check for updates** | **On** (shown on installed copies) | Checks the update channel's feed over HTTPS (`https://raw.githubusercontent.com/thtbee/nectarlink/channels/<channel>.json`) 30 seconds after startup, then every 12 hours on **Stable** and every 2 hours on **Nightly** (twice as long on battery), and tells your phone when there's a new build. A check of an unchanged feed is a few hundred bytes. |
-| **Update channel** | **Stable** (**Nightly** on a nightly build) | **Stable** gets releases. **Nightly** gets a build from the latest code every couple of hours when it changes, with the newest fixes and features and sometimes new bugs, and releases too. Switching back to **Stable** keeps the nightly installed until the next release is newer. An install stays on its channel when it takes a release, until you change it. |
-| **Install updates automatically** | **On** | Installs a newer release by itself when nobody has used the PC for 10 minutes and nothing is in progress (no mirroring, app window, transfer, call, screen sharing or webcam). No administrator prompt: the installer sets up a task that does it. Turn it off to install from the notification or **Check for updates** when you choose. |
-| **Setup walkthrough & Features guide** | Action buttons / Command Palette entries | Reopens the first-run setup walkthrough or the interactive in-app Features Guide at any time. |
+| **Doctor de conexión** | Botón **Comprobar** | Comprueba en directo las reglas del Firewall de Windows, el tipo de perfil de red (Público o Privado), las interfaces VPN activas y un posible aislamiento de puntos de acceso Wi-Fi, y corrige con un clic los problemas de firewall o de perfil de red. |
+| **Conectar con datos móviles** | **Desactivado** | Permite que este PC y los teléfonos emparejados sigan conectados por LTE/5G o entre redes distintas mediante paquetes de relé cifrados de extremo a extremo cuando no hay conexión directa por red local o USB. |
+| **Encender desde el teléfono** | Indicador de solo lectura (`Listo`, `Desactivado en Windows`, `Revisa la configuración`, `Sin adaptador`) | Revisa el adaptador de red activo de Windows y te dice si Wake on LAN está activado en el Administrador de dispositivos para que el teléfono pueda despertar este PC. |
+| **API de automatización local** | **Desactivada** (puerto predeterminado `53320`) | Inicia el servidor HTTP/JSON solo de bucle local (`127.0.0.1:<puerto>`) para PowerToys, AutoHotkey y scripts, y escribe el token Bearer de 256 bits en `%LOCALAPPDATA%\Panal\api-token.json`. |
+| **Panal `<versión>`** | Botones **Buscar actualizaciones** y **Abrir registros** | Muestra la versión de la app y el nombre de este PC, busca en GitHub Releases actualizaciones verificadas con SHA-256 y firma Ed25519, o abre la carpeta local de registros de diagnóstico. |
+| **Buscar actualizaciones** | **Activado** (en copias instaladas) | Consulta por HTTPS el feed del canal de actualizaciones (`https://raw.githubusercontent.com/zaiddia/NectarLink/channels/<canal>.json`) 30 segundos después de arrancar y luego cada 12 horas en **Estable** y cada 2 horas en **Nightly** (el doble con batería), y avisa al teléfono cuando hay una compilación nueva. Consultar un feed sin cambios ocupa unos pocos cientos de bytes. |
+| **Canal de actualizaciones** | **Estable** (**Nightly** en una compilación nightly) | **Estable** recibe las versiones publicadas. **Nightly** recibe cada pocas horas, cuando hay cambios, una compilación del código más reciente, con los últimos arreglos y funciones y a veces errores nuevos, y también las versiones publicadas. Volver a **Estable** mantiene la nightly instalada hasta que la siguiente versión sea más nueva. Una instalación se queda en su canal al instalar una versión, hasta que lo cambies. |
+| **Instalar actualizaciones automáticamente** | **Activado** | Instala sola una versión más nueva cuando nadie ha usado el PC durante 10 minutos y no hay nada en curso (ni duplicación, ni ventana de app, ni transferencia, ni llamada, ni pantalla compartida, ni webcam). Sin petición de administrador: el instalador crea una tarea que se encarga. Desactívalo para instalar desde la notificación o con **Buscar actualizaciones** cuando tú decidas. |
+| **Guía de configuración y Guía de funciones** | Botones de acción / entradas de la Paleta de comandos | Vuelve a abrir cuando quieras la guía de configuración inicial o la Guía de funciones interactiva de la app. |
 
 ---
 
-## Android App Settings
+## Ajustes de la app de Android
 
-On Android, tap **Settings** in the floating bottom dock. You can view all settings at once (**All**) or filter by category chip at the top (**Appearance**, **Devices**, **Permissions**, **Features & Data**).
+En Android, toca **Ajustes** en la barra flotante inferior. Puedes ver todos los ajustes a la vez (**Todo**) o filtrar por categoría con las etiquetas de arriba (**Apariencia**, **Dispositivos**, **Permisos**, **Funciones y datos**).
 
 <p align="center">
-  <img src="images/android-settings.png" alt="Settings screen in NectarLink for Android" width="760">
+  <img src="images/android-settings.png" alt="Pantalla de Ajustes de Panal para Android" width="760">
 </p>
 
-### 1. Appearance
+### 1. Apariencia
 
-| Setting | Options / Default | What It Does |
+| Ajuste | Opciones / Predeterminado | Qué hace |
 | :--- | :--- | :--- |
-| **Theme** | `Hive`, `Graphite` (default), `Bloom`, `Glass` | Selects the visual style on Android, matching the Windows themes. **Hive** draws the same honeycomb behind every screen, with fixed honey colors (no wallpaper or artwork colors). In **Glass** on Android 13 and newer, the floating Home and Settings dock is Liquid Glass: content scrolling beneath it bends at the rim. |
-| **Mode** | `System` (default), `Light`, `Dark` | Follows Android's system dark theme or locks the app to Light or Dark. |
-| **Animated comb** *(Hive)* | **On** (default) | Lets Hive's honeycomb breathe and pulse. It holds still with **Remove animations** or battery saver on, and while the app isn't in front. |
-| **Pure black (AMOLED)** | **Off** (default) | Shown in Graphite Dark or as an inline **AMOLED** pill when the **Black** seed swatch is selected. Uses true `#000000` black surfaces for OLED phone screens. |
-| **Media artwork color** *(Bloom and Glass)* | **Off** (default) | Tints the app to match the artwork of what is playing on the phone or a paired PC. Applies only while this is on. With nothing playing, the app uses the wallpaper or preset colors. |
-| **Colors from wallpaper** *(Android 12+)* | **On** (default) | Uses your wallpaper's colors and updates when the wallpaper changes. On Samsung phones with One UI's **Color palette** off, NectarLink reads the colors from the wallpaper itself. Paired PCs that select **My phone's colors** use the same seed. |
-| **Color swatches** | **Honey**, **Lavender**, **Ocean**, **Sage**, **Black** | Selects a preset accent color when **Media artwork color** and **Colors from wallpaper** are off. |
+| **Tema** | `Nova`, `Hive`, `Graphite` (predeterminado), `Bloom`, `Glass` | Elige el estilo visual en Android, igual que los temas de Windows. **Nova** usa el mismo neón cian y violeta sobre fondo espacial oscuro que en el PC. **Hive** dibuja el mismo panal detrás de cada pantalla, con colores de miel fijos (sin colores del fondo de pantalla ni de la carátula). En **Glass**, en Android 13 y posterior, la barra flotante de Inicio y Ajustes es Liquid Glass: el contenido que se desplaza debajo se curva en el borde. |
+| **Modo** | `Sistema` (predeterminado), `Claro`, `Oscuro` | Sigue el tema oscuro del sistema Android o fija la app en Claro u Oscuro. |
+| **Panal animado** *(Hive)* | **Activado** (predeterminado) | Deja que el panal de Hive respire y palpite. Se queda quieto con **Quitar animaciones** o el ahorro de batería activos, y cuando la app no está delante. |
+| **Negro puro (AMOLED)** | **Desactivado** (predeterminado) | Aparece en Graphite oscuro o como píldora **AMOLED** cuando eliges la muestra **Negro**. Usa superficies negras reales `#000000` para pantallas OLED. |
+| **Color de la carátula** *(Bloom y Glass)* | **Desactivado** (predeterminado) | Tiñe la app según la carátula de lo que suena en el teléfono o en un PC emparejado. Solo se aplica mientras está activado. Si no suena nada, la app usa los colores del fondo de pantalla o los predefinidos. |
+| **Colores del fondo de pantalla** *(Android 12+)* | **Activado** (predeterminado) | Usa los colores del fondo de pantalla y se actualiza cuando cambia. En teléfonos Samsung con la **Paleta de colores** de One UI desactivada, Panal lee los colores del propio fondo. Los PC emparejados que eligen **Los colores de mi teléfono** usan la misma semilla. |
+| **Muestras de color** | **Miel**, **Lavanda**, **Océano**, **Salvia**, **Negro** | Elige un color de acento predefinido cuando **Color de la carátula** y **Colores del fondo de pantalla** están desactivados. |
 
-### 2. PCs (`Devices`)
+### 2. PC (`Dispositivos`)
 
-| Setting | Default | What It Does |
+| Ajuste | Predeterminado | Qué hace |
 | :--- | :--- | :--- |
-| **Paired PC list & Unpair** | Per paired PC | Shows each paired PC's name and live connection status (`Connected` or `Not connected`) with an **Unpair** button. |
-| **Browse this phone's storage in File Explorer** | **Off** (per PC) | Allows that specific PC to mount this phone's shared storage (or selected folders) inside Windows File Explorer. |
-| **Pair another PC** | Button | Opens the pairing screen to scan a QR code or pair nearby with another PC. |
-| **Connect over mobile data** | **Off** | Allows this phone to stay connected to paired PCs over LTE/5G or across different networks when away from Wi-Fi. |
+| **Lista de PC emparejados y Desemparejar** | Por PC emparejado | Muestra el nombre y el estado de conexión en directo (`Conectado` o `No conectado`) de cada PC emparejado, con un botón **Desemparejar**. |
+| **Ver el almacenamiento de este teléfono en el Explorador de archivos** | **Desactivado** (por PC) | Permite a ese PC concreto montar el almacenamiento compartido de este teléfono (o las carpetas seleccionadas) dentro del Explorador de archivos de Windows. |
+| **Emparejar otro PC** | Botón | Abre la pantalla de emparejamiento para escanear un código QR o emparejar cerca con otro PC. |
+| **Conectar con datos móviles** | **Desactivado** | Permite que este teléfono siga conectado a los PC emparejados por LTE/5G o entre redes distintas cuando no está en tu Wi-Fi. |
 
-### 3. Permissions
+### 3. Permisos
 
-Each permission row shows its live state (**On** / **Allowed** vs **Off**) and a direct button (**Allow** or **Manage**) that opens the exact Android system prompt or settings screen:
+Cada fila de permiso muestra su estado en directo (**Activado** / **Permitido** o **Desactivado**) y un botón directo (**Permitir** o **Gestionar**) que abre el aviso del sistema Android o la pantalla de ajustes exacta:
 
-| Section & Setting | Power Level / Purpose |
+| Sección y ajuste | Nivel de control / Para qué sirve |
 | :--- | :--- |
-| **Notifications › Show notifications on your PC** | Grants Android Notification Listener access so phone notifications, inline replies, and actions work on your PC. Includes an **App info** helper on Android 13+ if **Allow restricted settings** is needed. |
-| **Control from your PC › Use your PC's mouse and keyboard** | Enables NectarLink's Android Accessibility Service (`Assist` power level) so you can tap, swipe, and type on your phone from your PC during screen mirroring or via **Type on phone**. |
-| **Control from your PC › Real touch and keys (Wireless debugging)** | Sets up or manages the `Elevated` power level via Android's built-in Wireless Debugging (real-time touch dragging, UHID keyboard/gamepad, `app window` streaming, background clipboard sync, Android 15+ sensitive OTPs, in-call mute/hold/speaker, and Wi-Fi/Bluetooth toggles). |
-| **Control from your PC › Do Not Disturb and silent mode** | Grants Notification Policy Access so your PC can toggle Do Not Disturb and set the ringer to silent. |
-| **Control from your PC › Screen brightness** | Grants Modify system settings (`WRITE_SETTINGS`) so your PC can adjust your phone's screen brightness slider. |
-| **Background & battery › Stay reachable in the background** | Requests Android's unrestricted battery usage exemption (`REQUEST_IGNORE_BATTERY_OPTIMIZATIONS`) and displays step-by-step instructions tailored to your phone's manufacturer (Samsung, Xiaomi, OnePlus, Oppo/Realme, Vivo, Huawei, Pixel) with a **Battery settings** button. |
-| **Background & battery › Wake when PC is nearby (Companion Device)** | Associates your paired PC with Android's `CompanionDeviceManager` so Android wakes NectarLink automatically when your PC's Bluetooth LE beacon is in range. |
-| **Calls, contacts and messages › Calls on your PC** | Grants phone state, call log, and call control permissions. |
-| **Calls, contacts and messages › Contacts on your PC** | Grants contact read access so names and avatars appear in Calls and Messages on your PC. |
-| **Calls, contacts and messages › Text from your PC** | Grants SMS permissions to read and send texts on your PC. |
-| **Photos and videos › Photos and videos on your PC** | Grants media access (`Allow all` or `Select photos`) so you can browse your camera roll and get new screenshot alerts on your PC. |
-| **Photos and videos › All files access / Selected folders only** | Configures whether File Explorer storage mounting and folder sync can access your whole shared storage (`MANAGE_EXTERNAL_STORAGE`) or only specific folders you pick with Android's folder picker (`Add folder` / `Remove`). |
+| **Notificaciones › Mostrar notificaciones en tu PC** | Concede el acceso de escucha de notificaciones de Android para que las notificaciones del teléfono, las respuestas rápidas y las acciones funcionen en el PC. Incluye un acceso a **Información de la app** en Android 13+ por si hace falta **Permitir ajustes restringidos**. |
+| **Control desde tu PC › Usar el ratón y el teclado del PC** | Activa el servicio de accesibilidad de Panal en Android (nivel de control `Assist`) para tocar, deslizar y escribir en el teléfono desde el PC durante la duplicación o con **Escribir en el teléfono**. |
+| **Control desde tu PC › Toque y teclas reales (depuración inalámbrica)** | Configura o gestiona el nivel de control `Elevated` con la depuración inalámbrica integrada de Android (arrastre táctil en tiempo real, teclado y mando UHID, `app window`, sincronización del portapapeles en segundo plano, OTP sensibles de Android 15+, silenciar, poner en espera y altavoz durante la llamada, e interruptores de Wi-Fi y Bluetooth). |
+| **Control desde tu PC › No molestar y modo silencio** | Concede el acceso a la política de notificaciones para que el PC pueda activar No molestar y poner el timbre en silencio. |
+| **Control desde tu PC › Brillo de la pantalla** | Concede el permiso para modificar ajustes del sistema (`WRITE_SETTINGS`) para que el PC pueda ajustar el brillo de la pantalla del teléfono. |
+| **Segundo plano y batería › Seguir disponible en segundo plano** | Pide la exención de optimización de batería sin restricciones de Android (`REQUEST_IGNORE_BATTERY_OPTIMIZATIONS`) y muestra instrucciones paso a paso según el fabricante del teléfono (Samsung, Xiaomi, OnePlus, Oppo/Realme, Vivo, Huawei, Pixel), con un botón **Ajustes de batería**. |
+| **Segundo plano y batería › Despertar cuando el PC está cerca (dispositivo complementario)** | Asocia el PC emparejado con el `CompanionDeviceManager` de Android para que Android despierte Panal solo cuando la baliza Bluetooth LE del PC está al alcance. |
+| **Llamadas, contactos y mensajes › Llamadas en tu PC** | Concede los permisos de estado del teléfono, registro de llamadas y control de llamadas. |
+| **Llamadas, contactos y mensajes › Contactos en tu PC** | Concede la lectura de contactos para que los nombres y avatares aparezcan en Llamadas y Mensajes del PC. |
+| **Llamadas, contactos y mensajes › Mensajes desde tu PC** | Concede los permisos de SMS para leer y enviar mensajes desde el PC. |
+| **Fotos y vídeos › Fotos y vídeos en tu PC** | Concede el acceso multimedia (`Permitir todo` o `Seleccionar fotos`) para ver la galería y recibir avisos de capturas nuevas en el PC. |
+| **Fotos y vídeos › Acceso a todos los archivos / Solo carpetas seleccionadas** | Define si el montaje en el Explorador de archivos y la sincronización de carpetas pueden acceder a todo el almacenamiento compartido (`MANAGE_EXTERNAL_STORAGE`) o solo a carpetas concretas que eliges con el selector de carpetas de Android (`Añadir carpeta` / `Quitar`). |
 
-### 4. Features & Data (and About)
+### 4. Funciones y datos (y Acerca de)
 
-| Section & Setting | Options / Default | What It Does |
+| Sección y ajuste | Opciones / Predeterminado | Qué hace |
 | :--- | :--- | :--- |
-| **Clipboard › Background clipboard access** | **Allow** / **Manage** | Opens the `Elevated` Wireless Debugging setup so clipboard changes on your phone sync to your PC automatically in the background. |
-| **Clipboard › Suggest actions for copied text** | **On** (default) | Shows context chips (**Open**, **Open in Maps**, **Call**, **Track**, **Email**) when text arrives from your PC. |
-| **Control your PC › Touchpad speed** | `0.5x` to `2.5x` (`1.0x` default) | Adjusts the pointer sensitivity of the remote touchpad when controlling your PC from your phone. |
-| **LocalSend › LocalSend** | **Off** (default) | Enables sending and receiving files with nearby LocalSend devices on your Wi-Fi network (always prompts before saving incoming files). |
-| **Data & storage › Notification history** | Informational summary | Explains that notifications are mirrored live to paired PCs and not stored a second time on the phone. |
-| **Data & storage › Clipboard history** | **On** (default) + **Clear** button | Toggles the Android Keystore AES-256-GCM encrypted 50-item (7-day / 128 MB) clipboard history on this phone and lets you clear it. |
-| **Data & storage › Timeline** | `30d`, `90d` (default), `1y`, `All` + **Clear** button | Sets how long cross-device `Timeline` entries are kept on this phone (up to 5,000 items) and lets you clear them. |
-| **Data & storage › Message cache** | **Clear** button | Clears temporary MMS staging files (automatically cleaned up after 5 minutes). |
-| **Data & storage › Photo thumbnails & camera cache** | **Clear** button | Clears temporary Continuity Camera captures (automatically cleaned up after 24 hours). |
-| **Data & storage › Received-file history** | **Clear** button | Clears the transfer log without deleting any saved files in `Download/Nectarlink`. |
-| **Data & storage › Clear everything...** | Confirmation dialog | Deletes all clipboard history, `Timeline`, transfer records, and temporary caches on this phone while keeping your paired PCs and settings. |
-| **About › NectarLink `<version>` & Check for updates** | **Check for updates** button | Shows the installed version and checks GitHub Releases (`https://api.github.com/repos/thtbee/nectarlink/releases/latest`) for SHA-256 verified APK updates. |
-| **About › Update channel** | **Stable** (**Nightly** on a nightly build) | As on the PC. A paired PC tells the phone about new builds, so the phone rarely checks on its own: once a day on **Stable**, every six hours on **Nightly**, and when the app opens. |
-| **About › Install updates automatically** | **On** | Installs a newer build by itself. Android 12 and later install it without asking once NectarLink has installed an update before; otherwise a notification asks for one tap. Needs **Install unknown apps** allowed for NectarLink. |
+| **Portapapeles › Acceso al portapapeles en segundo plano** | **Permitir** / **Gestionar** | Abre la configuración de la depuración inalámbrica (`Elevated`) para que los cambios del portapapeles del teléfono se sincronicen solos con el PC en segundo plano. |
+| **Portapapeles › Sugerir acciones para el texto copiado** | **Activado** (predeterminado) | Muestra etiquetas de acción (**Abrir**, **Abrir en Mapas**, **Llamar**, **Seguir**, **Correo**) cuando llega texto del PC. |
+| **Controlar tu PC › Velocidad del panel táctil** | De `0.5x` a `2.5x` (`1.0x` predeterminado) | Ajusta la sensibilidad del puntero del panel táctil remoto al controlar el PC desde el teléfono. |
+| **LocalSend › LocalSend** | **Desactivado** (predeterminado) | Permite enviar y recibir archivos con dispositivos LocalSend cercanos en tu Wi-Fi (siempre pregunta antes de guardar archivos entrantes). |
+| **Datos y almacenamiento › Historial de notificaciones** | Resumen informativo | Explica que las notificaciones se reflejan en directo en los PC emparejados y no se guardan otra vez en el teléfono. |
+| **Datos y almacenamiento › Historial del portapapeles** | **Activado** (predeterminado) + botón **Borrar** | Activa o desactiva en este teléfono el historial del portapapeles de 50 elementos (7 días / 128 MB) cifrado con AES-256-GCM del Almacén de claves de Android, y te permite borrarlo. |
+| **Datos y almacenamiento › Línea de tiempo** | `30 d`, `90 d` (predeterminado), `1 año`, `Todo` + botón **Borrar** | Define cuánto se conservan en este teléfono las entradas de la `Línea de tiempo` (hasta 5.000 elementos) y te permite borrarlas. |
+| **Datos y almacenamiento › Caché de mensajes** | Botón **Borrar** | Borra los archivos temporales de MMS (se limpian solos a los 5 minutos). |
+| **Datos y almacenamiento › Miniaturas de fotos y caché de cámara** | Botón **Borrar** | Borra las capturas temporales de la Cámara de continuidad (se limpian solas a las 24 horas). |
+| **Datos y almacenamiento › Historial de archivos recibidos** | Botón **Borrar** | Borra el registro de transferencias sin eliminar ningún archivo guardado en `Download/Panal`. |
+| **Datos y almacenamiento › Borrar todo...** | Diálogo de confirmación | Elimina en este teléfono todo el historial del portapapeles, la `Línea de tiempo`, los registros de transferencias y las cachés temporales, sin tocar los PC emparejados ni los ajustes. |
+| **Acerca de › Panal `<versión>` y Buscar actualizaciones** | Botón **Buscar actualizaciones** | Muestra la versión instalada y busca en GitHub Releases (`https://api.github.com/repos/zaiddia/NectarLink/releases/latest`) actualizaciones del APK verificadas con SHA-256. |
+| **Acerca de › Canal de actualizaciones** | **Estable** (**Nightly** en una compilación nightly) | Igual que en el PC. Un PC emparejado avisa al teléfono de las compilaciones nuevas, así que el teléfono rara vez consulta por su cuenta: una vez al día en **Estable**, cada seis horas en **Nightly** y al abrir la app. |
+| **Acerca de › Instalar actualizaciones automáticamente** | **Activado** | Instala sola una compilación más nueva. Android 12 y posterior la instalan sin preguntar si Panal ya instaló antes una actualización; si no, una notificación pide un toque. Requiere permitir **Instalar apps desconocidas** para Panal. |
 
 <p align="center">
-  <img src="images/android-update.png" alt="About in the Android app with Install updates automatically" width="360">
+  <img src="images/android-update.png" alt="Acerca de en la app de Android con Instalar actualizaciones automáticamente" width="360">
 </p>

@@ -39,8 +39,8 @@ class AppUpdaterTest {
             "notes":"https://github.com/zaiddia/NectarLink/releases/tag/v$version","files":[$files]}""",
     )
 
-    private fun apk(version: String, url: String = "https://github.com/zaiddia/NectarLink/releases/download/v$version/Nectarlink-$version-android.apk") =
-        """{"name":"Nectarlink-$version-android.apk","url":"$url","sha256":"${"A".repeat(64)}","size":1}"""
+    private fun apk(version: String, url: String = "https://github.com/zaiddia/NectarLink/releases/download/v$version/Panal-$version-android.apk") =
+        """{"name":"Panal-$version-android.apk","url":"$url","sha256":"${"A".repeat(64)}","size":1}"""
 
     @Test
     fun aGoodFeedGivesAnUpdateWithItsHashAndName() {
@@ -66,7 +66,7 @@ class AppUpdaterTest {
     @Test
     fun filesFromElsewhereAreDropped() {
         val files = listOf(
-            apk("0.1.5", url = "https://evil.example/Nectarlink-0.1.5-android.apk"),
+            apk("0.1.5", url = "https://evil.example/Panal-0.1.5-android.apk"),
             apk("0.1.5", url = "https://github.com/zaiddia/NectarLink/releases/download/../../x.apk"),
         ).joinToString(",")
         val checked = AppUpdater.checkedFeed(feed("stable", "0.1.5", files), AppUpdater.Channel.Stable)
@@ -79,14 +79,14 @@ class AppUpdaterTest {
         assertEquals(AppUpdater.Channel.Nightly, AppUpdater.channelOf("0.1.5-nightly.3"))
         assertEquals(AppUpdater.Channel.Stable, AppUpdater.channelOf("0.1.5"))
         assertFalse(AppUpdater.isPlainName("../x.apk"))
-        assertTrue(AppUpdater.isPlainName("Nectarlink-0.1.5-android.apk"))
+        assertTrue(AppUpdater.isPlainName("Panal-0.1.5-android.apk"))
     }
 
     @Test
     fun findsTheApkHash() {
         val hash = "a".repeat(64)
-        val sums = "$hash  Nectarlink-9.0.0-android.apk\n${"b".repeat(64)}  Nectarlink-9.0.0-x64-setup.exe\n"
-        assertEquals(hash, AppUpdater.listedHash(sums, "Nectarlink-9.0.0-android.apk"))
+        val sums = "$hash  Panal-9.0.0-android.apk\n${"b".repeat(64)}  Panal-9.0.0-x64-setup.exe\n"
+        assertEquals(hash, AppUpdater.listedHash(sums, "Panal-9.0.0-android.apk"))
         assertNull(AppUpdater.listedHash(sums, "missing.apk"))
         assertEquals("c".repeat(64), AppUpdater.listedHash("${"C".repeat(64)} *x.apk", "x.apk"))
     }

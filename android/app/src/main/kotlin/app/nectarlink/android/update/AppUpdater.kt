@@ -21,7 +21,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.edit
 import androidx.core.net.toUri
 import app.nectarlink.android.BuildConfig
-import app.nectarlink.android.NectarlinkApplication
+import app.nectarlink.android.PanalApplication
 import app.nectarlink.android.R
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -104,7 +104,7 @@ class AppUpdater(context: Context) {
         data object UpToDate : State
         data class Available(val update: Update) : State
 
-        /** Waiting for the user to let NectarLink install apps; continues when they have. */
+        /** Waiting for the user to let Panal install apps; continues when they have. */
         data class NeedsPermission(val update: Update) : State
 
         /** `total` is 0 until the size is known. */
@@ -174,7 +174,7 @@ class AppUpdater(context: Context) {
 
     /**
      * For the background: checks when due and, with automatic updates on, installs a newer
-     * release. Android 12 and later install it without asking once NectarLink has installed
+     * release. Android 12 and later install it without asking once Panal has installed
      * itself before; otherwise a notification asks for one tap.
      */
     suspend fun updateIfDue() {
@@ -331,7 +331,7 @@ class AppUpdater(context: Context) {
     /** Whether this app may install apps (the user allows it once, in Settings). */
     fun canInstall(): Boolean = context.packageManager.canRequestPackageInstalls()
 
-    /** Android's screen where the user lets NectarLink install updates. */
+    /** Android's screen where the user lets Panal install updates. */
     fun allowInstallsIntent(): Intent =
         Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, "package:${context.packageName}".toUri())
             .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -537,7 +537,7 @@ class AppUpdater(context: Context) {
     /** Android's answer: ask the user to confirm, or it's done (or failed). */
     class InstallResult : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
-            val updater = (context.applicationContext as NectarlinkApplication).updater
+            val updater = (context.applicationContext as PanalApplication).updater
             when (intent.getIntExtra(PackageInstaller.EXTRA_STATUS, PackageInstaller.STATUS_FAILURE)) {
                 PackageInstaller.STATUS_PENDING_USER_ACTION -> {
                     val confirm = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -576,7 +576,7 @@ class AppUpdater(context: Context) {
         Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU ||
             ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED
 
-    /** "NectarLink 0.2.0 is ready", opening Android's install prompt when tapped. */
+    /** "Panal 0.2.0 is ready", opening Android's install prompt when tapped. */
     internal fun notifyReady(confirm: Intent) {
         if (!mayNotify()) return
         val manager = context.getSystemService(NotificationManager::class.java)
@@ -676,7 +676,7 @@ class AppUpdater(context: Context) {
                 // A stalled connection fails soon, so the download resumes on a fresh one.
                 readTimeout = 20_000
                 instanceFollowRedirects = true
-                setRequestProperty("User-Agent", "Nectarlink/${BuildConfig.VERSION_NAME} (Android)")
+                setRequestProperty("User-Agent", "Panal/${BuildConfig.VERSION_NAME} (Android)")
                 setRequestProperty("Accept", "application/vnd.github+json, application/octet-stream")
                 if (from > 0) setRequestProperty("Range", "bytes=$from-")
                 if (etag != null && etag.length <= 200 && '\r' !in etag && '\n' !in etag) {
@@ -753,7 +753,7 @@ class AppUpdater(context: Context) {
             if (!isNewer(version, current)) return null
             val files = feed.getJSONArray("files")
             val apk = (0 until files.length()).map { files.getJSONObject(it) }
-                .firstOrNull { it.getString("name").endsWith("-android.apk") && it.getString("name").startsWith("Nectarlink-") }
+                .firstOrNull { it.getString("name").endsWith("-android.apk") && it.getString("name").startsWith("Panal-") }
                 ?: return null
             return Update(
                 version = version,

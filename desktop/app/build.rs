@@ -216,13 +216,13 @@ BEGIN
   BEGIN
     BLOCK "040904B0"
     BEGIN
-      VALUE "CompanyName", "The NectarLink contributors"
-      VALUE "FileDescription", "NectarLink"
+      VALUE "CompanyName", "The Panal contributors"
+      VALUE "FileDescription", "Panal"
       VALUE "FileVersion", "{version}"
-      VALUE "InternalName", "nectarlink-desktop"
+      VALUE "InternalName", "panal"
       VALUE "LegalCopyright", "GPL-3.0-or-later"
-      VALUE "OriginalFilename", "nectarlink-desktop.exe"
-      VALUE "ProductName", "NectarLink"
+      VALUE "OriginalFilename", "panal.exe"
+      VALUE "ProductName", "Panal"
       VALUE "ProductVersion", "{version}"
     END
   END

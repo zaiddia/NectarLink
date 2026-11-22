@@ -1,122 +1,122 @@
-# Cameras and Audio
+# Cámaras y audio
 
-NectarLink lets your PC use your phone's cameras and audio hardware in four ways: streaming your phone's camera as a Windows webcam (`NectarLink Webcam`), snapping photos or scanning documents straight into your PC clipboard (**Continuity Camera**), playing your PC's system audio through your phone (**Phone as speaker**), and recording voice notes on your phone that land automatically on your PC (**Voice recorder**).
+Panal permite al PC usar las cámaras y el audio del teléfono de cuatro formas: transmitir la cámara del teléfono como webcam de Windows (`Panal Webcam`), hacer fotos o escanear documentos directamente al portapapeles del PC (**Cámara de continuidad**), reproducir el audio del sistema del PC en el teléfono (**Teléfono como altavoz**) y grabar notas de voz en el teléfono que llegan solas al PC (**Grabadora de voz**).
 
 <p align="center">
-  <img src="images/webcam-live.png" alt="Camera and Audio settings on Windows showing a live webcam preview from the phone" width="760">
+  <img src="images/webcam-live.png" alt="Ajustes de Cámara y audio en Windows con la vista previa en directo de la webcam del teléfono" width="760">
 </p>
 
-## What You Need
+## Qué necesitas
 
-| Feature | Requirements |
+| Función | Requisitos |
 | :--- | :--- |
-| **Phone as webcam** | `Standard` power level. Android **Camera** permission (`CAMERA`, requested when you start the webcam). **Webcam** per-device toggle enabled in PC **Settings › Devices** (on by default). To use the camera inside third-party apps (Zoom, Teams, Meet, OBS, Windows Camera), click **Set up** next to **Virtual camera add-on** in PC **Settings › Camera & Audio** (one-time administrator prompt on Windows 11). |
-| **Continuity Camera (Take photo / Scan document)** | `Standard` power level. Android **Camera** permission. **Webcam** toggle enabled. |
-| **Phone as speaker (Stream PC audio to phone)** | `Standard` power level. **Media controls** per-device toggle enabled in PC **Settings › Devices** (on by default). |
-| **Voice recorder** | `Standard` power level. Android **Microphone** permission (`RECORD_AUDIO`, requested when you start recording). **Voice recordings** per-device toggle enabled in PC **Settings › Devices** (on by default). |
+| **Teléfono como webcam** | Nivel de control `Standard`. Permiso de **Cámara** de Android (`CAMERA`, se pide al iniciar la webcam). Interruptor por dispositivo **Webcam** activado en **Ajustes › Dispositivos** del PC (activado por defecto). Para usar la cámara en apps de terceros (Zoom, Teams, Meet, OBS, Cámara de Windows), haz clic en **Configurar** junto a **Complemento de cámara virtual** en **Ajustes › Cámara y audio** del PC (una única petición de administrador en Windows 11). |
+| **Cámara de continuidad (Hacer foto / Escanear documento)** | Nivel de control `Standard`. Permiso de **Cámara** de Android. Interruptor **Webcam** activado. |
+| **Teléfono como altavoz (enviar el audio del PC al teléfono)** | Nivel de control `Standard`. Interruptor por dispositivo **Controles multimedia** activado en **Ajustes › Dispositivos** del PC (activado por defecto). |
+| **Grabadora de voz** | Nivel de control `Standard`. Permiso de **Micrófono** de Android (`RECORD_AUDIO`, se pide al empezar a grabar). Interruptor por dispositivo **Grabaciones de voz** activado en **Ajustes › Dispositivos** del PC (activado por defecto). |
 
-## Step-by-Step Use
+## Uso paso a paso
 
-### 1. Using Your Phone as a Windows Webcam
+### 1. Usar el teléfono como webcam de Windows
 
-Your phone's main camera sensor offers much better optics and low-light quality than a typical built-in laptop webcam.
+El sensor de la cámara principal del teléfono ofrece mucha mejor óptica y calidad con poca luz que la webcam integrada típica de un portátil.
 
-#### One-Time Virtual Camera Add-On Setup
+#### Configuración única del complemento de cámara virtual
 
-You can preview your phone's camera inside NectarLink's **Settings › Camera & Audio** immediately with zero setup. To make **NectarLink Webcam** appear as a selectable camera inside Zoom, Microsoft Teams, Google Meet, Discord, OBS Studio, and the Windows Camera app:
+Puedes ver la vista previa de la cámara del teléfono en **Ajustes › Cámara y audio** de Panal al momento, sin configurar nada. Para que **Panal Webcam** aparezca como cámara seleccionable en Zoom, Microsoft Teams, Google Meet, Discord, OBS Studio y la app Cámara de Windows:
 
-1. On your PC, open **Settings › Camera & Audio**.
-2. Next to **Virtual camera add-on**, click **Set up** and approve the Windows User Account Control (UAC) administrator prompt.
-3. NectarLink registers `nectarlink_vcam.dll` with Windows 11's Media Foundation `MFCreateVirtualCamera` service. Once registered, the status indicator shows **Ready** (and you can unregister it at any time by clicking **Remove**).
+1. En el PC, abre **Ajustes › Cámara y audio**.
+2. Junto a **Complemento de cámara virtual**, haz clic en **Configurar** y aprueba la petición de administrador del Control de cuentas de usuario (UAC) de Windows.
+3. Panal registra `nectarlink_vcam.dll` en el servicio `MFCreateVirtualCamera` de Media Foundation de Windows 11. Una vez registrado, el indicador muestra **Lista** (y puedes quitarlo cuando quieras con **Quitar**).
 
-#### Starting and Controlling the Webcam Stream
+#### Iniciar y controlar la webcam
 
-1. Start the webcam from either side:
-   - **From your phone**: Tap **Webcam** on the Android Home screen and tap **Start webcam**.
-   - **From your PC**: Open **Settings › Camera & Audio** (or click the webcam control on Home) and click **Start webcam**. For your privacy, **starting the webcam from the PC posts a confirmation request on your phone** (`<PC> wants to use your camera`) so your phone's camera never opens without your consent on the phone. To skip the tap for a PC you trust, turn on **Start the camera and microphone without asking** under that PC in the phone's **Settings › PCs** (`Elevated`; off by default). Its webcam and microphone requests then start right away, even with the phone locked, and the **Stop** notification and Android's camera dot still show.
-2. While streaming, you can adjust the camera from either your phone or your PC:
-   - **Camera lens**: Switch between **Back** and **Front** cameras.
-   - **Resolution**: Choose **720p** (`1280 x 720`), **1080p** (`1920 x 1080`), or **4K** (`3840 x 2160` on phones whose camera sensor supports 4K at 30 fps).
-   - **Zoom**: Tap `1x` or `2x` presets or drag the continuous zoom slider on your phone.
-   - **Flashlight (Torch)**: Toggle the rear LED flash on or off for fill lighting.
-   - **Mirror image**: Horizontally flip the video feed in PC **Settings › Camera & Audio**.
-3. Open your video conferencing app on Windows and select **NectarLink Webcam** as your camera.
+1. Inicia la webcam desde cualquiera de los dos lados:
+   - **Desde el teléfono**: toca **Webcam** en la pantalla de Inicio de Android y luego **Iniciar webcam**.
+   - **Desde el PC**: abre **Ajustes › Cámara y audio** (o haz clic en el control de webcam de Inicio) y haz clic en **Iniciar webcam**. Por tu privacidad, **iniciar la webcam desde el PC publica una petición de confirmación en el teléfono** (`<PC> quiere usar tu cámara`), así la cámara del teléfono nunca se abre sin tu consentimiento en el teléfono. Para evitar el toque con un PC de confianza, activa **Iniciar la cámara y el micrófono sin preguntar** bajo ese PC en **Ajustes › PC** del teléfono (`Elevated`; desactivado por defecto). Sus peticiones de webcam y micrófono empiezan entonces al momento, incluso con el teléfono bloqueado, y la notificación **Detener** y el punto de cámara de Android siguen visibles.
+2. Mientras transmite, puedes ajustar la cámara desde el teléfono o desde el PC:
+   - **Objetivo**: cambia entre la cámara **Trasera** y la **Frontal**.
+   - **Resolución**: elige **720p** (`1280 x 720`), **1080p** (`1920 x 1080`) o **4K** (`3840 x 2160` en teléfonos cuyo sensor admite 4K a 30 fps).
+   - **Zoom**: toca los valores `1x` o `2x` o arrastra el control deslizante de zoom en el teléfono.
+   - **Linterna**: enciende o apaga el flash LED trasero como luz de relleno.
+   - **Imagen en espejo**: voltea horizontalmente el vídeo en **Ajustes › Cámara y audio** del PC.
+3. Abre tu app de videoconferencia en Windows y elige **Panal Webcam** como cámara.
 
-### 2. Continuity Camera: Take a Photo or Scan a Document
+### 2. Cámara de continuidad: hacer una foto o escanear un documento
 
-When you need to insert a photo of a physical object, whiteboard, or multi-corner receipt straight into a document on your PC:
+Cuando necesitas insertar la foto de un objeto, una pizarra o un recibo directamente en un documento del PC:
 
-1. On your PC, trigger Continuity Camera in any of three ways:
-   - Press the global keyboard shortcut: **`Ctrl+Alt+C`** for **Take photo** or **`Ctrl+Alt+D`** for **Scan document** (both shortcuts are customizable in **Settings › Shortcuts & Rules**).
-   - Open the `Command Palette` (`Ctrl+Alt+Space`) and choose **Take photo with phone** or **Scan document with phone**.
-   - Click **Take photo** or **Scan document** from the Home screen or `Shelf`.
-2. Your phone receives a camera capture prompt (`<PC> wants to take a photo` or `<PC> wants to scan a document`). Tap the notification to open the capture screen.
-3. **In Photo mode**: Frame your shot, tap **Capture photo**, inspect the preview, and tap **Use photo** (or **Retake**).
-4. **In Scan mode**:
-   - Capture the page or receipt.
-   - Drag the four corner handles (**Adjust corners**) to match the edges of the document. NectarLink corrects the perspective geometry into a flat rectangle.
-   - Toggle **Enhance document** to apply high-contrast black-and-white document enhancement for crisp, readable text.
-   - Tap **Send scan**.
-5. The captured photo or enhanced scan arrives on your PC in `Downloads\Nectarlink` and is automatically placed onto your Windows clipboard so you can press `Ctrl+V` straight into Word, Notion, Slack, email, or any image editor.
+1. En el PC, lanza la Cámara de continuidad de cualquiera de estas tres formas:
+   - Pulsa el atajo global: **`Ctrl+Alt+C`** para **Hacer foto** o **`Ctrl+Alt+D`** para **Escanear documento** (ambos se pueden cambiar en **Ajustes › Atajos y reglas**).
+   - Abre la `Paleta de comandos` (`Ctrl+Alt+Espacio`) y elige **Hacer foto con el teléfono** o **Escanear documento con el teléfono**.
+   - Haz clic en **Hacer foto** o **Escanear documento** en la pantalla de Inicio o en la `Bandeja`.
+2. El teléfono recibe una petición de captura (`<PC> quiere hacer una foto` o `<PC> quiere escanear un documento`). Toca la notificación para abrir la pantalla de captura.
+3. **En modo Foto**: encuadra, toca **Hacer foto**, revisa la vista previa y toca **Usar foto** (o **Repetir**).
+4. **En modo Escaneo**:
+   - Captura la página o el recibo.
+   - Arrastra los cuatro tiradores de las esquinas (**Ajustar esquinas**) hasta los bordes del documento. Panal corrige la perspectiva y lo convierte en un rectángulo plano.
+   - Activa **Mejorar documento** para aplicar una mejora en blanco y negro de alto contraste con texto nítido y legible.
+   - Toca **Enviar escaneo**.
+5. La foto o el escaneo mejorado llega al PC en `Descargas\Panal` y se coloca solo en el portapapeles de Windows, para que pulses `Ctrl+V` directamente en Word, Notion, Slack, el correo o cualquier editor de imágenes.
 
-### 3. Phone as Speaker: Listening to PC Audio on Your Phone
+### 3. Teléfono como altavoz: escuchar el audio del PC en el teléfono
 
-If your desktop PC lacks speakers, or you want to walk around the room while listening to your PC's music, video, or call audio through headphones plugged into your phone:
+Si tu PC de sobremesa no tiene altavoces, o quieres moverte por la habitación mientras escuchas la música, el vídeo o las llamadas del PC con auriculares conectados al teléfono:
 
 <p align="center">
-  <img src="images/speaker-on.png" alt="Phone as speaker enabled on the PC Home screen" width="760">
+  <img src="images/speaker-on.png" alt="Teléfono como altavoz activado en la pantalla de Inicio del PC" width="760">
 </p>
 
-1. Toggle **Phone as speaker** on from either side:
-   - **On your PC**: Click **Phone as speaker** on the Home screen, or turn on **Stream PC audio to phone** in **Settings › Camera & Audio**.
-   - **On your phone**: Tap **Use phone as speaker** in the **PC audio** card on the Android Home screen.
-2. Both switches stay synchronized in real time. Your PC captures system playback via Windows WASAPI loopback and streams it as uncompressed 16-bit PCM in small QUIC datagrams. The phone plays it through a regular media `AudioTrack`, so its own speaker tuning and sound effects still apply, and keeps about 40 ms buffered to absorb Wi-Fi jitter.
-   - Audio goes to the phone that turned **Use phone as speaker** on. When you turn it on from the PC, it goes to the first connected phone.
-3. From the **PC audio** card on your phone (or in `Deck`), you can also adjust your PC's master volume slider, toggle mute, and switch between your PC's connected audio output devices.
+1. Activa **Teléfono como altavoz** desde cualquiera de los dos lados:
+   - **En el PC**: haz clic en **Teléfono como altavoz** en la pantalla de Inicio, o activa **Enviar el audio del PC al teléfono** en **Ajustes › Cámara y audio**.
+   - **En el teléfono**: toca **Usar el teléfono como altavoz** en la tarjeta **Audio del PC** de la pantalla de Inicio de Android.
+2. Ambos interruptores se mantienen sincronizados en tiempo real. El PC captura la reproducción del sistema con el bucle de WASAPI de Windows y la envía como PCM de 16 bits sin comprimir en pequeños datagramas QUIC. El teléfono la reproduce con un `AudioTrack` multimedia normal, así que se siguen aplicando su ecualización y sus efectos de sonido, y mantiene unos 40 ms en búfer para absorber las fluctuaciones de la Wi-Fi.
+   - El audio va al teléfono que activó **Usar el teléfono como altavoz**. Si lo activas desde el PC, va al primer teléfono conectado.
+3. Desde la tarjeta **Audio del PC** del teléfono (o en `Deck`) también puedes ajustar el volumen general del PC, silenciarlo y cambiar entre los dispositivos de salida de audio conectados al PC.
 
-#### The other way: your phone's sound on the PC
+#### Al revés: el sonido del teléfono en el PC
 
-To hear what your phone plays (music, videos, app sounds) through your PC's speakers or headphones without opening a mirror window, turn on **Phone sound on this PC** on the PC's Home screen.
+Para oír lo que reproduce el teléfono (música, vídeos, sonidos de apps) por los altavoces o auriculares del PC sin abrir una ventana de duplicación, activa **Sonido del teléfono en este PC** en la pantalla de Inicio del PC.
 
-- With `Elevated` it starts right away. Otherwise your phone asks first, as it does for mirroring: tap the notification, then allow it. Android's prompt talks about sharing your screen, but only the sound goes to the PC.
-- It's the same sound mirroring sends: on Android 10 and newer, apps that allow their audio to be captured (most media and games). Calls aren't included.
-- Your phone goes quiet while its sound plays on the PC. Without `Elevated` it turns its media volume down to 0 and back up when you turn this off (if you turned the volume up yourself meanwhile, yours stays).
-- Opening the phone's mirror window takes over, since that brings the sound with the picture. Turn it off on the PC, or tap **Stop** on the phone.
+- Con `Elevated` empieza al momento. Si no, el teléfono pregunta antes, como en la duplicación: toca la notificación y permítelo. El aviso de Android habla de compartir la pantalla, pero al PC solo va el sonido.
+- Es el mismo sonido que envía la duplicación: en Android 10 y posterior, las apps que permiten capturar su audio (casi todas las de multimedia y juegos). Las llamadas no se incluyen.
+- El teléfono se queda en silencio mientras su sonido suena en el PC. Sin `Elevated`, baja el volumen multimedia a 0 y lo vuelve a subir al desactivarlo (si mientras tanto subiste tú el volumen, se queda el tuyo).
+- Abrir la ventana de duplicación del teléfono lo sustituye, porque esa ventana trae el sonido con la imagen. Desactívalo en el PC o toca **Detener** en el teléfono.
 
-### 4. Voice Recorder: Record on Phone, Save on PC
+### 4. Grabadora de voz: grabar en el teléfono, guardar en el PC
 
-Use your phone's microphone to record voice notes, interviews, or meeting memos that transfer straight to your PC in the audio format you prefer:
+Usa el micrófono del teléfono para grabar notas de voz, entrevistas o resúmenes de reuniones que pasan directamente al PC en el formato de audio que prefieras:
 
-1. On your phone, tap **Record** on the Android Home screen and tap **Start recording**.
-2. While recording, a live level meter shows your microphone input, and recording continues cleanly in a foreground service even if you turn your phone's screen off.
-3. Tap **Pause** and **Resume** as needed. To flag an important moment while recording, type an optional label and tap **Add marker** to record a timestamped marker.
-4. When you finish and tap **Send**:
-   - If your PC is online, the recording transfers immediately and lands in your chosen recordings folder (`Downloads\Nectarlink` or `Documents\Nectarlink Recordings` by default).
-   - If you chose **MP3**, **WAV**, or **FLAC** in PC **Settings › Files & Sync › Voice recordings** (instead of the default **M4A**), your PC automatically converts the audio file upon arrival.
-   - If you added markers during the recording, NectarLink writes a companion `<filename>.markers.txt` file right beside the audio file listing every marker's timestamp and label.
-   - If your PC is offline when you finish recording, the voice note stays saved on your phone and is sent automatically as soon as your PC reconnects.
+1. En el teléfono, toca **Grabar** en la pantalla de Inicio de Android y luego **Empezar a grabar**.
+2. Mientras grabas, un medidor de nivel muestra la entrada del micrófono, y la grabación sigue sin cortes en un servicio en primer plano aunque apagues la pantalla del teléfono.
+3. Toca **Pausar** y **Reanudar** cuando haga falta. Para marcar un momento importante, escribe una etiqueta opcional y toca **Añadir marcador** para guardar un marcador con la hora.
+4. Cuando terminas y tocas **Enviar**:
+   - Si el PC está conectado, la grabación se transfiere al momento y llega a la carpeta de grabaciones elegida (`Descargas\Panal` o `Documentos\Panal Recordings` por defecto).
+   - Si elegiste **MP3**, **WAV** o **FLAC** en **Ajustes › Archivos y sincronización › Grabaciones de voz** del PC (en lugar del **M4A** predeterminado), el PC convierte el archivo de audio solo al recibirlo.
+   - Si añadiste marcadores, Panal escribe junto al archivo de audio un archivo `<nombre>.markers.txt` con la hora y la etiqueta de cada marcador.
+   - Si el PC está desconectado al terminar, la nota de voz se queda guardada en el teléfono y se envía sola en cuanto el PC se reconecta.
 
-## What the Options Do
+## Qué hacen las opciones
 
-- **Stream PC audio to phone** (`Settings › Camera & Audio` on PC, default: **Off**): Streams real-time Windows system audio to your connected phone.
-- **Pause media during calls** (`Settings › Camera & Audio` on PC, default: **On**): Auto-pauses PC media playback when your phone rings or is in a call.
-- **Virtual camera add-on** (`Settings › Camera & Audio` on PC): Registers or removes the Windows 11 `NectarLink Webcam` Media Foundation virtual camera.
-- **Phone** (`Settings › Camera & Audio` on PC, shown when multiple phones are paired): Selects which paired phone is used for the webcam.
-- **Camera** (`Settings › Camera & Audio` on PC, default: **Back**): Selects the **Back** or **Front** phone lens.
-- **Mirror image** (`Settings › Camera & Audio` on PC, default: **Off**): Flips the webcam video horizontally.
-- **Resolution** (`Settings › Camera & Audio` on PC, default: **720p**): Selects **720p**, **1080p**, or **4K** (`2160p`) webcam output.
-- **Voice recordings** (`Settings › Files & Sync` on PC, default format: **M4A**): Sets the destination folder (**Choose folder** / **Reset**) and output format (**M4A**, **MP3**, **WAV**, or **FLAC**) for incoming voice recordings.
-- **Take photo / Scan document shortcuts** (`Settings › Shortcuts & Rules` on PC, defaults: `Ctrl+Alt+C` and `Ctrl+Alt+D`): Global Windows hotkeys for Continuity Camera.
+- **Enviar el audio del PC al teléfono** (`Ajustes › Cámara y audio` en el PC, por defecto: **desactivado**): envía en tiempo real el audio del sistema Windows al teléfono conectado.
+- **Pausar multimedia durante las llamadas** (`Ajustes › Cámara y audio` en el PC, por defecto: **activado**): pausa sola la reproducción multimedia del PC cuando el teléfono suena o hay una llamada.
+- **Complemento de cámara virtual** (`Ajustes › Cámara y audio` en el PC): registra o quita la cámara virtual de Media Foundation `Panal Webcam` de Windows 11.
+- **Teléfono** (`Ajustes › Cámara y audio` en el PC, aparece con varios teléfonos emparejados): elige qué teléfono emparejado se usa como webcam.
+- **Cámara** (`Ajustes › Cámara y audio` en el PC, por defecto: **Trasera**): elige el objetivo **Trasero** o **Frontal** del teléfono.
+- **Imagen en espejo** (`Ajustes › Cámara y audio` en el PC, por defecto: **desactivado**): voltea horizontalmente el vídeo de la webcam.
+- **Resolución** (`Ajustes › Cámara y audio` en el PC, por defecto: **720p**): elige la salida de webcam **720p**, **1080p** o **4K** (`2160p`).
+- **Grabaciones de voz** (`Ajustes › Archivos y sincronización` en el PC, formato por defecto: **M4A**): define la carpeta de destino (**Elegir carpeta** / **Restablecer**) y el formato de salida (**M4A**, **MP3**, **WAV** o **FLAC**) de las grabaciones de voz entrantes.
+- **Atajos de Hacer foto / Escanear documento** (`Ajustes › Atajos y reglas` en el PC, por defecto: `Ctrl+Alt+C` y `Ctrl+Alt+D`): teclas de acceso rápido globales de Windows para la Cámara de continuidad.
 
-## Data and Privacy
+## Datos y privacidad
 
-- **Explicit camera consent on the phone**: A paired PC can never open your phone's camera unless you allowed it. Whenever you click **Start webcam** or trigger **Continuity Camera** from the PC, your phone displays a notification requiring a physical tap on the phone before the camera opens, unless you turned on **Start the camera and microphone without asking** for that PC (webcam and microphone only). While streaming, Android's green camera privacy indicator and NectarLink's persistent **Streaming camera to `<PC>`** notification remain visible on your phone with a one-tap **Stop** button.
-- **Shared memory isolation**: On Windows, decoded webcam frames are passed to the Media Foundation virtual camera DLL through a logon-session-scoped shared memory ring buffer (`Local\NectarlinkVirtualCamera_v2`) with strict atomic bounds checking (`MAX_WIDTH = 3840`, `MAX_HEIGHT = 2160`) so other Windows user accounts cannot read the feed.
-- **Temporary camera cache**: Temporary Continuity Camera captures on the phone are stored in the app's private cache and deleted automatically within 24 hours (or immediately via **Settings › Features & Data › Data & storage › Photo thumbnails & camera cache › Clear**).
+- **Consentimiento expreso de cámara en el teléfono**: un PC emparejado nunca puede abrir la cámara del teléfono sin tu permiso. Cada vez que haces clic en **Iniciar webcam** o lanzas la **Cámara de continuidad** desde el PC, el teléfono muestra una notificación que requiere un toque en el teléfono antes de abrir la cámara, salvo que hayas activado **Iniciar la cámara y el micrófono sin preguntar** para ese PC (solo webcam y micrófono). Mientras transmite, el indicador verde de cámara de Android y la notificación persistente de Panal **Transmitiendo la cámara a `<PC>`** siguen visibles en el teléfono con un botón **Detener**.
+- **Aislamiento de la memoria compartida**: en Windows, los fotogramas decodificados de la webcam pasan a la DLL de cámara virtual de Media Foundation a través de un búfer circular de memoria compartida limitado a la sesión de inicio (`Local\PanalVirtualCamera_v2`), con comprobación estricta de límites (`MAX_WIDTH = 3840`, `MAX_HEIGHT = 2160`), para que otras cuentas de usuario de Windows no puedan leer la imagen.
+- **Caché temporal de la cámara**: las capturas temporales de la Cámara de continuidad en el teléfono se guardan en la caché privada de la app y se borran solas en 24 horas (o al momento con **Ajustes › Funciones y datos › Datos y almacenamiento › Miniaturas de fotos y caché de cámara › Borrar**).
 
-## Limits
+## Límites
 
-- **4K Webcam Hardware Support**: 4K (`3840 x 2160`) webcam streaming requires a phone camera sensor and hardware encoder that support 4K 30 fps output, plus sufficient Wi-Fi or USB bandwidth. If a phone camera only supports up to 1080p, it streams at its highest supported resolution.
-- **8-Bit SDR Webcam Pipeline**: The webcam pipeline uses 8-bit SDR color (`NV12` / `RGB32` Media Foundation media types) for broad compatibility across Zoom, Teams, Meet, Chrome, and OBS; 10-bit HDR video is not used.
-- **Administrator Prompt for Virtual Camera Registration**: Registering or removing a system-wide Media Foundation virtual camera on Windows 11 (**Virtual camera add-on › Set up**) requires a one-time Administrator (UAC) approval. Previewing the webcam inside NectarLink's own window works without Administrator privileges.
-- **Continuity Camera Request Expiry**: If you trigger **Take photo** or **Scan document** while your phone is offline, the queued request expires after **2 minutes** so your phone does not unexpectedly prompt for a photo hours later.
+- **Hardware para webcam 4K**: transmitir en 4K (`3840 x 2160`) requiere un sensor de cámara y un codificador por hardware que admitan 4K a 30 fps, además de suficiente ancho de banda Wi-Fi o USB. Si la cámara del teléfono solo llega a 1080p, transmite a su máxima resolución admitida.
+- **Webcam SDR de 8 bits**: la webcam usa color SDR de 8 bits (tipos de medios `NV12` / `RGB32` de Media Foundation) para ser compatible con Zoom, Teams, Meet, Chrome y OBS; no se usa vídeo HDR de 10 bits.
+- **Petición de administrador para registrar la cámara virtual**: registrar o quitar una cámara virtual de Media Foundation para todo el sistema en Windows 11 (**Complemento de cámara virtual › Configurar**) requiere una única aprobación de administrador (UAC). La vista previa de la webcam dentro de la ventana de Panal funciona sin privilegios de administrador.
+- **Caducidad de las peticiones de Cámara de continuidad**: si lanzas **Hacer foto** o **Escanear documento** con el teléfono desconectado, la petición en cola caduca a los **2 minutos**, así el teléfono no te pide una foto por sorpresa horas después.

@@ -111,7 +111,7 @@ jobs:
         run: |
           # The release's name, if Cargo.toml gives one ([workspace.metadata.release]).
           name=$(awk '/^\[workspace.metadata.release\]/{f=1;next} /^\[/{f=0} f && /^name = /{print $3}' source/Cargo.toml | tr -d '"')
-          title="NectarLink ${GITHUB_REF_NAME#v}${name:+ $name}"
+          title="Panal ${GITHUB_REF_NAME#v}${name:+ $name}"
           cd files
           # The sums and their signature come from the sign job; check they still match.
           sha256sum -c SHA256SUMS.txt

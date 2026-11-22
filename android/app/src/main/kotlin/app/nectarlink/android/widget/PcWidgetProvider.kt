@@ -12,7 +12,7 @@ import android.graphics.Color
 import android.view.View
 import android.widget.RemoteViews
 import android.widget.Toast
-import app.nectarlink.android.NectarlinkApplication
+import app.nectarlink.android.PanalApplication
 import app.nectarlink.android.R
 import app.nectarlink.android.clipboard.SendActivity
 import app.nectarlink.android.core.CoreState
@@ -36,7 +36,7 @@ class PcWidgetProvider : AppWidgetProvider() {
         appWidgetManager: AppWidgetManager,
         appWidgetIds: IntArray,
     ) {
-        val core = (context.applicationContext as? NectarlinkApplication)?.core
+        val core = (context.applicationContext as? PanalApplication)?.core
         core?.start()
         val state = core?.state?.value
         // Avoid overwriting a previously rendered widget with "No PC paired" while Core is still starting up.
@@ -54,7 +54,7 @@ class PcWidgetProvider : AppWidgetProvider() {
     class ActionReceiver : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
             val action = intent.action ?: return
-            val app = context.applicationContext as? NectarlinkApplication ?: return
+            val app = context.applicationContext as? PanalApplication ?: return
             app.core.start()
             val state = app.core.state.value
             val pcId = intent.getStringExtra(EXTRA_PC_ID)?.takeIf { it.isNotBlank() }
@@ -135,7 +135,7 @@ class PcWidgetProvider : AppWidgetProvider() {
             if (ids.isEmpty()) return
 
             val effectiveState = state
-                ?: (context.applicationContext as? NectarlinkApplication)?.core?.state?.value
+                ?: (context.applicationContext as? PanalApplication)?.core?.state?.value
             updateWidgets(context, manager, ids, effectiveState)
         }
 
@@ -175,7 +175,7 @@ class PcWidgetProvider : AppWidgetProvider() {
                 val name = pc.name.ifBlank { context.getString(R.string.your_pc) }
                 views.setTextViewText(R.id.widget_pc_name, name)
 
-                val app = context.applicationContext as? NectarlinkApplication
+                val app = context.applicationContext as? PanalApplication
                 val mediaSummary = if (pc.online) {
                     app?.core?.pcMedia?.currentSummary?.takeIf { it.pcId == pc.id }
                         ?: app?.core?.pcMedia?.currentSummary

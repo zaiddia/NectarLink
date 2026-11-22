@@ -18,7 +18,7 @@ FocusScope {
 
     readonly property int totalSteps: 7
     // Matches the APK name on the GitHub release (see .github/workflows/release.yml).
-    readonly property string adbCommand: "adb install -r Nectarlink-" + AppController.version + "-android.apk"
+    readonly property string adbCommand: "adb install -r Panal-" + AppController.version + "-android.apk"
     property int step: Math.max(0, Math.min(totalSteps - 1, Preferences.walkthroughStep))
     property alias currentStep: walkthrough.step
 
@@ -94,9 +94,9 @@ FocusScope {
     ]
 
     readonly property var stepTitles: [
-        qsTr("Welcome to NectarLink"),
+        qsTr("Welcome to Panal"),
         qsTr("Your data stays on your devices"),
-        qsTr("Install NectarLink on your phone"),
+        qsTr("Install Panal on your phone"),
         qsTr("Pair your phone and PC"),
         qsTr("Choose what to share"),
         qsTr("Optional setup"),
@@ -107,7 +107,7 @@ FocusScope {
         qsTr("Your Android phone and your PC, working together on your local network."),
         qsTr("No accounts, no cloud servers, and no telemetry."),
         qsTr("Get the Android app from GitHub Releases or install the APK over USB."),
-        qsTr("Scan the QR code from the NectarLink Android app, or pick your phone from nearby devices."),
+        qsTr("Scan the QR code from the Panal Android app, or pick your phone from nearby devices."),
         qsTr("Safe features are on by default. Higher-trust access stays off until you turn it on."),
         qsTr("Three quick checks so notifications and discovery work reliably on your PC."),
         qsTr("Reopen it from Settings or the Command Palette.")
@@ -920,7 +920,7 @@ FocusScope {
                             }
                         }
 
-                        // STEP 2: Install NectarLink on your phone
+                        // STEP 2: Install Panal on your phone
                         ColumnLayout {
                             Layout.fillWidth: true
                             spacing: 12
@@ -1475,7 +1475,7 @@ FocusScope {
                                                     : qsTr("Enabled in Windows Settings."))
                                                 : (Qt.platform.os === "linux"
                                                     ? qsTr("Notifications are muted or Do Not Disturb is active.")
-                                                    : qsTr("Notifications are off for NectarLink in Windows Settings."))
+                                                    : qsTr("Notifications are off for Panal in Windows Settings."))
                                             role: "caption"
                                             color: Theme.surfaceContentVariant
                                             wrapMode: Text.WordWrap
@@ -1551,7 +1551,7 @@ FocusScope {
 
                                         Txt {
                                             Layout.fillWidth: true
-                                            text: qsTr("Keep NectarLink ready in the system tray when you sign in.")
+                                            text: qsTr("Keep Panal ready in the system tray when you sign in.")
                                             role: "caption"
                                             color: Theme.surfaceContentVariant
                                             wrapMode: Text.WordWrap
@@ -1651,7 +1651,7 @@ FocusScope {
                                             : qsTr("Pair a phone anytime from Home"),
                                         body: walkthrough.hasPairedDevice
                                             ? qsTr("Your phone is linked and ready on your local network.")
-                                            : qsTr("Open the NectarLink Android app whenever you are ready to scan the QR code.")
+                                            : qsTr("Open the Panal Android app whenever you are ready to scan the QR code.")
                                     },
                                     {
                                         icon: Icons.search,
@@ -1661,7 +1661,7 @@ FocusScope {
                                     {
                                         icon: Icons.book,
                                         title: qsTr("Features guide"),
-                                        body: qsTr("Browse every feature in NectarLink, see what permissions it needs, and jump straight to it.")
+                                        body: qsTr("Browse every feature in Panal, see what permissions it needs, and jump straight to it.")
                                     }
                                 ]
 

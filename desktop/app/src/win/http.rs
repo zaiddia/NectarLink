@@ -116,7 +116,7 @@ impl Response {
 fn open(url: &str, from: u64, etag: Option<&str>) -> Result<Response, String> {
     let rest = url.strip_prefix("https://").ok_or("only https")?;
     let (host, path) = rest.split_once('/').map_or((rest, "/".to_owned()), |(h, p)| (h, format!("/{p}")));
-    let agent = HSTRING::from(format!("Nectarlink/{} (Windows)", env!("CARGO_PKG_VERSION")));
+    let agent = HSTRING::from(format!("Panal/{} (Windows)", env!("CARGO_PKG_VERSION")));
     // SAFETY: WinHTTP calls with valid strings; every handle is closed by
     // `Handle`.
     unsafe {

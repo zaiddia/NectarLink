@@ -22,7 +22,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 /** Starts the core with the process and keeps it for the app's lifetime. */
-class NectarlinkApplication : Application(), DefaultLifecycleObserver {
+class PanalApplication : Application(), DefaultLifecycleObserver {
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
 
     val core: Core by lazy { Core(this, scope) }

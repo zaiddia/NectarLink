@@ -1587,7 +1587,7 @@ impl ProtocolHandler for PairProtocol {
     }
 }
 
-/// The NectarLink engine. One per app.
+/// The Panal engine. One per app.
 ///
 /// Commands are async methods; everything that changes is reported through
 /// [`Node::events`]. Cheap to clone.
@@ -2384,7 +2384,7 @@ impl Node {
 
     /// Whether this device's LocalSend HTTP/HTTPS server is actively bound and
     /// able to receive incoming files (false when turned off, or when TCP port
-    /// 53317 is already owned by a standalone LocalSend process, or by NectarLink
+    /// 53317 is already owned by a standalone LocalSend process, or by Panal
     /// in another Android profile, on the same device: that one receives).
     pub fn localsend_receiving(&self) -> bool {
         self.shared.localsend.receiving()
@@ -2392,7 +2392,7 @@ impl Node {
 
     /// Returns the LocalSend peers currently discovered on the local network.
     /// LocalSend devices nearby, apart from paired devices that also answer
-    /// LocalSend (a NectarLink phone does): those are reached as themselves.
+    /// LocalSend (a Panal phone does): those are reached as themselves.
     pub fn localsend_peers(&self) -> Vec<crate::LocalSendPeer> {
         let paired =
             lock(&self.shared.paired_localsend).values().cloned().collect::<std::collections::HashSet<_>>();
@@ -3662,7 +3662,7 @@ impl Node {
     }
 
     /// Tells connected devices, and ones that connect later, that `version`
-    /// of NectarLink is out on `channel` ("stable" or "nightly"), so they can
+    /// of Panal is out on `channel` ("stable" or "nightly"), so they can
     /// check without polling themselves. Only devices that take hints get it;
     /// a hint that isn't new for its channel isn't sent again.
     pub async fn announce_update(&self, channel: String, version: String) {

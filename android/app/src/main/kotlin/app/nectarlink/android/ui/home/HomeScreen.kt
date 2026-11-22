@@ -97,7 +97,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.isSpecified
 import androidx.compose.ui.unit.sp
-import app.nectarlink.android.NectarlinkApplication
+import app.nectarlink.android.PanalApplication
 import app.nectarlink.android.R
 import app.nectarlink.android.calls.PhoneCalls
 import app.nectarlink.android.clipboard.SendActivity
@@ -1818,7 +1818,7 @@ private fun PcAudioCardSection(
 ) {
     val context = LocalContext.current
     val pcMedia = remember(context) {
-        (context.applicationContext as? NectarlinkApplication)?.core?.pcMedia
+        (context.applicationContext as? PanalApplication)?.core?.pcMedia
     }
     val rawSummary = if (pcMedia != null) {
         val state by pcMedia.summaryFlow.collectAsStateWithLifecycle()

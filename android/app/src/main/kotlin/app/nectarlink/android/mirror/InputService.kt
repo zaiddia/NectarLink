@@ -16,7 +16,7 @@ import android.util.Log
 import android.view.WindowManager
 import android.view.accessibility.AccessibilityEvent
 import android.view.accessibility.AccessibilityNodeInfo
-import app.nectarlink.android.NectarlinkApplication
+import app.nectarlink.android.PanalApplication
 import app.nectarlink.core.MirrorInputEvent
 import app.nectarlink.core.TouchPhase
 import kotlin.math.abs
@@ -59,14 +59,14 @@ class InputService : AccessibilityService() {
 
     override fun onServiceConnected() {
         instance = this
-        (application as NectarlinkApplication).core.refreshNotificationAccess()
+        (application as PanalApplication).core.refreshNotificationAccess()
     }
 
     override fun onUnbind(intent: android.content.Intent?): Boolean {
         main.removeCallbacksAndMessages(null)
         gestureInFlight = false
         instance = null
-        (application as NectarlinkApplication).core.refreshNotificationAccess()
+        (application as PanalApplication).core.refreshNotificationAccess()
         return super.onUnbind(intent)
     }
 

@@ -63,7 +63,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
-import app.nectarlink.android.NectarlinkApplication
+import app.nectarlink.android.PanalApplication
 import app.nectarlink.android.R
 import app.nectarlink.android.core.Core
 import app.nectarlink.android.core.CoreState
@@ -86,7 +86,7 @@ import app.nectarlink.android.ui.settings.SettingsScreen
 import app.nectarlink.android.ui.theme.Appearance
 import app.nectarlink.android.ui.theme.GlassBackdrop
 import app.nectarlink.android.ui.theme.LocalReducedMotion
-import app.nectarlink.android.ui.theme.NectarlinkTheme
+import app.nectarlink.android.ui.theme.PanalTheme
 import app.nectarlink.android.ui.theme.glassBackdropSource
 import app.nectarlink.android.ui.theme.liquidGlass
 import app.nectarlink.android.ui.theme.liquidGlassCard
@@ -121,13 +121,13 @@ class MainActivity : ComponentActivity() {
     private val permissions =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
             // The local network may have just been allowed: reconnect now.
-            (application as NectarlinkApplication).core.refreshNotificationAccess()
+            (application as PanalApplication).core.refreshNotificationAccess()
         }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
-        val core = (application as NectarlinkApplication).core
+        val core = (application as PanalApplication).core
         val preferences = Preferences(this)
 
         // Notifications (transfers, calls, requests from PCs) and, on Android
@@ -158,7 +158,7 @@ class MainActivity : ComponentActivity() {
                     ConnectionService.stop(this@MainActivity)
                 }
             }
-            NectarlinkTheme(
+            PanalTheme(
                 appearance = appearance,
                 mediaSeedColor = state.activeMediaColor,
                 backdrop = true,
@@ -219,7 +219,7 @@ class MainActivity : ComponentActivity() {
     override fun onResume() {
         super.onResume()
         // Back from Settings, maybe with notification access changed.
-        val app = application as NectarlinkApplication
+        val app = application as PanalApplication
         if (app.core.state.value.status is CoreStatus.Ready) {
             app.core.refreshNotificationAccess()
         }
@@ -245,13 +245,13 @@ class MainActivity : ComponentActivity() {
             when (keyCode) {
                 KeyEvent.KEYCODE_VOLUME_DOWN -> {
                     if (event?.repeatCount == 0) {
-                        (application as NectarlinkApplication).core.remoteSlide(pcId, "next")
+                        (application as PanalApplication).core.remoteSlide(pcId, "next")
                     }
                     return true
                 }
                 KeyEvent.KEYCODE_VOLUME_UP -> {
                     if (event?.repeatCount == 0) {
-                        (application as NectarlinkApplication).core.remoteSlide(pcId, "previous")
+                        (application as PanalApplication).core.remoteSlide(pcId, "previous")
                     }
                     return true
                 }
@@ -846,7 +846,7 @@ private fun App(
                                         webcamAutoStart = false
                                         webcamPcId = id
                                     },
-                                    updater = (context.applicationContext as NectarlinkApplication).updater,
+                                    updater = (context.applicationContext as PanalApplication).updater,
                                     onSendFiles = core::sendFiles,
                                     onSendFolder = core::sendFolder,
                                     onAccessChanged = core::refreshNotificationAccess,
@@ -944,7 +944,7 @@ private fun App(
                                     onUnpair = core::unpair,
                                     onPairNew = { pairing = true },
                                     onAccessChanged = core::refreshNotificationAccess,
-                                    updater = (context.applicationContext as NectarlinkApplication).updater,
+                                    updater = (context.applicationContext as PanalApplication).updater,
                                     onSetStorageEnabled = core::setStorageEnabled,
                                     onSetMicEnabled = core::setMicEnabled,
                                     startWithoutAsking = startWithoutAsking,

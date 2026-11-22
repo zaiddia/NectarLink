@@ -166,7 +166,7 @@ jobs:
           printf '%s\n' \
             "Nightly $NUMBER, **$NAME**: built from main at ${COMMIT:0:7} on $(date -u +%Y-%m-%d)." \
             "" \
-            "A build for trying what's new before it's released, with the latest fixes and features and sometimes new bugs. NectarLink installs on the Nightly channel update to it by themselves; to get it, pick **Nightly** under Settings, Updates, in the PC app or on the phone." \
+            "A build for trying what's new before it's released, with the latest fixes and features and sometimes new bugs. Panal installs on the Nightly channel update to it by themselves; to get it, pick **Nightly** under Settings, Updates, in the PC app or on the phone." \
             "" \
             "$compare" > notes.md
           gh release create "v$VERSION" *.exe *.deb *.rpm *.AppImage *.tar.gz *.apk install.sh SHA256SUMS.txt SHA256SUMS.txt.sig \

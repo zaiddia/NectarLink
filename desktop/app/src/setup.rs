@@ -1,23 +1,23 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 //! The installer's and the uninstaller's windows, and the work behind them.
 //!
-//! `Nectarlink-<version>-x64-setup.exe` (NSIS, `desktop/installer`) unpacks
+//! `Panal-<version>-x64-setup.exe` (NSIS, `desktop/installer`) unpacks
 //! the app to a temporary folder and runs it there, renamed to
-//! `Nectarlink Setup.exe`, with `--setup --installer <setup.exe>`. That
+//! `Panal Setup.exe`, with `--setup --installer <setup.exe>`. That
 //! window asks nothing; Install runs the same setup.exe again with
 //! administrator rights and `/S /PROGRESS=<file>`, which installs into
 //! Program Files and writes each step to the file, so the window can follow.
 //!
 //! Removing (Windows Settings > Apps) runs the installed app with `--remove`.
 //! A program can't delete its own folder, so it first copies itself to a
-//! temporary folder (as `Nectarlink Uninstall.exe`) and carries on from
+//! temporary folder (as `Panal Uninstall.exe`) and carries on from
 //! there, then runs `uninstall.exe /S /PROGRESS=<file>` with administrator
-//! rights, and finally removes this user's NectarLink data. Files received
-//! from phones (`Downloads\Nectarlink`), voice recordings and synced folders
+//! rights, and finally removes this user's Panal data. Files received
+//! from phones (`Downloads\Panal`), voice recordings and synced folders
 //! belong to the user and are kept.
 //!
 //! The renamed copies matter: the installer closes running copies of
-//! `nectarlink-desktop.exe` by name, which would otherwise include these.
+//! `panal.exe` by name, which would otherwise include these.
 
 use crate::i18n::tr;
 #[cfg(windows)]
@@ -35,11 +35,11 @@ pub const INSTALLED_ARG: &str = "--installed";
 /// Where the Android app is downloaded (the done screen's QR code and link).
 pub const ANDROID_URL: &str = "https://github.com/zaiddia/NectarLink/releases/latest";
 
-const APP_EXE: &str = if cfg!(windows) { "nectarlink-desktop.exe" } else { "nectarlink-desktop" };
+const APP_EXE: &str = if cfg!(windows) { "panal.exe" } else { "panal" };
 #[cfg(windows)]
-const UNINSTALL_KEY: &str = r"Software\Microsoft\Windows\CurrentVersion\Uninstall\Nectarlink";
+const UNINSTALL_KEY: &str = r"Software\Microsoft\Windows\CurrentVersion\Uninstall\Panal";
 #[cfg(windows)]
-const SETUP_COPY_NAME: &str = "Nectarlink Uninstall.exe";
+const SETUP_COPY_NAME: &str = "Panal Uninstall.exe";
 
 #[cfg(windows)]
 const CREATE_NO_WINDOW: u32 = 0x0800_0000;
@@ -74,21 +74,21 @@ pub fn installed() -> Option<Installed> {
 
 #[cfg(target_os = "linux")]
 pub fn installed() -> Option<Installed> {
-    if let Some(version) = dpkg_installed_version("nectarlink") {
+    if let Some(version) = dpkg_installed_version("panal") {
         let dir = PathBuf::from("/usr/bin");
         if dir.join(APP_EXE).is_file() {
             return Some(Installed { dir, version });
         }
     }
     if let Some(local_data) = dirs::data_local_dir() {
-        let user_dir = local_data.join("nectarlink-app");
+        let user_dir = local_data.join("panal-app");
         let exe = user_dir.join(APP_EXE);
         if exe.is_file() {
             let version = read_installed_version(&user_dir, &exe).unwrap_or_default();
             return Some(Installed { dir: user_dir, version });
         }
     }
-    for candidate in ["/opt/nectarlink", "/usr/local/bin", "/usr/bin"] {
+    for candidate in ["/opt/panal", "/usr/local/bin", "/usr/bin"] {
         let dir = PathBuf::from(candidate);
         let exe = dir.join(APP_EXE);
         if exe.is_file() {
@@ -192,7 +192,7 @@ impl Step {
     /// What the window says while this step runs.
     pub fn label(self) -> &'static str {
         match self {
-            Step::Closing => "Closing NectarLink",
+            Step::Closing => "Closing Panal",
             Step::Files => "Copying files",
             #[cfg(not(target_os = "linux"))]
             Step::Firewall => "Allowing through Windows Firewall",
@@ -255,11 +255,11 @@ pub enum Outcome {
     Failed(String),
 }
 
-/// Whether the desktop has NectarLink's shortcut, which setup only adds when
+/// Whether the desktop has Panal's shortcut, which setup only adds when
 /// asked to (#102).
 #[cfg(windows)]
 pub fn has_desktop_shortcut() -> bool {
-    crate::win::shortcut::public_desktop_dir().is_some_and(|dir| dir.join("NectarLink.lnk").is_file())
+    crate::win::shortcut::public_desktop_dir().is_some_and(|dir| dir.join("Panal.lnk").is_file())
 }
 
 #[cfg(not(windows))]
@@ -336,7 +336,7 @@ pub fn install(
             &[
                 "-e",
                 "-c",
-                "dir=$(mktemp -d) && trap 'rm -rf \"$dir\"' EXIT && tar -C \"$dir\" -xzf \"$1\" && set -- \"$dir\"/Nectarlink-*/install.sh && [ -x \"$1\" ] && \"$1\"",
+                "dir=$(mktemp -d) && trap 'rm -rf \"$dir\"' EXIT && tar -C \"$dir\" -xzf \"$1\" && set -- \"$dir\"/Panal-*/install.sh && [ -x \"$1\" ] && \"$1\"",
                 "sh",
                 &path_str,
             ],
@@ -376,7 +376,7 @@ pub fn remove(installed: &Path, mut on_event: impl FnMut(Event)) -> Outcome {
     if !uninstaller.is_file() {
         return Outcome::Failed(tr!(
             "Setup",
-            "The uninstaller is missing. Reinstall NectarLink, then uninstall it."
+            "The uninstaller is missing. Reinstall Panal, then uninstall it."
         ));
     }
     let progress = progress_file("remove");
@@ -401,27 +401,27 @@ pub fn remove(installed: &Path, mut on_event: impl FnMut(Event)) -> Outcome {
 
     on_event(Event::Step(Step::Cleanup));
     if let Some(local_data) = dirs::data_local_dir() {
-        let user_app_dir = local_data.join("nectarlink-app");
+        let user_app_dir = local_data.join("panal-app");
         if installed == user_app_dir {
             let _ = std::fs::remove_dir_all(&user_app_dir);
             if let Some(home) = dirs::home_dir() {
-                let _ = std::fs::remove_file(home.join(".local/bin/nectarlink-desktop"));
+                let _ = std::fs::remove_file(home.join(".local/bin/panal"));
             }
-            let _ = std::fs::remove_file(local_data.join("applications/nectarlink.desktop"));
-            let _ = std::fs::remove_file(local_data.join("metainfo/org.nectarlink.desktop.metainfo.xml"));
+            let _ = std::fs::remove_file(local_data.join("applications/panal.desktop"));
+            let _ = std::fs::remove_file(local_data.join("metainfo/io.github.zaiddia.Panal.metainfo.xml"));
             remove_user_data();
             on_event(Event::Done);
             return Outcome::Done;
         }
     }
-    let res = if dpkg_installed_version("nectarlink").is_some()
-        || Path::new("/var/lib/dpkg/info/nectarlink.list").is_file()
+    let res = if dpkg_installed_version("panal").is_some()
+        || Path::new("/var/lib/dpkg/info/panal.list").is_file()
     {
-        crate::win::elevated::run_elevated(Path::new("dpkg"), &["-r", "nectarlink"])
-    } else if installed == Path::new("/opt/nectarlink") {
+        crate::win::elevated::run_elevated(Path::new("dpkg"), &["-r", "panal"])
+    } else if installed == Path::new("/opt/panal") {
         crate::win::elevated::run_elevated(
             Path::new("rm"),
-            &["-rf", "--", "/opt/nectarlink", "/usr/local/bin/nectarlink-desktop"],
+            &["-rf", "--", "/opt/panal", "/usr/local/bin/panal"],
         )
     } else {
         crate::win::elevated::run_elevated(
@@ -429,9 +429,9 @@ pub fn remove(installed: &Path, mut on_event: impl FnMut(Event)) -> Outcome {
             &[
                 "-rf",
                 "--",
-                "/opt/nectarlink",
-                "/usr/local/bin/nectarlink-desktop",
-                "/usr/bin/nectarlink-desktop",
+                "/opt/panal",
+                "/usr/local/bin/panal",
+                "/usr/bin/panal",
             ],
         )
     };
@@ -443,7 +443,7 @@ pub fn remove(installed: &Path, mut on_event: impl FnMut(Event)) -> Outcome {
         }
         Ok(126 | 127) => Outcome::Declined,
         Ok(code) => Outcome::Failed(tr!("Setup", "Uninstall stopped with code %1.", code)),
-        Err(e) => Outcome::Failed(tr!("Setup", "Couldn't uninstall NectarLink: %1", e)),
+        Err(e) => Outcome::Failed(tr!("Setup", "Couldn't uninstall Panal: %1", e)),
     }
 }
 
@@ -463,20 +463,20 @@ pub fn remove_user_data() {
     if let Err(e) = std::fs::remove_dir_all(&data)
         && e.kind() != std::io::ErrorKind::NotFound
     {
-        tracing::warn!(error = %e, "can't remove all of NectarLink's data");
+        tracing::warn!(error = %e, "can't remove all of Panal's data");
     }
 }
 
-/// `%LOCALAPPDATA%\Nectarlink`, the app's default data folder.
+/// `%LOCALAPPDATA%\Panal`, the app's default data folder.
 #[cfg(windows)]
 fn user_data_dir() -> Option<PathBuf> {
     let local = std::env::var_os("LOCALAPPDATA").map(PathBuf::from)?;
-    local.is_absolute().then(|| local.join("Nectarlink"))
+    local.is_absolute().then(|| local.join("Panal"))
 }
 
 #[cfg(not(windows))]
 fn user_data_dir() -> Option<PathBuf> {
-    dirs::data_local_dir().map(|d| d.join("Nectarlink"))
+    dirs::data_local_dir().map(|d| d.join("Panal"))
 }
 
 /// Runs `program` elevated with `params` and follows `progress` until it
@@ -625,7 +625,7 @@ pub fn hand_over_removal(installed: &Path) -> Result<bool, String> {
     {
         return Ok(false);
     }
-    let copy = temp.join(format!("Nectarlink-uninstall-{}", std::process::id()));
+    let copy = temp.join(format!("Panal-uninstall-{}", std::process::id()));
     copy_tree(installed, &copy).map_err(|e| format!("can't prepare removal: {e}"))?;
     let app = copy.join(APP_EXE);
     let renamed = copy.join(SETUP_COPY_NAME);
@@ -655,7 +655,7 @@ pub fn delete_own_copy_later() {
     let temp = std::env::temp_dir();
     // Only ever a folder this module made under %TEMP%.
     let ours = dir.starts_with(&temp)
-        && dir.file_name().and_then(|n| n.to_str()).is_some_and(|n| n.starts_with("Nectarlink-uninstall-"));
+        && dir.file_name().and_then(|n| n.to_str()).is_some_and(|n| n.starts_with("Panal-uninstall-"));
     if !ours {
         return;
     }
@@ -672,7 +672,7 @@ pub fn delete_own_copy_later() {
     let Some(dir) = exe.parent() else { return };
     let temp = std::env::temp_dir();
     let ours = dir.starts_with(&temp)
-        && dir.file_name().and_then(|n| n.to_str()).is_some_and(|n| n.starts_with("Nectarlink-uninstall-"));
+        && dir.file_name().and_then(|n| n.to_str()).is_some_and(|n| n.starts_with("Panal-uninstall-"));
     if !ours {
         return;
     }
@@ -740,10 +740,10 @@ mod tests {
     fn a_chosen_folder_goes_last_for_nsis() {
         let progress = Path::new("p.txt");
         assert_eq!(install_params(true, None, progress), "/S /DESKTOP=1 /PROGRESS=p.txt");
-        let placement = Placement { dir: PathBuf::from(r"D:\My Apps\Nectarlink"), admin_only: false };
+        let placement = Placement { dir: PathBuf::from(r"D:\My Apps\Panal"), admin_only: false };
         assert_eq!(
             install_params(false, Some(&placement), progress),
-            r"/S /DESKTOP=0 /PROGRESS=p.txt /ADMINONLY=0 /D=D:\My Apps\Nectarlink"
+            r"/S /DESKTOP=0 /PROGRESS=p.txt /ADMINONLY=0 /D=D:\My Apps\Panal"
         );
     }
 

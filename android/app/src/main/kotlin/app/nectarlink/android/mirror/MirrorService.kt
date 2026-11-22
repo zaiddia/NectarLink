@@ -20,7 +20,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.ServiceCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.IntentCompat
-import app.nectarlink.android.NectarlinkApplication
+import app.nectarlink.android.PanalApplication
 import app.nectarlink.android.R
 import app.nectarlink.android.elevated.AppDisplay
 import kotlinx.coroutines.CoroutineScope
@@ -77,7 +77,7 @@ class MirrorService : Service() {
             if (projection == null && elevatedSocket == null && !elevatedStarting) stopSelf()
             return START_NOT_STICKY
         }
-        val core = (application as NectarlinkApplication).core
+        val core = (application as PanalApplication).core
         val name = core.state.value.nameOf(pc).orEmpty()
         createChannel(this)
         val maxSize = intent.getIntExtra(EXTRA_MAX_SIZE, 1920)
@@ -490,7 +490,7 @@ class MirrorService : Service() {
                 if (service.pcId != pcId || service.soundOnly) return@post
                 if (on) {
                     if (service.sound == null) {
-                        val core = (service.application as NectarlinkApplication).core
+                        val core = (service.application as PanalApplication).core
                         service.scope.launch { service.startSound(core, pcId) }
                     }
                 } else {

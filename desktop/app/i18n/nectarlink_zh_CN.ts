@@ -55,27 +55,27 @@
     </message>
     <message>
         <location filename="rust_strings.h" line="17"/>
-        <source>NectarLink · %1</source>
+        <source>Panal · %1</source>
         <translation>Panal · %1</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="18"/>
-        <source>NectarLink · %1 devices connected</source>
+        <source>Panal · %1 devices connected</source>
         <translation>Panal · 已连接 %1 台设备</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="19"/>
-        <source>NectarLink · 1 device connected</source>
+        <source>Panal · 1 device connected</source>
         <translation>Panal · 已连接 1 台设备</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="20"/>
-        <source>NectarLink · no devices paired</source>
+        <source>Panal · no devices paired</source>
         <translation>Panal · 未配对设备</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="21"/>
-        <source>NectarLink · not connected</source>
+        <source>Panal · not connected</source>
         <translation>Panal · 未连接</translation>
     </message>
     <message>
@@ -85,7 +85,7 @@
     </message>
     <message>
         <location filename="rust_strings.h" line="23"/>
-        <source>Open NectarLink</source>
+        <source>Open Panal</source>
         <translation>打开 Panal</translation>
     </message>
     <message>
@@ -95,7 +95,7 @@
     </message>
     <message>
         <location filename="rust_strings.h" line="25"/>
-        <source>Quit NectarLink</source>
+        <source>Quit Panal</source>
         <translation>退出 Panal</translation>
     </message>
     <message>
@@ -198,7 +198,7 @@
     </message>
     <message>
         <location filename="../qml/pages/AppsPage.qml" line="94"/>
-        <source>Set up Wireless debugging in NectarLink on the phone to open its apps here.</source>
+        <source>Set up Wireless debugging in Panal on the phone to open its apps here.</source>
         <translation>在手机上的 Panal 中设置无线调试，即可在此打开其应用。</translation>
     </message>
     <message>
@@ -824,7 +824,7 @@
     </message>
     <message>
         <location filename="rust_strings.h" line="63"/>
-        <source>Update NectarLink on %1 to send it images.</source>
+        <source>Update Panal on %1 to send it images.</source>
         <translation>请更新 %1 上的 Panal 以向其发送图片。</translation>
     </message>
     <message>
@@ -1082,7 +1082,7 @@
     </message>
     <message>
         <location filename="rust_strings.h" line="105"/>
-        <source>Opened Recordings folder. Start a voice note in NectarLink on %1 to send it here.</source>
+        <source>Opened Recordings folder. Start a voice note in Panal on %1 to send it here.</source>
         <translation>已打开录音文件夹。在 %1 上的 Panal 中开始语音备忘，即可发送到这里。</translation>
     </message>
     <message>
@@ -1242,7 +1242,7 @@
     </message>
     <message>
         <location filename="rust_strings.h" line="137"/>
-        <source>Stream %1&apos;s camera into the NectarLink virtual webcam</source>
+        <source>Stream %1&apos;s camera into the Panal virtual webcam</source>
         <translation>将 %1 的摄像头画面传入 Panal 虚拟摄像头</translation>
     </message>
     <message>
@@ -1903,12 +1903,12 @@
     <name>Doctor</name>
     <message>
         <location filename="rust_strings.h" line="187"/>
-        <source>%1 Open NectarLink on the phone and keep both on the same network. If the phone asks to run in the background, allow it.</source>
+        <source>%1 Open Panal on the phone and keep both on the same network. If the phone asks to run in the background, allow it.</source>
         <translation>%1 在手机上打开 Panal，并让两台设备处于同一网络。如果手机询问是否允许在后台运行，请允许。</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="188"/>
-        <source>%1 announces itself at %2, which isn&apos;t in a private range such as 192.168.x.x. NectarLink connects on such a network once both apps are up to date. Until then, turn on Connect over mobile data on both, or connect with a USB cable.</source>
+        <source>%1 announces itself at %2, which isn&apos;t in a private range such as 192.168.x.x. Panal connects on such a network once both apps are up to date. Until then, turn on Connect over mobile data on both, or connect with a USB cable.</source>
         <translation>%1 在 %2 上广播自己，该地址不在 192.168.x.x 这样的私有范围内。两端的应用都更新到最新后，Panal 就能在这种网络上连接。在此之前，请在两端都打开“通过移动数据连接”，或用 USB 数据线连接。</translation>
     </message>
     <message>
@@ -1963,7 +1963,7 @@
     </message>
     <message>
         <location filename="rust_strings.h" line="199"/>
-        <source>A firewall rule blocks incoming NectarLink connections. Allow it, and your phone can connect.</source>
+        <source>A firewall rule blocks incoming Panal connections. Allow it, and your phone can connect.</source>
         <translation>一条防火墙规则阻止了传入的 Panal 连接。允许后，手机即可连接。</translation>
     </message>
     <message>
@@ -2033,47 +2033,47 @@
     </message>
     <message>
         <location filename="rust_strings.h" line="213"/>
-        <source>NectarLink can&apos;t show its icon in the top bar</source>
+        <source>Panal can&apos;t show its icon in the top bar</source>
         <translation>Panal 无法在顶栏中显示图标</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="214"/>
-        <source>NectarLink is in the top bar</source>
+        <source>Panal is in the top bar</source>
         <translation>Panal 已显示在顶栏中</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="215"/>
-        <source>NectarLink isn&apos;t allowed through Windows Firewall</source>
+        <source>Panal isn&apos;t allowed through Windows Firewall</source>
         <translation>Windows 防火墙未允许 Panal</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="216"/>
-        <source>NectarLink isn&apos;t allowed through the firewall</source>
+        <source>Panal isn&apos;t allowed through the firewall</source>
         <translation>防火墙未允许 Panal</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="217"/>
-        <source>On Huawei / Honor: open Settings → Battery → App launch, turn off Manage automatically for NectarLink, and keep Auto-launch, Secondary launch, and Run in background on.</source>
+        <source>On Huawei / Honor: open Settings → Battery → App launch, turn off Manage automatically for Panal, and keep Auto-launch, Secondary launch, and Run in background on.</source>
         <translation>华为 / 荣耀：打开 设置 → 电池 → 应用启动管理，为 Panal 关闭“自动管理”，并保持“允许自启动”“允许关联启动”和“允许后台活动”开启。</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="218"/>
-        <source>On OnePlus / OxygenOS: open Settings → Apps → App management → NectarLink → Battery usage and turn on Allow background activity and Allow auto-launch.</source>
+        <source>On OnePlus / OxygenOS: open Settings → Apps → App management → Panal → Battery usage and turn on Allow background activity and Allow auto-launch.</source>
         <translation>一加 / OxygenOS：打开 设置 → 应用 → 应用管理 → Panal → 耗电管理，开启“允许后台活动”和“允许自启动”。</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="219"/>
-        <source>On Oppo / Realme: open Settings → Apps → App management → NectarLink → Battery usage and turn on Allow background activity and Allow auto-launch.</source>
+        <source>On Oppo / Realme: open Settings → Apps → App management → Panal → Battery usage and turn on Allow background activity and Allow auto-launch.</source>
         <translation>OPPO / 真我：打开 设置 → 应用 → 应用管理 → Panal → 耗电管理，开启“允许后台活动”和“允许自启动”。</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="220"/>
-        <source>On Pixel: open Settings → Apps → See all apps → NectarLink → App battery usage, tap Allow background usage, and choose Unrestricted.</source>
+        <source>On Pixel: open Settings → Apps → See all apps → Panal → App battery usage, tap Allow background usage, and choose Unrestricted.</source>
         <translation>Pixel：打开 设置 → 应用 → 查看所有应用 → Panal → 应用的电池用量，点按“允许后台使用”，然后选择“无限制”。</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="221"/>
-        <source>On Samsung: open Settings → Apps → NectarLink → Battery and choose Unrestricted, then in Device care → Battery → Background usage limits make sure NectarLink is never put to sleep.</source>
+        <source>On Samsung: open Settings → Apps → Panal → Battery and choose Unrestricted, then in Device care → Battery → Background usage limits make sure Panal is never put to sleep.</source>
         <translation>三星：打开 设置 → 应用程序 → Panal → 电池，选择“不受限制”，然后在 设备维护 → 电池 → 后台使用限制 中确保 Panal 不会被设为休眠。</translation>
     </message>
     <message>
@@ -2083,12 +2083,12 @@
     </message>
     <message>
         <location filename="rust_strings.h" line="223"/>
-        <source>On Vivo / OriginOS / Funtouch: open Settings → Battery → Background power consumption management → NectarLink and choose Unrestricted, and allow Autostart.</source>
+        <source>On Vivo / OriginOS / Funtouch: open Settings → Battery → Background power consumption management → Panal and choose Unrestricted, and allow Autostart.</source>
         <translation>vivo / OriginOS / Funtouch：打开 设置 → 电池 → 后台耗电管理 → Panal，选择“允许后台高耗电”，并允许自启动。</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="224"/>
-        <source>On Xiaomi / HyperOS / MIUI: open Settings → Apps → Manage apps → NectarLink, turn on Autostart, and set Battery saver to No restrictions.</source>
+        <source>On Xiaomi / HyperOS / MIUI: open Settings → Apps → Manage apps → Panal, turn on Autostart, and set Battery saver to No restrictions.</source>
         <translation>小米 / HyperOS / MIUI：打开 设置 → 应用设置 → 应用管理 → Panal，开启“自启动”，并将省电策略设为“无限制”。</translation>
     </message>
     <message>
@@ -2143,7 +2143,7 @@
     </message>
     <message>
         <location filename="rust_strings.h" line="235"/>
-        <source>The firewall blocks NectarLink</source>
+        <source>The firewall blocks Panal</source>
         <translation>防火墙阻止了 Panal</translation>
     </message>
     <message>
@@ -2193,7 +2193,7 @@
     </message>
     <message>
         <location filename="rust_strings.h" line="245"/>
-        <source>Windows Firewall blocks NectarLink</source>
+        <source>Windows Firewall blocks Panal</source>
         <translation>Windows 防火墙阻止了 Panal</translation>
     </message>
     <message>
@@ -2474,7 +2474,7 @@
     </message>
     <message>
         <location filename="../qml/pages/FeaturesGuidePage.qml" line="586"/>
-        <source>Every feature in NectarLink, what it needs, and where to find it.</source>
+        <source>Every feature in Panal, what it needs, and where to find it.</source>
         <translation>Panal 的每一项功能、所需条件，以及在哪里找到它。</translation>
     </message>
     <message>
@@ -2764,7 +2764,7 @@
     </message>
     <message>
         <location filename="../qml/pages/FeaturesGuidePage.qml"/>
-        <source>Use your phone camera as the NectarLink Virtual Camera in Zoom, Teams, Meet, and OBS.</source>
+        <source>Use your phone camera as the Panal Virtual Camera in Zoom, Teams, Meet, and OBS.</source>
         <translation>在 Zoom、Teams、Meet 和 OBS 中将手机摄像头用作 Panal 虚拟摄像头。</translation>
     </message>
     <message>
@@ -3115,10 +3115,10 @@
     <name>Guide</name>
     <message>
         <location filename="rust_strings.h" line="265"/>
-        <source>1. Install NectarLink on your PC (Windows 11 or Linux) and your Android phone (Android 8.0 or newer).
+        <source>1. Install Panal on your PC (Windows 11 or Linux) and your Android phone (Android 8.0 or newer).
 2. Connect both devices to the same Wi-Fi network, or plug your phone into your PC with a USB cable.
 3. Open the Pair step in the setup walkthrough, or click + (Pair a new device) at the bottom of the left rail.
-4. Scan the QR code from the NectarLink Android app, or select your phone from the nearby devices list and confirm that the 6-digit code matches on both screens.
+4. Scan the QR code from the Panal Android app, or select your phone from the nearby devices list and confirm that the 6-digit code matches on both screens.
 5. Choose which features to share for that phone and grant only the Android permissions you want to use.</source>
         <translation>1. 在电脑（Windows 11 或 Linux）和 Android 手机（Android 8.0 或更高版本）上安装 Panal。
 2. 让两台设备连接到同一个 Wi‑Fi 网络，或用 USB 数据线将手机连接到电脑。
@@ -3196,9 +3196,9 @@
         <source>If your phone and PC do not see each other:
 
 1. Open Connection Doctor from Settings › Connection &amp; About or the Command Palette.
-2. Check that your Wi-Fi network profile in Windows is set to Private rather than Public, or click Fix in Connection Doctor to allow NectarLink through Windows Firewall.
+2. Check that your Wi-Fi network profile in Windows is set to Private rather than Public, or click Fix in Connection Doctor to allow Panal through Windows Firewall.
 3. Verify that both devices are on the same subnet and that guest Wi-Fi client isolation is turned off on your router.
-4. You can also connect over a USB cable with USB debugging enabled; NectarLink automatically sets up a local tunnel.</source>
+4. You can also connect over a USB cable with USB debugging enabled; Panal automatically sets up a local tunnel.</source>
         <translation>如果手机和电脑找不到彼此：
 
 1. 从 设置 › 连接与关于 或命令面板打开连接诊断。
@@ -3247,7 +3247,7 @@ Sensitive capabilities such as Share PC folders, Remote input, and Reverse PC sc
     </message>
     <message>
         <location filename="rust_strings.h" line="285"/>
-        <source>Most NectarLink features work in Standard mode with regular Android permissions. Two optional modes unlock deeper system integration:
+        <source>Most Panal features work in Standard mode with regular Android permissions. Two optional modes unlock deeper system integration:
 
 Elevated mode (Wireless debugging or root)
 - Captures the phone screen without showing the Android cast confirmation prompt every time.
@@ -3256,7 +3256,7 @@ Elevated mode (Wireless debugging or root)
 
 Assist mode (Android Accessibility Service)
 - Injects mouse clicks, scrolling, and touch gestures when you control your phone from your PC.
-- NectarLink never reads screen text or logs keystrokes through the Accessibility service.</source>
+- Panal never reads screen text or logs keystrokes through the Accessibility service.</source>
         <translation>Panal 的大多数功能在标准模式下使用常规 Android 权限即可运行。两个可选模式可解锁更深的系统集成：
 
 提升模式（无线调试或 root）
@@ -3275,7 +3275,7 @@ Assist mode (Android Accessibility Service)
     </message>
     <message>
         <location filename="rust_strings.h" line="287"/>
-        <source>NectarLink links your Android phone and your PC directly on your local network or over a USB cable.
+        <source>Panal links your Android phone and your PC directly on your local network or over a USB cable.
 
 How it works
 - Devices discover each other over local Wi-Fi (mDNS) or USB (ADB reverse tunnel) and connect over QUIC (TLS 1.3).
@@ -3300,7 +3300,7 @@ Android 上的功能层级
     </message>
     <message>
         <location filename="rust_strings.h" line="288"/>
-        <source>NectarLink never asks for every permission up front. Each feature works independently:
+        <source>Panal never asks for every permission up front. Each feature works independently:
 
 - Notification Access: Required only if you want phone notifications, inline replies, and notification-backed chat threads on your PC.
 - SMS and Contacts: Required only if you want to read and send SMS/MMS messages or look up contact names on your PC.
@@ -3317,7 +3317,7 @@ Android 上的功能层级
     </message>
     <message>
         <location filename="rust_strings.h" line="289"/>
-        <source>NectarLink overview</source>
+        <source>Panal overview</source>
         <translation>Panal 概览</translation>
     </message>
     <message>
@@ -3490,7 +3490,7 @@ What it needs
     <message>
         <location filename="rust_strings.h" line="311"/>
         <source>What it does
-Exposes an opt-in localhost HTTP/JSON and Server-Sent Events API on 127.0.0.1 (default port 53320) protected by a bearer token so scripts, CLI tools, and Stream Deck plugins can trigger NectarLink actions.
+Exposes an opt-in localhost HTTP/JSON and Server-Sent Events API on 127.0.0.1 (default port 53320) protected by a bearer token so scripts, CLI tools, and Stream Deck plugins can trigger Panal actions.
 
 Where to find it
 - Settings › Connection &amp; About › Local automation API.
@@ -3516,7 +3516,7 @@ Where to find it
 - Command Palette › Type on phone with PC keyboard.
 
 What it needs
-- Assist mode (Accessibility service), the NectarLink input method, or Elevated mode on your phone.</source>
+- Assist mode (Accessibility service), the Panal input method, or Elevated mode on your phone.</source>
         <translation>功能
 将电脑键盘的按键和粘贴的文本直接发送到手机，无需镜像手机屏幕。
 
@@ -3645,7 +3645,7 @@ Where to find it
 - Settings › General › Copy one-time codes.
 
 What it needs
-- Notification Access permission enabled for NectarLink on your Android phone.
+- Notification Access permission enabled for Panal on your Android phone.
 - The per-device Notifications toggle enabled on your PC.</source>
         <translation>功能
 将手机通知同步到首页动态和 Windows 通知弹窗。你可以直接回复消息、点击操作按钮、清除单条或整组通知，并撤销最近一次清除。
@@ -3665,7 +3665,7 @@ What it needs
 Opens a keyboard-first search bar over actions, contacts, message threads, mirrorable apps, phone quick toggles, clipboard history, and navigation pages.
 
 Where to find it
-- Global hotkey Ctrl+Alt+Space (or Ctrl+K inside the NectarLink window).
+- Global hotkey Ctrl+Alt+Space (or Ctrl+K inside the Panal window).
 - Commands in the top bar.
 
 What it needs
@@ -3767,7 +3767,7 @@ What it needs
     <message>
         <location filename="rust_strings.h" line="324"/>
         <source>What it does
-Sends files, folders, links, and text between your phone and PC at local network speed. If your phone is offline when you send, NectarLink places the item in the Waiting to send queue and delivers it automatically as soon as your phone reconnects.
+Sends files, folders, links, and text between your phone and PC at local network speed. If your phone is offline when you send, Panal places the item in the Waiting to send queue and delivers it automatically as soon as your phone reconnects.
 
 Where to find it
 - Home › Send files button, drag-and-drop anywhere on the window, Waiting to send card, and Transfers list.
@@ -3815,7 +3815,7 @@ Where to find it
 
 What it needs
 - Automatic PC-to-phone clipboard send works whenever your phone is connected.
-- Background phone-to-PC clipboard sync on Android 10+ uses notifications, the NectarLink quick tile, or Elevated mode.</source>
+- Background phone-to-PC clipboard sync on Android 10+ uses notifications, the Panal quick tile, or Elevated mode.</source>
         <translation>功能
 在电脑和手机之间共享复制的文本、富文本（HTML/RTF）、图片和少量复制的文件。在本地加密保存最多 50 条历史记录，支持置顶，并为链接、电话号码、地址和快递单号提供智能上下文标签。
 
@@ -3877,7 +3877,7 @@ What it needs
 Streams your PC&apos;s screen to your phone so you can view your desktop from across the room and use your phone as a trackpad or laser pointer.
 
 Where to find it
-- Started from the NectarLink app on your phone.
+- Started from the Panal app on your phone.
 - Settings › Devices › Share PC screen to phone.
 
 What it needs
@@ -3895,7 +3895,7 @@ What it needs
     <message>
         <location filename="rust_strings.h" line="330"/>
         <source>What it does
-Streams your phone camera into the NectarLink Virtual Camera on Windows so Zoom, Teams, Meet, Discord, and OBS can use your phone&apos;s rear or front camera at up to 4K.
+Streams your phone camera into the Panal Virtual Camera on Windows so Zoom, Teams, Meet, Discord, and OBS can use your phone&apos;s rear or front camera at up to 4K.
 
 Where to find it
 - Home › Phone as webcam.
@@ -5032,7 +5032,7 @@ What it needs
     </message>
     <message>
         <location filename="../qml/IslandWindow.qml" line="268"/>
-        <source>Click to view in NectarLink</source>
+        <source>Click to view in Panal</source>
         <translation>点击在 Panal 中查看</translation>
     </message>
     <message>
@@ -5110,7 +5110,7 @@ What it needs
     </message>
     <message>
         <location filename="rust_strings.h" line="348"/>
-        <source>Update NectarLink on %1.</source>
+        <source>Update Panal on %1.</source>
         <translation>请更新 %1 上的 Panal。</translation>
     </message>
     <message>
@@ -5188,12 +5188,12 @@ What it needs
     </message>
     <message>
         <location filename="../qml/components/LockChip.qml" line="46"/>
-        <source>On your phone, open NectarLink › Settings › Control from your PC and turn on the Accessibility service.</source>
+        <source>On your phone, open Panal › Settings › Control from your PC and turn on the Accessibility service.</source>
         <translation>请在手机上打开 Panal › 设置 › 从电脑控制，并开启无障碍服务。</translation>
     </message>
     <message>
         <location filename="../qml/components/LockChip.qml" line="48"/>
-        <source>Needs Elevated: set up Wireless debugging in NectarLink › Settings › Control from your PC, or connect the phone over USB with USB debugging allowed.</source>
+        <source>Needs Elevated: set up Wireless debugging in Panal › Settings › Control from your PC, or connect the phone over USB with USB debugging allowed.</source>
         <translation>需要高级权限：请在 Panal › 设置 › 从电脑控制 中设置无线调试，或通过 USB 连接手机并启用 USB 调试。</translation>
     </message>
     <message>
@@ -5202,32 +5202,32 @@ What it needs
     </message>
     <message>
         <location filename="../qml/components/LockChip.qml" line="50"/>
-        <source>On your phone, set NectarLink as the default SMS/Caller ID app when prompted.</source>
+        <source>On your phone, set Panal as the default SMS/Caller ID app when prompted.</source>
         <translation>请在手机上按提示将 Panal 设为默认短信/来电显示应用。</translation>
     </message>
     <message>
         <location filename="../qml/components/LockChip.qml" line="53"/>
-        <source>On your phone, open NectarLink and allow Notification access.</source>
+        <source>On your phone, open Panal and allow Notification access.</source>
         <translation>请在手机上打开 Panal 并允许通知使用权。</translation>
     </message>
     <message>
         <location filename="../qml/components/LockChip.qml" line="55"/>
-        <source>On your phone, open NectarLink and allow Do Not Disturb access.</source>
+        <source>On your phone, open Panal and allow Do Not Disturb access.</source>
         <translation>请在手机上打开 Panal 并允许免打扰权限。</translation>
     </message>
     <message>
         <location filename="../qml/components/LockChip.qml" line="57"/>
-        <source>On your phone, open NectarLink and allow Modify system settings.</source>
+        <source>On your phone, open Panal and allow Modify system settings.</source>
         <translation>请在手机上打开 Panal 并允许修改系统设置。</translation>
     </message>
     <message>
         <location filename="../qml/components/LockChip.qml" line="58"/>
-        <source>Open NectarLink on your phone and grant this permission in Settings.</source>
+        <source>Open Panal on your phone and grant this permission in Settings.</source>
         <translation>请在手机上打开 Panal，并在设置中授予此权限。</translation>
     </message>
     <message>
         <location filename="../qml/components/LockChip.qml" line="60"/>
-        <source>Open Settings › Camera &amp; Audio to set up the NectarLink virtual camera add-on.</source>
+        <source>Open Settings › Camera &amp; Audio to set up the Panal virtual camera add-on.</source>
         <translation>请打开设置 › 摄像头与音频，设置 Panal 虚拟摄像头附加组件。</translation>
     </message>
     <message>
@@ -5797,13 +5797,13 @@ What it needs
     </message>
     <message>
         <location filename="rust_strings.h" line="360"/>
-        <source>Recording from %1, saved in Downloads/Nectarlink</source>
-        <translation>来自 %1 的录制，已保存到 Downloads/Nectarlink</translation>
+        <source>Recording from %1, saved in Downloads/Panal</source>
+        <translation>来自 %1 的录制，已保存到 Downloads/Panal</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="361"/>
-        <source>Recording from %1, saved in Downloads\Nectarlink</source>
-        <translation>来自 %1 的录制，已保存到 Downloads\Nectarlink</translation>
+        <source>Recording from %1, saved in Downloads\Panal</source>
+        <translation>来自 %1 的录制，已保存到 Downloads\Panal</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="362"/>
@@ -5812,13 +5812,13 @@ What it needs
     </message>
     <message>
         <location filename="rust_strings.h" line="363"/>
-        <source>Saved %1 to Downloads/Nectarlink.</source>
-        <translation>已将 %1 保存到 Downloads/Nectarlink。</translation>
+        <source>Saved %1 to Downloads/Panal.</source>
+        <translation>已将 %1 保存到 Downloads/Panal。</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="364"/>
-        <source>Saved %1 to Downloads\Nectarlink.</source>
-        <translation>已将 %1 保存到 Downloads\Nectarlink。</translation>
+        <source>Saved %1 to Downloads\Panal.</source>
+        <translation>已将 %1 保存到 Downloads\Panal。</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="365"/>
@@ -5827,13 +5827,13 @@ What it needs
     </message>
     <message>
         <location filename="rust_strings.h" line="366"/>
-        <source>Screenshot from %1, saved in Downloads/Nectarlink</source>
-        <translation>来自 %1 的截图，已保存到 Downloads/Nectarlink</translation>
+        <source>Screenshot from %1, saved in Downloads/Panal</source>
+        <translation>来自 %1 的截图，已保存到 Downloads/Panal</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="367"/>
-        <source>Screenshot from %1, saved in Downloads\Nectarlink</source>
-        <translation>来自 %1 的截图，已保存到 Downloads\Nectarlink</translation>
+        <source>Screenshot from %1, saved in Downloads\Panal</source>
+        <translation>来自 %1 的截图，已保存到 Downloads\Panal</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="368"/>
@@ -5847,7 +5847,7 @@ What it needs
     </message>
     <message>
         <location filename="rust_strings.h" line="370"/>
-        <source>Set up Wireless debugging in NectarLink on the phone to open its apps here.</source>
+        <source>Set up Wireless debugging in Panal on the phone to open its apps here.</source>
         <translation>在手机上的 Panal 中设置无线调试，即可在这里打开其应用。</translation>
     </message>
     <message>
@@ -5857,7 +5857,7 @@ What it needs
     </message>
     <message>
         <location filename="rust_strings.h" line="372"/>
-        <source>The app didn&apos;t open on the phone. Try again, or open NectarLink on the phone to check Wireless debugging.</source>
+        <source>The app didn&apos;t open on the phone. Try again, or open Panal on the phone to check Wireless debugging.</source>
         <translation>应用未在手机上打开。请重试，或在手机上打开 Panal 检查无线调试。</translation>
     </message>
     <message>
@@ -5882,7 +5882,7 @@ What it needs
     </message>
     <message>
         <location filename="rust_strings.h" line="377"/>
-        <source>This phone&apos;s app doesn&apos;t share its screen yet. Update NectarLink on the phone.</source>
+        <source>This phone&apos;s app doesn&apos;t share its screen yet. Update Panal on the phone.</source>
         <translation>此手机上的应用尚不能共享屏幕。请更新手机上的 Panal。</translation>
     </message>
     <message>
@@ -5900,12 +5900,12 @@ What it needs
     </message>
     <message>
         <location filename="../qml/MirrorWindow.qml" line="25"/>
-        <source>%1 · NectarLink</source>
+        <source>%1 · Panal</source>
         <translation>%1 · Panal</translation>
     </message>
     <message>
         <location filename="../qml/MirrorWindow.qml" line="25"/>
-        <source>Phone screen · NectarLink</source>
+        <source>Phone screen · Panal</source>
         <translation>手机屏幕 · Panal</translation>
     </message>
     <message>
@@ -5981,7 +5981,7 @@ What it needs
     </message>
     <message>
         <location filename="../qml/MirrorWindow.qml" line="514"/>
-        <source>To control the phone, turn on Control from your PC in NectarLink&apos;s settings on the phone.</source>
+        <source>To control the phone, turn on Control from your PC in Panal&apos;s settings on the phone.</source>
         <translation>要控制手机，请在手机上的 Panal 设置中开启“从电脑控制”。</translation>
     </message>
     <message>
@@ -6349,7 +6349,7 @@ What it needs
     </message>
     <message>
         <location filename="../qml/pages/PairingPanel.qml" line="114"/>
-        <source>Install NectarLink</source>
+        <source>Install Panal</source>
         <translation>安装 Panal</translation>
     </message>
     <message>
@@ -6377,7 +6377,7 @@ What it needs
     </message>
     <message>
         <location filename="../qml/pages/PairingPanel.qml" line="187"/>
-        <source>Open NectarLink on your phone</source>
+        <source>Open Panal on your phone</source>
         <translation>在手机上打开 Panal</translation>
     </message>
     <message>
@@ -6387,7 +6387,7 @@ What it needs
     </message>
     <message>
         <location filename="../qml/pages/PairingPanel.qml" line="235"/>
-        <source>On your phone, open NectarLink and choose “Pair nearby”. It shows up here.</source>
+        <source>On your phone, open Panal and choose “Pair nearby”. It shows up here.</source>
         <translation>请在手机上打开 Panal 并选择“就近配对”，本机会显示该设备。</translation>
     </message>
     <message>
@@ -6498,7 +6498,7 @@ What it needs
     </message>
     <message>
         <location filename="rust_strings.h" line="395"/>
-        <source>Update NectarLink on %1 to use its microphone.</source>
+        <source>Update Panal on %1 to use its microphone.</source>
         <translation>请更新 %1 上的 Panal 以使用其麦克风。</translation>
     </message>
 </context>
@@ -6506,7 +6506,7 @@ What it needs
     <name>PhoneSound</name>
     <message>
         <location filename="rust_strings.h" line="396"/>
-        <source>%1 couldn&apos;t ask to share its sound. Check that NectarLink can show notifications on the phone.</source>
+        <source>%1 couldn&apos;t ask to share its sound. Check that Panal can show notifications on the phone.</source>
         <translation>%1 无法请求共享声音。请检查手机上的 Panal 是否可以显示通知。</translation>
     </message>
     <message>
@@ -6521,7 +6521,7 @@ What it needs
     </message>
     <message>
         <location filename="rust_strings.h" line="399"/>
-        <source>Update NectarLink on %1 to play its sound here.</source>
+        <source>Update Panal on %1 to play its sound here.</source>
         <translation>请在 %1 上更新 Panal，以在此播放其声音。</translation>
     </message>
 </context>
@@ -6574,7 +6574,7 @@ What it needs
     </message>
     <message>
         <location filename="rust_strings.h" line="409"/>
-        <source>Update NectarLink on %1 to back up its photos.</source>
+        <source>Update Panal on %1 to back up its photos.</source>
         <translation>请在 %1 上更新 Panal 以备份其照片。</translation>
     </message>
     <message>
@@ -6587,8 +6587,8 @@ What it needs
     <name>Photos</name>
     <message>
         <location filename="rust_strings.h" line="411"/>
-        <source>%1 of %2 couldn&apos;t be moved to %3. They&apos;re in Downloads\Nectarlink.</source>
-        <translation>%2 项中有 %1 项无法移动到 %3。它们在 Downloads\Nectarlink 中。</translation>
+        <source>%1 of %2 couldn&apos;t be moved to %3. They&apos;re in Downloads\Panal.</source>
+        <translation>%2 项中有 %1 项无法移动到 %3。它们在 Downloads\Panal 中。</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="412"/>
@@ -6662,8 +6662,8 @@ What it needs
     </message>
     <message>
         <location filename="rust_strings.h" line="424"/>
-        <source>The photo couldn&apos;t be copied. It&apos;s in Downloads\Nectarlink.</source>
-        <translation>无法复制照片。它在 Downloads\Nectarlink 中。</translation>
+        <source>The photo couldn&apos;t be copied. It&apos;s in Downloads\Panal.</source>
+        <translation>无法复制照片。它在 Downloads\Panal 中。</translation>
     </message>
 </context>
 <context>
@@ -6977,7 +6977,7 @@ What it needs
     </message>
     <message>
         <location filename="rust_strings.h" line="430"/>
-        <source>Update NectarLink on %1 to play on it.</source>
+        <source>Update Panal on %1 to play on it.</source>
         <translation>请更新 %1 上的 Panal 以在其上播放。</translation>
     </message>
 </context>
@@ -7039,7 +7039,7 @@ What it needs
     </message>
     <message>
         <location filename="rust_strings.h" line="439"/>
-        <source>Send to %1 with NectarLink</source>
+        <source>Send to %1 with Panal</source>
         <translation>用 Panal 发送到 %1</translation>
     </message>
     <message>
@@ -7518,7 +7518,7 @@ What it needs
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="923"/>
-        <source>NectarLink follows Windows unless you pick one.</source>
+        <source>Panal follows Windows unless you pick one.</source>
         <translation>除非你另行选择，Panal 会跟随 Windows 的语言。</translation>
     </message>
     <message>
@@ -8464,7 +8464,7 @@ What it needs
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="3272"/>
-        <source>NectarLink %1</source>
+        <source>Panal %1</source>
         <translation>Panal %1</translation>
     </message>
     <message>
@@ -8582,7 +8582,7 @@ What it needs
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="3588"/>
-        <source>Wi-Fi networks this PC has joined before. Your system keeps their passwords; NectarLink never sees them.</source>
+        <source>Wi-Fi networks this PC has joined before. Your system keeps their passwords; Panal never sees them.</source>
         <translation>此电脑以前连接过的 Wi-Fi 网络。密码由系统保存，Panal 不会看到。</translation>
     </message>
     <message>
@@ -8592,7 +8592,7 @@ What it needs
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="3591"/>
-        <source>Wi-Fi networks this PC has joined before. Windows keeps their passwords; NectarLink never sees them.</source>
+        <source>Wi-Fi networks this PC has joined before. Windows keeps their passwords; Panal never sees them.</source>
         <translation>此电脑以前连接过的 Wi-Fi 网络。密码由 Windows 保存，Panal 不会看到。</translation>
     </message>
     <message>
@@ -8619,7 +8619,7 @@ What it needs
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="922"/>
-        <source>NectarLink follows the system unless you pick one.</source>
+        <source>Panal follows the system unless you pick one.</source>
         <translation>除非你另行选择，Panal 会跟随系统语言。</translation>
     </message>
     <message>
@@ -8664,7 +8664,7 @@ What it needs
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="3474"/>
-        <source>The phone asks once to let this PC in. NectarLink there also needs All files access, or this folder under Selected folders only.</source>
+        <source>The phone asks once to let this PC in. Panal there also needs All files access, or this folder under Selected folders only.</source>
         <translation>手机会询问一次是否允许这台电脑访问。手机上的 Panal 还需要“所有文件访问权限”，或在“仅选定的文件夹”中加入此文件夹。</translation>
     </message>
     <message>
@@ -8765,7 +8765,7 @@ What it needs
     </message>
     <message>
         <location filename="rust_strings.h" line="447"/>
-        <source>Couldn&apos;t uninstall NectarLink: %1</source>
+        <source>Couldn&apos;t uninstall Panal: %1</source>
         <translation>无法卸载 Panal：%1</translation>
     </message>
     <message>
@@ -8795,7 +8795,7 @@ What it needs
     </message>
     <message>
         <location filename="rust_strings.h" line="453"/>
-        <source>The uninstaller is missing. Reinstall NectarLink, then uninstall it.</source>
+        <source>The uninstaller is missing. Reinstall Panal, then uninstall it.</source>
         <translation>缺少卸载程序。请重新安装 Panal，然后再卸载。</translation>
     </message>
     <message>
@@ -8823,17 +8823,17 @@ What it needs
     <name>SetupWindow</name>
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="51"/>
-        <source>Uninstall NectarLink</source>
+        <source>Uninstall Panal</source>
         <translation>卸载 Panal</translation>
     </message>
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="51"/>
-        <source>NectarLink Setup</source>
+        <source>Panal Setup</source>
         <translation>Panal 安装程序</translation>
     </message>
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="67"/>
-        <source>Install NectarLink in</source>
+        <source>Install Panal in</source>
         <translation>将 Panal 安装到</translation>
     </message>
     <message>
@@ -8846,12 +8846,12 @@ What it needs
     </message>
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="187"/>
-        <source>NectarLink</source>
+        <source>Panal</source>
         <translation>Panal</translation>
     </message>
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="216"/>
-        <source>Couldn&apos;t uninstall NectarLink</source>
+        <source>Couldn&apos;t uninstall Panal</source>
         <translation>无法卸载 Panal</translation>
     </message>
     <message>
@@ -8861,27 +8861,27 @@ What it needs
     </message>
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="218"/>
-        <source>Uninstalling NectarLink</source>
+        <source>Uninstalling Panal</source>
         <translation>正在卸载 Panal</translation>
     </message>
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="219"/>
-        <source>Updating NectarLink</source>
+        <source>Updating Panal</source>
         <translation>正在更新 Panal</translation>
     </message>
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="220"/>
-        <source>Installing NectarLink</source>
+        <source>Installing Panal</source>
         <translation>正在安装 Panal</translation>
     </message>
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="221"/>
-        <source>Uninstall NectarLink?</source>
+        <source>Uninstall Panal?</source>
         <translation>要卸载 Panal 吗？</translation>
     </message>
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="236"/>
-        <source>Sorry to see you go. This uninstalls NectarLink and deletes its settings and pairings on this PC. Files you received stay in %1.</source>
+        <source>Sorry to see you go. This uninstalls Panal and deletes its settings and pairings on this PC. Files you received stay in %1.</source>
         <translation>很遗憾你要离开。这会卸载 Panal，并删除这台电脑上的设置和配对。你收到的文件仍保留在 %1。</translation>
     </message>
     <message>
@@ -8931,7 +8931,7 @@ What it needs
     </message>
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="298"/>
-        <source>Keep NectarLink</source>
+        <source>Keep Panal</source>
         <translation>保留 Panal</translation>
     </message>
     <message>
@@ -8962,12 +8962,12 @@ What it needs
     </message>
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="469"/>
-        <source>NectarLink is uninstalled</source>
+        <source>Panal is uninstalled</source>
         <translation>Panal 已卸载</translation>
     </message>
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="469"/>
-        <source>NectarLink is ready</source>
+        <source>Panal is ready</source>
         <translation>Panal 已就绪</translation>
     </message>
     <message>
@@ -8992,12 +8992,12 @@ What it needs
     </message>
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="531"/>
-        <source>Open NectarLink</source>
+        <source>Open Panal</source>
         <translation>打开 Panal</translation>
     </message>
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="591"/>
-        <source>NectarLink goes into Program Files, or the folder you choose, for everyone on this PC. Setup also:</source>
+        <source>Panal goes into Program Files, or the folder you choose, for everyone on this PC. Setup also:</source>
         <translation>Panal 将安装到 Program Files 或你选择的文件夹，供本机所有用户使用。安装程序还会：</translation>
     </message>
     <message>
@@ -9006,7 +9006,7 @@ What it needs
         <translation>在只有管理员能更改该文件夹时，添加一个无需管理员提示即可安装更新的任务</translation>
     </message>
     <message>
-        <source>NectarLink goes into Program Files for everyone on this PC. Setup also:</source>
+        <source>Panal goes into Program Files for everyone on this PC. Setup also:</source>
         <translation type="vanished">Panal 将安装到 Program Files，供本机所有用户使用。安装程序还会：</translation>
     </message>
     <message>
@@ -9047,7 +9047,7 @@ What it needs
     <name>ShelfWindow</name>
     <message>
         <location filename="../qml/ShelfWindow.qml" line="16"/>
-        <source>NectarLink Shelf</source>
+        <source>Panal Shelf</source>
         <translation>Panal 收纳架</translation>
     </message>
     <message>
@@ -9247,12 +9247,12 @@ What it needs
     </message>
     <message>
         <location filename="rust_strings.h" line="459"/>
-        <source>On the phone, allow All files access for NectarLink.</source>
+        <source>On the phone, allow All files access for Panal.</source>
         <translation>请在手机上为 Panal 开启“所有文件访问权限”。</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="460"/>
-        <source>On the phone, turn on Browse this phone&apos;s storage in File Explorer in NectarLink.</source>
+        <source>On the phone, turn on Browse this phone&apos;s storage in File Explorer in Panal.</source>
         <translation>请在手机的 Panal 中打开“在文件资源管理器中浏览此手机的存储”。</translation>
     </message>
 </context>
@@ -9721,8 +9721,8 @@ What it needs
     <name>Transfers</name>
     <message>
         <location filename="rust_strings.h" line="490"/>
-        <source>Accept in NectarLink to save to Downloads\Nectarlink</source>
-        <translation>在 Panal 中接受即可保存到 Downloads\Nectarlink</translation>
+        <source>Accept in Panal to save to Downloads\Panal</source>
+        <translation>在 Panal 中接受即可保存到 Downloads\Panal</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="491"/>
@@ -9731,13 +9731,13 @@ What it needs
     </message>
     <message>
         <location filename="rust_strings.h" line="492"/>
-        <source>From %1, opened from Downloads\Nectarlink</source>
-        <translation>来自 %1，已从 Downloads\Nectarlink 打开</translation>
+        <source>From %1, opened from Downloads\Panal</source>
+        <translation>来自 %1，已从 Downloads\Panal 打开</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="493"/>
-        <source>From %1, saved in Downloads\Nectarlink</source>
-        <translation>来自 %1，已保存到 Downloads\Nectarlink</translation>
+        <source>From %1, saved in Downloads\Panal</source>
+        <translation>来自 %1，已保存到 Downloads\Panal</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="494"/>
@@ -9764,27 +9764,27 @@ What it needs
     </message>
     <message>
         <location filename="rust_strings.h" line="498"/>
-        <source>NectarLink %1 is available</source>
+        <source>Panal %1 is available</source>
         <translation>Panal %1 已发布</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="499"/>
-        <source>NectarLink %1 is available.</source>
+        <source>Panal %1 is available.</source>
         <translation>Panal %1 已发布。</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="500"/>
-        <source>NectarLink is still on the version you had. Try again from Settings.</source>
+        <source>Panal is still on the version you had. Try again from Settings.</source>
         <translation>Panal 仍是原来的版本。请在设置中重试。</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="501"/>
-        <source>NectarLink is up to date.</source>
+        <source>Panal is up to date.</source>
         <translation>Panal 已是最新版本。</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="502"/>
-        <source>NectarLink is updated to %1</source>
+        <source>Panal is updated to %1</source>
         <translation>Panal 已更新到 %1</translation>
     </message>
     <message>
@@ -9824,7 +9824,7 @@ What it needs
     </message>
     <message>
         <location filename="rust_strings.h" line="510"/>
-        <source>The update is installed. Restart NectarLink to use it.</source>
+        <source>The update is installed. Restart Panal to use it.</source>
         <translation>更新已安装。请重新启动 Panal 以使用新版本。</translation>
     </message>
     <message>
@@ -10012,7 +10012,7 @@ What it needs
     </message>
     <message>
         <location filename="../qml/pages/WalkthroughPage.qml" line="1555"/>
-        <source>Keep NectarLink ready in the system tray when you sign in.</source>
+        <source>Keep Panal ready in the system tray when you sign in.</source>
         <translation>登录后让 Panal 常驻系统托盘待命。</translation>
     </message>
     <message>
@@ -10057,7 +10057,7 @@ What it needs
     </message>
     <message>
         <location filename="../qml/pages/WalkthroughPage.qml"/>
-        <source>Welcome to NectarLink</source>
+        <source>Welcome to Panal</source>
         <translation>欢迎使用 Panal</translation>
     </message>
     <message>
@@ -10067,7 +10067,7 @@ What it needs
     </message>
     <message>
         <location filename="../qml/pages/WalkthroughPage.qml"/>
-        <source>Install NectarLink on your phone</source>
+        <source>Install Panal on your phone</source>
         <translation>在手机上安装 Panal</translation>
     </message>
     <message>
@@ -10107,7 +10107,7 @@ What it needs
     </message>
     <message>
         <location filename="../qml/pages/WalkthroughPage.qml"/>
-        <source>Scan the QR code from the NectarLink Android app, or pick your phone from nearby devices.</source>
+        <source>Scan the QR code from the Panal Android app, or pick your phone from nearby devices.</source>
         <translation>用 Panal 安卓应用扫描二维码，或从附近设备中选择你的手机。</translation>
     </message>
     <message>
@@ -10257,7 +10257,7 @@ What it needs
     </message>
     <message>
         <location filename="../qml/pages/WalkthroughPage.qml"/>
-        <source>Notifications are off for NectarLink in Windows Settings.</source>
+        <source>Notifications are off for Panal in Windows Settings.</source>
         <translation>Windows 设置中已关闭 Panal 的通知。</translation>
     </message>
     <message>
@@ -10292,7 +10292,7 @@ What it needs
     </message>
     <message>
         <location filename="../qml/pages/WalkthroughPage.qml"/>
-        <source>Open the NectarLink Android app whenever you are ready to scan the QR code.</source>
+        <source>Open the Panal Android app whenever you are ready to scan the QR code.</source>
         <translation>准备好扫描二维码时，打开 Panal 安卓应用。</translation>
     </message>
     <message>
@@ -10302,7 +10302,7 @@ What it needs
     </message>
     <message>
         <location filename="../qml/pages/WalkthroughPage.qml"/>
-        <source>Browse every feature in NectarLink, see what permissions it needs, and jump straight to it.</source>
+        <source>Browse every feature in Panal, see what permissions it needs, and jump straight to it.</source>
         <translation>浏览 Panal 的所有功能，查看所需权限，并直接跳转。</translation>
     </message>
     <message>
@@ -10348,12 +10348,12 @@ What it needs
     <name>WelcomePage</name>
     <message>
         <location filename="../qml/pages/WelcomePage.qml" line="36"/>
-        <source>Welcome to NectarLink</source>
+        <source>Welcome to Panal</source>
         <translation>欢迎使用 Panal</translation>
     </message>
     <message>
         <location filename="../qml/pages/WelcomePage.qml" line="46"/>
-        <source>NectarLink couldn&apos;t start.</source>
+        <source>Panal couldn&apos;t start.</source>
         <translation>Panal 无法启动。</translation>
     </message>
     <message>

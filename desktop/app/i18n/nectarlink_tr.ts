@@ -55,27 +55,27 @@
     </message>
     <message>
         <location filename="rust_strings.h" line="17"/>
-        <source>NectarLink · %1</source>
+        <source>Panal · %1</source>
         <translation>Panal · %1</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="18"/>
-        <source>NectarLink · %1 devices connected</source>
+        <source>Panal · %1 devices connected</source>
         <translation>Panal · %1 cihaz bağlı</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="19"/>
-        <source>NectarLink · 1 device connected</source>
+        <source>Panal · 1 device connected</source>
         <translation>Panal · 1 cihaz bağlı</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="20"/>
-        <source>NectarLink · no devices paired</source>
+        <source>Panal · no devices paired</source>
         <translation>Panal · eşleştirilmiş cihaz yok</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="21"/>
-        <source>NectarLink · not connected</source>
+        <source>Panal · not connected</source>
         <translation>Panal · bağlı değil</translation>
     </message>
     <message>
@@ -85,7 +85,7 @@
     </message>
     <message>
         <location filename="rust_strings.h" line="23"/>
-        <source>Open NectarLink</source>
+        <source>Open Panal</source>
         <translation>Panal&apos;i aç</translation>
     </message>
     <message>
@@ -95,7 +95,7 @@
     </message>
     <message>
         <location filename="rust_strings.h" line="25"/>
-        <source>Quit NectarLink</source>
+        <source>Quit Panal</source>
         <translation>Panal&apos;ten çık</translation>
     </message>
     <message>
@@ -198,7 +198,7 @@
     </message>
     <message>
         <location filename="../qml/pages/AppsPage.qml" line="94"/>
-        <source>Set up Wireless debugging in NectarLink on the phone to open its apps here.</source>
+        <source>Set up Wireless debugging in Panal on the phone to open its apps here.</source>
         <translation>Uygulamalarını burada açmak için telefondaki Panal&apos;te Kablosuz hata ayıklamayı ayarlayın.</translation>
     </message>
     <message>
@@ -824,7 +824,7 @@
     </message>
     <message>
         <location filename="rust_strings.h" line="63"/>
-        <source>Update NectarLink on %1 to send it images.</source>
+        <source>Update Panal on %1 to send it images.</source>
         <translation>Görüntü gönderebilmek için %1 cihazındaki Panal&apos;i güncelleyin.</translation>
     </message>
     <message>
@@ -1082,7 +1082,7 @@
     </message>
     <message>
         <location filename="rust_strings.h" line="105"/>
-        <source>Opened Recordings folder. Start a voice note in NectarLink on %1 to send it here.</source>
+        <source>Opened Recordings folder. Start a voice note in Panal on %1 to send it here.</source>
         <translation>Kayıtlar klasörü açıldı. Buraya göndermek için %1 cihazındaki Panal&apos;te bir sesli not başlatın.</translation>
     </message>
     <message>
@@ -1242,7 +1242,7 @@
     </message>
     <message>
         <location filename="rust_strings.h" line="137"/>
-        <source>Stream %1&apos;s camera into the NectarLink virtual webcam</source>
+        <source>Stream %1&apos;s camera into the Panal virtual webcam</source>
         <translation>%1 kamerasını Panal sanal web kamerasına aktar</translation>
     </message>
     <message>
@@ -1903,12 +1903,12 @@
     <name>Doctor</name>
     <message>
         <location filename="rust_strings.h" line="187"/>
-        <source>%1 Open NectarLink on the phone and keep both on the same network. If the phone asks to run in the background, allow it.</source>
+        <source>%1 Open Panal on the phone and keep both on the same network. If the phone asks to run in the background, allow it.</source>
         <translation>%1 Telefonda Panal&apos;i açın ve ikisini de aynı ağda tutun. Telefon arka planda çalışmak için izin isterse izin verin.</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="188"/>
-        <source>%1 announces itself at %2, which isn&apos;t in a private range such as 192.168.x.x. NectarLink connects on such a network once both apps are up to date. Until then, turn on Connect over mobile data on both, or connect with a USB cable.</source>
+        <source>%1 announces itself at %2, which isn&apos;t in a private range such as 192.168.x.x. Panal connects on such a network once both apps are up to date. Until then, turn on Connect over mobile data on both, or connect with a USB cable.</source>
         <translation>%1 kendini %2 adresinde duyuruyor ve bu adres 192.168.x.x gibi özel bir aralıkta değil. İki uygulama da güncel olduğunda Panal böyle bir ağda bağlanır. O zamana kadar ikisinde de Mobil veri üzerinden bağlan seçeneğini açın veya USB kablosuyla bağlayın.</translation>
     </message>
     <message>
@@ -1963,7 +1963,7 @@
     </message>
     <message>
         <location filename="rust_strings.h" line="199"/>
-        <source>A firewall rule blocks incoming NectarLink connections. Allow it, and your phone can connect.</source>
+        <source>A firewall rule blocks incoming Panal connections. Allow it, and your phone can connect.</source>
         <translation>Bir güvenlik duvarı kuralı gelen Panal bağlantılarını engelliyor. İzin verirseniz telefonunuz bağlanabilir.</translation>
     </message>
     <message>
@@ -2033,47 +2033,47 @@
     </message>
     <message>
         <location filename="rust_strings.h" line="213"/>
-        <source>NectarLink can&apos;t show its icon in the top bar</source>
+        <source>Panal can&apos;t show its icon in the top bar</source>
         <translation>Panal simgesini üst çubukta gösteremiyor</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="214"/>
-        <source>NectarLink is in the top bar</source>
+        <source>Panal is in the top bar</source>
         <translation>Panal üst çubukta</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="215"/>
-        <source>NectarLink isn&apos;t allowed through Windows Firewall</source>
+        <source>Panal isn&apos;t allowed through Windows Firewall</source>
         <translation>Panal&apos;e Windows Güvenlik Duvarı&apos;ndan izin verilmiyor</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="216"/>
-        <source>NectarLink isn&apos;t allowed through the firewall</source>
+        <source>Panal isn&apos;t allowed through the firewall</source>
         <translation>Panal&apos;e güvenlik duvarından izin verilmiyor</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="217"/>
-        <source>On Huawei / Honor: open Settings → Battery → App launch, turn off Manage automatically for NectarLink, and keep Auto-launch, Secondary launch, and Run in background on.</source>
+        <source>On Huawei / Honor: open Settings → Battery → App launch, turn off Manage automatically for Panal, and keep Auto-launch, Secondary launch, and Run in background on.</source>
         <translation>Huawei / Honor&apos;da: Ayarlar → Pil → Uygulama başlatma&apos;yı açın, Panal için Otomatik olarak yönet&apos;i kapatın ve Otomatik başlatma, İkincil başlatma ve Arka planda çalıştır seçeneklerini açık tutun.</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="218"/>
-        <source>On OnePlus / OxygenOS: open Settings → Apps → App management → NectarLink → Battery usage and turn on Allow background activity and Allow auto-launch.</source>
+        <source>On OnePlus / OxygenOS: open Settings → Apps → App management → Panal → Battery usage and turn on Allow background activity and Allow auto-launch.</source>
         <translation>OnePlus / OxygenOS&apos;ta: Ayarlar → Uygulamalar → Uygulama yönetimi → Panal → Pil kullanımı&apos;nı açın ve Arka plan etkinliğine izin ver ile Otomatik başlatmaya izin ver seçeneklerini açın.</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="219"/>
-        <source>On Oppo / Realme: open Settings → Apps → App management → NectarLink → Battery usage and turn on Allow background activity and Allow auto-launch.</source>
+        <source>On Oppo / Realme: open Settings → Apps → App management → Panal → Battery usage and turn on Allow background activity and Allow auto-launch.</source>
         <translation>Oppo / Realme&apos;de: Ayarlar → Uygulamalar → Uygulama yönetimi → Panal → Pil kullanımı&apos;nı açın ve Arka plan etkinliğine izin ver ile Otomatik başlatmaya izin ver seçeneklerini açın.</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="220"/>
-        <source>On Pixel: open Settings → Apps → See all apps → NectarLink → App battery usage, tap Allow background usage, and choose Unrestricted.</source>
+        <source>On Pixel: open Settings → Apps → See all apps → Panal → App battery usage, tap Allow background usage, and choose Unrestricted.</source>
         <translation>Pixel&apos;de: Ayarlar → Uygulamalar → Tüm uygulamaları göster → Panal → Uygulama pil kullanımı&apos;nı açın, Arka planda kullanıma izin ver&apos;e dokunun ve Kısıtlanmamış&apos;ı seçin.</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="221"/>
-        <source>On Samsung: open Settings → Apps → NectarLink → Battery and choose Unrestricted, then in Device care → Battery → Background usage limits make sure NectarLink is never put to sleep.</source>
+        <source>On Samsung: open Settings → Apps → Panal → Battery and choose Unrestricted, then in Device care → Battery → Background usage limits make sure Panal is never put to sleep.</source>
         <translation>Samsung&apos;da: Ayarlar → Uygulamalar → Panal → Pil&apos;i açıp Kısıtlanmamış&apos;ı seçin, ardından Cihaz bakımı → Pil → Arka plan kullanım sınırları bölümünde Panal&apos;in asla uyku moduna alınmadığından emin olun.</translation>
     </message>
     <message>
@@ -2083,12 +2083,12 @@
     </message>
     <message>
         <location filename="rust_strings.h" line="223"/>
-        <source>On Vivo / OriginOS / Funtouch: open Settings → Battery → Background power consumption management → NectarLink and choose Unrestricted, and allow Autostart.</source>
+        <source>On Vivo / OriginOS / Funtouch: open Settings → Battery → Background power consumption management → Panal and choose Unrestricted, and allow Autostart.</source>
         <translation>Vivo / OriginOS / Funtouch&apos;ta: Ayarlar → Pil → Arka plan güç tüketimi yönetimi → Panal&apos;i açıp Kısıtlanmamış&apos;ı seçin ve Otomatik başlatmaya izin verin.</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="224"/>
-        <source>On Xiaomi / HyperOS / MIUI: open Settings → Apps → Manage apps → NectarLink, turn on Autostart, and set Battery saver to No restrictions.</source>
+        <source>On Xiaomi / HyperOS / MIUI: open Settings → Apps → Manage apps → Panal, turn on Autostart, and set Battery saver to No restrictions.</source>
         <translation>Xiaomi / HyperOS / MIUI&apos;de: Ayarlar → Uygulamalar → Uygulamaları yönet → Panal&apos;i açın, Otomatik başlatma&apos;yı açın ve Pil tasarrufu&apos;nu Kısıtlama yok olarak ayarlayın.</translation>
     </message>
     <message>
@@ -2143,7 +2143,7 @@
     </message>
     <message>
         <location filename="rust_strings.h" line="235"/>
-        <source>The firewall blocks NectarLink</source>
+        <source>The firewall blocks Panal</source>
         <translation>Güvenlik duvarı Panal&apos;i engelliyor</translation>
     </message>
     <message>
@@ -2193,7 +2193,7 @@
     </message>
     <message>
         <location filename="rust_strings.h" line="245"/>
-        <source>Windows Firewall blocks NectarLink</source>
+        <source>Windows Firewall blocks Panal</source>
         <translation>Windows Güvenlik Duvarı Panal&apos;i engelliyor</translation>
     </message>
     <message>
@@ -2474,7 +2474,7 @@
     </message>
     <message>
         <location filename="../qml/pages/FeaturesGuidePage.qml" line="586"/>
-        <source>Every feature in NectarLink, what it needs, and where to find it.</source>
+        <source>Every feature in Panal, what it needs, and where to find it.</source>
         <translation>Panal&apos;teki her özellik, neye ihtiyaç duyduğu ve nerede bulunacağı.</translation>
     </message>
     <message>
@@ -2764,7 +2764,7 @@
     </message>
     <message>
         <location filename="../qml/pages/FeaturesGuidePage.qml"/>
-        <source>Use your phone camera as the NectarLink Virtual Camera in Zoom, Teams, Meet, and OBS.</source>
+        <source>Use your phone camera as the Panal Virtual Camera in Zoom, Teams, Meet, and OBS.</source>
         <translation>Telefon kamerasını Zoom, Teams, Meet ve OBS&apos;de Panal Sanal Kamera olarak kullanın.</translation>
     </message>
     <message>
@@ -3115,10 +3115,10 @@
     <name>Guide</name>
     <message>
         <location filename="rust_strings.h" line="265"/>
-        <source>1. Install NectarLink on your PC (Windows 11 or Linux) and your Android phone (Android 8.0 or newer).
+        <source>1. Install Panal on your PC (Windows 11 or Linux) and your Android phone (Android 8.0 or newer).
 2. Connect both devices to the same Wi-Fi network, or plug your phone into your PC with a USB cable.
 3. Open the Pair step in the setup walkthrough, or click + (Pair a new device) at the bottom of the left rail.
-4. Scan the QR code from the NectarLink Android app, or select your phone from the nearby devices list and confirm that the 6-digit code matches on both screens.
+4. Scan the QR code from the Panal Android app, or select your phone from the nearby devices list and confirm that the 6-digit code matches on both screens.
 5. Choose which features to share for that phone and grant only the Android permissions you want to use.</source>
         <translation>1. Panal&apos;i bilgisayarınıza (Windows 11 veya Linux) ve Android telefonunuza (Android 8.0 veya üzeri) kurun.
 2. İki cihazı da aynı Wi-Fi ağına bağlayın veya telefonunuzu USB kablosuyla bilgisayarınıza takın.
@@ -3196,9 +3196,9 @@
         <source>If your phone and PC do not see each other:
 
 1. Open Connection Doctor from Settings › Connection &amp; About or the Command Palette.
-2. Check that your Wi-Fi network profile in Windows is set to Private rather than Public, or click Fix in Connection Doctor to allow NectarLink through Windows Firewall.
+2. Check that your Wi-Fi network profile in Windows is set to Private rather than Public, or click Fix in Connection Doctor to allow Panal through Windows Firewall.
 3. Verify that both devices are on the same subnet and that guest Wi-Fi client isolation is turned off on your router.
-4. You can also connect over a USB cable with USB debugging enabled; NectarLink automatically sets up a local tunnel.</source>
+4. You can also connect over a USB cable with USB debugging enabled; Panal automatically sets up a local tunnel.</source>
         <translation>Telefonunuz ve bilgisayarınız birbirini görmüyorsa:
 
 1. Bağlantı Doktoru&apos;nu Ayarlar › Bağlantı ve Hakkında bölümünden veya Komut Paleti&apos;nden açın.
@@ -3247,7 +3247,7 @@ Bilgisayar klasörlerini paylaş, Uzaktan giriş ve Ters bilgisayar ekranı yans
     </message>
     <message>
         <location filename="rust_strings.h" line="285"/>
-        <source>Most NectarLink features work in Standard mode with regular Android permissions. Two optional modes unlock deeper system integration:
+        <source>Most Panal features work in Standard mode with regular Android permissions. Two optional modes unlock deeper system integration:
 
 Elevated mode (Wireless debugging or root)
 - Captures the phone screen without showing the Android cast confirmation prompt every time.
@@ -3256,7 +3256,7 @@ Elevated mode (Wireless debugging or root)
 
 Assist mode (Android Accessibility Service)
 - Injects mouse clicks, scrolling, and touch gestures when you control your phone from your PC.
-- NectarLink never reads screen text or logs keystrokes through the Accessibility service.</source>
+- Panal never reads screen text or logs keystrokes through the Accessibility service.</source>
         <translation>Panal özelliklerinin çoğu, normal Android izinleriyle Standart modda çalışır. İsteğe bağlı iki mod daha derin sistem entegrasyonu sağlar:
 
 Yükseltilmiş mod (Kablosuz hata ayıklama veya root)
@@ -3275,7 +3275,7 @@ Yardımcı mod (Android Erişilebilirlik Hizmeti)
     </message>
     <message>
         <location filename="rust_strings.h" line="287"/>
-        <source>NectarLink links your Android phone and your PC directly on your local network or over a USB cable.
+        <source>Panal links your Android phone and your PC directly on your local network or over a USB cable.
 
 How it works
 - Devices discover each other over local Wi-Fi (mDNS) or USB (ADB reverse tunnel) and connect over QUIC (TLS 1.3).
@@ -3300,7 +3300,7 @@ Android&apos;de yetenek seviyeleri
     </message>
     <message>
         <location filename="rust_strings.h" line="288"/>
-        <source>NectarLink never asks for every permission up front. Each feature works independently:
+        <source>Panal never asks for every permission up front. Each feature works independently:
 
 - Notification Access: Required only if you want phone notifications, inline replies, and notification-backed chat threads on your PC.
 - SMS and Contacts: Required only if you want to read and send SMS/MMS messages or look up contact names on your PC.
@@ -3317,7 +3317,7 @@ Android&apos;de yetenek seviyeleri
     </message>
     <message>
         <location filename="rust_strings.h" line="289"/>
-        <source>NectarLink overview</source>
+        <source>Panal overview</source>
         <translation>Panal&apos;e genel bakış</translation>
     </message>
     <message>
@@ -3490,7 +3490,7 @@ Neler gerekir
     <message>
         <location filename="rust_strings.h" line="311"/>
         <source>What it does
-Exposes an opt-in localhost HTTP/JSON and Server-Sent Events API on 127.0.0.1 (default port 53320) protected by a bearer token so scripts, CLI tools, and Stream Deck plugins can trigger NectarLink actions.
+Exposes an opt-in localhost HTTP/JSON and Server-Sent Events API on 127.0.0.1 (default port 53320) protected by a bearer token so scripts, CLI tools, and Stream Deck plugins can trigger Panal actions.
 
 Where to find it
 - Settings › Connection &amp; About › Local automation API.
@@ -3516,7 +3516,7 @@ Where to find it
 - Command Palette › Type on phone with PC keyboard.
 
 What it needs
-- Assist mode (Accessibility service), the NectarLink input method, or Elevated mode on your phone.</source>
+- Assist mode (Accessibility service), the Panal input method, or Elevated mode on your phone.</source>
         <translation>Ne yapar
 Bilgisayar klavyenizdeki tuş vuruşlarını ve yapıştırılan metni, telefon ekranını yansıtmaya gerek kalmadan doğrudan telefonunuza iletir.
 
@@ -3645,7 +3645,7 @@ Where to find it
 - Settings › General › Copy one-time codes.
 
 What it needs
-- Notification Access permission enabled for NectarLink on your Android phone.
+- Notification Access permission enabled for Panal on your Android phone.
 - The per-device Notifications toggle enabled on your PC.</source>
         <translation>Ne yapar
 Telefon bildirimlerinizi Ana Sayfa akışına ve Windows bildirim açılır pencerelerine yansıtır. Mesajlara satır içi yanıt verebilir, eylem düğmelerine tıklayabilir, bildirimleri tek tek veya grup olarak kapatabilir ve son kapatmayı geri alabilirsiniz.
@@ -3665,7 +3665,7 @@ Neler gerekir
 Opens a keyboard-first search bar over actions, contacts, message threads, mirrorable apps, phone quick toggles, clipboard history, and navigation pages.
 
 Where to find it
-- Global hotkey Ctrl+Alt+Space (or Ctrl+K inside the NectarLink window).
+- Global hotkey Ctrl+Alt+Space (or Ctrl+K inside the Panal window).
 - Commands in the top bar.
 
 What it needs
@@ -3767,7 +3767,7 @@ Neler gerekir
     <message>
         <location filename="rust_strings.h" line="324"/>
         <source>What it does
-Sends files, folders, links, and text between your phone and PC at local network speed. If your phone is offline when you send, NectarLink places the item in the Waiting to send queue and delivers it automatically as soon as your phone reconnects.
+Sends files, folders, links, and text between your phone and PC at local network speed. If your phone is offline when you send, Panal places the item in the Waiting to send queue and delivers it automatically as soon as your phone reconnects.
 
 Where to find it
 - Home › Send files button, drag-and-drop anywhere on the window, Waiting to send card, and Transfers list.
@@ -3815,7 +3815,7 @@ Where to find it
 
 What it needs
 - Automatic PC-to-phone clipboard send works whenever your phone is connected.
-- Background phone-to-PC clipboard sync on Android 10+ uses notifications, the NectarLink quick tile, or Elevated mode.</source>
+- Background phone-to-PC clipboard sync on Android 10+ uses notifications, the Panal quick tile, or Elevated mode.</source>
         <translation>Ne yapar
 Kopyalanan metni, zengin HTML/RTF metnini, görüntüleri ve küçük kopyalanmış dosya gruplarını bilgisayarınız ve telefonunuz arasında paylaşır. Sabitleme ve bağlantılar, telefon numaraları, adresler ve kargo takip kodları için akıllı bağlam etiketleriyle en fazla 50 öğelik şifreli yerel bir geçmiş tutar.
 
@@ -3877,7 +3877,7 @@ Neler gerekir
 Streams your PC&apos;s screen to your phone so you can view your desktop from across the room and use your phone as a trackpad or laser pointer.
 
 Where to find it
-- Started from the NectarLink app on your phone.
+- Started from the Panal app on your phone.
 - Settings › Devices › Share PC screen to phone.
 
 What it needs
@@ -3895,7 +3895,7 @@ Neler gerekir
     <message>
         <location filename="rust_strings.h" line="330"/>
         <source>What it does
-Streams your phone camera into the NectarLink Virtual Camera on Windows so Zoom, Teams, Meet, Discord, and OBS can use your phone&apos;s rear or front camera at up to 4K.
+Streams your phone camera into the Panal Virtual Camera on Windows so Zoom, Teams, Meet, Discord, and OBS can use your phone&apos;s rear or front camera at up to 4K.
 
 Where to find it
 - Home › Phone as webcam.
@@ -5032,7 +5032,7 @@ Neler gerekir
     </message>
     <message>
         <location filename="../qml/IslandWindow.qml" line="268"/>
-        <source>Click to view in NectarLink</source>
+        <source>Click to view in Panal</source>
         <translation>Panal&apos;te görmek için tıklayın</translation>
     </message>
     <message>
@@ -5110,7 +5110,7 @@ Neler gerekir
     </message>
     <message>
         <location filename="rust_strings.h" line="348"/>
-        <source>Update NectarLink on %1.</source>
+        <source>Update Panal on %1.</source>
         <translation>%1 cihazındaki Panal&apos;i güncelleyin.</translation>
     </message>
     <message>
@@ -5188,42 +5188,42 @@ Neler gerekir
     </message>
     <message>
         <location filename="../qml/components/LockChip.qml" line="46"/>
-        <source>On your phone, open NectarLink › Settings › Control from your PC and turn on the Accessibility service.</source>
+        <source>On your phone, open Panal › Settings › Control from your PC and turn on the Accessibility service.</source>
         <translation>Telefonunuzda Panal › Ayarlar › Bilgisayarınızdan kontrol&apos;ü açın ve Erişilebilirlik hizmetini açın.</translation>
     </message>
     <message>
         <location filename="../qml/components/LockChip.qml" line="48"/>
-        <source>Needs Elevated: set up Wireless debugging in NectarLink › Settings › Control from your PC, or connect the phone over USB with USB debugging allowed.</source>
+        <source>Needs Elevated: set up Wireless debugging in Panal › Settings › Control from your PC, or connect the phone over USB with USB debugging allowed.</source>
         <translation>Yükseltilmiş mod gerekli: Panal › Ayarlar › Bilgisayarınızdan kontrol bölümünde Kablosuz hata ayıklamayı ayarlayın veya telefonu USB hata ayıklamaya izin verilmiş şekilde USB ile bağlayın.</translation>
     </message>
     <message>
         <location filename="../qml/components/LockChip.qml" line="50"/>
-        <source>On your phone, set NectarLink as the default SMS/Caller ID app when prompted.</source>
+        <source>On your phone, set Panal as the default SMS/Caller ID app when prompted.</source>
         <translation>Telefonunuzda istendiğinde Panal&apos;i varsayılan SMS/Arayan Kimliği uygulaması olarak ayarlayın.</translation>
     </message>
     <message>
         <location filename="../qml/components/LockChip.qml" line="53"/>
-        <source>On your phone, open NectarLink and allow Notification access.</source>
+        <source>On your phone, open Panal and allow Notification access.</source>
         <translation>Telefonunuzda Panal&apos;i açın ve Bildirim erişimine izin verin.</translation>
     </message>
     <message>
         <location filename="../qml/components/LockChip.qml" line="55"/>
-        <source>On your phone, open NectarLink and allow Do Not Disturb access.</source>
+        <source>On your phone, open Panal and allow Do Not Disturb access.</source>
         <translation>Telefonunuzda Panal&apos;i açın ve Rahatsız Etmeyin erişimine izin verin.</translation>
     </message>
     <message>
         <location filename="../qml/components/LockChip.qml" line="57"/>
-        <source>On your phone, open NectarLink and allow Modify system settings.</source>
+        <source>On your phone, open Panal and allow Modify system settings.</source>
         <translation>Telefonunuzda Panal&apos;i açın ve Sistem ayarlarını değiştirme iznini verin.</translation>
     </message>
     <message>
         <location filename="../qml/components/LockChip.qml" line="58"/>
-        <source>Open NectarLink on your phone and grant this permission in Settings.</source>
+        <source>Open Panal on your phone and grant this permission in Settings.</source>
         <translation>Telefonunuzda Panal&apos;i açın ve bu izni Ayarlar&apos;dan verin.</translation>
     </message>
     <message>
         <location filename="../qml/components/LockChip.qml" line="60"/>
-        <source>Open Settings › Camera &amp; Audio to set up the NectarLink virtual camera add-on.</source>
+        <source>Open Settings › Camera &amp; Audio to set up the Panal virtual camera add-on.</source>
         <translation>Panal sanal kamera eklentisini kurmak için Ayarlar › Kamera ve Ses&apos;i açın.</translation>
     </message>
     <message>
@@ -5793,13 +5793,13 @@ Neler gerekir
     </message>
     <message>
         <location filename="rust_strings.h" line="360"/>
-        <source>Recording from %1, saved in Downloads/Nectarlink</source>
-        <translation>%1 kaydı, İndirilenler/Nectarlink klasörüne kaydedildi</translation>
+        <source>Recording from %1, saved in Downloads/Panal</source>
+        <translation>%1 kaydı, İndirilenler/Panal klasörüne kaydedildi</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="361"/>
-        <source>Recording from %1, saved in Downloads\Nectarlink</source>
-        <translation>%1 kaydı, İndirilenler\Nectarlink klasörüne kaydedildi</translation>
+        <source>Recording from %1, saved in Downloads\Panal</source>
+        <translation>%1 kaydı, İndirilenler\Panal klasörüne kaydedildi</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="362"/>
@@ -5808,13 +5808,13 @@ Neler gerekir
     </message>
     <message>
         <location filename="rust_strings.h" line="363"/>
-        <source>Saved %1 to Downloads/Nectarlink.</source>
-        <translation>%1, İndirilenler/Nectarlink klasörüne kaydedildi.</translation>
+        <source>Saved %1 to Downloads/Panal.</source>
+        <translation>%1, İndirilenler/Panal klasörüne kaydedildi.</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="364"/>
-        <source>Saved %1 to Downloads\Nectarlink.</source>
-        <translation>%1, İndirilenler\Nectarlink klasörüne kaydedildi.</translation>
+        <source>Saved %1 to Downloads\Panal.</source>
+        <translation>%1, İndirilenler\Panal klasörüne kaydedildi.</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="365"/>
@@ -5823,13 +5823,13 @@ Neler gerekir
     </message>
     <message>
         <location filename="rust_strings.h" line="366"/>
-        <source>Screenshot from %1, saved in Downloads/Nectarlink</source>
-        <translation>%1 ekran görüntüsü, İndirilenler/Nectarlink klasörüne kaydedildi</translation>
+        <source>Screenshot from %1, saved in Downloads/Panal</source>
+        <translation>%1 ekran görüntüsü, İndirilenler/Panal klasörüne kaydedildi</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="367"/>
-        <source>Screenshot from %1, saved in Downloads\Nectarlink</source>
-        <translation>%1 ekran görüntüsü, İndirilenler\Nectarlink klasörüne kaydedildi</translation>
+        <source>Screenshot from %1, saved in Downloads\Panal</source>
+        <translation>%1 ekran görüntüsü, İndirilenler\Panal klasörüne kaydedildi</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="368"/>
@@ -5843,7 +5843,7 @@ Neler gerekir
     </message>
     <message>
         <location filename="rust_strings.h" line="370"/>
-        <source>Set up Wireless debugging in NectarLink on the phone to open its apps here.</source>
+        <source>Set up Wireless debugging in Panal on the phone to open its apps here.</source>
         <translation>Uygulamalarını burada açmak için telefondaki Panal&apos;te Kablosuz hata ayıklamayı ayarlayın.</translation>
     </message>
     <message>
@@ -5853,7 +5853,7 @@ Neler gerekir
     </message>
     <message>
         <location filename="rust_strings.h" line="372"/>
-        <source>The app didn&apos;t open on the phone. Try again, or open NectarLink on the phone to check Wireless debugging.</source>
+        <source>The app didn&apos;t open on the phone. Try again, or open Panal on the phone to check Wireless debugging.</source>
         <translation>Uygulama telefonda açılmadı. Tekrar deneyin veya Kablosuz hata ayıklamayı kontrol etmek için telefonda Panal&apos;i açın.</translation>
     </message>
     <message>
@@ -5878,7 +5878,7 @@ Neler gerekir
     </message>
     <message>
         <location filename="rust_strings.h" line="377"/>
-        <source>This phone&apos;s app doesn&apos;t share its screen yet. Update NectarLink on the phone.</source>
+        <source>This phone&apos;s app doesn&apos;t share its screen yet. Update Panal on the phone.</source>
         <translation>Bu telefondaki uygulama henüz ekranını paylaşmıyor. Telefondaki Panal&apos;i güncelleyin.</translation>
     </message>
     <message>
@@ -5896,12 +5896,12 @@ Neler gerekir
     </message>
     <message>
         <location filename="../qml/MirrorWindow.qml" line="25"/>
-        <source>%1 · NectarLink</source>
+        <source>%1 · Panal</source>
         <translation>%1 · Panal</translation>
     </message>
     <message>
         <location filename="../qml/MirrorWindow.qml" line="25"/>
-        <source>Phone screen · NectarLink</source>
+        <source>Phone screen · Panal</source>
         <translation>Telefon ekranı · Panal</translation>
     </message>
     <message>
@@ -5977,7 +5977,7 @@ Neler gerekir
     </message>
     <message>
         <location filename="../qml/MirrorWindow.qml" line="514"/>
-        <source>To control the phone, turn on Control from your PC in NectarLink&apos;s settings on the phone.</source>
+        <source>To control the phone, turn on Control from your PC in Panal&apos;s settings on the phone.</source>
         <translation>Telefonu kontrol etmek için telefondaki Panal ayarlarında Bilgisayarınızdan kontrol&apos;ü açın.</translation>
     </message>
     <message>
@@ -6345,7 +6345,7 @@ Neler gerekir
     </message>
     <message>
         <location filename="../qml/pages/PairingPanel.qml" line="114"/>
-        <source>Install NectarLink</source>
+        <source>Install Panal</source>
         <translation>Panal&apos;i kurun</translation>
     </message>
     <message>
@@ -6373,7 +6373,7 @@ Neler gerekir
     </message>
     <message>
         <location filename="../qml/pages/PairingPanel.qml" line="187"/>
-        <source>Open NectarLink on your phone</source>
+        <source>Open Panal on your phone</source>
         <translation>Telefonunuzda Panal&apos;i açın</translation>
     </message>
     <message>
@@ -6383,7 +6383,7 @@ Neler gerekir
     </message>
     <message>
         <location filename="../qml/pages/PairingPanel.qml" line="235"/>
-        <source>On your phone, open NectarLink and choose “Pair nearby”. It shows up here.</source>
+        <source>On your phone, open Panal and choose “Pair nearby”. It shows up here.</source>
         <translation>Telefonunuzda Panal&apos;i açın ve “Yakındakiyle eşleştir”i seçin. Telefonunuz burada görünür.</translation>
     </message>
     <message>
@@ -6494,7 +6494,7 @@ Neler gerekir
     </message>
     <message>
         <location filename="rust_strings.h" line="395"/>
-        <source>Update NectarLink on %1 to use its microphone.</source>
+        <source>Update Panal on %1 to use its microphone.</source>
         <translation>Mikrofonunu kullanmak için %1 cihazındaki Panal&apos;i güncelleyin.</translation>
     </message>
 </context>
@@ -6502,7 +6502,7 @@ Neler gerekir
     <name>PhoneSound</name>
     <message>
         <location filename="rust_strings.h" line="396"/>
-        <source>%1 couldn&apos;t ask to share its sound. Check that NectarLink can show notifications on the phone.</source>
+        <source>%1 couldn&apos;t ask to share its sound. Check that Panal can show notifications on the phone.</source>
         <translation>%1 cihazı ses paylaşımı için izin isteyemedi. Panal&apos;in telefonda bildirim gösterebildiğini kontrol edin.</translation>
     </message>
     <message>
@@ -6517,7 +6517,7 @@ Neler gerekir
     </message>
     <message>
         <location filename="rust_strings.h" line="399"/>
-        <source>Update NectarLink on %1 to play its sound here.</source>
+        <source>Update Panal on %1 to play its sound here.</source>
         <translation>Sesini burada çalmak için %1 cihazındaki Panal&apos;i güncelleyin.</translation>
     </message>
 </context>
@@ -6570,7 +6570,7 @@ Neler gerekir
     </message>
     <message>
         <location filename="rust_strings.h" line="409"/>
-        <source>Update NectarLink on %1 to back up its photos.</source>
+        <source>Update Panal on %1 to back up its photos.</source>
         <translation>Fotoğraflarını yedeklemek için %1 cihazındaki Panal&apos;i güncelleyin.</translation>
     </message>
     <message>
@@ -6583,8 +6583,8 @@ Neler gerekir
     <name>Photos</name>
     <message>
         <location filename="rust_strings.h" line="411"/>
-        <source>%1 of %2 couldn&apos;t be moved to %3. They&apos;re in Downloads\Nectarlink.</source>
-        <translation>%2 öğeden %1 tanesi %3 konumuna taşınamadı. Downloads\Nectarlink klasöründeler.</translation>
+        <source>%1 of %2 couldn&apos;t be moved to %3. They&apos;re in Downloads\Panal.</source>
+        <translation>%2 öğeden %1 tanesi %3 konumuna taşınamadı. Downloads\Panal klasöründeler.</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="412"/>
@@ -6658,8 +6658,8 @@ Neler gerekir
     </message>
     <message>
         <location filename="rust_strings.h" line="424"/>
-        <source>The photo couldn&apos;t be copied. It&apos;s in Downloads\Nectarlink.</source>
-        <translation>Fotoğraf kopyalanamadı. İndirilenler\Nectarlink klasöründe.</translation>
+        <source>The photo couldn&apos;t be copied. It&apos;s in Downloads\Panal.</source>
+        <translation>Fotoğraf kopyalanamadı. İndirilenler\Panal klasöründe.</translation>
     </message>
 </context>
 <context>
@@ -6973,7 +6973,7 @@ Neler gerekir
     </message>
     <message>
         <location filename="rust_strings.h" line="430"/>
-        <source>Update NectarLink on %1 to play on it.</source>
+        <source>Update Panal on %1 to play on it.</source>
         <translation>Telefonda oynatmak için %1 cihazındaki Panal&apos;i güncelleyin.</translation>
     </message>
 </context>
@@ -7035,7 +7035,7 @@ Neler gerekir
     </message>
     <message>
         <location filename="rust_strings.h" line="439"/>
-        <source>Send to %1 with NectarLink</source>
+        <source>Send to %1 with Panal</source>
         <translation>Panal ile %1 cihazına gönder</translation>
     </message>
     <message>
@@ -7514,12 +7514,12 @@ Neler gerekir
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="922"/>
-        <source>NectarLink follows the system unless you pick one.</source>
+        <source>Panal follows the system unless you pick one.</source>
         <translation>Siz bir dil seçmediğiniz sürece Panal sistem dilini kullanır.</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="923"/>
-        <source>NectarLink follows Windows unless you pick one.</source>
+        <source>Panal follows Windows unless you pick one.</source>
         <translation>Siz bir dil seçmediğiniz sürece Panal Windows dilini kullanır.</translation>
     </message>
     <message>
@@ -8465,7 +8465,7 @@ Neler gerekir
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="3272"/>
-        <source>NectarLink %1</source>
+        <source>Panal %1</source>
         <translation>Panal %1</translation>
     </message>
     <message>
@@ -8583,7 +8583,7 @@ Neler gerekir
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="3588"/>
-        <source>Wi-Fi networks this PC has joined before. Your system keeps their passwords; NectarLink never sees them.</source>
+        <source>Wi-Fi networks this PC has joined before. Your system keeps their passwords; Panal never sees them.</source>
         <translation>Bu bilgisayarın daha önce katıldığı Wi-Fi ağları. Parolalarını sisteminiz saklar; Panal bunları asla görmez.</translation>
     </message>
     <message>
@@ -8593,7 +8593,7 @@ Neler gerekir
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="3591"/>
-        <source>Wi-Fi networks this PC has joined before. Windows keeps their passwords; NectarLink never sees them.</source>
+        <source>Wi-Fi networks this PC has joined before. Windows keeps their passwords; Panal never sees them.</source>
         <translation>Bu bilgisayarın daha önce katıldığı Wi-Fi ağları. Parolalarını Windows saklar; Panal bunları asla görmez.</translation>
     </message>
     <message>
@@ -8678,7 +8678,7 @@ Neler gerekir
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="3474"/>
-        <source>The phone asks once to let this PC in. NectarLink there also needs All files access, or this folder under Selected folders only.</source>
+        <source>The phone asks once to let this PC in. Panal there also needs All files access, or this folder under Selected folders only.</source>
         <translation>Telefon, bu bilgisayara izin vermek için bir kez sorar. Oradaki Panal ayrıca Tüm dosyalara erişim iznine ya da bu klasörün Yalnızca seçili klasörler altında olmasına ihtiyaç duyar.</translation>
     </message>
     <message>
@@ -8761,7 +8761,7 @@ Neler gerekir
     </message>
     <message>
         <location filename="rust_strings.h" line="447"/>
-        <source>Couldn&apos;t uninstall NectarLink: %1</source>
+        <source>Couldn&apos;t uninstall Panal: %1</source>
         <translation>Panal kaldırılamadı: %1</translation>
     </message>
     <message>
@@ -8791,7 +8791,7 @@ Neler gerekir
     </message>
     <message>
         <location filename="rust_strings.h" line="453"/>
-        <source>The uninstaller is missing. Reinstall NectarLink, then uninstall it.</source>
+        <source>The uninstaller is missing. Reinstall Panal, then uninstall it.</source>
         <translation>Kaldırma programı eksik. Panal&apos;i yeniden kurun, ardından kaldırın.</translation>
     </message>
     <message>
@@ -8819,17 +8819,17 @@ Neler gerekir
     <name>SetupWindow</name>
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="51"/>
-        <source>Uninstall NectarLink</source>
+        <source>Uninstall Panal</source>
         <translation>Panal&apos;i kaldır</translation>
     </message>
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="51"/>
-        <source>NectarLink Setup</source>
+        <source>Panal Setup</source>
         <translation>Panal Kurulumu</translation>
     </message>
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="67"/>
-        <source>Install NectarLink in</source>
+        <source>Install Panal in</source>
         <translation>Panal&apos;in kurulacağı yer</translation>
     </message>
     <message>
@@ -8842,12 +8842,12 @@ Neler gerekir
     </message>
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="187"/>
-        <source>NectarLink</source>
+        <source>Panal</source>
         <translation>Panal</translation>
     </message>
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="216"/>
-        <source>Couldn&apos;t uninstall NectarLink</source>
+        <source>Couldn&apos;t uninstall Panal</source>
         <translation>Panal kaldırılamadı</translation>
     </message>
     <message>
@@ -8857,27 +8857,27 @@ Neler gerekir
     </message>
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="218"/>
-        <source>Uninstalling NectarLink</source>
+        <source>Uninstalling Panal</source>
         <translation>Panal kaldırılıyor</translation>
     </message>
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="219"/>
-        <source>Updating NectarLink</source>
+        <source>Updating Panal</source>
         <translation>Panal güncelleniyor</translation>
     </message>
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="220"/>
-        <source>Installing NectarLink</source>
+        <source>Installing Panal</source>
         <translation>Panal kuruluyor</translation>
     </message>
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="221"/>
-        <source>Uninstall NectarLink?</source>
+        <source>Uninstall Panal?</source>
         <translation>Panal kaldırılsın mı?</translation>
     </message>
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="236"/>
-        <source>Sorry to see you go. This uninstalls NectarLink and deletes its settings and pairings on this PC. Files you received stay in %1.</source>
+        <source>Sorry to see you go. This uninstalls Panal and deletes its settings and pairings on this PC. Files you received stay in %1.</source>
         <translation>Gittiğinizi görmek üzücü. Bu işlem Panal&apos;i kaldırır ve bu bilgisayardaki ayarlarını ve eşleştirmelerini siler. Aldığınız dosyalar %1 konumunda kalır.</translation>
     </message>
     <message>
@@ -8927,7 +8927,7 @@ Neler gerekir
     </message>
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="298"/>
-        <source>Keep NectarLink</source>
+        <source>Keep Panal</source>
         <translation>Panal&apos;i tut</translation>
     </message>
     <message>
@@ -8958,12 +8958,12 @@ Neler gerekir
     </message>
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="469"/>
-        <source>NectarLink is uninstalled</source>
+        <source>Panal is uninstalled</source>
         <translation>Panal kaldırıldı</translation>
     </message>
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="469"/>
-        <source>NectarLink is ready</source>
+        <source>Panal is ready</source>
         <translation>Panal hazır</translation>
     </message>
     <message>
@@ -8988,12 +8988,12 @@ Neler gerekir
     </message>
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="531"/>
-        <source>Open NectarLink</source>
+        <source>Open Panal</source>
         <translation>Panal&apos;i aç</translation>
     </message>
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="591"/>
-        <source>NectarLink goes into Program Files, or the folder you choose, for everyone on this PC. Setup also:</source>
+        <source>Panal goes into Program Files, or the folder you choose, for everyone on this PC. Setup also:</source>
         <translation>Panal, bu bilgisayardaki herkes için Program Files klasörüne veya seçtiğiniz klasöre kurulur. Kurulum ayrıca:</translation>
     </message>
     <message>
@@ -9002,7 +9002,7 @@ Neler gerekir
         <translation>klasörü yalnızca yöneticiler değiştirebiliyorsa, güncellemeleri yönetici onayı istemeden kuran bir görev ekler</translation>
     </message>
     <message>
-        <source>NectarLink goes into Program Files for everyone on this PC. Setup also:</source>
+        <source>Panal goes into Program Files for everyone on this PC. Setup also:</source>
         <translation type="vanished">Panal, bu bilgisayardaki herkes için Program Files klasörüne kurulur. Kurulum ayrıca:</translation>
     </message>
     <message>
@@ -9043,7 +9043,7 @@ Neler gerekir
     <name>ShelfWindow</name>
     <message>
         <location filename="../qml/ShelfWindow.qml" line="16"/>
-        <source>NectarLink Shelf</source>
+        <source>Panal Shelf</source>
         <translation>Panal Rafı</translation>
     </message>
     <message>
@@ -9239,12 +9239,12 @@ Neler gerekir
     </message>
     <message>
         <location filename="rust_strings.h" line="459"/>
-        <source>On the phone, allow All files access for NectarLink.</source>
+        <source>On the phone, allow All files access for Panal.</source>
         <translation>Telefonda Panal için Tüm dosyalara erişim izni verin.</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="460"/>
-        <source>On the phone, turn on Browse this phone&apos;s storage in File Explorer in NectarLink.</source>
+        <source>On the phone, turn on Browse this phone&apos;s storage in File Explorer in Panal.</source>
         <translation>Telefonda Panal&apos;te Bu telefonun depolama alanına Dosya Gezgini&apos;nden göz at seçeneğini açın.</translation>
     </message>
 </context>
@@ -9713,8 +9713,8 @@ Neler gerekir
     <name>Transfers</name>
     <message>
         <location filename="rust_strings.h" line="490"/>
-        <source>Accept in NectarLink to save to Downloads\Nectarlink</source>
-        <translation>İndirilenler\Nectarlink klasörüne kaydetmek için Panal&apos;te kabul edin</translation>
+        <source>Accept in Panal to save to Downloads\Panal</source>
+        <translation>İndirilenler\Panal klasörüne kaydetmek için Panal&apos;te kabul edin</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="491"/>
@@ -9723,13 +9723,13 @@ Neler gerekir
     </message>
     <message>
         <location filename="rust_strings.h" line="492"/>
-        <source>From %1, opened from Downloads\Nectarlink</source>
-        <translation>Kaynak: %1, İndirilenler\Nectarlink klasöründen açıldı</translation>
+        <source>From %1, opened from Downloads\Panal</source>
+        <translation>Kaynak: %1, İndirilenler\Panal klasöründen açıldı</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="493"/>
-        <source>From %1, saved in Downloads\Nectarlink</source>
-        <translation>Kaynak: %1, İndirilenler\Nectarlink klasörüne kaydedildi</translation>
+        <source>From %1, saved in Downloads\Panal</source>
+        <translation>Kaynak: %1, İndirilenler\Panal klasörüne kaydedildi</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="494"/>
@@ -9756,27 +9756,27 @@ Neler gerekir
     </message>
     <message>
         <location filename="rust_strings.h" line="498"/>
-        <source>NectarLink %1 is available</source>
+        <source>Panal %1 is available</source>
         <translation>Panal %1 kullanılabilir</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="499"/>
-        <source>NectarLink %1 is available.</source>
+        <source>Panal %1 is available.</source>
         <translation>Panal %1 kullanılabilir.</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="500"/>
-        <source>NectarLink is still on the version you had. Try again from Settings.</source>
+        <source>Panal is still on the version you had. Try again from Settings.</source>
         <translation>Panal hâlâ önceki sürümde. Ayarlar&apos;dan tekrar deneyin.</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="501"/>
-        <source>NectarLink is up to date.</source>
+        <source>Panal is up to date.</source>
         <translation>Panal güncel.</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="502"/>
-        <source>NectarLink is updated to %1</source>
+        <source>Panal is updated to %1</source>
         <translation>Panal %1 sürümüne güncellendi</translation>
     </message>
     <message>
@@ -9816,7 +9816,7 @@ Neler gerekir
     </message>
     <message>
         <location filename="rust_strings.h" line="510"/>
-        <source>The update is installed. Restart NectarLink to use it.</source>
+        <source>The update is installed. Restart Panal to use it.</source>
         <translation>Güncelleme kuruldu. Kullanmak için Panal&apos;i yeniden başlatın.</translation>
     </message>
     <message>
@@ -10004,7 +10004,7 @@ Neler gerekir
     </message>
     <message>
         <location filename="../qml/pages/WalkthroughPage.qml" line="1555"/>
-        <source>Keep NectarLink ready in the system tray when you sign in.</source>
+        <source>Keep Panal ready in the system tray when you sign in.</source>
         <translation>Oturum açtığınızda Panal&apos;i sistem tepsisinde hazır tutun.</translation>
     </message>
     <message>
@@ -10049,7 +10049,7 @@ Neler gerekir
     </message>
     <message>
         <location filename="../qml/pages/WalkthroughPage.qml"/>
-        <source>Welcome to NectarLink</source>
+        <source>Welcome to Panal</source>
         <translation>Panal&apos;e hoş geldiniz</translation>
     </message>
     <message>
@@ -10059,7 +10059,7 @@ Neler gerekir
     </message>
     <message>
         <location filename="../qml/pages/WalkthroughPage.qml"/>
-        <source>Install NectarLink on your phone</source>
+        <source>Install Panal on your phone</source>
         <translation>Panal&apos;i telefonunuza yükleyin</translation>
     </message>
     <message>
@@ -10099,7 +10099,7 @@ Neler gerekir
     </message>
     <message>
         <location filename="../qml/pages/WalkthroughPage.qml"/>
-        <source>Scan the QR code from the NectarLink Android app, or pick your phone from nearby devices.</source>
+        <source>Scan the QR code from the Panal Android app, or pick your phone from nearby devices.</source>
         <translation>QR kodunu Panal Android uygulamasından tarayın veya yakındaki cihazlardan telefonunuzu seçin.</translation>
     </message>
     <message>
@@ -10249,7 +10249,7 @@ Neler gerekir
     </message>
     <message>
         <location filename="../qml/pages/WalkthroughPage.qml"/>
-        <source>Notifications are off for NectarLink in Windows Settings.</source>
+        <source>Notifications are off for Panal in Windows Settings.</source>
         <translation>Windows Ayarları&apos;nda Panal bildirimleri kapalı.</translation>
     </message>
     <message>
@@ -10284,7 +10284,7 @@ Neler gerekir
     </message>
     <message>
         <location filename="../qml/pages/WalkthroughPage.qml"/>
-        <source>Open the NectarLink Android app whenever you are ready to scan the QR code.</source>
+        <source>Open the Panal Android app whenever you are ready to scan the QR code.</source>
         <translation>QR kodunu taramaya hazır olduğunuzda Panal Android uygulamasını açın.</translation>
     </message>
     <message>
@@ -10294,7 +10294,7 @@ Neler gerekir
     </message>
     <message>
         <location filename="../qml/pages/WalkthroughPage.qml"/>
-        <source>Browse every feature in NectarLink, see what permissions it needs, and jump straight to it.</source>
+        <source>Browse every feature in Panal, see what permissions it needs, and jump straight to it.</source>
         <translation>Panal&apos;teki tüm özelliklere göz atın, gereken izinleri görün ve doğrudan özelliğe gidin.</translation>
     </message>
     <message>
@@ -10340,12 +10340,12 @@ Neler gerekir
     <name>WelcomePage</name>
     <message>
         <location filename="../qml/pages/WelcomePage.qml" line="36"/>
-        <source>Welcome to NectarLink</source>
+        <source>Welcome to Panal</source>
         <translation>Panal&apos;e hoş geldiniz</translation>
     </message>
     <message>
         <location filename="../qml/pages/WelcomePage.qml" line="46"/>
-        <source>NectarLink couldn&apos;t start.</source>
+        <source>Panal couldn&apos;t start.</source>
         <translation>Panal başlatılamadı.</translation>
     </message>
     <message>

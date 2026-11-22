@@ -4,7 +4,7 @@ package app.nectarlink.android.core
 import android.security.keystore.KeyGenParameterSpec
 import android.security.keystore.KeyProperties
 import app.nectarlink.core.KeyProtector
-import app.nectarlink.core.NectarlinkException
+import app.nectarlink.core.PanalException
 import java.security.KeyStore
 import javax.crypto.Cipher
 import javax.crypto.KeyGenerator
@@ -52,7 +52,7 @@ class KeystoreKeyProtector : KeyProtector {
     private inline fun guard(block: () -> ByteArray): ByteArray = try {
         block()
     } catch (e: Exception) {
-        throw NectarlinkException.Internal("keystore: ${e.javaClass.simpleName}: ${e.message}")
+        throw PanalException.Internal("keystore: ${e.javaClass.simpleName}: ${e.message}")
     }
 
     private companion object {

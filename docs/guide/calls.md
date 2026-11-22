@@ -1,78 +1,78 @@
-# Calls
+# Llamadas
 
-The **Calls** page on your PC lets you see incoming phone calls with caller ID, answer or decline them from your desk, reject a call with a quick SMS reply, dial numbers from a keypad, browse your recent call history and contacts, and control active calls.
+La página **Llamadas** del PC te permite ver las llamadas entrantes con identificador, contestarlas o rechazarlas desde el escritorio, rechazar una llamada con una respuesta rápida por SMS, marcar números desde un teclado, consultar el historial de llamadas recientes y los contactos, y controlar las llamadas activas.
 
 <p align="center">
-  <img src="images/calls-page.png" alt="Calls page on Windows showing recent call history, contacts, and dialer keypad" width="760">
+  <img src="images/calls-page.png" alt="Página Llamadas en Windows con el historial de llamadas recientes, contactos y teclado de marcación" width="760">
 </p>
 
-## What You Need
+## Qué necesitas
 
-| Requirement | Details |
+| Requisito | Detalles |
 | :--- | :--- |
-| **Android Permissions** | **Calls on your PC** (`READ_PHONE_STATE`, `READ_CALL_LOG`, `ANSWER_PHONE_CALLS`, `CALL_PHONE`) and **Contacts on your PC** (`READ_CONTACTS`) in **Settings › Permissions › Calls, contacts and messages**. |
-| **Android Power Level** | `Standard` for incoming call alerts, caller ID, answer, decline, hang up, call log, dialer, and volume control. `Elevated` (on Android 12+) enables in-call **Mute**, **Speakerphone**, **Hold**, and **Keypad (DTMF)** controls from the PC. |
-| **Per-Device Toggles** | **Calls** and **Contacts** (both enabled by default in **Settings › Devices** on the PC). |
-| **Network** | Local network, USB cable, or **Connect over mobile data**. |
+| **Permisos de Android** | **Llamadas en tu PC** (`READ_PHONE_STATE`, `READ_CALL_LOG`, `ANSWER_PHONE_CALLS`, `CALL_PHONE`) y **Contactos en tu PC** (`READ_CONTACTS`) en **Ajustes › Permisos › Llamadas, contactos y mensajes**. |
+| **Nivel de control de Android** | `Standard` para avisos de llamada entrante, identificador, contestar, rechazar, colgar, registro de llamadas, marcador y volumen. `Elevated` (en Android 12 o posterior) activa desde el PC los controles de **Silenciar**, **Altavoz**, **En espera** y **Teclado (DTMF)** durante la llamada. |
+| **Interruptores por dispositivo** | **Llamadas** y **Contactos** (ambos activados por defecto en **Ajustes › Dispositivos** del PC). |
+| **Red** | Red local, cable USB o **Conectar con datos móviles**. |
 
-## Step-by-Step Use
+## Uso paso a paso
 
-### Handling Incoming Calls on Your PC
+### Atender llamadas entrantes en el PC
 
-1. When your phone rings, NectarLink displays an incoming call banner on your PC (and expands `Nectar Island` if enabled) showing the caller's name, phone number, and contact photo.
-2. If **Pause media during calls** is enabled in **Settings › Camera & Audio**, any music or video playing on your PC pauses automatically while the phone is ringing or in a call, and resumes when the call ends.
-3. From the incoming call banner on your PC, you can:
-   - Click **Answer** to pick up the call on your phone.
-   - Click **Decline** to send the caller to voicemail.
-   - Click **Silence** to mute the ringer without declining the call.
-   - Click **Reply with text** (when SMS access is enabled) to decline the call and immediately send a preset or custom SMS reply to the caller.
+1. Cuando suena el teléfono, Panal muestra en el PC un aviso de llamada entrante (y despliega la `Nectar Island` si está activada) con el nombre, el número y la foto del contacto.
+2. Si **Pausar multimedia durante las llamadas** está activado en **Ajustes › Cámara y audio**, la música o el vídeo que suene en el PC se pausa solo mientras el teléfono suena o hay una llamada, y se reanuda al terminar.
+3. Desde el aviso de llamada entrante puedes:
+   - Hacer clic en **Contestar** para descolgar en el teléfono.
+   - Hacer clic en **Rechazar** para enviar la llamada al buzón de voz.
+   - Hacer clic en **Silenciar** para callar el tono sin rechazar la llamada.
+   - Hacer clic en **Responder con un mensaje** (si el acceso a SMS está activado) para rechazar la llamada y enviar al momento una respuesta SMS predefinida o personalizada.
 
-### Controlling an Active Call
+### Controlar una llamada activa
 
-While a call is active on your phone, the call bar on your PC shows the live call timer and provides controls based on your phone's power level:
+Mientras hay una llamada activa en el teléfono, la barra de llamada del PC muestra el tiempo transcurrido y ofrece controles según el nivel de control del teléfono:
 
-- **At `Standard` or `Assist`**: You can see the active call duration, adjust the call volume, and click **Hang up** to end the call.
-- **At `Elevated` (Android 12 and newer)**: Additional in-call controls appear on the PC card, allowing you to toggle **Mute**, switch the phone to **Speaker** (speakerphone), place the call on **Hold**, or open the in-call **Keypad** to send DTMF tones for automated phone menus.
+- **Con `Standard` o `Assist`**: ves la duración de la llamada, ajustas el volumen y haces clic en **Colgar** para terminarla.
+- **Con `Elevated` (Android 12 o posterior)**: aparecen controles adicionales en la tarjeta del PC para activar **Silenciar**, pasar el teléfono a **Altavoz**, poner la llamada **En espera** o abrir el **Teclado** para enviar tonos DTMF a menús automáticos.
 
-### Placing a Call from Your PC
+### Llamar desde el PC
 
-1. Open **Calls** in the left navigation bar on your PC.
-2. You can start a call in three ways:
-   - **From the Keypad**: Type or paste a phone number into the dialer keypad (or press number keys on your keyboard) and click **Call**.
-   - **With two SIMs**: Pick the SIM under **Call with** next to the keypad. The PC remembers it for that phone and uses it for every call it starts, so the phone doesn't stop to ask which SIM.
-   - **From Contacts**: Search your synced phone contacts (favorites appear at the top) and click the call button next to any number.
-   - **From Recent Calls**: Click any entry in your recent call history to call back or open a text conversation with that person.
-3. Your phone places the cellular call immediately.
+1. Abre **Llamadas** en la barra lateral del PC.
+2. Puedes empezar una llamada de tres formas:
+   - **Desde el teclado**: escribe o pega un número en el teclado de marcación (o pulsa las teclas numéricas del teclado) y haz clic en **Llamar**.
+   - **Con dos SIM**: elige la SIM en **Llamar con**, junto al teclado. El PC la recuerda para ese teléfono y la usa en cada llamada que inicia, así el teléfono no se detiene a preguntar qué SIM usar.
+   - **Desde Contactos**: busca en los contactos sincronizados (los favoritos aparecen arriba) y haz clic en el botón de llamada junto a cualquier número.
+   - **Desde Recientes**: haz clic en cualquier entrada del historial para devolver la llamada o abrir una conversación de texto con esa persona.
+3. El teléfono hace la llamada al momento.
 
-### Browsing Call History
+### Consultar el historial de llamadas
 
-The **Calls** page groups your phone's recent incoming, outgoing, and missed calls by day. Missed calls are highlighted in red and summarized on your PC's Home screen until viewed. A voicemail notification from your phone appears in the notification feed like any other notification.
+La página **Llamadas** agrupa por día las llamadas recientes entrantes, salientes y perdidas del teléfono. Las perdidas se resaltan en rojo y se resumen en la pantalla de Inicio del PC hasta que las veas. Un aviso de buzón de voz del teléfono aparece en el feed de notificaciones como cualquier otra notificación.
 
-## Why Call Voice Audio Stays on Your Phone
+## Por qué el audio de la llamada se queda en el teléfono
 
-When you answer or place a call from your PC, NectarLink controls the call on your phone while the voice audio itself remains on your phone's earpiece, speakerphone, or Bluetooth headset paired directly to your phone.
+Cuando contestas o haces una llamada desde el PC, Panal controla la llamada en el teléfono, pero el audio de voz sigue en el auricular, el altavoz o los auriculares Bluetooth emparejados directamente con el teléfono.
 
-This is due to two operating system restrictions (documented in detail in [`docs/research/hfp.md`](../research/hfp.md)):
+Esto se debe a dos restricciones del sistema operativo (documentadas en detalle en [`docs/research/hfp.md`](../research/hfp.md)):
 
-1. **Android hardware voice routing**: On non-rooted Android devices, cellular call audio (`VOICE_CALL`, `VOICE_DOWNLINK`, `VOICE_UPLINK`) is routed by the modem DSP and blocked from software capture (`AudioPlaybackCapture` explicitly excludes voice communication, even at the `Elevated` shell level).
-2. **Windows 11 Bluetooth HFP restrictions**: Windows' `AudioPlaybackConnection` API only supports one-way A2DP media playback (not two-way Hands-Free Profile voice channels), and Microsoft's `PhoneLineTransportDevice` HFP broker on Windows 11 22H2 and newer rejects third-party applications with `E_ACCESSDENIED` unless they run with Microsoft's internal inbox system identity or a WHQL-signed kernel driver.
+1. **Enrutado de voz por hardware en Android**: en dispositivos Android sin root, el audio de las llamadas móviles (`VOICE_CALL`, `VOICE_DOWNLINK`, `VOICE_UPLINK`) lo enruta el DSP del módem y no se puede capturar por software (`AudioPlaybackCapture` excluye expresamente la comunicación de voz, incluso con el nivel de shell `Elevated`).
+2. **Restricciones de Bluetooth HFP en Windows 11**: la API `AudioPlaybackConnection` de Windows solo admite reproducción multimedia A2DP en un sentido (no canales de voz bidireccionales del perfil manos libres), y el intermediario HFP `PhoneLineTransportDevice` de Microsoft en Windows 11 22H2 y posterior rechaza las apps de terceros con `E_ACCESSDENIED` salvo que se ejecuten con la identidad interna del sistema de Microsoft o con un controlador de kernel firmado por WHQL.
 
-For hands-free calling at your desk, click **Speaker** in NectarLink's call bar (with `Elevated`) or keep your wireless headphones paired to your phone via multipoint Bluetooth.
+Para hablar con manos libres en el escritorio, haz clic en **Altavoz** en la barra de llamada de Panal (con `Elevated`) o mantén tus auriculares inalámbricos emparejados con el teléfono mediante Bluetooth multipunto.
 
-## What the Options Do
+## Qué hacen las opciones
 
-- **Calls toggle** (`Settings › Devices` on PC, **On** by default): Enables caller ID, call log sync, incoming call alerts, and call control for that phone.
-- **Contacts toggle** (`Settings › Devices` on PC, **On** by default): Syncs your phone's contacts so caller ID and the dialer show names and photos.
-- **Pause media during calls** (`Settings › Camera & Audio` on PC, **On** by default): Automatically pauses active Windows media playback when a call rings or connects on your phone, and resumes playback when the call finishes unless you manually changed playback in the meantime.
-- **Island triggers › Calls** (`Settings › General` on PC, **On** by default when `Nectar Island` is enabled): Shows incoming and active phone calls inside the top-of-screen `Nectar Island` pill.
+- **Interruptor Llamadas** (`Ajustes › Dispositivos` en el PC, **activado** por defecto): activa para ese teléfono el identificador de llamadas, la sincronización del registro, los avisos de llamada entrante y el control de llamadas.
+- **Interruptor Contactos** (`Ajustes › Dispositivos` en el PC, **activado** por defecto): sincroniza los contactos del teléfono para que el identificador y el marcador muestren nombres y fotos.
+- **Pausar multimedia durante las llamadas** (`Ajustes › Cámara y audio` en el PC, **activado** por defecto): pausa sola la reproducción multimedia de Windows cuando suena o se conecta una llamada en el teléfono, y la reanuda al terminar salvo que la hayas cambiado tú mientras tanto.
+- **Activadores de la isla › Llamadas** (`Ajustes › General` en el PC, **activado** por defecto cuando `Nectar Island` está activada): muestra las llamadas entrantes y activas dentro de la píldora `Nectar Island` de la parte superior de la pantalla.
 
-## Data and Privacy
+## Datos y privacidad
 
-- **Where data travels**: Call state changes, caller ID metadata, recent call log entries, and contact records travel directly between your phone and PC over your end-to-end encrypted QUIC connection.
-- **Where data stays**: Recent call logs and contacts are read live from your phone and held in memory on the PC during your session. NectarLink never records call audio.
+- **Por dónde viajan los datos**: los cambios de estado de llamada, los datos del identificador, las entradas del registro de llamadas y los contactos viajan directamente entre el teléfono y el PC por tu conexión QUIC cifrada de extremo a extremo.
+- **Dónde se quedan**: el registro de llamadas y los contactos se leen en directo del teléfono y se mantienen en memoria en el PC durante la sesión. Panal nunca graba el audio de las llamadas.
 
-## Limits
+## Límites
 
-- **Two-Way Call Audio on PC**: As explained above, public Windows and Android APIs do not permit third-party apps to route cellular voice audio through PC speakers and microphones without a kernel driver or system-signed OEM firmware.
-- **In-Call Mute, Hold, Speaker, and DTMF Keypad**: Standard Android permissions allow third-party apps to answer and end calls (`TelecomManager`), but muting the microphone, toggling speakerphone, holding a call, and sending DTMF tones during a cellular call require `Elevated` on Android 12 or newer unless the app replaces your default phone dialer.
-- **Dual-SIM Selection**: When you place a call from the PC on a dual-SIM phone, Android uses the default calling SIM configured in your phone's SIM settings (or prompts on the phone if your SIM preference is set to "Ask every time").
+- **Audio bidireccional de llamadas en el PC**: como se explica arriba, las API públicas de Windows y Android no permiten que apps de terceros lleven el audio de voz de las llamadas móviles a los altavoces y el micrófono del PC sin un controlador de kernel o un firmware OEM firmado por el sistema.
+- **Silenciar, En espera, Altavoz y teclado DTMF durante la llamada**: los permisos estándar de Android permiten a apps de terceros contestar y terminar llamadas (`TelecomManager`), pero silenciar el micrófono, cambiar al altavoz, poner en espera y enviar tonos DTMF durante una llamada móvil requieren `Elevated` en Android 12 o posterior, salvo que la app sustituya al marcador predeterminado.
+- **Elección de SIM en teléfonos con dos SIM**: si no eliges una SIM en **Llamar con**, Android usa la SIM de llamadas predeterminada configurada en el teléfono (o pregunta en el teléfono si tu preferencia es "Preguntar siempre").

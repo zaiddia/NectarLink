@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # SPDX-License-Identifier: GPL-3.0-or-later
-# Builds a portable Linux tarball for NectarLink Desktop:
-#   dist/Nectarlink-<version>-linux-<arch>.tar.gz
+# Builds a portable Linux tarball for Panal Desktop:
+#   dist/Panal-<version>-linux-<arch>.tar.gz
 # including install.sh and uninstall.sh helper scripts.
 
 set -euo pipefail
@@ -27,20 +27,20 @@ if [[ -z "${QMAKE:-}" ]]; then
     fi
 fi
 
-BIN_PATH="${BIN_PATH:-${REPO_ROOT}/target/release/nectarlink-desktop}"
+BIN_PATH="${BIN_PATH:-${REPO_ROOT}/target/release/panal}"
 if [[ ! -f "${BIN_PATH}" ]]; then
-    echo "Building nectarlink-desktop (release)..."
+    echo "Building panal (release)..."
     (cd "${REPO_ROOT}" && cargo build --release -p nectarlink-desktop)
 fi
 
-STAGE_DIR="$(mktemp -d -t nectarlink-tar-XXXXXX)"
+STAGE_DIR="$(mktemp -d -t panal-tar-XXXXXX)"
 trap 'rm -rf "${STAGE_DIR}"' EXIT
 
-BUNDLE_NAME="Nectarlink-${VERSION}-linux-${ARCH}"
+BUNDLE_NAME="Panal-${VERSION}-linux-${ARCH}"
 BUNDLE_DIR="${STAGE_DIR}/${BUNDLE_NAME}"
-mkdir -p "${BUNDLE_DIR}/share/applications" "${BUNDLE_DIR}/share/metainfo" "${BUNDLE_DIR}/share/icons" "${BUNDLE_DIR}/share/nectarlink"
+mkdir -p "${BUNDLE_DIR}/share/applications" "${BUNDLE_DIR}/share/metainfo" "${BUNDLE_DIR}/share/icons" "${BUNDLE_DIR}/share/panal"
 
-install -m 0755 "${BIN_PATH}" "${BUNDLE_DIR}/nectarlink-desktop"
+install -m 0755 "${BIN_PATH}" "${BUNDLE_DIR}/panal"
 for adapter in "$(dirname "${BIN_PATH}")"/libnectarlink-video-ffmpeg*.so; do
     [[ ! -f "${adapter}" ]] || install -m 0755 "${adapter}" "${BUNDLE_DIR}/"
 done
@@ -48,17 +48,17 @@ printf '%s\n' "${VERSION}" > "${BUNDLE_DIR}/VERSION"
 for qm in "$(dirname "${BIN_PATH}")"/nectarlink_*.qm; do
     if [[ -f "${qm}" ]]; then
         install -m 0644 "${qm}" "${BUNDLE_DIR}/$(basename "${qm}")"
-        install -m 0644 "${qm}" "${BUNDLE_DIR}/share/nectarlink/$(basename "${qm}")"
+        install -m 0644 "${qm}" "${BUNDLE_DIR}/share/panal/$(basename "${qm}")"
     fi
 done
-install -m 0644 "${SCRIPT_DIR}/nectarlink.desktop" "${BUNDLE_DIR}/share/applications/nectarlink.desktop"
-install -m 0644 "${SCRIPT_DIR}/org.nectarlink.desktop.metainfo.xml" "${BUNDLE_DIR}/share/metainfo/org.nectarlink.desktop.metainfo.xml"
+install -m 0644 "${SCRIPT_DIR}/panal.desktop" "${BUNDLE_DIR}/share/applications/panal.desktop"
+install -m 0644 "${SCRIPT_DIR}/io.github.zaiddia.Panal.metainfo.xml" "${BUNDLE_DIR}/share/metainfo/io.github.zaiddia.Panal.metainfo.xml"
 
 if [[ -f "${REPO_ROOT}/assets/brand/icon.svg" ]]; then
-    install -m 0644 "${REPO_ROOT}/assets/brand/icon.svg" "${BUNDLE_DIR}/share/icons/nectarlink.svg"
+    install -m 0644 "${REPO_ROOT}/assets/brand/icon.svg" "${BUNDLE_DIR}/share/icons/panal.svg"
 fi
 if [[ -f "${REPO_ROOT}/assets/brand/icon-512.png" ]]; then
-    install -m 0644 "${REPO_ROOT}/assets/brand/icon-512.png" "${BUNDLE_DIR}/share/icons/nectarlink.png"
+    install -m 0644 "${REPO_ROOT}/assets/brand/icon-512.png" "${BUNDLE_DIR}/share/icons/panal.png"
 fi
 
 bundle_private_qt_if_needed() {
@@ -150,15 +150,15 @@ set -euo pipefail
 SELF_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 if [[ "${EUID:-$(id -u)}" -eq 0 ]]; then
-    PREFIX="/opt/nectarlink"
-    BIN_LINK="/usr/local/bin/nectarlink-desktop"
+    PREFIX="/opt/panal"
+    BIN_LINK="/usr/local/bin/panal"
     APPS_DIR="/usr/share/applications"
     META_DIR="/usr/share/metainfo"
     ICON_DIR="/usr/share/icons/hicolor/scalable/apps"
     PNG_ICON_DIR="/usr/share/icons/hicolor/512x512/apps"
 else
-    PREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/nectarlink-app"
-    BIN_LINK="${HOME}/.local/bin/nectarlink-desktop"
+    PREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/panal-app"
+    BIN_LINK="${HOME}/.local/bin/panal"
     APPS_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/applications"
     META_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/metainfo"
     ICON_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/icons/hicolor/scalable/apps"
@@ -166,7 +166,7 @@ else
 fi
 
 mkdir -p "${PREFIX}" "$(dirname "${BIN_LINK}")" "${APPS_DIR}" "${META_DIR}" "${ICON_DIR}" "${PNG_ICON_DIR}"
-install -m 0755 "${SELF_DIR}/nectarlink-desktop" "${PREFIX}/nectarlink-desktop"
+install -m 0755 "${SELF_DIR}/panal" "${PREFIX}/panal"
 for adapter in "${SELF_DIR}"/libnectarlink-video-ffmpeg*.so; do
     [[ ! -f "${adapter}" ]] || install -m 0755 "${adapter}" "${PREFIX}/"
 done
@@ -192,21 +192,21 @@ if [[ -d "${PREFIX}/lib" ]]; then
 export LD_LIBRARY_PATH="${PREFIX}/lib\${LD_LIBRARY_PATH:+:\${LD_LIBRARY_PATH}}"
 export QT_PLUGIN_PATH="${PREFIX}/plugins\${QT_PLUGIN_PATH:+:\${QT_PLUGIN_PATH}}"
 export QML2_IMPORT_PATH="${PREFIX}/qml\${QML2_IMPORT_PATH:+:\${QML2_IMPORT_PATH}}"
-exec "${PREFIX}/nectarlink-desktop" "\$@"
+exec "${PREFIX}/panal" "\$@"
 WRAPEOF
     chmod 0755 "${BIN_LINK}"
 else
-    ln -sf "${PREFIX}/nectarlink-desktop" "${BIN_LINK}"
+    ln -sf "${PREFIX}/panal" "${BIN_LINK}"
 fi
-install -m 0644 "${SELF_DIR}/share/applications/nectarlink.desktop" "${APPS_DIR}/nectarlink.desktop"
-install -m 0644 "${SELF_DIR}/share/metainfo/org.nectarlink.desktop.metainfo.xml" "${META_DIR}/org.nectarlink.desktop.metainfo.xml"
-[[ -f "${SELF_DIR}/share/icons/nectarlink.svg" ]] && install -m 0644 "${SELF_DIR}/share/icons/nectarlink.svg" "${ICON_DIR}/nectarlink.svg"
-[[ -f "${SELF_DIR}/share/icons/nectarlink.png" ]] && install -m 0644 "${SELF_DIR}/share/icons/nectarlink.png" "${PNG_ICON_DIR}/nectarlink.png"
+install -m 0644 "${SELF_DIR}/share/applications/panal.desktop" "${APPS_DIR}/panal.desktop"
+install -m 0644 "${SELF_DIR}/share/metainfo/io.github.zaiddia.Panal.metainfo.xml" "${META_DIR}/io.github.zaiddia.Panal.metainfo.xml"
+[[ -f "${SELF_DIR}/share/icons/panal.svg" ]] && install -m 0644 "${SELF_DIR}/share/icons/panal.svg" "${ICON_DIR}/panal.svg"
+[[ -f "${SELF_DIR}/share/icons/panal.png" ]] && install -m 0644 "${SELF_DIR}/share/icons/panal.png" "${PNG_ICON_DIR}/panal.png"
 
 if command -v update-desktop-database >/dev/null 2>&1; then
     update-desktop-database -q "${APPS_DIR}" || true
 fi
-echo "Installed NectarLink to ${PREFIX} (${BIN_LINK})"
+echo "Installed Panal to ${PREFIX} (${BIN_LINK})"
 EOF
 chmod 0755 "${BUNDLE_DIR}/install.sh"
 
@@ -215,22 +215,22 @@ cat > "${BUNDLE_DIR}/uninstall.sh" <<'EOF'
 set -euo pipefail
 
 if [[ "${EUID:-$(id -u)}" -eq 0 ]]; then
-    rm -rf /opt/nectarlink
-    rm -f /usr/local/bin/nectarlink-desktop
-    rm -f /usr/share/applications/nectarlink.desktop
-    rm -f /usr/share/metainfo/org.nectarlink.desktop.metainfo.xml
-    rm -f /usr/share/icons/hicolor/scalable/apps/nectarlink.svg
-    rm -f /usr/share/icons/hicolor/512x512/apps/nectarlink.png
+    rm -rf /opt/panal
+    rm -f /usr/local/bin/panal
+    rm -f /usr/share/applications/panal.desktop
+    rm -f /usr/share/metainfo/io.github.zaiddia.Panal.metainfo.xml
+    rm -f /usr/share/icons/hicolor/scalable/apps/panal.svg
+    rm -f /usr/share/icons/hicolor/512x512/apps/panal.png
 else
-    PREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/nectarlink-app"
+    PREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/panal-app"
     rm -rf "${PREFIX}"
-    rm -f "${HOME}/.local/bin/nectarlink-desktop"
-    rm -f "${XDG_DATA_HOME:-$HOME/.local/share}/applications/nectarlink.desktop"
-    rm -f "${XDG_DATA_HOME:-$HOME/.local/share}/metainfo/org.nectarlink.desktop.metainfo.xml"
-    rm -f "${XDG_DATA_HOME:-$HOME/.local/share}/icons/hicolor/scalable/apps/nectarlink.svg"
-    rm -f "${XDG_DATA_HOME:-$HOME/.local/share}/icons/hicolor/512x512/apps/nectarlink.png"
+    rm -f "${HOME}/.local/bin/panal"
+    rm -f "${XDG_DATA_HOME:-$HOME/.local/share}/applications/panal.desktop"
+    rm -f "${XDG_DATA_HOME:-$HOME/.local/share}/metainfo/io.github.zaiddia.Panal.metainfo.xml"
+    rm -f "${XDG_DATA_HOME:-$HOME/.local/share}/icons/hicolor/scalable/apps/panal.svg"
+    rm -f "${XDG_DATA_HOME:-$HOME/.local/share}/icons/hicolor/512x512/apps/panal.png"
 fi
-echo "Uninstalled NectarLink."
+echo "Uninstalled Panal."
 EOF
 chmod 0755 "${BUNDLE_DIR}/uninstall.sh"
 

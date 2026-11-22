@@ -1715,7 +1715,8 @@ pub mod elevated {
     /// Offered by PCs that can start a USB-connected phone's helper.
     pub const USB: &str = "elevated.usb";
     /// The only package the PC runs anything for.
-    pub const PACKAGE: &str = "app.nectarlink";
+    /// (Panal's application ID; its classes keep the `app.nectarlink.android` namespace.)
+    pub const PACKAGE: &str = "app.panal";
     /// The helper the PC starts, with `app_process`.
     pub const HELPER_CLASS: &str = "app.nectarlink.android.elevated.InputServer";
     /// Grants a request may carry, at most.
@@ -1764,15 +1765,15 @@ pub fn is_valid_app_apk(apk: &str) -> bool {
         && is_shell_word(apk)
 }
 
-/// NectarLink's package. Debug builds of the PC app also accept its local
-/// test build (`app.nectarlink.dev`, the `applicationIdSuffix` of a
+/// Panal's package. Debug builds of the PC app also accept its local
+/// test build (`app.panal.dev`, the `applicationIdSuffix` of a
 /// side-by-side build); release builds accept no other package.
 pub fn is_own_package(p: &str) -> bool {
     p == elevated::PACKAGE || (cfg!(debug_assertions) && p.strip_prefix(elevated::PACKAGE) == Some(".dev"))
 }
 
 /// A grant the phone may ask for itself, and nothing else: a permission or
-/// app op for NectarLink's own package, or its own notification listener.
+/// app op for Panal's own package, or its own notification listener.
 pub fn is_valid_grant(grant: &str) -> bool {
     let words: Vec<&str> = grant.split(' ').collect();
     if !words.iter().all(|w| is_shell_word(w)) {
@@ -2822,10 +2823,10 @@ pub struct PhotoSending {
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
 pub struct PhotosChanged {}
 
-/// Capability: tells and hears of new NectarLink builds (`event.update`).
+/// Capability: tells and hears of new Panal builds (`event.update`).
 pub const UPDATE_HINT: &str = "update.hint";
 
-/// Body of `event.update`: a new build of NectarLink is out on `channel`.
+/// Body of `event.update`: a new build of Panal is out on `channel`.
 /// A device that checks for updates (usually the PC, which is plugged in)
 /// tells its peers, so a phone needn't check on its own. Only a hint: the
 /// receiver checks the channel's feed itself before installing anything.
@@ -4507,15 +4508,15 @@ mod tests {
 
     #[test]
     fn elevated_usb_only_runs_the_apps_own_helper_and_grants() {
-        let apk = "/data/app/~~kG3x_Q==/app.nectarlink-Ab1-cD2==/base.apk";
+        let apk = "/data/app/~~kG3x_Q==/app.panal-Ab1-cD2==/base.apk";
         let start = ElevatedUsbStart {
             apk: apk.into(),
             token: "0123456789abcdef0123456789abcdef0123456789abcdef".into(),
             grants: vec![
-                "pm grant app.nectarlink android.permission.WRITE_SECURE_SETTINGS".into(),
-                "appops set app.nectarlink RECEIVE_SENSITIVE_NOTIFICATIONS allow".into(),
-                "cmd notification allow_dnd app.nectarlink".into(),
-                "cmd notification allow_listener app.nectarlink/app.nectarlink.android.notifications.NotificationListener"
+                "pm grant app.panal android.permission.WRITE_SECURE_SETTINGS".into(),
+                "appops set app.panal RECEIVE_SENSITIVE_NOTIFICATIONS allow".into(),
+                "cmd notification allow_dnd app.panal".into(),
+                "cmd notification allow_listener app.panal/app.nectarlink.android.notifications.NotificationListener"
                     .into(),
             ],
         };
@@ -4523,17 +4524,17 @@ mod tests {
 
         for apk in [
             "/data/app/other.app-1/base.apk",
-            "/sdcard/app.nectarlink/base.apk",
-            "/data/app/app.nectarlink-1/../../evil/base.apk",
-            "/data/app/app.nectarlink-1/base.apk; reboot",
-            "/data/app/app.nectarlink-1/base.apk$(id)",
+            "/sdcard/app.panal/base.apk",
+            "/data/app/app.panal-1/../../evil/base.apk",
+            "/data/app/app.panal-1/base.apk; reboot",
+            "/data/app/app.panal-1/base.apk$(id)",
         ] {
             assert!(!ElevatedUsbStart { apk: apk.into(), ..start.clone() }.is_valid(), "{apk}");
         }
         for grant in [
             "pm grant com.other android.permission.WRITE_SECURE_SETTINGS",
-            "pm grant app.nectarlink android.permission.X; rm -rf /sdcard",
-            "pm grant app.nectarlink android.permission.X && reboot",
+            "pm grant app.panal android.permission.X; rm -rf /sdcard",
+            "pm grant app.panal android.permission.X && reboot",
             "appops set app.nectarlink.evil SYSTEM_ALERT_WINDOW allow",
             "cmd notification allow_listener com.other/x.Listener",
             "cmd notification allow_dnd com.other",
@@ -4549,10 +4550,10 @@ mod tests {
         assert!(!ElevatedUsbStart { grants: vec![start.grants[0].clone(); 9], ..start.clone() }.is_valid());
         // The side-by-side test build grants itself, in debug builds only.
         let dev = ElevatedUsbStart {
-            apk: "/data/app/~~kG3x_Q==/app.nectarlink.dev-Ab1-cD2==/base.apk".into(),
+            apk: "/data/app/~~kG3x_Q==/app.panal.dev-Ab1-cD2==/base.apk".into(),
             grants: vec![
-                "pm grant app.nectarlink.dev android.permission.WRITE_SECURE_SETTINGS".into(),
-                "cmd notification allow_listener app.nectarlink.dev/app.nectarlink.android.notifications.NotificationListener".into(),
+                "pm grant app.panal.dev android.permission.WRITE_SECURE_SETTINGS".into(),
+                "cmd notification allow_listener app.panal.dev/app.nectarlink.android.notifications.NotificationListener".into(),
             ],
             ..start
         };

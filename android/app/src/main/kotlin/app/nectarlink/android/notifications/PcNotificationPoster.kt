@@ -13,7 +13,7 @@ import android.graphics.BitmapFactory
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
-import app.nectarlink.android.NectarlinkApplication
+import app.nectarlink.android.PanalApplication
 import app.nectarlink.android.R
 import app.nectarlink.android.ui.MainActivity
 import java.util.concurrent.ConcurrentHashMap
@@ -154,7 +154,7 @@ class PcNotificationPoster(context: Context) {
         override fun onReceive(context: Context, intent: Intent) {
             val device = intent.getStringExtra(EXTRA_DEVICE) ?: return
             val key = intent.getStringExtra(EXTRA_KEY) ?: return
-            (context.applicationContext as NectarlinkApplication).core.dismissPeerNotification(device, key)
+            (context.applicationContext as PanalApplication).core.dismissPeerNotification(device, key)
         }
 
         companion object {

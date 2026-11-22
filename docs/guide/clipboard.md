@@ -1,94 +1,94 @@
-# Clipboard
+# Portapapeles
 
-NectarLink shares your clipboard between your PC and your Android phone. Copy plain text, rich HTML text, an image, or a file on one device and paste it on the other, with smart action chips for links and addresses, an optional encrypted 50-item clipboard history, and automatic filtering for passwords and one-time verification codes.
+Panal comparte el portapapeles entre el PC y el teléfono Android. Copia texto plano, texto HTML con formato, una imagen o un archivo en un dispositivo y pégalo en el otro, con etiquetas de acción para enlaces y direcciones, un historial cifrado opcional de 50 elementos y filtrado automático de contraseñas y códigos de verificación de un solo uso.
 
 <p align="center">
-  <img src="images/clipboard-autopaste.png" alt="Clipboard sync and smart context chips in NectarLink" width="760">
+  <img src="images/clipboard-autopaste.png" alt="Sincronización del portapapeles y etiquetas de acción en Panal" width="760">
 </p>
 
-## What You Need
+## Qué necesitas
 
-| Requirement | Details |
+| Requisito | Detalles |
 | :--- | :--- |
-| **Android Permissions** | No special permission is needed for PC-to-phone clipboard sync or manual phone-to-PC sending. |
-| **Android Power Level** | `Standard` for automatic PC-to-phone sync and one-tap phone-to-PC sending (via Quick Settings tile, share sheet, widget, or app button). `Elevated` enables **automatic background phone-to-PC clipboard sync** whenever you copy text or images in any Android app. |
-| **Per-Device Toggle** | **Clipboard** (enabled by default in **Settings › Devices** on the PC). |
-| **Network** | Local network, USB cable, or **Connect over mobile data**. If the target device is offline, your latest clipboard send waits in the `Waiting to send` queue (replacing any older queued clip for that device) and arrives automatically on reconnect. |
+| **Permisos de Android** | No hace falta ningún permiso especial para sincronizar del PC al teléfono ni para enviar a mano del teléfono al PC. |
+| **Nivel de control de Android** | `Standard` para la sincronización automática del PC al teléfono y el envío con un toque del teléfono al PC (desde el mosaico de Ajustes rápidos, el menú Compartir, el widget o el botón de la app). `Elevated` activa la **sincronización automática en segundo plano del teléfono al PC** cada vez que copias texto o imágenes en cualquier app de Android. |
+| **Interruptor por dispositivo** | **Portapapeles** (activado por defecto en **Ajustes › Dispositivos** del PC). |
+| **Red** | Red local, cable USB o **Conectar con datos móviles**. Si el dispositivo de destino está desconectado, tu último envío espera en la cola `Pendiente de enviar` (sustituyendo cualquier recorte anterior en cola para ese dispositivo) y llega solo al reconectar. |
 
-## Step-by-Step Use
+## Uso paso a paso
 
-### Copying on Your PC to Paste on Your Phone
+### Copiar en el PC para pegar en el teléfono
 
-1. On your PC, copy any plain text, formatted HTML text, or image (`Ctrl+C`, right-click **Copy**, or `Win+Shift+S` screen snip).
-2. With **Sync clipboard to phone** turned on in **Settings › General** (the default), NectarLink sends the copied content to your connected phone automatically in the background.
-3. On your phone, tap **Paste** in any text field or image editor.
-4. You can also send your current PC clipboard manually at any time by clicking **Send clipboard** on the PC Home screen or running **Send clipboard to phone** in the `Command Palette` (`Ctrl+Alt+Space`).
+1. En el PC, copia texto plano, texto HTML con formato o una imagen (`Ctrl+C`, clic derecho › **Copiar** o recorte de pantalla con `Win+Mayús+S`).
+2. Con **Sincronizar el portapapeles con el teléfono** activado en **Ajustes › General** (lo predeterminado), Panal envía lo copiado al teléfono conectado en segundo plano.
+3. En el teléfono, toca **Pegar** en cualquier campo de texto o editor de imágenes.
+4. También puedes enviar el portapapeles del PC a mano cuando quieras con **Enviar portapapeles** en la pantalla de Inicio del PC o ejecutando **Enviar portapapeles al teléfono** en la `Paleta de comandos` (`Ctrl+Alt+Espacio`).
 
-### Copying on Your Phone to Paste on Your PC
+### Copiar en el teléfono para pegar en el PC
 
-Android 10 and newer block background apps from reading the system clipboard unless they run with shell privileges. NectarLink gives you two ways to send your phone's clipboard to your PC:
+Android 10 y posterior impiden que las apps en segundo plano lean el portapapeles del sistema salvo que tengan privilegios de shell. Panal te da dos formas de enviar el portapapeles del teléfono al PC:
 
-- **Automatic in the background (with `Elevated`)**: Once you enable `Elevated` (via Wireless Debugging in **Settings › Permissions › Control from your PC** or **Settings › Features & Data › Clipboard › Background clipboard access**), NectarLink's local shell helper listens for clipboard changes and sends copied text and images to your PC automatically as soon as you tap **Copy** in any app.
-- **One-tap manual send (at `Standard` or `Assist`)**: Without `Elevated`, you can send what you copied on your phone using any of four quick surfaces:
-  1. **Quick Settings tile**: Pull down your phone's notification shade and tap the **Send clipboard** tile.
-  2. **Android share sheet**: Select text or an image in any app, tap **Share**, and choose **Send to PC** (or tap your PC's Direct Share icon).
-  3. **Home screen widget**: Tap **Send clip** on the NectarLink **PC quick actions** widget on your Android home screen.
-  4. **Inside the NectarLink app**: Tap **Send clipboard** on the Android Home screen (or in the persistent connection notification).
+- **Automática en segundo plano (con `Elevated`)**: cuando activas `Elevated` (con la depuración inalámbrica en **Ajustes › Permisos › Control desde tu PC** o **Ajustes › Funciones y datos › Portapapeles › Acceso al portapapeles en segundo plano**), el ayudante de shell local de Panal detecta los cambios del portapapeles y envía al PC el texto y las imágenes copiados en cuanto tocas **Copiar** en cualquier app.
+- **Envío manual con un toque (con `Standard` o `Assist`)**: sin `Elevated`, puedes enviar lo que copiaste en el teléfono desde cuatro accesos rápidos:
+  1. **Mosaico de Ajustes rápidos**: baja el panel de notificaciones y toca el mosaico **Enviar portapapeles**.
+  2. **Menú Compartir de Android**: selecciona texto o una imagen en cualquier app, toca **Compartir** y elige **Enviar al PC** (o toca el icono de Compartir directo de tu PC).
+  3. **Widget de la pantalla de inicio**: toca **Enviar recorte** en el widget **Acciones rápidas del PC** de Panal.
+  4. **Dentro de la app Panal**: toca **Enviar portapapeles** en la pantalla de Inicio de Android (o en la notificación persistente de conexión).
 
-### Copying and Pasting Files (`Ctrl+C` / `Ctrl+V`)
+### Copiar y pegar archivos (`Ctrl+C` / `Ctrl+V`)
 
-NectarLink bridges Windows file clipboard drops (`CF_HDROP`) with file transfers:
+Panal conecta los archivos del portapapeles de Windows (`CF_HDROP`) con las transferencias de archivos:
 
-- **PC to phone**: If you copy one or more files in Windows File Explorer (`Ctrl+C`) and click **Send clipboard** in NectarLink, those files are transferred straight to your phone.
-- **Phone to PC**: When **Copy received files** is enabled in **Settings › General** (the default), small files and photos you send from your phone to your PC are saved to `Downloads\Nectarlink` and automatically placed onto your Windows clipboard as file drops so you can press `Ctrl+V` straight into an email, chat window, document, or folder.
+- **Del PC al teléfono**: si copias uno o varios archivos en el Explorador de archivos (`Ctrl+C`) y haces clic en **Enviar portapapeles** en Panal, esos archivos se transfieren directamente al teléfono.
+- **Del teléfono al PC**: con **Copiar archivos recibidos** activado en **Ajustes › General** (lo predeterminado), los archivos pequeños y las fotos que envías del teléfono al PC se guardan en `Descargas\Panal` y se colocan solos en el portapapeles de Windows como archivos, para que pulses `Ctrl+V` directamente en un correo, un chat, un documento o una carpeta.
 
-### Smart Context Chips
+### Etiquetas de acción
 
-When a text clip arrives from a paired device and matches a recognizable pattern, NectarLink displays a context chip on the confirmation banner so you can act on it with one click or tap:
+Cuando llega un recorte de texto de un dispositivo emparejado y coincide con un patrón reconocible, Panal muestra una etiqueta de acción en el aviso de confirmación para que actúes con un clic o un toque:
 
-| Detected Content | Context Chip Action |
+| Contenido detectado | Acción de la etiqueta |
 | :--- | :--- |
-| **Web URL (`https://...`)** | **Open**: Opens the link in your default web browser. |
-| **Street Address or Coordinates** | **Open in Maps**: Opens the address in your default maps app. |
-| **Phone Number** | **Call**: Opens the number in the NectarLink dialer (on PC) or phone dialer (on Android). |
-| **Parcel Tracking Number** (UPS, FedEx, USPS, DHL) | **Track**: Opens the carrier tracking page for that package. |
-| **Email Address** | **Email**: Starts a new email to that address in your default mail client. |
+| **URL web (`https://...`)** | **Abrir**: abre el enlace en el navegador predeterminado. |
+| **Dirección postal o coordenadas** | **Abrir en Mapas**: abre la dirección en la app de mapas predeterminada. |
+| **Número de teléfono** | **Llamar**: abre el número en el marcador de Panal (en el PC) o en el marcador del teléfono (en Android). |
+| **Número de seguimiento de paquete** (UPS, FedEx, USPS, DHL) | **Seguir**: abre la página de seguimiento del transportista. |
+| **Dirección de correo** | **Correo**: empieza un correo nuevo a esa dirección en el cliente de correo predeterminado. |
 
-You can turn these suggestions off at any time in **Settings › General › Suggest clipboard actions** on the PC or **Settings › Features & Data › Clipboard › Suggest actions for copied text** on Android.
+Puedes desactivar estas sugerencias cuando quieras en **Ajustes › General › Sugerir acciones del portapapeles** en el PC o en **Ajustes › Funciones y datos › Portapapeles › Sugerir acciones para el texto copiado** en Android.
 
-### Using Clipboard History
+### Usar el historial del portapapeles
 
-Both the Windows app and the Android app keep an optional encrypted local **Clipboard history** of the last 50 text and image clips shared between your devices:
+La app de Windows y la de Android guardan un **Historial del portapapeles** local, cifrado y opcional, con los últimos 50 recortes de texto e imagen compartidos entre tus dispositivos:
 
-1. Open **Clipboard history** from the Home screen (or `Timeline` / `Shelf` on PC).
-2. Search clips by text, filter by source device, click **Copy** to place any earlier clip back on your active clipboard, or click **Pin** so an important snippet is never pushed out when new clips arrive.
-3. Click **Delete** on an individual item or **Clear history** to wipe all stored clips.
+1. Abre **Historial del portapapeles** desde la pantalla de Inicio (o desde `Línea de tiempo` / `Bandeja` en el PC).
+2. Busca recortes por texto, filtra por dispositivo de origen, haz clic en **Copiar** para volver a poner un recorte anterior en el portapapeles o en **Fijar** para que un fragmento importante no se pierda cuando lleguen recortes nuevos.
+3. Haz clic en **Eliminar** en un elemento o en **Borrar historial** para eliminar todos los recortes guardados.
 
-## What the Options Do
+## Qué hacen las opciones
 
-### On Windows
+### En Windows
 
-- **Sync clipboard to phone** (`Settings › General`, default: **On**): Automatically sends text and images copied on the PC to connected phones.
-- **Copy one-time codes** (`Settings › General`, default: **Off**): Automatically copies verification codes detected in phone notifications and SMS messages to the PC clipboard.
-- **Copy received files** (`Settings › General`, default: **On**): Places newly received files onto the Windows file clipboard (`CF_HDROP`) so they are ready to paste with `Ctrl+V`.
-- **Suggest clipboard actions** (`Settings › General`, default: **On**): Shows context chips (**Open**, **Open in Maps**, **Call**, **Track**, **Email**) when matching text arrives.
-- **Clipboard history** (`Settings › Storage & Privacy`, default: **On**): Stores up to 50 synced clips (kept for 7 days, up to 128 MB) in an encrypted local file, with a one-click **Clear** button.
+- **Sincronizar el portapapeles con el teléfono** (`Ajustes › General`, por defecto: **activado**): envía solo a los teléfonos conectados el texto y las imágenes copiados en el PC.
+- **Copiar códigos de un solo uso** (`Ajustes › General`, por defecto: **desactivado**): copia solos al portapapeles del PC los códigos de verificación detectados en las notificaciones y los SMS del teléfono.
+- **Copiar archivos recibidos** (`Ajustes › General`, por defecto: **activado**): coloca los archivos recién recibidos en el portapapeles de archivos de Windows (`CF_HDROP`) para pegarlos con `Ctrl+V`.
+- **Sugerir acciones del portapapeles** (`Ajustes › General`, por defecto: **activado**): muestra etiquetas de acción (**Abrir**, **Abrir en Mapas**, **Llamar**, **Seguir**, **Correo**) cuando llega texto que coincide.
+- **Historial del portapapeles** (`Ajustes › Almacenamiento y privacidad`, por defecto: **activado**): guarda hasta 50 recortes sincronizados (durante 7 días, hasta 128 MB) en un archivo local cifrado, con un botón **Borrar**.
 
-### On Android
+### En Android
 
-- **Background clipboard access** (`Settings › Features & Data › Clipboard`): Guides you through enabling Wireless Debugging (`Elevated`) so phone-to-PC clipboard sync runs automatically in the background.
-- **Suggest actions for copied text** (`Settings › Features & Data › Clipboard`, default: **On**): Shows context chips when text arrives from your PC.
-- **Clipboard history** (`Settings › Features & Data › Data & storage`, default: **On**): Toggles the encrypted 50-item local history on your phone and lets you clear it.
+- **Acceso al portapapeles en segundo plano** (`Ajustes › Funciones y datos › Portapapeles`): te guía para activar la depuración inalámbrica (`Elevated`) y que la sincronización del teléfono al PC funcione sola en segundo plano.
+- **Sugerir acciones para el texto copiado** (`Ajustes › Funciones y datos › Portapapeles`, por defecto: **activado**): muestra etiquetas de acción cuando llega texto del PC.
+- **Historial del portapapeles** (`Ajustes › Funciones y datos › Datos y almacenamiento`, por defecto: **activado**): activa o desactiva el historial local cifrado de 50 elementos en el teléfono y te permite borrarlo.
 
-## Data and Privacy
+## Datos y privacidad
 
-- **Automatic exclusion of passwords and one-time codes**:
-  - Any clipboard item marked private or sensitive by a password manager (`ExcludeClipboardContentFromMonitorProcessing` / `CloudClipboard` format flags on Windows, or `ClipDescription.EXTRA_IS_SENSITIVE` on Android 13+) is ignored and **never** transmitted or saved.
-  - One-time verification codes (OTPs) are never written to clipboard history or `Timeline`, and an OTP auto-copied on your PC is never echoed back to your phone.
-- **At-rest encryption**: When **Clipboard history** is enabled, your saved clips (`clipboard_history.enc` with `NLCB\x01` header) and clipboard images (`clipboard_images/<id>.enc` with `NLCI\x01` header) are encrypted directly at rest using the platform `KeyProtector`: **Windows DPAPI** (`CryptProtectData`, tied to your Windows user account) on the PC and the **Android Keystore** (`AES-256-GCM`, which may be hardware-backed) on Android.
-- **Retention**: Unpinned clipboard history entries expire automatically after **7 days** (capped at 50 items and 128 MB total). In `Timeline`, clipboard entries reference the encrypted history item by ID so clip content is never stored in plain text inside SQLite.
+- **Exclusión automática de contraseñas y códigos de un solo uso**:
+  - Cualquier elemento del portapapeles que un gestor de contraseñas marque como privado o sensible (los formatos `ExcludeClipboardContentFromMonitorProcessing` / `CloudClipboard` en Windows, o `ClipDescription.EXTRA_IS_SENSITIVE` en Android 13+) se ignora y **nunca** se transmite ni se guarda.
+  - Los códigos de verificación de un solo uso (OTP) nunca se escriben en el historial ni en la `Línea de tiempo`, y un OTP copiado solo en el PC nunca se reenvía al teléfono.
+- **Cifrado en reposo**: con el **Historial del portapapeles** activado, los recortes guardados (`clipboard_history.enc` con cabecera `NLCB\x01`) y las imágenes (`clipboard_images/<id>.enc` con cabecera `NLCI\x01`) se cifran en reposo con el `KeyProtector` de la plataforma: **DPAPI de Windows** (`CryptProtectData`, ligado a tu cuenta de usuario de Windows) en el PC y el **Almacén de claves de Android** (`AES-256-GCM`, que puede estar respaldado por hardware) en Android.
+- **Conservación**: las entradas no fijadas del historial caducan solas a los **7 días** (con un máximo de 50 elementos y 128 MB en total). En la `Línea de tiempo`, las entradas del portapapeles hacen referencia al elemento cifrado del historial por su ID, así que el contenido nunca se guarda en texto plano dentro de SQLite.
 
-## Limits
+## Límites
 
-- **Android Background Clipboard Restriction without `Elevated`**: On Android 10 and newer, only the foreground app or the active input method (keyboard) can read the system clipboard. Unless `Elevated` is active, phone-to-PC clipboard sharing requires tapping the Quick Settings tile, share sheet, widget, or in-app button.
-- **Clip Size Caps**: Individual text clips are capped at 256 KiB on the wire (`clip::MAX_TEXT_BYTES`) and clipboard images are capped at 32 MiB (`clip::MAX_IMAGE_BYTES`) during live sync (16 MiB per image in local history) so an accidental huge copy never stalls your connection. For larger images or files, use [Files and Transfers](files-and-transfers.md).
+- **Restricción del portapapeles en segundo plano en Android sin `Elevated`**: en Android 10 y posterior, solo la app en primer plano o el método de entrada activo (el teclado) pueden leer el portapapeles del sistema. Sin `Elevated`, compartir del teléfono al PC requiere tocar el mosaico de Ajustes rápidos, el menú Compartir, el widget o el botón de la app.
+- **Tamaño máximo de los recortes**: cada recorte de texto tiene un límite de 256 KiB en la transmisión (`clip::MAX_TEXT_BYTES`) y las imágenes, de 32 MiB (`clip::MAX_IMAGE_BYTES`) en la sincronización en directo (16 MiB por imagen en el historial local), para que una copia enorme por error nunca bloquee la conexión. Para imágenes o archivos más grandes, usa [Archivos y transferencias](files-and-transfers.md).

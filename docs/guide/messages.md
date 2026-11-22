@@ -1,76 +1,76 @@
-# Messages
+# Mensajes
 
-The **Messages** page on your PC brings together your phone's SMS and MMS text threads alongside **Unified Conversations** from RCS, WhatsApp, Telegram, Signal, and other messaging apps. You can read threads, search contacts, send texts and image attachments, schedule messages for later, copy verification codes, and filter spam from one inbox.
+La página **Mensajes** del PC reúne las conversaciones SMS y MMS del teléfono junto con las **conversaciones unificadas** de RCS, WhatsApp, Telegram, Signal y otras apps de mensajería. Desde una sola bandeja puedes leer conversaciones, buscar contactos, enviar mensajes e imágenes, programar mensajes, copiar códigos de verificación y filtrar el spam.
 
 <p align="center">
-  <img src="images/messages-inbox.png" alt="Messages page on Windows showing SMS threads and Unified Conversations from chat apps" width="760">
+  <img src="images/messages-inbox.png" alt="Página Mensajes en Windows con conversaciones SMS y conversaciones unificadas de apps de chat" width="760">
 </p>
 
-## What You Need
+## Qué necesitas
 
-| Requirement | Details |
+| Requisito | Detalles |
 | :--- | :--- |
-| **Android Permissions** | **Text from your PC** (`READ_SMS`, `SEND_SMS`, `RECEIVE_SMS`) for SMS and MMS threads; **Contacts on your PC** (`READ_CONTACTS`) to show contact names and photos; **Show notifications on your PC** (Notification access) for Unified Conversations from third-party chat apps. |
-| **Android Power Level** | `Standard` (all messaging features work without `Assist` or `Elevated`). |
-| **Per-Device Toggles** | **Messages** and **Contacts** (both enabled by default in **Settings › Devices** on the PC). |
-| **Network** | Local network, USB cable, or **Connect over mobile data**. |
+| **Permisos de Android** | **Mensajes desde tu PC** (`READ_SMS`, `SEND_SMS`, `RECEIVE_SMS`) para las conversaciones SMS y MMS; **Contactos en tu PC** (`READ_CONTACTS`) para mostrar nombres y fotos; **Mostrar notificaciones en tu PC** (acceso a notificaciones) para las conversaciones unificadas de apps de chat de terceros. |
+| **Nivel de control de Android** | `Standard` (toda la mensajería funciona sin `Assist` ni `Elevated`). |
+| **Interruptores por dispositivo** | **Mensajes** y **Contactos** (ambos activados por defecto en **Ajustes › Dispositivos** del PC). |
+| **Red** | Red local, cable USB o **Conectar con datos móviles**. |
 
-## Step-by-Step Use
+## Uso paso a paso
 
-### Reading SMS, MMS, and Chat App Threads
+### Leer conversaciones SMS, MMS y de apps de chat
 
-1. Click **Messages** in the left navigation bar on your PC.
-2. The left pane lists your conversations ordered by most recent activity:
-   - **SMS and MMS threads** are synced directly from your phone's system telephony database, including group MMS conversations and inline picture attachments.
-   - **Unified Conversations** capture incoming messages from chat apps that use Android's `MessagingStyle` notification format (such as Google Messages RCS, WhatsApp, Telegram, Signal, Discord, and Slack). Each thread badge shows which app it belongs to. NectarLink automatically deduplicates SMS notifications against the system SMS provider so texts never appear twice.
-3. When chat apps are present, chips at the top of the list filter conversations by app. The search box filters threads by contact name, phone number, app, or message text.
+1. Haz clic en **Mensajes** en la barra lateral del PC.
+2. El panel izquierdo muestra tus conversaciones ordenadas por actividad reciente:
+   - **Las conversaciones SMS y MMS** se sincronizan directamente desde la base de datos de telefonía del sistema, incluidas las conversaciones MMS de grupo y las imágenes adjuntas.
+   - **Las conversaciones unificadas** recogen los mensajes entrantes de apps de chat que usan el formato de notificación `MessagingStyle` de Android (como RCS de Google Mensajes, WhatsApp, Telegram, Signal, Discord y Slack). Una etiqueta en cada conversación indica de qué app es. Panal elimina automáticamente los duplicados entre las notificaciones de SMS y el proveedor de SMS del sistema, para que ningún mensaje aparezca dos veces.
+3. Cuando hay apps de chat, unas etiquetas arriba de la lista filtran las conversaciones por app. El cuadro de búsqueda filtra por nombre de contacto, número, app o texto del mensaje.
 
-### Sending Texts and Replying to Chat Apps
+### Enviar mensajes y responder en apps de chat
 
-1. Select any conversation in the list to open its message history on the right. It opens at the latest message. If you scroll up, it keeps your place as new messages arrive. What you've read on the PC stops showing as unread there, though the phone keeps its own count unless NectarLink is its default SMS app.
-2. Click the message composer at the bottom, type your message, and press **Enter** to send (or `Shift+Enter` to insert a new line).
-   - In an **SMS/MMS thread**, your phone sends the text through your cellular carrier (automatically splitting long messages into multi-part SMS when needed) and writes the sent message to your phone's SMS database.
-   - In a **Unified Conversation** (such as WhatsApp or Signal), your phone sends the reply through that app's active `RemoteInput` notification channel.
+1. Elige una conversación de la lista para abrir su historial a la derecha. Se abre en el último mensaje. Si subes, mantiene tu posición mientras llegan mensajes nuevos. Lo que lees en el PC deja de aparecer como no leído allí, aunque el teléfono mantiene su propio contador salvo que Panal sea su app de SMS predeterminada.
+2. Haz clic en el cuadro de redacción de abajo, escribe el mensaje y pulsa **Intro** para enviarlo (o `Mayús+Intro` para un salto de línea).
+   - En una **conversación SMS/MMS**, el teléfono envía el mensaje por tu operador (dividiendo los mensajes largos en varios SMS cuando hace falta) y lo guarda en su base de datos de SMS.
+   - En una **conversación unificada** (como WhatsApp o Signal), el teléfono envía la respuesta por el canal `RemoteInput` de la notificación activa de esa app.
 
-### Sending Picture Attachments (MMS)
+### Enviar imágenes (MMS)
 
-You can attach images to any SMS/MMS conversation in three ways:
+Puedes adjuntar imágenes a cualquier conversación SMS/MMS de tres formas:
 
 <p align="center">
-  <img src="images/messages-mms.png" alt="Previewing a pasted image attachment in the Messages composer before sending as MMS" width="760">
+  <img src="images/messages-mms.png" alt="Vista previa de una imagen pegada en el redactor de Mensajes antes de enviarla como MMS" width="760">
 </p>
 
-1. **Paste from clipboard**: Copy any image on your PC and press `Ctrl+V` inside the message composer.
-2. **Drag and drop**: Drag a `.png`, `.jpg`, `.webp`, or `.gif` image file from File Explorer or the `Shelf` onto the conversation pane.
-3. **Attachment picker**: Click the attachment icon (`+` or paperclip) in the composer and choose an image file from your PC.
-4. A thumbnail preview appears above the text box. Add an optional caption and press **Enter** to send the image as an MMS through your phone's cellular connection.
+1. **Pegar desde el portapapeles**: copia cualquier imagen en el PC y pulsa `Ctrl+V` dentro del cuadro de redacción.
+2. **Arrastrar y soltar**: arrastra un archivo `.png`, `.jpg`, `.webp` o `.gif` desde el Explorador de archivos o la Bandeja a la conversación.
+3. **Selector de adjuntos**: haz clic en el icono de adjuntar (`+` o clip) del cuadro de redacción y elige una imagen del PC.
+4. Aparece una miniatura sobre el cuadro de texto. Añade un texto opcional y pulsa **Intro** para enviar la imagen como MMS por la conexión móvil del teléfono.
 
-### Starting a New Conversation
+### Empezar una conversación nueva
 
-1. Click the **New message** button at the top of the conversation list.
-2. Type a contact's name or phone number in the **To:** field. NectarLink searches your phone's synced contacts as you type, showing matching names, phone numbers, and contact avatars.
-3. Click a contact (or finish typing a phone number), write your message in the composer, and press **Enter**.
+1. Haz clic en **Mensaje nuevo** arriba de la lista de conversaciones.
+2. Escribe el nombre o el número de un contacto en el campo **Para**. Panal busca en los contactos sincronizados del teléfono mientras escribes y muestra nombres, números y avatares.
+3. Haz clic en un contacto (o termina de escribir un número), escribe el mensaje y pulsa **Intro**.
 
-### One-Time Codes
+### Códigos de un solo uso
 
-When an SMS or chat message contains a verification code, NectarLink displays a **Copy code** button right inside the message bubble (and copies it automatically if **Copy one-time codes** is turned on in **Settings › General**).
+Cuando un SMS o un mensaje de chat contiene un código de verificación, Panal muestra un botón **Copiar código** dentro de la burbuja del mensaje (y lo copia solo si **Copiar códigos de un solo uso** está activado en **Ajustes › General**).
 
-## What the Options Do
+## Qué hacen las opciones
 
-- **Messages toggle** (`Settings › Devices` on PC, **On** by default): Allows this phone and PC to sync SMS/MMS conversations, Unified Conversations, and outgoing replies.
-- **Contacts toggle** (`Settings › Devices` on PC, **On** by default): Syncs contact names, phone numbers, and avatars so threads display people's names instead of raw numbers.
-- **Copy one-time codes** (`Settings › General` on PC, **Off** by default): Copies verification codes from incoming SMS messages to the PC clipboard automatically.
-- **Cached messages** (`Settings › Storage & Privacy` on PC and `Settings › Features & Data › Data & storage` on Android): Shows how many chat threads, messages, and MMS attachment bytes are cached locally, with a **Clear** button to wipe the local cache at any time.
+- **Interruptor Mensajes** (`Ajustes › Dispositivos` en el PC, **activado** por defecto): permite que este teléfono y el PC sincronicen conversaciones SMS/MMS, conversaciones unificadas y respuestas.
+- **Interruptor Contactos** (`Ajustes › Dispositivos` en el PC, **activado** por defecto): sincroniza nombres, números y avatares para que las conversaciones muestren nombres en lugar de números.
+- **Copiar códigos de un solo uso** (`Ajustes › General` en el PC, **desactivado** por defecto): copia solos al portapapeles del PC los códigos de verificación de los SMS entrantes.
+- **Mensajes en caché** (`Ajustes › Almacenamiento y privacidad` en el PC y `Ajustes › Funciones y datos › Datos y almacenamiento` en Android): muestra cuántos chats, mensajes y bytes de adjuntos MMS hay en caché local, con un botón **Borrar** para vaciarla cuando quieras.
 
-## Data and Privacy
+## Datos y privacidad
 
-- **Where data travels**: SMS threads, MMS attachments, contact records, and Unified Conversation messages are transmitted directly between your phone and PC over your end-to-end encrypted QUIC connection.
-- **Where data stays**:
-  - On your **phone**, SMS and MMS messages live in Android's system telephony provider (`content://sms` and `content://mms`). Temporary staging files used when building or receiving MMS attachments are stored in the app's private cache and deleted automatically within 5 minutes.
-  - On your **PC**, Unified Conversations (`MessagingStyle` chat threads) are cached in your local SQLite database (`%LOCALAPPDATA%\Nectarlink\nectarlink.db` in `chat_threads` and `chat_messages`) and MMS image attachments are stored in `%LOCALAPPDATA%\Nectarlink\cache\images\` for up to **90 days** so conversations open without delay. Clicking **Clear** next to **Cached messages** in **Settings › Storage & Privacy** removes all locally cached messages and attachments on the PC without deleting any texts on your phone.
+- **Por dónde viajan los datos**: las conversaciones SMS, los adjuntos MMS, los contactos y los mensajes de las conversaciones unificadas viajan directamente entre el teléfono y el PC por tu conexión QUIC cifrada de extremo a extremo.
+- **Dónde se quedan**:
+  - En el **teléfono**, los SMS y MMS viven en el proveedor de telefonía del sistema Android (`content://sms` y `content://mms`). Los archivos temporales usados al crear o recibir adjuntos MMS se guardan en la caché privada de la app y se borran solos en 5 minutos.
+  - En el **PC**, las conversaciones unificadas (chats `MessagingStyle`) se guardan en caché en tu base de datos SQLite local (`%LOCALAPPDATA%\Panal\nectarlink.db`, en `chat_threads` y `chat_messages`) y las imágenes MMS en `%LOCALAPPDATA%\Panal\cache\images\` hasta **90 días**, para que las conversaciones se abran sin esperas. **Borrar** junto a **Mensajes en caché** en **Ajustes › Almacenamiento y privacidad** quita todos los mensajes y adjuntos guardados en el PC sin borrar ningún mensaje del teléfono.
 
-## Limits
+## Límites
 
-- **Chat App Reply Window (`RemoteInput`)**: Unified Conversations from third-party apps (such as WhatsApp, Signal, or Telegram) rely on the `RemoteInput` action attached to that app's notification on Android. You can reply to a chat app conversation as long as its notification (or session action) remains active on the phone, and you cannot start a brand-new WhatsApp or Signal thread with someone who has not messaged you first.
-- **RCS Messages in Google Messages**: Android does not expose a public third-party API for reading or sending RCS messages directly through the database. RCS messages that arrive while connected appear as Unified Conversations via `MessagingStyle` notifications (supporting inline text replies), whereas messages you initiate from the **New message** composer are sent as standard SMS or MMS.
-- **Carrier MMS Size Limits**: Outgoing MMS pictures are compressed automatically to fit standard carrier MMS limits (typically 600 KB to 1.2 MB depending on your mobile operator). For full-resolution photo transfers, use [Photos](photos.md) or [Files and Transfers](files-and-transfers.md).
+- **Ventana de respuesta de las apps de chat (`RemoteInput`)**: las conversaciones unificadas de apps de terceros (como WhatsApp, Signal o Telegram) dependen de la acción `RemoteInput` de la notificación de esa app en Android. Puedes responder mientras su notificación (o la acción de sesión) siga activa en el teléfono, y no puedes iniciar una conversación nueva de WhatsApp o Signal con alguien que no te haya escrito antes.
+- **Mensajes RCS de Google Mensajes**: Android no ofrece una API pública para leer o enviar mensajes RCS directamente de la base de datos. Los RCS que llegan mientras estás conectado aparecen como conversaciones unificadas mediante notificaciones `MessagingStyle` (con respuesta de texto), mientras que los mensajes que inicias desde **Mensaje nuevo** se envían como SMS o MMS normales.
+- **Límites de tamaño de MMS del operador**: las imágenes MMS salientes se comprimen solas para ajustarse a los límites habituales de los operadores (normalmente entre 600 KB y 1,2 MB según tu operador). Para enviar fotos a resolución completa, usa [Fotos](photos.md) o [Archivos y transferencias](files-and-transfers.md).

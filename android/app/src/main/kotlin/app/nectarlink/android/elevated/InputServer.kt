@@ -39,7 +39,7 @@ import java.security.MessageDigest
  * connection closes the window.
  */
 /**
- * Compiles NectarLink ahead of time from its startup profile, as Android does
+ * Compiles Panal ahead of time from its startup profile, as Android does
  * on its own only during idle maintenance. Asked once per version by
  * [Elevated]; allowed by name in the helper.
  */
@@ -148,9 +148,9 @@ object InputServer {
             val text = decode(parts[0])
             val html = parts.getOrNull(1)?.takeIf(String::isNotEmpty)?.let(decode)
             val clip = if (html != null) {
-                android.content.ClipData.newHtmlText("Nectarlink", text, html)
+                android.content.ClipData.newHtmlText("Panal", text, html)
             } else {
-                android.content.ClipData.newPlainText("Nectarlink", text)
+                android.content.ClipData.newPlainText("Panal", text)
             }
             clip.description.extras = android.os.PersistableBundle().apply {
                 putBoolean("com.android.systemui.SUPPRESS_CLIPBOARD_OVERLAY", true)
@@ -194,7 +194,7 @@ object InputServer {
                     }
                     "hashCode" -> System.identityHashCode(listenerBinder)
                     "equals" -> args?.getOrNull(0) === proxyRef
-                    "toString" -> "NectarlinkClipListener"
+                    "toString" -> "PanalClipListener"
                     else -> null
                 }
             }
@@ -248,7 +248,7 @@ object InputServer {
                     extras?.getBoolean("com.android.systemui.SUPPRESS_CLIPBOARD_OVERLAY") == true ||
                     extras?.getBoolean("android.content.extra.IS_REMOTE_DEVICE") == true
                 val isSensitive = extras?.getBoolean("android.content.extra.IS_SENSITIVE") == true
-                if (isHostPipe || isSensitive || label == "Nectarlink") {
+                if (isHostPipe || isSensitive || label == "Panal") {
                     lastSentClipKey = null
                     return@runCatching
                 }
@@ -861,7 +861,7 @@ object InputServer {
             "cmd wifi start-softap",
             "cmd wifi stop-softap",
             // Pause for banking apps: seeing which app is in front.
-            "appops set app.nectarlink GET_USAGE_STATS allow",
+            "appops set app.panal GET_USAGE_STATS allow",
             // Fast starts right after an install or update.
             COMPILE_APP_COMMAND,
             // Start without asking: the camera or microphone a chosen PC asked for.
@@ -1020,7 +1020,7 @@ object InputServer {
             val created = !keyboardAttempted
             if (created) {
                 keyboardAttempted = true
-                keyboardFd = openDevice("NectarLink Virtual Keyboard", 0x4EE7, KEYBOARD_RD)
+                keyboardFd = openDevice("Panal Virtual Keyboard", 0x4EE7, KEYBOARD_RD)
             }
             val fd = keyboardFd ?: return false
             idleClose?.cancel(false)
@@ -1055,7 +1055,7 @@ object InputServer {
         fun sendGamepadReport(buttons: Int, lx: Int, ly: Int, rx: Int, ry: Int, lt: Int, rt: Int): Boolean {
             if (!gamepadAttempted) {
                 gamepadAttempted = true
-                gamepadFd = openDevice("NectarLink Virtual Gamepad", 0x4EE8, GAMEPAD_RD)
+                gamepadFd = openDevice("Panal Virtual Gamepad", 0x4EE8, GAMEPAD_RD)
             }
             val fd = gamepadFd ?: return false
             val report = java.nio.ByteBuffer.allocate(12).order(java.nio.ByteOrder.LITTLE_ENDIAN).apply {

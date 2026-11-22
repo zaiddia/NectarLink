@@ -1,6 +1,6 @@
 [package]
 name = "nectarlink-desktop"
-description = "NectarLink for Windows: the desktop app"
+description = "Panal for Windows: the desktop app"
 version.workspace = true
 edition.workspace = true
 # Above the workspace minimum: material-colors needs Rust 1.97.
@@ -11,7 +11,7 @@ license = "GPL-3.0-or-later"
 publish = false
 
 [[bin]]
-name = "nectarlink-desktop"
+name = "panal"
 path = "src/main.rs"
 
 [dependencies]

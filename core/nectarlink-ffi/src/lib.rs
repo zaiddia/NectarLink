@@ -602,7 +602,7 @@ pub enum Event {
         id: String,
         battery: Battery,
     },
-    /// A device heard of a new NectarLink build on `channel` ("stable" or
+    /// A device heard of a new Panal build on `channel` ("stable" or
     /// "nightly"): check that channel's feed now.
     UpdateHint {
         id: String,
@@ -1836,7 +1836,7 @@ private_debug!(
 );
 
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error, uniffi::Error)]
-pub enum NectarlinkError {
+pub enum PanalError {
     #[error("device is not paired")]
     NotPaired,
     #[error("device is offline")]
@@ -1873,34 +1873,34 @@ pub enum NectarlinkError {
     Internal { reason: String },
 }
 
-impl From<core::Error> for NectarlinkError {
+impl From<core::Error> for PanalError {
     fn from(e: core::Error) -> Self {
         match e {
-            core::Error::NotPaired => NectarlinkError::NotPaired,
-            core::Error::Offline => NectarlinkError::Offline,
-            core::Error::Denied => NectarlinkError::Denied,
-            core::Error::Declined => NectarlinkError::Declined,
-            core::Error::Timeout => NectarlinkError::Timeout,
+            core::Error::NotPaired => PanalError::NotPaired,
+            core::Error::Offline => PanalError::Offline,
+            core::Error::Denied => PanalError::Denied,
+            core::Error::Declined => PanalError::Declined,
+            core::Error::Timeout => PanalError::Timeout,
             core::Error::VersionTooOld { side } => {
-                NectarlinkError::VersionTooOld { this_device: side == core::Side::Local }
+                PanalError::VersionTooOld { this_device: side == core::Side::Local }
             }
-            core::Error::Unsupported => NectarlinkError::Unsupported,
-            core::Error::NotFound => NectarlinkError::NotFound,
-            core::Error::TooLarge => NectarlinkError::TooLarge,
-            core::Error::QueueFull(reason) => NectarlinkError::QueueFull { reason },
-            core::Error::NotPairing => NectarlinkError::NotPairing,
-            core::Error::InvalidPairingLink(_) => NectarlinkError::InvalidPairingLink,
-            core::Error::Network(reason) => NectarlinkError::Network { reason },
-            core::Error::Storage(reason) => NectarlinkError::Storage { reason },
-            core::Error::Io(e) => NectarlinkError::Storage { reason: e.to_string() },
+            core::Error::Unsupported => PanalError::Unsupported,
+            core::Error::NotFound => PanalError::NotFound,
+            core::Error::TooLarge => PanalError::TooLarge,
+            core::Error::QueueFull(reason) => PanalError::QueueFull { reason },
+            core::Error::NotPairing => PanalError::NotPairing,
+            core::Error::InvalidPairingLink(_) => PanalError::InvalidPairingLink,
+            core::Error::Network(reason) => PanalError::Network { reason },
+            core::Error::Storage(reason) => PanalError::Storage { reason },
+            core::Error::Io(e) => PanalError::Storage { reason: e.to_string() },
             core::Error::Protocol(reason) | core::Error::Internal(reason) => {
-                NectarlinkError::Internal { reason }
+                PanalError::Internal { reason }
             }
         }
     }
 }
 
-type Result<T, E = NectarlinkError> = std::result::Result<T, E>;
+type Result<T, E = PanalError> = std::result::Result<T, E>;
 
 // ---- Conversions ----
 
@@ -2370,7 +2370,7 @@ fn file_to_send(file: FileToSend) -> Result<core::OutgoingFile> {
         FileToSend::Fd { name, fd, folder } => {
             use std::os::fd::FromRawFd;
             if fd < 0 {
-                return Err(NectarlinkError::Internal { reason: "invalid file descriptor".into() });
+                return Err(PanalError::Internal { reason: "invalid file descriptor".into() });
             }
             // SAFETY: the caller hands over an open descriptor it no longer
             // uses (documented on `FileToSend::Fd`); the File closes it.
@@ -2380,7 +2380,7 @@ fn file_to_send(file: FileToSend) -> Result<core::OutgoingFile> {
         }
         #[cfg(not(unix))]
         FileToSend::Fd { .. } => {
-            return Err(NectarlinkError::Internal {
+            return Err(PanalError::Internal {
                 reason: "file descriptors exist only on Android".into(),
             });
         }
@@ -2519,7 +2519,7 @@ impl Event {
 }
 
 fn parse_id(id: &str) -> Result<DeviceId> {
-    id.parse().map_err(|_| NectarlinkError::InvalidDeviceId)
+    id.parse().map_err(|_| PanalError::InvalidDeviceId)
 }
 
 // ---- Foreign interfaces (implemented in Kotlin) ----
@@ -3264,20 +3264,20 @@ pub struct NodeOptions {
     pub usb_port: Option<u16>,
 }
 
-/// The NectarLink engine. One per app process.
+/// The Panal engine. One per app process.
 #[derive(uniffi::Object)]
-pub struct NectarlinkNode {
+pub struct PanalNode {
     runtime: Runtime,
     node: Node,
 }
 
-impl std::fmt::Debug for NectarlinkNode {
+impl std::fmt::Debug for PanalNode {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        f.debug_struct("NectarlinkNode").field("node", &self.node).finish_non_exhaustive()
+        f.debug_struct("PanalNode").field("node", &self.node).finish_non_exhaustive()
     }
 }
 
-impl NectarlinkNode {
+impl PanalNode {
     /// Runs `fut` on the node's runtime and waits for it from the caller's
     /// executor.
     async fn run<T: Send + 'static>(&self, fut: impl Future<Output = T> + Send + 'static) -> T {
@@ -3298,7 +3298,7 @@ impl NectarlinkNode {
 }
 
 #[uniffi::export]
-impl NectarlinkNode {
+impl PanalNode {
     /// Loads or creates this device's identity and trust store, starts
     /// networking and starts delivering events to `listener`. Blocks for
     /// the (short) startup; call it off the main thread.
@@ -3314,7 +3314,7 @@ impl NectarlinkNode {
             .thread_name("nectarlink-core")
             .enable_all()
             .build()
-            .map_err(|e| NectarlinkError::Internal { reason: e.to_string() })?;
+            .map_err(|e| PanalError::Internal { reason: e.to_string() })?;
         let mut config =
             NodeConfig::new(PathBuf::from(options.data_dir), options.device.into(), options.app_version);
         config.power = options.power.into();
@@ -3370,7 +3370,7 @@ impl NectarlinkNode {
                 }
             }
         });
-        Ok(Arc::new(NectarlinkNode { runtime, node }))
+        Ok(Arc::new(PanalNode { runtime, node }))
     }
 
     /// This device's ID (z-base-32).
@@ -3931,7 +3931,7 @@ impl NectarlinkNode {
     // ---- Remote input (touchpad, keyboard, presentation) ----
 
     /// Checks whether a paired PC allows remote mouse/keyboard input from this
-    /// phone (`NectarlinkError::Denied` when `remote_input` is off on the PC,
+    /// phone (`PanalError::Denied` when `remote_input` is off on the PC,
     /// which also triggers a one-time confirmation prompt there).
     pub async fn remote_check(&self, id: String) -> Result<()> {
         let id = parse_id(&id)?;
@@ -3970,14 +3970,14 @@ impl NectarlinkNode {
             "left" => core::MouseButton::Left,
             "right" => core::MouseButton::Right,
             "middle" => core::MouseButton::Middle,
-            _ => return Err(NectarlinkError::Internal { reason: format!("invalid mouse button: {button}") }),
+            _ => return Err(PanalError::Internal { reason: format!("invalid mouse button: {button}") }),
         };
         let action = match action.as_str() {
             "down" => core::ButtonAction::Down,
             "up" => core::ButtonAction::Up,
             "click" => core::ButtonAction::Click,
             _ => {
-                return Err(NectarlinkError::Internal { reason: format!("invalid button action: {action}") });
+                return Err(PanalError::Internal { reason: format!("invalid button action: {action}") });
             }
         };
         let node = self.node.clone();
@@ -4005,7 +4005,7 @@ impl NectarlinkNode {
                 "alt" => core::KeyMod::Alt,
                 "shift" => core::KeyMod::Shift,
                 "win" => core::KeyMod::Win,
-                _ => return Err(NectarlinkError::Internal { reason: format!("invalid key modifier: {m}") }),
+                _ => return Err(PanalError::Internal { reason: format!("invalid key modifier: {m}") }),
             };
             parsed_mods.push(km);
         }
@@ -4026,7 +4026,7 @@ impl NectarlinkNode {
             "start" => core::SlideAction::Start,
             "stop" => core::SlideAction::Stop,
             "black" => core::SlideAction::Black,
-            _ => return Err(NectarlinkError::Internal { reason: format!("invalid slide action: {action}") }),
+            _ => return Err(PanalError::Internal { reason: format!("invalid slide action: {action}") }),
         };
         let node = self.node.clone();
         self.run(async move { Ok(node.remote_input(id, core::RemoteInput::Slide { action }).await?) }).await
@@ -4303,7 +4303,7 @@ impl NectarlinkNode {
             "photo" => core::CameraCaptureMode::Photo,
             "scan" => core::CameraCaptureMode::Scan,
             other => {
-                return Err(NectarlinkError::Internal { reason: format!("unknown capture mode {other:?}") });
+                return Err(PanalError::Internal { reason: format!("unknown capture mode {other:?}") });
             }
         };
         let meta = core::CameraCaptureResultMeta {
@@ -4343,7 +4343,7 @@ impl NectarlinkNode {
             "photo" => core::CameraCaptureMode::Photo,
             "scan" => core::CameraCaptureMode::Scan,
             other => {
-                return Err(NectarlinkError::Internal { reason: format!("unknown capture mode {other:?}") });
+                return Err(PanalError::Internal { reason: format!("unknown capture mode {other:?}") });
             }
         };
         let node = self.node.clone();
@@ -4370,7 +4370,7 @@ impl NectarlinkNode {
         peer: String,
         offset: u64,
         length: u64,
-    ) -> Result<WatchFileChunk, NectarlinkError> {
+    ) -> Result<WatchFileChunk, PanalError> {
         let peer_id = parse_id(&peer)?;
         let node = self.node.clone();
         let (size, data) =
@@ -4384,7 +4384,7 @@ impl NectarlinkNode {
         &self,
         peer: String,
         path: String,
-    ) -> Result<Vec<RemoteStorageEntry>, NectarlinkError> {
+    ) -> Result<Vec<RemoteStorageEntry>, PanalError> {
         let peer_id = parse_id(&peer)?;
         let node = self.node.clone();
         let req_path = path.clone();
@@ -4457,9 +4457,9 @@ impl NectarlinkNode {
     pub fn wake_via_relay(&self, relay_peer: String, mac: String, broadcast: Option<String>) -> Result<()> {
         let peer_id = parse_id(&relay_peer)?;
         let mac_bytes = core::parse_mac(&mac)
-            .ok_or_else(|| NectarlinkError::Internal { reason: "invalid MAC address".into() })?;
+            .ok_or_else(|| PanalError::Internal { reason: "invalid MAC address".into() })?;
         let bcast = match broadcast.as_deref().map(str::trim).filter(|s| !s.is_empty()) {
-            Some(s) => Some(s.parse::<std::net::Ipv4Addr>().map_err(|_| NectarlinkError::Internal {
+            Some(s) => Some(s.parse::<std::net::Ipv4Addr>().map_err(|_| PanalError::Internal {
                 reason: "invalid broadcast IPv4 address".into(),
             })?),
             None => None,
@@ -4666,7 +4666,7 @@ pub fn init_logging(filter: String) {
     use tracing_subscriber::{EnvFilter, prelude::*};
     let filter = EnvFilter::try_new(&filter).unwrap_or_else(|_| EnvFilter::new("info"));
     #[cfg(target_os = "android")]
-    let layer = paranoid_android::layer("Nectarlink").with_ansi(false);
+    let layer = paranoid_android::layer("Panal").with_ansi(false);
     #[cfg(not(target_os = "android"))]
     let layer = tracing_subscriber::fmt::layer();
     let _ = tracing_subscriber::registry().with(filter).with(layer).try_init();
@@ -4678,14 +4678,14 @@ mod tests {
 
     #[test]
     fn errors_map_to_actionable_variants() {
-        assert_eq!(NectarlinkError::from(core::Error::Offline), NectarlinkError::Offline);
+        assert_eq!(PanalError::from(core::Error::Offline), PanalError::Offline);
         assert_eq!(
-            NectarlinkError::from(core::Error::VersionTooOld { side: core::Side::Remote }),
-            NectarlinkError::VersionTooOld { this_device: false }
+            PanalError::from(core::Error::VersionTooOld { side: core::Side::Remote }),
+            PanalError::VersionTooOld { this_device: false }
         );
         assert!(matches!(
-            NectarlinkError::from(core::Error::Internal("x".into())),
-            NectarlinkError::Internal { reason } if reason == "x"
+            PanalError::from(core::Error::Internal("x".into())),
+            PanalError::Internal { reason } if reason == "x"
         ));
     }
 

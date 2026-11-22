@@ -81,7 +81,9 @@ fn has_desktop_session() -> bool {
 
 fn is_nectarlink_title(title: &str) -> bool {
     let trimmed = title.trim();
-    trimmed.is_empty() || trimmed.get(..10).is_some_and(|prefix| prefix.eq_ignore_ascii_case("nectarlink"))
+    trimmed.is_empty()
+        || trimmed.get(..10).is_some_and(|prefix| prefix.eq_ignore_ascii_case("nectarlink"))
+        || trimmed.get(..5).is_some_and(|prefix| prefix.eq_ignore_ascii_case("panal"))
 }
 
 fn parse_window_handle(raw: &str) -> Option<isize> {
@@ -505,7 +507,7 @@ fn x11_focus_window(hwnd: isize) -> bool {
 }
 
 /// Queries the currently active external window via X11 `_NET_ACTIVE_WINDOW`
-/// (in-process), `kdotool` (KDE Wayland), or `xdotool`, ignoring NectarLink's own windows.
+/// (in-process), `kdotool` (KDE Wayland), or `xdotool`, ignoring Panal's own windows.
 pub fn query_active_window() -> Option<(isize, String)> {
     if has_x11_display()
         && let Some((hwnd, title)) = x11_query_active_window()
@@ -532,7 +534,7 @@ pub fn query_active_window() -> Option<(isize, String)> {
 }
 
 /// Records the current foreground window if it belongs to an external
-/// user-facing application (not NectarLink itself).
+/// user-facing application (not Panal itself).
 pub fn record_foreground_window() {
     if let Some((hwnd, title)) = query_active_window() {
         let mut guard = LAST_EXTERNAL_WINDOW.lock().unwrap_or_else(|e| e.into_inner());
@@ -1023,7 +1025,7 @@ pub(crate) fn parse_portal_shortcut_id(id: &str) -> Option<TrayEvent> {
     }
 }
 
-/// Converts a NectarLink hotkey spec (e.g. `"Ctrl+Alt+C"`) into an XDG GlobalShortcuts
+/// Converts a Panal hotkey spec (e.g. `"Ctrl+Alt+C"`) into an XDG GlobalShortcuts
 /// `preferred_trigger` string (e.g. `"CTRL+ALT+c"`).
 pub(crate) fn hotkey_to_portal_trigger(spec: &str) -> Option<String> {
     let (mods, vk) = parse_hotkey(spec)?;
@@ -1644,7 +1646,7 @@ mod tests {
             quit: "Quit".into(),
         };
         let tray = Tray::create("Panal", labels, |_| {}).expect("create tray");
-        tray.set_tooltip("NectarLink · Pixel 9");
+        tray.set_tooltip("Panal · Pixel 9");
         tray.set_find_phone_enabled(true);
         assert!(tray.icon_path.exists());
         drop(tray);

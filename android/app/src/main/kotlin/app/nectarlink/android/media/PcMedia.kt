@@ -23,7 +23,7 @@ import android.os.Handler
 import android.os.Looper
 import android.os.SystemClock
 import androidx.core.content.ContextCompat
-import app.nectarlink.android.NectarlinkApplication
+import app.nectarlink.android.PanalApplication
 import app.nectarlink.android.R
 import app.nectarlink.android.ui.MainActivity
 import app.nectarlink.core.MediaAction
@@ -195,7 +195,7 @@ class PcMedia(
         if (first == null) return hide()
         val (pc, player) = first
         shown = first
-        val session = session ?: MediaSession(context, "NectarLink PC media").also {
+        val session = session ?: MediaSession(context, "Panal PC media").also {
             it.setCallback(callback, main)
             it.setSessionActivity(openApp())
             session = it
@@ -424,7 +424,7 @@ class PcMedia(
     class CommandReceiver : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
             val action = intent.getStringExtra(EXTRA_ACTION)?.let { name -> MediaAction.entries.find { it.name == name } } ?: return
-            (context.applicationContext as NectarlinkApplication).core.pcMedia.pressed(action)
+            (context.applicationContext as PanalApplication).core.pcMedia.pressed(action)
         }
     }
 

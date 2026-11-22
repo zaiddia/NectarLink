@@ -320,14 +320,11 @@ bool install_translator(rust::Str dir, rust::Str language)
             break;
     }
 
-    // NectarLink's own strings, staged beside the executable. A locale with no
+    // Panal's own strings, staged beside the executable. A locale with no
     // translation (`nectarlink_es_ES.qm` missing), or English, stays English.
     bool installed = false;
     auto *app = new QTranslator(QCoreApplication::instance());
-    // With no catalog for the locale, the English one (it names the app
-    // Panal; the source text still says NectarLink).
-    if (app->load(locale, QStringLiteral("nectarlink"), QStringLiteral("_"), folder)
-        || app->load(QStringLiteral("nectarlink_en"), folder)) {
+    if (app->load(locale, QStringLiteral("nectarlink"), QStringLiteral("_"), folder)) {
         installed = QCoreApplication::installTranslator(app);
         appTranslator() = app;
     } else {

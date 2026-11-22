@@ -1,158 +1,158 @@
-# Desktop Surfaces and Automation
+# Superficies de escritorio y automatización
 
-Beyond the main window, NectarLink integrates into Windows 11 with fast, low-overhead desktop surfaces and automation tools: the slide-out **`Shelf`** edge panel, **`Nectar Island`** at the top of your screen, the searchable cross-device **`Timeline`**, the global **`Command Palette`** (`Ctrl+Alt+Space`), rich **`Handoff`** for links, maps, videos, and documents, **`notify-when`** process completion alerts, a trigger-action **Rules Engine**, a local authenticated **HTTP API**, a **PowerToys Command Palette** extension, and the `nectarlink` command-line client.
+Además de la ventana principal, Panal se integra en Windows 11 con superficies de escritorio rápidas y ligeras y con herramientas de automatización: el panel lateral **`Bandeja`**, la **`Nectar Island`** en la parte superior de la pantalla, la **`Línea de tiempo`** entre dispositivos con búsqueda, la **`Paleta de comandos`** global (`Ctrl+Alt+Espacio`), el **`Handoff`** avanzado para enlaces, mapas, vídeos y documentos, los avisos de fin de proceso **`notify-when`**, un **motor de reglas** de disparador y acción, una **API HTTP** local autenticada, una extensión para la **Paleta de comandos de PowerToys** y el cliente de línea de comandos `panal`.
 
 <p align="center">
-  <img src="images/command-palette.png" alt="Global Command Palette open over the NectarLink window on Windows 11" width="760">
+  <img src="images/command-palette.png" alt="Paleta de comandos global abierta sobre la ventana de Panal en Windows 11" width="760">
 </p>
 
-## What You Need
+## Qué necesitas
 
-| Feature | Requirements |
+| Función | Requisitos |
 | :--- | :--- |
-| **`Shelf` edge panel (`Ctrl+Alt+S`)** | Windows 11 app running (window open or in the system tray). |
-| **`Nectar Island`** | Turn on **Nectar Island** in PC **Settings › General** (off by default). |
-| **`Timeline`** | Enabled by default on both Windows and Android (retains up to 5,000 items or 90 days by default). |
-| **`Command Palette` (`Ctrl+Alt+Space`)** | Windows 11 app running (window open or in the system tray). |
-| **Rich `Handoff` (links, maps, video timestamps, documents)** | `Standard` power level. **Files** toggle enabled in **Settings › Devices**. |
-| **`notify-when` task alerts & CLI (`nectarlink`)** | Windows 11 app running in the same user session. |
-| **Trigger-action automations** | Configured in PC **Settings › Shortcuts & Rules › Trigger-action rules**. |
-| **Local automation API (`127.0.0.1:53320`)** | Turn on **Local automation API** in PC **Settings › Connection & About** (off by default). |
+| **Panel lateral `Bandeja` (`Ctrl+Alt+S`)** | App de Windows 11 en ejecución (con la ventana abierta o en la bandeja del sistema). |
+| **`Nectar Island`** | Activa **Nectar Island** en **Ajustes › General** del PC (desactivada por defecto). |
+| **`Línea de tiempo`** | Activada por defecto en Windows y en Android (guarda hasta 5.000 elementos o 90 días por defecto). |
+| **`Paleta de comandos` (`Ctrl+Alt+Espacio`)** | App de Windows 11 en ejecución (con la ventana abierta o en la bandeja del sistema). |
+| **`Handoff` avanzado (enlaces, mapas, minuto de vídeo, documentos)** | Nivel de control `Standard`. Interruptor **Archivos** activado en **Ajustes › Dispositivos**. |
+| **Avisos de tareas `notify-when` y línea de comandos (`panal`)** | App de Windows 11 en ejecución en la misma sesión de usuario. |
+| **Automatizaciones de disparador y acción** | Se configuran en **Ajustes › Atajos y reglas › Reglas de disparador y acción** del PC. |
+| **API de automatización local (`127.0.0.1:53320`)** | Activa **API de automatización local** en **Ajustes › Conexión y Acerca de** del PC (desactivada por defecto). |
 
-## Step-by-Step Use
+## Uso paso a paso
 
-### 1. The `Shelf` Slide-Out Edge Panel and Flick to Send
+### 1. El panel lateral `Bandeja` y lanzar para enviar
 
-The `Shelf` is a lightweight edge panel on your PC that gives you instant drag-and-drop access to your phone's recent items without switching windows or stealing keyboard focus from your current app:
+La `Bandeja` es un panel lateral ligero del PC que te da acceso inmediato, con arrastrar y soltar, a los elementos recientes del teléfono sin cambiar de ventana ni quitar el foco del teclado a la app actual:
 
 <p align="center">
-  <img src="images/shelf-panel.png" alt="The slide-out Shelf edge panel showing the latest photo, screenshot, clipboard item, and recent files" width="760">
+  <img src="images/shelf-panel.png" alt="El panel lateral Bandeja con la última foto, la última captura, el portapapeles y los archivos recientes" width="760">
 </p>
 
-1. Press **`Ctrl+Alt+S`** from any application (or flick a file toward the screen edge) to slide out the `Shelf`.
-2. The `Shelf` displays four live slots from your connected phone:
-   - **Latest photo**
-   - **Latest screenshot**
-   - **Current clipboard**
-   - **Recent received files**
-3. **Drag out to any app**: Drag any item out of the `Shelf` directly into an email, document, browser upload box, chat window, or File Explorer folder.
-4. **Drop or Flick in to send**: Drag any file, folder, image, or text selection from your PC into the `Shelf` (or flick a file toward the `Shelf` screen edge) to send it straight to your phone, with a 3-second **Undo** option.
-5. Press **Escape** or click outside the `Shelf` to hide it. When hidden, the `Shelf` unloads its QML surface completely so it uses zero background GPU or memory overhead.
+1. Pulsa **`Ctrl+Alt+S`** desde cualquier aplicación (o lanza un archivo hacia el borde de la pantalla) para desplegar la `Bandeja`.
+2. La `Bandeja` muestra cuatro huecos en directo del teléfono conectado:
+   - **Última foto**
+   - **Última captura**
+   - **Portapapeles actual**
+   - **Archivos recibidos recientes**
+3. **Arrastrar a cualquier app**: arrastra cualquier elemento de la `Bandeja` directamente a un correo, un documento, un cuadro de subida del navegador, un chat o una carpeta del Explorador.
+4. **Soltar o lanzar para enviar**: arrastra cualquier archivo, carpeta, imagen o texto seleccionado del PC a la `Bandeja` (o lanza un archivo hacia el borde donde está la `Bandeja`) para enviarlo directamente al teléfono, con la opción **Deshacer** durante 3 segundos.
+5. Pulsa **Esc** o haz clic fuera de la `Bandeja` para ocultarla. Oculta, la `Bandeja` descarga por completo su superficie QML, así no consume GPU ni memoria en segundo plano.
 
 ### 2. `Nectar Island`
 
-`Nectar Island` is an optional compact pill at the top center of your primary monitor that surfaces live phone activity without covering your workspace in notification popups:
+`Nectar Island` es una píldora compacta y opcional en la parte superior central del monitor principal que muestra la actividad del teléfono en directo sin llenar tu espacio de trabajo de avisos emergentes:
 
-1. Turn on **Nectar Island** in PC **Settings › General** (it is **off by default**).
-2. In the **Island triggers** row right below it, choose which activities appear in the pill:
-   - **Calls** (on by default): Incoming caller ID with Answer/Decline buttons and live call duration.
-   - **Transfers** (on by default): Live file transfer progress bars and `Waiting to send` count.
-   - **Media** (on by default): Now-playing track artwork, title, and transport controls.
-   - **Alerts** (off by default): Phone notifications, one-time verification codes, active timers/Live Updates, and incoming voice recordings.
-3. Hover over or click `Nectar Island` to expand its interactive controls, or let it collapse back into a minimal pill when idle. `Nectar Island` automatically hides itself when you are running a full-screen game or video, or when Windows Do Not Disturb is active.
+1. Activa **Nectar Island** en **Ajustes › General** del PC (está **desactivada por defecto**).
+2. En la fila **Activadores de la isla**, justo debajo, elige qué actividades aparecen en la píldora:
+   - **Llamadas** (activado por defecto): identificador de llamada entrante con botones Contestar/Rechazar y duración de la llamada en directo.
+   - **Transferencias** (activado por defecto): barras de progreso de transferencias en directo y número de elementos en `Pendiente de enviar`.
+   - **Multimedia** (activado por defecto): carátula, título y controles de la pista en reproducción.
+   - **Alertas** (desactivado por defecto): notificaciones del teléfono, códigos de verificación de un solo uso, temporizadores activos y Live Updates, y grabaciones de voz entrantes.
+3. Pasa el ratón o haz clic en `Nectar Island` para desplegar sus controles, o deja que vuelva a ser una píldora mínima cuando no hay actividad. `Nectar Island` se oculta sola cuando ejecutas un juego o un vídeo a pantalla completa, o cuando No molestar de Windows está activo.
 
-### 3. Cross-Device `Timeline`
+### 3. `Línea de tiempo` entre dispositivos
 
-The `Timeline` gives you one searchable local log of everything that has moved between your phone and your PC:
+La `Línea de tiempo` te da un único registro local con búsqueda de todo lo que ha pasado entre el teléfono y el PC:
 
 <p align="center">
-  <img src="images/timeline-page.png" alt="Timeline page on Windows showing files, clips, links, photos, and sessions grouped by day" width="760">
+  <img src="images/timeline-page.png" alt="Página Línea de tiempo en Windows con archivos, recortes, enlaces, fotos y sesiones agrupados por día" width="760">
 </p>
 
-1. Click **Timeline** in the left navigation bar on your PC (or scroll to the **Timeline** card on the Android Home screen).
-2. Entries are grouped by day (**Today**, **Yesterday**, and earlier dates) and include:
-   - Sent and received **Files** and folders
-   - Shared **Clips** (linked by ID to encrypted clipboard history so clip text is never duplicated in SQLite)
-   - Opened **Links**, map locations, and video handoffs
-   - Saved **Photos** and Continuity Camera scans
-   - Received **Recordings** (voice notes)
-   - Screen mirroring and webcam **Sessions** (with duration)
-3. Filter by category (**All**, **Files**, **Clips**, **Links**, **Photos**, **Recordings**, **Sessions**), filter by paired device when you have more than one phone or PC, or type in the **Search timeline** box.
-4. Each entry offers quick actions matched to its type: **Open**, **Show in folder**, **Copy**, **Send again**, or **Remove**.
+1. Haz clic en **Línea de tiempo** en la barra lateral del PC (o baja hasta la tarjeta **Línea de tiempo** en la pantalla de Inicio de Android).
+2. Las entradas se agrupan por día (**Hoy**, **Ayer** y fechas anteriores) e incluyen:
+   - **Archivos** y carpetas enviados y recibidos
+   - **Recortes** compartidos (enlazados por ID al historial cifrado del portapapeles, así el texto nunca se duplica en SQLite)
+   - **Enlaces** abiertos, ubicaciones de mapas y vídeos traspasados
+   - **Fotos** guardadas y escaneos de la Cámara de continuidad
+   - **Grabaciones** recibidas (notas de voz)
+   - **Sesiones** de duplicación de pantalla y webcam (con su duración)
+3. Filtra por categoría (**Todo**, **Archivos**, **Recortes**, **Enlaces**, **Fotos**, **Grabaciones**, **Sesiones**), por dispositivo emparejado si tienes más de un teléfono o PC, o escribe en el cuadro **Buscar en la línea de tiempo**.
+4. Cada entrada ofrece acciones rápidas según su tipo: **Abrir**, **Mostrar en la carpeta**, **Copiar**, **Enviar otra vez** o **Quitar**.
 
-### 4. Global `Command Palette` (`Ctrl+Alt+Space`)
+### 4. `Paleta de comandos` global (`Ctrl+Alt+Espacio`)
 
-Press **`Ctrl+Alt+Space`** from anywhere in Windows to open NectarLink's `Command Palette` over your current window:
+Pulsa **`Ctrl+Alt+Espacio`** desde cualquier lugar de Windows para abrir la `Paleta de comandos` de Panal sobre la ventana actual:
 
-1. Start typing to fuzzy-search every action, paired device, recent file, or setting:
-   - **Mirror phone screen**
-   - **Send files to phone** / **Send clipboard to phone**
-   - **Take photo with phone** (`Ctrl+Alt+C`) / **Scan document with phone** (`Ctrl+Alt+D`)
-   - **Type on phone with PC keyboard**
-   - **Ring phone (Find my phone)**
-   - **Toggle Phone as speaker**
-   - **Open phone storage in File Explorer**
-   - **Open Setup walkthrough** / **Open Features guide**
-   - **Run Connection Doctor**
-2. You can also type or paste a web URL or text directly into the `Command Palette` to send it to your phone immediately.
-3. Use the **Up** and **Down** arrow keys and press **Enter** to run the highlighted command, or press **Escape** to close the palette.
+1. Empieza a escribir para buscar de forma aproximada cualquier acción, dispositivo emparejado, archivo reciente o ajuste:
+   - **Duplicar la pantalla del teléfono**
+   - **Enviar archivos al teléfono** / **Enviar portapapeles al teléfono**
+   - **Hacer foto con el teléfono** (`Ctrl+Alt+C`) / **Escanear documento con el teléfono** (`Ctrl+Alt+D`)
+   - **Escribir en el teléfono con el teclado del PC**
+   - **Hacer sonar el teléfono (Buscar mi teléfono)**
+   - **Activar o desactivar Teléfono como altavoz**
+   - **Abrir el almacenamiento del teléfono en el Explorador de archivos**
+   - **Abrir la guía de configuración** / **Abrir la guía de funciones**
+   - **Ejecutar el Doctor de conexión**
+2. También puedes escribir o pegar una URL o un texto directamente en la `Paleta de comandos` para enviarlo al teléfono al momento.
+3. Usa las flechas **Arriba** y **Abajo** y pulsa **Intro** para ejecutar el comando resaltado, o pulsa **Esc** para cerrar la paleta.
 
-### 5. Rich `Handoff` (Links, Maps, Video Timestamps, and Documents)
+### 5. `Handoff` avanzado (enlaces, mapas, minuto de vídeo y documentos)
 
-`Handoff` lets you start reading, watching, navigating, or editing on one device and continue immediately on the other:
+`Handoff` te permite empezar a leer, ver, navegar o editar en un dispositivo y seguir al momento en el otro:
 
-- **Web links**: Share any URL from your phone's browser to your PC via the Android share sheet (or send a URL from your PC via the `Command Palette` or `nectarlink send <url>`). The link opens immediately in the default browser on the receiving device.
-- **Maps and street addresses**: Share a Google Maps link or `geo:` location URI between devices to open that location directly in Maps.
-- **Video links with playback timestamp**: When you share a YouTube, Vimeo, or Twitch link (or run `nectarlink send <url> --at-seconds 142`), NectarLink attaches the current playback position so the receiving device offers a **Continue watching** action that resumes the video at the exact second you left off.
-- **Documents (`--open` / `Shift+Drop`)**: Hold **`Shift`** while dropping a document onto NectarLink (or run `nectarlink send report.pdf --open`) to transfer the file and open it automatically in the default viewer on the receiving device as soon as the transfer finishes.
+- **Enlaces web**: comparte cualquier URL del navegador del teléfono al PC con el menú Compartir de Android (o envía una URL desde el PC con la `Paleta de comandos` o `panal send <url>`). El enlace se abre al momento en el navegador predeterminado del dispositivo que lo recibe.
+- **Mapas y direcciones**: comparte entre dispositivos un enlace de Google Maps o una URI de ubicación `geo:` para abrir esa ubicación directamente en Mapas.
+- **Enlaces de vídeo con el minuto de reproducción**: cuando compartes un enlace de YouTube, Vimeo o Twitch (o ejecutas `panal send <url> --at-seconds 142`), Panal añade la posición actual de reproducción para que el dispositivo que lo recibe ofrezca la acción **Seguir viendo**, que reanuda el vídeo en el segundo exacto en que lo dejaste.
+- **Documentos (`--open` / `Mayús+soltar`)**: mantén **`Mayús`** al soltar un documento en Panal (o ejecuta `panal send informe.pdf --open`) para transferir el archivo y abrirlo solo en el visor predeterminado del dispositivo que lo recibe en cuanto termina la transferencia.
 
-### 6. Task Completion Alerts (`nectarlink notify-when`)
+### 6. Avisos de fin de tarea (`panal notify-when`)
 
-When you start a long build, test run, render, or download on your PC and want to step away with your phone:
+Cuando lanzas en el PC una compilación, una batería de pruebas, un renderizado o una descarga larga y quieres alejarte con el teléfono:
 
-1. In any Windows terminal (PowerShell, Command Prompt, or Windows Terminal), wrap a command or attach to an existing process ID (`PID`):
+1. En cualquier terminal de Windows (PowerShell, Símbolo del sistema o Windows Terminal), envuelve un comando o engánchate a un ID de proceso (`PID`) existente:
    ```powershell
-   # Run a command and alert your phone when it finishes or fails
-   nectarlink notify-when -- cargo test --workspace
+   # Ejecuta un comando y avisa al teléfono cuando termine o falle
+   panal notify-when -- cargo test --workspace
 
-   # Or watch an already-running process by its PID
-   nectarlink notify-when 14820
+   # O vigila un proceso que ya está en marcha por su PID
+   panal notify-when 14820
    ```
-2. While the command or process is running on your PC, your phone displays a live ongoing notification (**Running on `<PC>`**) with a ticking chronometer timer.
-3. As soon as the process exits, your phone receives a completion alert showing whether it succeeded or failed, its exit code, and how long it took (for example, `cargo test finished / Took 1m 42s` or `cargo build failed (exit 101)`). If your phone briefly goes offline while the task finishes, the completion alert waits in the `Waiting to send` queue and arrives on reconnect.
+2. Mientras el comando o el proceso se ejecuta en el PC, el teléfono muestra una notificación en curso (**Ejecutándose en `<PC>`**) con un cronómetro en marcha.
+3. En cuanto el proceso termina, el teléfono recibe un aviso que indica si salió bien o mal, su código de salida y cuánto tardó (por ejemplo, `cargo test terminó / Tardó 1 min 42 s` o `cargo build falló (salida 101)`). Si el teléfono se desconecta un momento mientras termina la tarea, el aviso espera en la cola `Pendiente de enviar` y llega al reconectar.
 
-### 7. Trigger-Action Automations (Rules Engine)
+### 7. Automatizaciones de disparador y acción (motor de reglas)
 
-You can automate routine actions between your phone and PC without writing scripts:
+Puedes automatizar acciones rutinarias entre el teléfono y el PC sin escribir scripts:
 
-1. Open PC **Settings › Shortcuts & Rules** and scroll to the **Trigger-action rules** card.
-2. Click one of the quick presets (**Lock PC on disconnect** or **Pause media on ring**) or add custom rules combining a trigger and an action:
-   - **Triggers**: `When phone connects`, `When phone disconnects`, `When phone rings`, `When call ends`, `When phone battery is low`, `When phone is charged`.
-   - **Actions**: `Lock this PC`, `Sleep this PC`, `Pause PC media`, `Resume PC media`, `Mute PC audio`, `Unmute PC audio`, `Show notification`, `Run command`.
-3. Toggle individual rules on or off or click **Remove** to delete a rule at any time.
+1. Abre **Ajustes › Atajos y reglas** en el PC y baja hasta la tarjeta **Reglas de disparador y acción**.
+2. Haz clic en uno de los ajustes rápidos (**Bloquear el PC al desconectar** o **Pausar multimedia al sonar**) o añade reglas propias combinando un disparador y una acción:
+   - **Disparadores**: `Cuando el teléfono se conecta`, `Cuando el teléfono se desconecta`, `Cuando suena el teléfono`, `Cuando termina una llamada`, `Cuando la batería del teléfono está baja`, `Cuando el teléfono está cargado`.
+   - **Acciones**: `Bloquear este PC`, `Suspender este PC`, `Pausar la multimedia del PC`, `Reanudar la multimedia del PC`, `Silenciar el audio del PC`, `Reactivar el audio del PC`, `Mostrar notificación`, `Ejecutar comando`.
+3. Activa o desactiva reglas una a una, o haz clic en **Quitar** para borrar una regla cuando quieras.
 
-### 8. Local Authenticated HTTP API and PowerToys Extension
+### 8. API HTTP local autenticada y extensión de PowerToys
 
-For power users who use **PowerToys Command Palette**, **AutoHotkey**, **Raycast**, **Flow Launcher**, or custom PowerShell/Python scripts, NectarLink includes an opt-in local HTTP/JSON API:
+Para usuarios avanzados que usan la **Paleta de comandos de PowerToys**, **AutoHotkey**, **Raycast**, **Flow Launcher** o scripts propios de PowerShell o Python, Panal incluye una API HTTP/JSON local opcional:
 
-1. Open PC **Settings › Connection & About** and turn on **Local automation API** (default port `53320`).
-2. NectarLink binds strictly to loopback (`127.0.0.1:53320`, never exposed on LAN) and writes a random 256-bit Bearer token to `%LOCALAPPDATA%\Nectarlink\api-token.json`.
-3. Every request must include `Authorization: Bearer <token>`, and any request carrying a browser `Origin` header is rejected with `403 Forbidden` to prevent cross-site browser attacks.
-4. Available endpoints (see [`docs/api.md`](../api.md) for full request/response schemas and PowerShell/`curl` examples):
-   - `GET /v1/devices`: List paired devices, connection status, and battery level.
-   - `POST /v1/send`: Send files, URLs, or text to a phone.
-   - `GET /v1/clipboard` and `POST /v1/clipboard`: Read or push clipboard text and history.
-   - `POST /v1/notify`: Send a custom notification to a phone.
-   - `POST /v1/ring`: Trigger Find my phone.
-   - `POST /v1/play-on-phone`: Play what this PC plays on the phone.
-   - `POST /v1/camera`: Trigger Continuity Camera (`"photo"` or `"scan"`).
-   - `GET /v1/timeline`: Query recent cross-device `Timeline` entries.
-5. A companion **PowerToys Command Palette** extension in `tools/powertoys-cmdpal/` connects to this API so you can invoke NectarLink actions directly from PowerToys.
+1. Abre **Ajustes › Conexión y Acerca de** en el PC y activa **API de automatización local** (puerto predeterminado `53320`).
+2. Panal escucha solo en la interfaz de bucle local (`127.0.0.1:53320`, nunca expuesta en la red local) y escribe un token Bearer aleatorio de 256 bits en `%LOCALAPPDATA%\Panal\api-token.json`.
+3. Cada petición debe incluir `Authorization: Bearer <token>`, y cualquier petición con una cabecera `Origin` de navegador se rechaza con `403 Forbidden` para evitar ataques entre sitios desde el navegador.
+4. Endpoints disponibles (consulta [`docs/api.md`](../api.md) para ver los esquemas completos de petición y respuesta y ejemplos con PowerShell y `curl`):
+   - `GET /v1/devices`: lista los dispositivos emparejados, su estado de conexión y su nivel de batería.
+   - `POST /v1/send`: envía archivos, URL o texto a un teléfono.
+   - `GET /v1/clipboard` y `POST /v1/clipboard`: lee o envía texto del portapapeles y su historial.
+   - `POST /v1/notify`: envía una notificación propia a un teléfono.
+   - `POST /v1/ring`: lanza Buscar mi teléfono.
+   - `POST /v1/play-on-phone`: reproduce en el teléfono lo que suena en este PC.
+   - `POST /v1/camera`: lanza la Cámara de continuidad (`"photo"` o `"scan"`).
+   - `GET /v1/timeline`: consulta las entradas recientes de la `Línea de tiempo`.
+5. Una extensión complementaria para la **Paleta de comandos de PowerToys**, en `tools/powertoys-cmdpal/`, se conecta a esta API para lanzar acciones de Panal directamente desde PowerToys.
 
-## What the Options Do
+## Qué hacen las opciones
 
-- **Nectar Island** and **Island triggers** (`Settings › General` on PC, default: **Off**): Enables the top-of-screen activity pill and selects which triggers (`Calls`, `Transfers`, `Media`, `Alerts`) expand it.
-- **Command palette / File shelf / Take photo / Scan document shortcuts** (`Settings › Shortcuts & Rules` on PC): Customizes the global Windows hotkeys (`Ctrl+Alt+Space`, `Ctrl+Alt+S`, `Ctrl+Alt+C`, `Ctrl+Alt+D`), with a **Reset** button next to each.
-- **Trigger-action rules** (`Settings › Shortcuts & Rules` on PC): Manages "When X, Do Y" automation rules.
-- **Cross-device timeline** (`Settings › Storage & Privacy` on PC and `Settings › Features & Data › Data & storage` on Android, default: **90d**): Sets auto-purge retention (**30d**, **90d**, **1y**, or **All** up to 5,000 items) and provides a **Clear** button.
-- **Local automation API** (`Settings › Connection & About` on PC, default: **Off**, port `53320`): Starts or stops the localhost HTTP server and configures its TCP port (`1024` to `65535`).
+- **Nectar Island** y **Activadores de la isla** (`Ajustes › General` en el PC, por defecto: **desactivado**): activa la píldora de actividad de la parte superior de la pantalla y elige qué activadores (`Llamadas`, `Transferencias`, `Multimedia`, `Alertas`) la despliegan.
+- **Atajos de Paleta de comandos / Bandeja de archivos / Hacer foto / Escanear documento** (`Ajustes › Atajos y reglas` en el PC): personaliza las teclas rápidas globales de Windows (`Ctrl+Alt+Espacio`, `Ctrl+Alt+S`, `Ctrl+Alt+C`, `Ctrl+Alt+D`), con un botón **Restablecer** junto a cada una.
+- **Reglas de disparador y acción** (`Ajustes › Atajos y reglas` en el PC): gestiona las reglas de automatización del tipo "Cuando pase X, haz Y".
+- **Línea de tiempo entre dispositivos** (`Ajustes › Almacenamiento y privacidad` en el PC y `Ajustes › Funciones y datos › Datos y almacenamiento` en Android, por defecto: **90 d**): define cuánto se conserva antes del borrado automático (**30 d**, **90 d**, **1 año** o **Todo** hasta 5.000 elementos) y ofrece un botón **Borrar**.
+- **API de automatización local** (`Ajustes › Conexión y Acerca de` en el PC, por defecto: **desactivada**, puerto `53320`): inicia o detiene el servidor HTTP local y configura su puerto TCP (de `1024` a `65535`).
 
-## Data and Privacy
+## Datos y privacidad
 
-- **Local-only `Timeline`**: `Timeline` entries are stored exclusively in your local SQLite database (`nectarlink.db`) on each device and are automatically pruned according to your chosen retention period (**30 days**, **90 days**, **1 year**, or **5,000 items**). Clipboard entries in `Timeline` store only a pointer to your encrypted `clipboard_history.enc` file so clip text is never stored in plain text inside SQLite.
-- **Zero network exposure for the Local API**: The Local automation API is off by default, binds only to `127.0.0.1`, requires a 256-bit CSPRNG Bearer token readable only by your Windows user account, and deletes `api-token.json` immediately when turned off.
+- **`Línea de tiempo` solo local**: las entradas de la `Línea de tiempo` se guardan únicamente en la base de datos SQLite local (`nectarlink.db`) de cada dispositivo y se eliminan solas según el periodo de conservación elegido (**30 días**, **90 días**, **1 año** o **5.000 elementos**). Las entradas del portapapeles en la `Línea de tiempo` solo guardan una referencia al archivo cifrado `clipboard_history.enc`, así el texto de los recortes nunca se guarda en texto plano en SQLite.
+- **Ninguna exposición en red de la API local**: la API de automatización local está desactivada por defecto, solo escucha en `127.0.0.1`, requiere un token Bearer de 256 bits generado con un CSPRNG que solo puede leer tu cuenta de usuario de Windows, y borra `api-token.json` al momento cuando la desactivas.
 
-## Limits
+## Límites
 
-- **Global Hotkey Conflicts**: If another Windows application has already registered `Ctrl+Alt+Space`, `Ctrl+Alt+S`, `Ctrl+Alt+C`, or `Ctrl+Alt+D` as a system-wide hotkey, you can assign any non-conflicting `Ctrl`/`Alt`/`Shift`/`Win` key combination in **Settings › Shortcuts & Rules**.
-- **No Windows Widgets board widget yet**: NectarLink doesn't offer a widget in the Windows 11 `Win+W` Widgets board. The taskbar **Jump List** works on all installs, and on Android the **PC quick actions** home-screen widget works on all devices.
+- **Conflictos de teclas rápidas globales**: si otra aplicación de Windows ya ha registrado `Ctrl+Alt+Espacio`, `Ctrl+Alt+S`, `Ctrl+Alt+C` o `Ctrl+Alt+D` como tecla rápida del sistema, puedes asignar cualquier combinación de `Ctrl`/`Alt`/`Mayús`/`Win` que no choque en **Ajustes › Atajos y reglas**.
+- **Aún no hay widget para el panel de Widgets de Windows**: Panal no ofrece un widget en el panel de Widgets `Win+W` de Windows 11. La **Jump List** de la barra de tareas funciona en todas las instalaciones, y en Android el widget **Acciones rápidas del PC** de la pantalla de inicio funciona en todos los dispositivos.

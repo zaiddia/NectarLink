@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
-//! NectarLink for Windows.
+//! Panal for Windows.
 //!
 //! One process: Rust runs the core (`nectarlink-core`) and OS integration,
 //! Qt Quick draws the UI. Windows are created when opened and destroyed when
@@ -220,7 +220,7 @@ impl Platform for DesktopPlatform {
 /// Command-line options (also used by shortcuts and autostart).
 #[derive(Debug, Default)]
 struct Options {
-    /// Where to keep data (default: %LOCALAPPDATA%\Nectarlink).
+    /// Where to keep data (default: %LOCALAPPDATA%\Panal).
     data_dir: Option<PathBuf>,
     /// Start in the tray without opening the window (autostart).
     minimized: bool,
@@ -363,7 +363,7 @@ fn parse_options_from<I: IntoIterator<Item = std::ffi::OsString>>(iter: I) -> Op
         // Sending doesn't need the window.
         options.minimized = true;
     } else if share_targets.is_empty() && !paths.is_empty() {
-        // Desktop entry `Exec=nectarlink-desktop %U` passes URLs or dropped files
+        // Desktop entry `Exec=panal %U` passes URLs or dropped files
         // as positional arguments without `--share`.
         share_targets = paths.into_iter().map(|p| p.to_string_lossy().into_owned()).collect();
     }
@@ -381,7 +381,7 @@ fn parse_options_from<I: IntoIterator<Item = std::ffi::OsString>>(iter: I) -> Op
 }
 
 fn default_data_dir() -> PathBuf {
-    dirs::data_local_dir().unwrap_or_else(std::env::temp_dir).join("Nectarlink")
+    dirs::data_local_dir().unwrap_or_else(std::env::temp_dir).join("Panal")
 }
 
 /// Network changes come in bursts; tell the core once things settle.
@@ -403,7 +403,7 @@ fn watch_network() {
     });
 }
 
-/// Phone notifications as Windows toasts, sent by "NectarLink" with the
+/// Phone notifications as Windows toasts, sent by "Panal" with the
 /// app's icon (written as a PNG, which Windows needs as a file).
 fn start_toasts() {
     let icon = core_host::host().data_dir.join("cache").join("nectarlink.png");
@@ -452,7 +452,7 @@ fn run_setup_window(mode: setup::Mode) -> ExitCode {
     #[cfg(not(target_os = "linux"))]
     let mut app = QGuiApplication::new();
     if let Some(mut app) = app.as_mut() {
-        app.as_mut().set_application_name(&QString::from("NectarLink Setup"));
+        app.as_mut().set_application_name(&QString::from("Panal Setup"));
         app.as_mut().set_application_version(&QString::from(env!("CARGO_PKG_VERSION")));
     }
     // Before any QML loads, so every string is right on the first pass.
@@ -475,7 +475,7 @@ fn run_setup_window(mode: setup::Mode) -> ExitCode {
 fn main() -> ExitCode {
     let options = parse_options();
     if options.version {
-        println!("nectarlink-desktop {}", env!("CARGO_PKG_VERSION"));
+        println!("panal {}", env!("CARGO_PKG_VERSION"));
         return ExitCode::SUCCESS;
     }
     if let Some(installer) = options.setup.clone().filter(|p| !p.as_os_str().is_empty()) {
@@ -684,7 +684,7 @@ fn main() -> ExitCode {
     #[cfg(not(target_os = "linux"))]
     let mut app = QGuiApplication::new();
     if let Some(mut app) = app.as_mut() {
-        app.as_mut().set_application_name(&QString::from("Nectarlink"));
+        app.as_mut().set_application_name(&QString::from("Panal"));
         app.as_mut().set_application_version(&QString::from(env!("CARGO_PKG_VERSION")));
     }
     // Before any QML loads, so every string is right on the first pass.
