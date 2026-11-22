@@ -229,6 +229,8 @@
     <string name="hive_invite_dismiss">暂不</string>
     <string name="settings_comb_motion">动态蜂巢</string>
     <string name="settings_comb_motion_hint">蜂巢会呼吸与脉动。开启“移除动画”或省电模式后保持静止。</string>
+    <string name="settings_grid_motion">动态网格</string>
+    <string name="settings_grid_motion_hint">全息网格缓缓漂移并扫描。开启“移除动画”或省电模式时保持静止。</string>
     <string name="theme_bloom">绽放</string>
     <string name="theme_graphite">石墨</string>
     <string name="mode_system">跟随系统</string>

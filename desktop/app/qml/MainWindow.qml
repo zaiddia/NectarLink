@@ -348,7 +348,7 @@ NativeWindow {
     // before it is removed.
     // Hive keeps its own fixed colors, so it never shows the wallpaper through.
     // Windows 10 has no backdrop: the window stays opaque there.
-    readonly property bool wantBackdrop: Qt.platform.os === "windows" && systemBackdropSupported && (Preferences.backdrop || Theme.glass) && !Theme.amoled && !Theme.hive
+    readonly property bool wantBackdrop: Qt.platform.os === "windows" && systemBackdropSupported && (Preferences.backdrop || Theme.glass) && !Theme.amoled && !Theme.hive && !Theme.nova
     property bool micaApplied: false
     property bool micaVisible: false
     backdrop: micaApplied
@@ -408,7 +408,7 @@ NativeWindow {
 
     // Window background: a tinted veil of the theme over Mica/Acrylic (so the
     // theme's seed color is rich and clear), opaque otherwise.
-    readonly property color windowSurface: Theme.graphite || Theme.amoled || Theme.hive
+    readonly property color windowSurface: Theme.graphite || Theme.amoled || Theme.hive || Theme.nova
         ? Theme.surface
         : Qt.tint(
             Theme.surface,
@@ -457,6 +457,29 @@ NativeWindow {
         origin: Qt.point(Theme.railWidth / 2, Theme.topBarHeight / 2)
         reach: 2.4
         pulseReach: 1.05
+    }
+
+    // Nova: the holographic grid behind everything, drifting and scanning.
+    // It shares the comb's clock, so it holds its frame while the window
+    // isn't in front or is minimized.
+    NovaBackdrop {
+        id: novaGrid
+        anchors.fill: parent
+        visible: opacity > 0
+        opacity: Theme.nova ? 1 : 0
+        Behavior on opacity {
+            enabled: !Theme.reduceMotion
+            NumberAnimation { duration: 420; easing.type: Easing.OutCubic }
+        }
+        animate: Theme.gridMotion
+        time: Theme.combTime
+        cell: Theme.grid.cell
+        driftSeconds: Theme.grid.driftSeconds
+        scanSeconds: Theme.grid.scanSeconds
+        lineColor: Theme.gridLine
+        glowColor: Theme.gridGlow
+        accentColor: Theme.gridAccent
+        origin: Qt.point(Theme.railWidth / 2, Theme.topBarHeight / 2)
     }
 
     // The comb's clock runs while this window is in front and showing Hive.
@@ -871,6 +894,8 @@ NativeWindow {
             // Hive: lets the comb show faintly through, under opaque cards.
             color: Theme.hive
                 ? Qt.rgba(Theme.surfaceContainerLow.r, Theme.surfaceContainerLow.g, Theme.surfaceContainerLow.b, Theme.dark ? 0.50 : 0.58)
+                : Theme.nova
+                ? Qt.rgba(Theme.surfaceContainerLow.r, Theme.surfaceContainerLow.g, Theme.surfaceContainerLow.b, Theme.dark ? 0.42 : 0.52)
                 : Theme.amoled
                 ? "#07080C"
                 : (Theme.glass

@@ -969,10 +969,11 @@ fn dispatch_jump_task(qt: &CxxQtThread<qobject::AppController>, action: String) 
                 "graphite" => Theme::Graphite,
                 "glass" => Theme::Glass,
                 "hive" => Theme::Hive,
+                "nova" => Theme::Nova,
                 _ => Theme::Bloom,
             };
             st.color_mode =
-                color.unwrap_or(if name == "graphite" { ColorMode::Dark } else { ColorMode::Light });
+                color.unwrap_or(if name == "graphite" || name == "nova" { ColorMode::Dark } else { ColorMode::Light });
             let _ = st.save(dir);
             core_host::host().hub.changed(Changes::PREFS);
             object.activate_requested();

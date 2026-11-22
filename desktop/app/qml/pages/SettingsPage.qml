@@ -338,6 +338,7 @@ Item {
                             width: parent.width - 30
                             anchors.verticalCenter: parent.verticalCenter
                             role: "label"
+                            novaCaps: false
                             size: 13
                             text: navItem.modelData.title
                             color: navItem.fg
@@ -540,7 +541,8 @@ Item {
                                     { value: "hive", label: qsTr("Hive") },
                                     { value: "bloom", label: qsTr("Bloom") },
                                     { value: "glass", label: qsTr("Glass") },
-                                    { value: "graphite", label: qsTr("Graphite") }
+                                    { value: "graphite", label: qsTr("Graphite") },
+                                    { value: "nova", label: qsTr("Nova") }
                                 ]
                                 value: Theme.hive ? "hive" : (Theme.glass ? "glass" : Preferences.theme)
                                 onPicked: (value) => Preferences.theme = value
@@ -562,11 +564,11 @@ Item {
                             }
                         }
                         // Hive's colors are fixed: no seed to pick.
-                        Divider { width: parent.width; visible: !Theme.graphite && !Theme.hive }
+                        Divider { width: parent.width; visible: !Theme.graphite && !Theme.hive && !Theme.nova }
                         ListRow {
                             id: colorRow
                             width: parent.width
-                            visible: !Theme.graphite && !Theme.hive
+                            visible: !Theme.graphite && !Theme.hive && !Theme.nova
                             stackBelow: true
                             iconPath: Icons.colorSwatch
                             title: qsTr("Color")
@@ -828,13 +830,33 @@ Item {
                             }
                         }
 
+                        // Nova: the grid's motion (shares the comb's setting).
+                        ListRow {
+                            width: parent.width
+                            visible: Theme.nova
+                            iconPath: Icons.sparkle
+                            title: qsTr("Animated grid")
+                            description: AppController.reduceMotion
+                                ? (Qt.platform.os === "linux"
+                                    ? qsTr("Still while animations are off in system settings.")
+                                    : qsTr("Still while animations are off in Windows."))
+                                : (AppController.powerSaver
+                                    ? qsTr("Still while energy saver is on.")
+                                    : qsTr("The holographic grid drifts and scans."))
+                            Toggle {
+                                label: qsTr("Animated grid")
+                                checked: Preferences.combMotion
+                                onToggled: (on) => Preferences.combMotion = on
+                            }
+                        }
+
                         // Side-by-side when Graphite Dark shows Pure Black + Mica backdrop
                         Item {
                             id: appearanceBottomPair
                             readonly property bool showGraphiteAmoled: Theme.graphite && Theme.dark
                             readonly property bool showMica: Qt.platform.os === "windows"
                                 && !!Window.window && Window.window.systemBackdropSupported === true
-                            visible: !Theme.hive && (showMica || showGraphiteAmoled)
+                            visible: !Theme.hive && !Theme.nova && (showMica || showGraphiteAmoled)
                             width: parent.width
                             readonly property bool splitCols: showGraphiteAmoled && showMica && width >= 460
                             readonly property real colWidth: splitCols ? Math.floor((width - 37) / 2) : width

@@ -250,6 +250,7 @@ fun SettingsScreen(
                             "bloom" to stringResource(R.string.theme_bloom),
                             "glass" to "Glass",
                             "graphite" to stringResource(R.string.theme_graphite),
+                            "nova" to stringResource(R.string.theme_nova),
                         ),
                         appearance.theme,
                     ) { value -> onAppearance { it.copy(theme = value) } }
@@ -279,14 +280,15 @@ fun SettingsScreen(
                             if (value == "" || value == "en") AppLanguage.set(context, value) else pickLanguage = true
                         }
                     }
-                    if (appearance.theme == "hive") {
+                    if (appearance.theme == "hive" || appearance.theme == "nova") {
                         SettingRowDivider()
-                        val combTitle = stringResource(R.string.settings_comb_motion)
+                        val nova = appearance.theme == "nova"
+                        val combTitle = stringResource(if (nova) R.string.settings_grid_motion else R.string.settings_comb_motion)
                         Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
                             Column(Modifier.weight(1f).padding(end = 12.dp)) {
                                 Text(combTitle, style = MaterialTheme.typography.titleSmall)
                                 Text(
-                                    stringResource(R.string.settings_comb_motion_hint),
+                                    stringResource(if (nova) R.string.settings_grid_motion_hint else R.string.settings_comb_motion_hint),
                                     style = MaterialTheme.typography.bodySmall,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                                 )
@@ -1652,13 +1654,19 @@ private const val MORE_LANGUAGES = "more"
 /** A row of choices, one picked. */
 @Composable
 internal fun Choice(options: List<Pair<String, String>>, selected: String, onSelect: (String) -> Unit) {
-    SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth()) {
-        options.forEachIndexed { index, (value, label) ->
-            SegmentedButton(
-                selected = value == selected,
-                onClick = { onSelect(value) },
-                shape = SegmentedButtonDefaults.itemShape(index, options.size),
-            ) { Text(label) }
+    // More than four don't fit a phone's width: two rows, the first one longer.
+    val rows = if (options.size > 4) options.chunked((options.size + 1) / 2) else listOf(options)
+    Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+        rows.forEach { row ->
+            SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth()) {
+                row.forEachIndexed { index, (value, label) ->
+                    SegmentedButton(
+                        selected = value == selected,
+                        onClick = { onSelect(value) },
+                        shape = SegmentedButtonDefaults.itemShape(index, row.size),
+                    ) { Text(label, maxLines = 1) }
+                }
+            }
         }
     }
 }

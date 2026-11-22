@@ -8709,6 +8709,21 @@ Voraussetzungen
         <source>80% (Protect battery)</source>
         <translation>80 % (Akkuschutz)</translation>
     </message>
+    <message>
+        <location filename="../../qml/pages/SettingsPage.qml" line="0"/>
+        <source>Nova</source>
+        <translation>Nova</translation>
+    </message>
+    <message>
+        <location filename="../../qml/pages/SettingsPage.qml" line="0"/>
+        <source>Animated grid</source>
+        <translation>Animiertes Raster</translation>
+    </message>
+    <message>
+        <location filename="../../qml/pages/SettingsPage.qml" line="0"/>
+        <source>The holographic grid drifts and scans.</source>
+        <translation>Das holografische Raster wandert und scannt.</translation>
+    </message>
 </context>
 <context>
     <name>Setup</name>

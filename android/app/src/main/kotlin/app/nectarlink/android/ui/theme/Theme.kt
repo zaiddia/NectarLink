@@ -325,8 +325,15 @@ private fun ColorScheme.toAmoledScheme(glass: Boolean): ColorScheme = copy(
     outlineVariant = if (glass) Color.White.copy(alpha = 0.12f) else Color(0xFF22252E),
 )
 
-/** Shapes from the tokens: Glass and Bloom are smoothly rounded, Hive a little firmer, Graphite crisp. */
-private fun shapes(graphite: Boolean, glass: Boolean, hive: Boolean) = when {
+/** Shapes from the tokens: Glass and Bloom are smoothly rounded, Hive a little firmer, Nova sharper, Graphite crisp. */
+private fun shapes(graphite: Boolean, glass: Boolean, hive: Boolean, nova: Boolean) = when {
+    nova -> Shapes(
+        extraSmall = RoundedCornerShape(4.dp),
+        small = RoundedCornerShape(8.dp),
+        medium = RoundedCornerShape(12.dp),
+        large = RoundedCornerShape(16.dp),
+        extraLarge = RoundedCornerShape(22.dp),
+    )
     hive -> Shapes(
         extraSmall = RoundedCornerShape(6.dp),
         small = RoundedCornerShape(10.dp),
@@ -397,17 +404,20 @@ fun NectarlinkTheme(
     val glass = appearance.theme == "glass"
     // Hive keeps its own honey: no wallpaper, artwork or phone colors.
     val hive = appearance.theme == "hive"
+    // Nova keeps its own neon too: no wallpaper, artwork or phone colors.
+    val nova = appearance.theme == "nova"
     val isBlackSwatch = !appearance.dynamicColor && appearance.seed == "black"
     val amoledActive = dark && appearance.amoled && (graphite || isBlackSwatch)
     val error = when {
         hive -> if (dark) Tokens.hiveCombError else Tokens.hiveWaxError
+        nova -> if (dark) Tokens.novaVoidError else Tokens.novaFrostError
         else -> if (dark) Tokens.errorDark else Tokens.errorLight
     }
     val context = LocalContext.current
     // The settings alone pick the color source. Artwork applies only when the user turned
     // "Media artwork color" on; with nothing playing, it falls back to the wallpaper or preset.
-    val artworkSeed = if (!graphite && !hive && appearance.seed == "artwork") mediaSeedColor else null
-    val wallpaper = !graphite && !hive && appearance.dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
+    val artworkSeed = if (!graphite && !hive && !nova && appearance.seed == "artwork") mediaSeedColor else null
+    val wallpaper = !graphite && !hive && !nova && appearance.dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
     val wallpaperSeed = rememberWallpaperSeed(enabled = wallpaper && artworkSeed == null)
     val baseScheme = when {
         hive -> remember(dark, error) {
@@ -415,6 +425,14 @@ fun NectarlinkTheme(
         }
         graphite -> remember(dark, error) {
             (if (dark) Tokens.graphiteSlate else Tokens.graphitePaper).toScheme(dark, error)
+        }
+        nova -> remember(dark, error) {
+            (if (dark) Tokens.novaVoid else Tokens.novaFrost).toScheme(dark, error).let {
+                it.copy(
+                    secondary = if (dark) Tokens.novaVoidAccent else Tokens.novaFrostAccent,
+                    tertiary = if (dark) Tokens.novaVoidAccent else Tokens.novaFrostAccent,
+                )
+            }
         }
         artworkSeed != null -> remember(artworkSeed, dark, error) {
             schemeFromArtworkSeed(artworkSeed, dark, error)
@@ -427,7 +445,8 @@ fun NectarlinkTheme(
             (if (dark) seed.dark else seed.light).toScheme(dark, error)
         }
     }
-    val combBehind = hive && backdrop
+    val gridBehind = nova && backdrop
+    val combBehind = (hive || nova) && backdrop
     val targetScheme = remember(baseScheme, glass, dark, amoledActive, combBehind) {
         val withGlass = if (glass) baseScheme.toGlassScheme(dark) else baseScheme
         val withAmoled = if (amoledActive) withGlass.toAmoledScheme(glass) else withGlass
@@ -450,7 +469,7 @@ fun NectarlinkTheme(
     }
     val assets = context.assets
     val fonts = remember(assets) { AppFonts(assets) }
-    val currentShapes = remember(graphite, glass, hive) { shapes(graphite, glass, hive) }
+    val currentShapes = remember(graphite, glass, hive, nova) { shapes(graphite, glass, hive, nova) }
     val currentTypography = remember(fonts, graphite) { typography(fonts, graphite) }
     CompositionLocalProvider(
         LocalAppFonts provides fonts,
@@ -458,6 +477,7 @@ fun NectarlinkTheme(
         LocalGlassTheme provides glass,
         LocalAmoledTheme provides amoledActive,
         LocalHiveTheme provides hive,
+        LocalNovaTheme provides nova,
     ) {
         MaterialTheme(
             colorScheme = targetScheme,
@@ -472,7 +492,12 @@ fun NectarlinkTheme(
                     if (combBehind) androidx.compose.ui.Modifier.background(baseScheme.surface) else androidx.compose.ui.Modifier,
                 ),
             ) {
-                if (combBehind) {
+                if (gridBehind) {
+                    NovaGrid(
+                        dark = dark,
+                        animate = appearance.combMotion && !reducedMotion && !powerSaver,
+                    )
+                } else if (combBehind) {
                     HiveComb(
                         dark = dark,
                         animate = appearance.combMotion && !reducedMotion && !powerSaver,

@@ -8705,6 +8705,21 @@ What it needs
         <source>80% (Protect battery)</source>
         <translation>80%（电池保护）</translation>
     </message>
+    <message>
+        <location filename="../../qml/pages/SettingsPage.qml" line="0"/>
+        <source>Nova</source>
+        <translation>Nova</translation>
+    </message>
+    <message>
+        <location filename="../../qml/pages/SettingsPage.qml" line="0"/>
+        <source>Animated grid</source>
+        <translation>动态网格</translation>
+    </message>
+    <message>
+        <location filename="../../qml/pages/SettingsPage.qml" line="0"/>
+        <source>The holographic grid drifts and scans.</source>
+        <translation>全息网格缓缓漂移并扫描。</translation>
+    </message>
 </context>
 <context>
     <name>Setup</name>

@@ -17,6 +17,7 @@ object AppLanguage {
     val languages: List<Pair<String, String>> = listOf(
         "en" to "English",
         "de" to "Deutsch",
+        "es" to "Español",
         "zh-CN" to "简体中文",
         "tr" to "Türkçe",
     )
@@ -50,6 +51,7 @@ object AppLanguage {
             lower.startsWith("zh") && ("hans" in lower || "-cn" in lower || "-sg" in lower) -> "zh-CN"
             lower == "de" || lower.startsWith("de-") -> "de"
             lower == "en" || lower.startsWith("en-") -> "en"
+            lower == "es" || lower.startsWith("es-") -> "es"
             lower == "tr" || lower.startsWith("tr-") -> "tr"
             else -> ""
         }

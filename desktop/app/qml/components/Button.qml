@@ -54,9 +54,10 @@ FocusScope {
         }
     }
 
-    // Hive: a soft honey halo around a filled button under the pointer.
+    // Hive: a soft honey halo around a filled button under the pointer;
+    // Nova: the same, in neon cyan.
     Rectangle {
-        visible: Theme.hive && button.variant === "fill"
+        visible: (Theme.hive || Theme.nova) && button.variant === "fill"
         x: -4; y: -4
         width: parent.width + 8; height: parent.height + 8
         radius: body.radius + 4
@@ -85,14 +86,14 @@ FocusScope {
         border.width: button.variant === "outline" || (Theme.glass && (button.variant === "tonal" || button.variant === "fill")) ? 1 : 0
         border.color: button.variant === "outline"
             ? (Theme.glass ? Qt.rgba(1, 1, 1, Theme.dark ? 0.14 : 0.38)
-                : (Theme.hive ? Qt.rgba(Theme.primary.r, Theme.primary.g, Theme.primary.b, Theme.dark ? 0.42 : 0.38) : Theme.outline))
+                : (Theme.hive || Theme.nova ? Qt.rgba(Theme.primary.r, Theme.primary.g, Theme.primary.b, Theme.dark ? 0.42 : 0.38) : Theme.outline))
             : Qt.rgba(1, 1, 1, Theme.dark ? 0.10 : 0.32)
         scale: mouse.pressed && button.interactive ? Theme.pressScale : 1
         Behavior on scale { enabled: !Theme.reduceMotion; NumberAnimation { duration: 120; easing.type: Easing.OutCubic } }
 
         // Hive: honey catches the light along the top of a filled button.
         Rectangle {
-            visible: Theme.hive && button.variant === "fill"
+            visible: (Theme.hive || Theme.nova) && button.variant === "fill"
             anchors.fill: parent
             radius: parent.radius
             gradient: Gradient {

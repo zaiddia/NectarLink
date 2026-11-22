@@ -117,7 +117,7 @@ fn validate(tokens: &Value) -> Result<()> {
         }
     }
     // Fixed-palette themes carry their own status colors.
-    for theme in ["graphite", "hive"] {
+    for theme in ["graphite", "hive", "nova"] {
         let variants = themes
             .pointer(&format!("/{theme}/variants"))
             .and_then(Value::as_object)
@@ -354,6 +354,39 @@ fn render_kotlin(tokens: &Value) -> Result<String> {
     out.push(format!("    const val COMB_BREATH_SECONDS = {}f", number("breathSeconds")?));
     out.push(format!("    const val COMB_PULSE_SECONDS = {}f", number("pulseSeconds")?));
     out.push(format!("    const val COMB_FRAME_MS = {}L", number("frameMs")? as i64));
+    let nova = tokens.pointer("/themes/nova/variants").context("missing nova variants")?;
+    out.push(String::new());
+    out.push(format!("    val novaFrost = {}", kotlin_palette(&nova["frost"], 4)?));
+    out.push(String::new());
+    out.push(format!("    val novaVoid = {}", kotlin_palette(&nova["void"], 4)?));
+    out.push(String::new());
+    for (name, mode) in [("Frost", "frost"), ("Void", "void")] {
+        for key in ["warning", "error", "accent"] {
+            let hex = nova
+                .pointer(&format!("/{mode}/{key}"))
+                .and_then(Value::as_str)
+                .with_context(|| format!("missing nova {mode}.{key}"))?;
+            let suffix = match key {
+                "warning" => "Warning",
+                "error" => "Error",
+                _ => "Accent",
+            };
+            out.push(format!("    val nova{name}{suffix} = {}", kotlin_color(hex)));
+        }
+    }
+    let grid = tokens.pointer("/themes/nova/grid").context("missing nova grid")?;
+    let gnum =
+        |key: &str| grid.get(key).and_then(Value::as_f64).with_context(|| format!("missing grid.{key}"));
+    out.push(String::new());
+    out.push("    /** Nova's holographic grid backdrop (themes.nova.grid). */".into());
+    out.push(format!("    const val GRID_CELL_DP = {}f", gnum("cell")?));
+    out.push(format!("    const val GRID_LINE_ALPHA_DARK = {}f", gnum("lineAlphaDark")?));
+    out.push(format!("    const val GRID_LINE_ALPHA_LIGHT = {}f", gnum("lineAlphaLight")?));
+    out.push(format!("    const val GRID_GLOW_ALPHA_DARK = {}f", gnum("glowAlphaDark")?));
+    out.push(format!("    const val GRID_GLOW_ALPHA_LIGHT = {}f", gnum("glowAlphaLight")?));
+    out.push(format!("    const val GRID_DRIFT_SECONDS = {}f", gnum("driftSeconds")?));
+    out.push(format!("    const val GRID_SCAN_SECONDS = {}f", gnum("scanSeconds")?));
+    out.push(format!("    const val GRID_FRAME_MS = {}L", gnum("frameMs")? as i64));
     out.push(String::new());
     out.push(format!("    val warningLight = {}", status_color("light", "warning")?));
     out.push(format!("    val warningDark = {}", status_color("dark", "warning")?));
@@ -396,6 +429,8 @@ mod tests {
             assert!(kotlin.contains(&format!("\"{seed}\" to Seed(")), "{seed}");
         }
         assert!(kotlin.contains("primary = Color(0xFF8A5100)"));
+        assert!(kotlin.contains("val novaVoid = Palette("));
+        assert!(kotlin.contains("const val GRID_CELL_DP"));
     }
 
     #[test]

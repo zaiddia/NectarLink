@@ -3,7 +3,7 @@ import QtQuick
 import app.nectarlink
 
 // A content surface: filled in Bloom, honey-edged in Hive, frosted optical glass in Glass,
-// hairline-bordered in Graphite.
+// hairline-bordered in Graphite, neon-edged frosted glass in Nova.
 Rectangle {
     id: cardRoot
     property int padding: 16
@@ -12,7 +12,7 @@ Rectangle {
     radius: Theme.radiusLg
     color: Theme.cardColor
     // Glass draws its own lit rim (GlassRim) instead of a flat hairline.
-    border.width: (Theme.graphite || Theme.hive || Theme.ambientBlurActive || Theme.amoled) && !Theme.glass ? 1 : 0
+    border.width: (Theme.graphite || Theme.hive || Theme.nova || Theme.ambientBlurActive || Theme.amoled) && !Theme.glass ? 1 : 0
     border.color: Theme.cardBorder
     implicitHeight: inner.childrenRect.height + padding * 2
     Behavior on color { ColorAnimation { duration: Theme.fadeNormal } }

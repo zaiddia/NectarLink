@@ -307,6 +307,59 @@ object Tokens {
     const val COMB_PULSE_SECONDS = 4.5f
     const val COMB_FRAME_MS = 33L
 
+    val novaFrost = Palette(
+        primary = Color(0xFF006782),
+        onPrimary = Color(0xFFFFFFFF),
+        primaryContainer = Color(0xFFC4EEFF),
+        onPrimaryContainer = Color(0xFF001F29),
+        secondaryContainer = Color(0xFFE5E0FF),
+        onSecondaryContainer = Color(0xFF1C1454),
+        surface = Color(0xFFF4F7FC),
+        surfaceContainerLow = Color(0xFFEEF2F9),
+        surfaceContainer = Color(0xFFE8EDF6),
+        surfaceContainerHigh = Color(0xFFE1E7F2),
+        surfaceContainerHighest = Color(0xFFD9E0EE),
+        onSurface = Color(0xFF0B1220),
+        onSurfaceVariant = Color(0xFF434F68),
+        outline = Color(0xFF68748E),
+        outlineVariant = Color(0xFFC3CCDD),
+    )
+
+    val novaVoid = Palette(
+        primary = Color(0xFF5CE1FF),
+        onPrimary = Color(0xFF00212B),
+        primaryContainer = Color(0xFF003D4E),
+        onPrimaryContainer = Color(0xFFB8F1FF),
+        secondaryContainer = Color(0xFF1E1A44),
+        onSecondaryContainer = Color(0xFFDCD6FF),
+        surface = Color(0xFF070A12),
+        surfaceContainerLow = Color(0xFF0A0E18),
+        surfaceContainer = Color(0xFF0E1320),
+        surfaceContainerHigh = Color(0xFF141A2A),
+        surfaceContainerHighest = Color(0xFF1B2236),
+        onSurface = Color(0xFFE6F1FF),
+        onSurfaceVariant = Color(0xFF97A6BF),
+        outline = Color(0xFF6E7D96),
+        outlineVariant = Color(0xFF1F2940),
+    )
+
+    val novaFrostWarning = Color(0xFF765600)
+    val novaFrostError = Color(0xFFB3261E)
+    val novaFrostAccent = Color(0xFF6D28D9)
+    val novaVoidWarning = Color(0xFFFFD166)
+    val novaVoidError = Color(0xFFFF8A9A)
+    val novaVoidAccent = Color(0xFFB388FF)
+
+    /** Nova's holographic grid backdrop (themes.nova.grid). */
+    const val GRID_CELL_DP = 32f
+    const val GRID_LINE_ALPHA_DARK = 0.24f
+    const val GRID_LINE_ALPHA_LIGHT = 0.085f
+    const val GRID_GLOW_ALPHA_DARK = 0.6f
+    const val GRID_GLOW_ALPHA_LIGHT = 0.34f
+    const val GRID_DRIFT_SECONDS = 18f
+    const val GRID_SCAN_SECONDS = 7f
+    const val GRID_FRAME_MS = 33L
+
     val warningLight = Color(0xFF7D5200)
     val warningDark = Color(0xFFF2C14E)
     val errorLight = Color(0xFFBA1A1A)

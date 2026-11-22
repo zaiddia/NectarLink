@@ -12,8 +12,13 @@ Text {
 
     readonly property var spec: Theme.typography[role] || Theme.typography.body
     readonly property bool isDisplay: role === "displayLarge" || role === "displaySmall" || role === "headline"
-    // Graphite labels are mono, uppercase and tracked (docs/design/README.md).
-    readonly property bool graphiteLabel: Theme.graphite && (role === "label" || role === "caption")
+    // Graphite labels are mono, uppercase and tracked (docs/design/README.md);
+    // Nova's labels are upper case and tracked too, in Figtree (its captions
+    // stay mixed case, since they run longer).
+    // Nova: false keeps a long label (a settings section) in mixed case.
+    property bool novaCaps: true
+    readonly property bool graphiteLabel: (Theme.graphite && (role === "label" || role === "caption"))
+                                          || (Theme.nova && novaCaps && role === "label")
 
     // Pixel size; set this (not font.pixelSize) to resize, so the role's
     // tracking scales with it.
@@ -23,7 +28,7 @@ Text {
     // as 650 render exactly instead of snapping to a named style.
     property int weight: graphiteLabel ? Theme.labelStyle.weight : (isDisplay && Theme.graphite ? 400 : spec.weight)
 
-    readonly property string family: role === "code" || graphiteLabel
+    readonly property string family: role === "code" || (graphiteLabel && !Theme.nova)
         ? Theme.fontMono : (isDisplay ? Theme.fontDisplay : Theme.fontUi)
 
     color: muted ? Theme.surfaceContentVariant : Theme.surfaceContent

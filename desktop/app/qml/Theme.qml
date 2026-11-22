@@ -4,7 +4,8 @@ import QtQuick
 import app.nectarlink
 
 // The active theme: Bloom (Material You, seed presets, the default), Hive
-// (honey on charcoal or wax), Glass, or Graphite (paper and slate), light
+// (honey on charcoal or wax), Glass, Graphite (paper and slate), or Nova
+// (neon on deep space or frost, with a holographic grid), light
 // or dark, resolved from Preferences and the system. Colors
 // come from Tokens (generated from docs/design/tokens.json); Material's
 // "onX" roles are named "xContent" because QML reserves the "on" prefix.
@@ -13,6 +14,7 @@ QtObject {
 
     readonly property bool hive: Preferences.theme === "hive"
     readonly property bool graphite: Preferences.theme === "graphite"
+    readonly property bool nova: Preferences.theme === "nova"
     readonly property bool glass: Preferences.theme === "glass" || Preferences.theme === "blurry"
     readonly property bool dark: Preferences.colorMode === "dark"
                                  || (Preferences.colorMode === "system" && AppController.systemDark)
@@ -40,7 +42,8 @@ QtObject {
         interval: theme.comb.frameMs
         repeat: true
         running: theme.combClockRunning
-                 && (theme.combMotion || (theme.combPreviewShown && !theme.reduceMotion && !AppController.powerSaver))
+                 && (theme.combMotion || theme.gridMotion
+                     || (theme.combPreviewShown && !theme.reduceMotion && !AppController.powerSaver))
         onRunningChanged: {
             if (running)
                 theme._combSince = Date.now()
@@ -49,6 +52,19 @@ QtObject {
         }
         onTriggered: theme.combTime = theme._combBase + (Date.now() - theme._combSince) / 1000
     }
+
+    // ---- Nova's grid ----
+    readonly property var grid: Tokens.data.themes.nova.grid
+    // Drifts and scans: the user's setting (shared with Hive's comb), never
+    // with reduced motion or battery saver.
+    readonly property bool gridMotion: nova && Preferences.combMotion && !reduceMotion && !AppController.powerSaver
+    readonly property color accent: nova ? palette.accent : primary
+    readonly property color gridLine: Qt.rgba(primary.r, primary.g, primary.b,
+                                              dark ? grid.lineAlphaDark : grid.lineAlphaLight)
+    readonly property color gridGlow: Qt.rgba(primary.r, primary.g, primary.b,
+                                              dark ? grid.glowAlphaDark : grid.glowAlphaLight)
+    readonly property color gridAccent: Qt.rgba(accent.r, accent.g, accent.b,
+                                                dark ? grid.glowAlphaDark * 0.8 : grid.glowAlphaLight * 0.8)
 
     readonly property var bloomSeeds: Tokens.data.themes.bloom.seeds
     // Colors made from the desktop wallpaper (or null until they're known),
@@ -114,8 +130,10 @@ QtObject {
         ? Tokens.data.themes.hive.variants[dark ? "comb" : "wax"]
         : (graphite
             ? Tokens.data.themes.graphite.variants[dark ? "slate" : "paper"]
-            : seedColors[dark ? "dark" : "light"])
-    readonly property var status: graphite || hive ? palette : Tokens.data.themes.bloom.status[dark ? "dark" : "light"]
+            : (nova
+                ? Tokens.data.themes.nova.variants[dark ? "void" : "frost"]
+                : seedColors[dark ? "dark" : "light"]))
+    readonly property var status: graphite || hive || nova ? palette : Tokens.data.themes.bloom.status[dark ? "dark" : "light"]
 
     // ---- Color roles ----
     readonly property color primary: palette.primary
@@ -153,6 +171,11 @@ QtObject {
             return Qt.rgba(c.r, c.g, c.b, dark ? 0.90 : 0.92)
         })()
         : graphite ? "transparent"
+        : nova
+            ? (function() {
+                const c = Qt.tint(surfaceContainer, Qt.rgba(primary.r, primary.g, primary.b, dark ? 0.05 : 0.04))
+                return Qt.rgba(c.r, c.g, c.b, dark ? 0.86 : 0.88)
+            })()
         : (glass
             ? Qt.tint(
                 Qt.rgba(surfaceContainer.r, surfaceContainer.g, surfaceContainer.b, amoled ? 0.56 : (dark ? 0.36 : 0.52)),
@@ -170,6 +193,7 @@ QtObject {
     readonly property color cardBorder: hive
         ? Qt.rgba(primary.r, primary.g, primary.b, dark ? 0.14 : 0.16)
         : graphite ? outlineVariant
+        : nova ? Qt.rgba(primary.r, primary.g, primary.b, dark ? 0.26 : 0.30)
         : (glass
             ? (dark ? Qt.rgba(1, 1, 1, 0.08) : Qt.rgba(1, 1, 1, 0.28))
             : (artworkAmbientActive
@@ -178,6 +202,7 @@ QtObject {
     readonly property color tileColor: hive
         ? Qt.tint(surfaceContainerHigh, Qt.rgba(primaryContainer.r, primaryContainer.g, primaryContainer.b, dark ? 0.14 : 0.20))
         : graphite ? "transparent"
+        : nova ? Qt.tint(surfaceContainerHigh, Qt.rgba(primary.r, primary.g, primary.b, dark ? 0.07 : 0.06))
         : (glass
             ? Qt.tint(
                 Qt.rgba(1, 1, 1, dark ? 0.08 : 0.48),
@@ -194,15 +219,18 @@ QtObject {
     readonly property color heroColor: hive
         ? Qt.tint(surface, Qt.rgba(primaryContainer.r, primaryContainer.g, primaryContainer.b, dark ? 0.55 : 0.62))
         : graphite ? "transparent"
+        : nova ? Qt.tint(Qt.rgba(surfaceContainer.r, surfaceContainer.g, surfaceContainer.b, dark ? 0.90 : 0.92),
+                         Qt.rgba(accent.r, accent.g, accent.b, dark ? 0.16 : 0.10))
         : Qt.tint(
             ambientBlurActive
                 ? Qt.rgba(surface.r, surface.g, surface.b, glass ? (amoled ? 0.54 : (dark ? 0.34 : 0.48)) : (dark ? 0.65 : 0.72))
                 : (amoled ? "#090A0E" : surface),
             Qt.rgba(primaryContainer.r, primaryContainer.g, primaryContainer.b, glass ? (dark ? 0.30 : 0.38) : (artworkAmbientActive ? 0.52 : (amoled ? 0.32 : 0.68)))
         )
-    readonly property color heroContent: graphite ? surfaceContent : primaryContainerContent
+    readonly property color heroContent: graphite || nova ? surfaceContent : primaryContainerContent
     // Hive's rail is the comb itself.
     readonly property color railColor: graphite || hive ? "transparent"
+        : nova ? Qt.rgba(surfaceLow.r, surfaceLow.g, surfaceLow.b, dark ? 0.72 : 0.78)
         : (glass
             ? Qt.rgba(surfaceLow.r, surfaceLow.g, surfaceLow.b, amoled ? 0.48 : (dark ? 0.28 : 0.42))
             : (artworkAmbientActive
@@ -213,16 +241,18 @@ QtObject {
                         surfaceLow,
                         Qt.rgba(primaryContainer.r, primaryContainer.g, primaryContainer.b, isPhoneSeed ? (dark ? 0.24 : 0.32) : (dark ? 0.14 : 0.18))
                     ))))
-    readonly property color indicator: graphite ? surfaceContent : (hive ? primaryContainer : secondaryContainer)
-    readonly property color indicatorContent: graphite ? surface : (hive ? primaryContainerContent : secondaryContainerContent)
+    readonly property color indicator: graphite ? surfaceContent : (hive || nova ? primaryContainer : secondaryContainer)
+    readonly property color indicatorContent: graphite ? surface : (hive || nova ? primaryContainerContent : secondaryContainerContent)
     // Hive: the honey halo around a primary control on hover.
-    readonly property color glow: Qt.rgba(primary.r, primary.g, primary.b, dark ? 0.30 : 0.22)
+    // Nova: a brighter neon halo.
+    readonly property color glow: Qt.rgba(primary.r, primary.g, primary.b, nova ? (dark ? 0.45 : 0.30) : (dark ? 0.30 : 0.22))
     readonly property color buttonShadow: graphite ? palette.buttonShadow : "transparent"
     readonly property color scrim: Qt.rgba(0, 0, 0, dark ? 0.5 : 0.32)
 
     // ---- Shape ----
     readonly property var shape: graphite ? Tokens.data.themes.graphite.shape
-        : (hive ? Tokens.data.themes.hive.shape : Tokens.data.themes.bloom.shape)
+        : (hive ? Tokens.data.themes.hive.shape
+            : (nova ? Tokens.data.themes.nova.shape : Tokens.data.themes.bloom.shape))
     readonly property int radiusXs: shape.xs
     readonly property int radiusSm: shape.sm
     readonly property int radiusMd: shape.md
@@ -242,7 +272,8 @@ QtObject {
         ? "Segoe Fluent Icons" : "Segoe MDL2 Assets"
     readonly property var typography: Tokens.data.typography
     readonly property var labelStyle: graphite ? Tokens.data.themes.graphite.label
-        : (hive ? Tokens.data.themes.hive.label : Tokens.data.themes.bloom.label)
+        : (hive ? Tokens.data.themes.hive.label
+            : (nova ? Tokens.data.themes.nova.label : Tokens.data.themes.bloom.label))
 
     // ---- Layout and spacing ----
     readonly property var layout: Tokens.data.layout.desktop

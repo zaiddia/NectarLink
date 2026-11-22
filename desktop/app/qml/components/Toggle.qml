@@ -29,7 +29,7 @@ FocusScope {
 
     // Hive: a soft honey halo around a switch that's on.
     Rectangle {
-        visible: Theme.hive
+        visible: Theme.hive || Theme.nova
         anchors.fill: track
         anchors.margins: -3
         radius: track.radius + 3

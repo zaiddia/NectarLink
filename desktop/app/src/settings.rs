@@ -21,6 +21,8 @@ pub enum Theme {
     Hive,
     Glass,
     Graphite,
+    /// Neon cyan and violet on deep space (Void) or frost, with a holographic grid.
+    Nova,
 }
 
 impl<'de> Deserialize<'de> for Theme {
@@ -29,6 +31,7 @@ impl<'de> Deserialize<'de> for Theme {
         Ok(match s.trim().to_ascii_lowercase().as_str() {
             "hive" => Theme::Hive,
             "graphite" => Theme::Graphite,
+            "nova" => Theme::Nova,
             "glass" | "blurry" => Theme::Glass,
             _ => Theme::Bloom,
         })
@@ -854,6 +857,18 @@ mod tests {
         };
         settings.save(dir.path()).unwrap();
         assert_eq!(Settings::load(dir.path()), settings);
+    }
+
+    #[test]
+    fn nova_theme_round_trips_and_unknown_themes_fall_back_to_bloom() {
+        let dir = tempfile::tempdir().unwrap();
+        fs::write(dir.path().join(FILE_NAME), r#"{ "theme": "Nova" }"#).unwrap();
+        let mut loaded = Settings::load(dir.path());
+        assert_eq!(loaded.theme, Theme::Nova);
+        loaded.save(dir.path()).unwrap();
+        assert!(fs::read_to_string(dir.path().join(FILE_NAME)).unwrap().contains(r#""theme": "nova""#));
+        fs::write(dir.path().join(FILE_NAME), r#"{ "theme": "neon" }"#).unwrap();
+        assert_eq!(Settings::load(dir.path()).theme, Theme::Bloom);
     }
 
     #[test]

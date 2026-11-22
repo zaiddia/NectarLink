@@ -477,6 +477,92 @@ QtObject {
               "warning": "#7A4A00"
             }
           }
+        },
+        "nova": {
+          "description": "Neon cyan and violet on deep space (Void, dark) and on frost (Frost, light), with a holographic grid behind the app that drifts and scans. Colors are fixed: no wallpaper, artwork or phone colors.",
+          "dynamicColor": false,
+          "fonts": {
+            "display": "Figtree",
+            "label": "Figtree",
+            "mono": "Space Mono",
+            "ui": "Figtree"
+          },
+          "grid": {
+            "cell": 32,
+            "driftSeconds": 18.0,
+            "frameMs": 33,
+            "glowAlphaDark": 0.6,
+            "glowAlphaLight": 0.34,
+            "lineAlphaDark": 0.24,
+            "lineAlphaLight": 0.085,
+            "scanSeconds": 7.0
+          },
+          "label": {
+            "case": "upper",
+            "size": 11.5,
+            "tracking": 0.07,
+            "weight": 650
+          },
+          "rules": [
+            "The grid holds still with reduced motion, in battery or energy saver, when Animated grid is off, and while the window isn't in front.",
+            "Cards are frosted glass over the grid, nearly opaque, so text never sits on moving lines; their edge is a thin cyan line that brightens on hover.",
+            "Primary buttons are electric cyan with a soft neon glow on hover; the violet accent is for highlights only, never for body text.",
+            "Labels are Figtree, upper case and lightly tracked; body text stays mixed case for readability."
+          ],
+          "shape": {
+            "full": 999,
+            "lg": 16,
+            "md": 12,
+            "sm": 8,
+            "xl": 22,
+            "xs": 4
+          },
+          "variants": {
+            "frost": {
+              "accent": "#6D28D9",
+              "error": "#B3261E",
+              "onError": "#FFFFFF",
+              "onPrimary": "#FFFFFF",
+              "onPrimaryContainer": "#001F29",
+              "onSecondaryContainer": "#1C1454",
+              "onSurface": "#0B1220",
+              "onSurfaceVariant": "#434F68",
+              "outline": "#68748E",
+              "outlineVariant": "#C3CCDD",
+              "primary": "#006782",
+              "primaryContainer": "#C4EEFF",
+              "secondaryContainer": "#E5E0FF",
+              "success": "#006782",
+              "surface": "#F4F7FC",
+              "surfaceContainer": "#E8EDF6",
+              "surfaceContainerHigh": "#E1E7F2",
+              "surfaceContainerHighest": "#D9E0EE",
+              "surfaceContainerLow": "#EEF2F9",
+              "warning": "#765600"
+            },
+            "void": {
+              "accent": "#B388FF",
+              "error": "#FF8A9A",
+              "onError": "#3A0010",
+              "onPrimary": "#00212B",
+              "onPrimaryContainer": "#B8F1FF",
+              "onSecondaryContainer": "#DCD6FF",
+              "onSurface": "#E6F1FF",
+              "onSurfaceVariant": "#97A6BF",
+              "outline": "#6E7D96",
+              "outlineVariant": "#1F2940",
+              "primary": "#5CE1FF",
+              "primaryContainer": "#003D4E",
+              "secondaryContainer": "#1E1A44",
+              "success": "#5CE1FF",
+              "surface": "#070A12",
+              "surfaceContainer": "#0E1320",
+              "surfaceContainerHigh": "#141A2A",
+              "surfaceContainerHighest": "#1B2236",
+              "surfaceContainerLow": "#0A0E18",
+              "warning": "#FFD166"
+            }
+          }
         }
       },
       "typography": {

@@ -757,13 +757,15 @@ Item {
                             ? Math.max(3, home.screenData.corners.bl * width) : defaultCorner
                         readonly property var phonePalette: Theme.phonePalette(home.deviceId)
                         // Hive keeps its own honey here too, whatever the phone's colors.
-                        readonly property color seedColor: Theme.hive
+                        readonly property color seedColor: Theme.hive || Theme.nova
                             ? Theme.primary
                             : phonePalette
                             ? Qt.color(phonePalette.primary)
                             : (home.accent && home.accent.length > 0 ? Qt.color(home.accent) : Theme.primary)
                         readonly property color frameFill: Theme.hive
                             ? (Theme.dark ? "#0E0E10" : "#2A2420")
+                            : Theme.nova
+                            ? (Theme.dark ? "#05070D" : "#151B2A")
                             : Theme.graphite
                             ? (Theme.dark ? "#1B1D21" : "#282B30")
                             : Qt.darker(seedColor, Theme.dark ? 2.8 : 2.3)
@@ -772,16 +774,22 @@ Item {
                             : Qt.rgba(Theme.heroContent.r, Theme.heroContent.g, Theme.heroContent.b, 0.42)
                         readonly property color screenTop: Theme.hive
                             ? (Theme.dark ? "#3A2709" : "#FFE2BC")
+                            : Theme.nova
+                            ? (Theme.dark ? "#0A3B4C" : "#BDEBFF")
                             : Theme.graphite
                             ? (Theme.dark ? "#262930" : "#E4E7EC")
                             : (Theme.dark ? Qt.darker(seedColor, 1.85) : Qt.lighter(seedColor, 1.35))
                         readonly property color screenBottom: Theme.hive
                             ? (Theme.dark ? "#141210" : "#F1C27F")
+                            : Theme.nova
+                            ? (Theme.dark ? "#1A1340" : "#D9D0FF")
                             : Theme.graphite
                             ? (Theme.dark ? "#17191D" : "#CFD4DC")
                             : (Theme.dark ? Qt.darker(seedColor, 2.55) : Qt.darker(seedColor, 1.25))
                         readonly property color screenInk: Theme.hive
                             ? (Theme.dark ? "#FFDDB3" : "#2C1600")
+                            : Theme.nova
+                            ? (Theme.dark ? "#B8F1FF" : "#001F29")
                             : (Theme.graphite && !Theme.dark ? "#1E2025" : "#FFFFFF")
                         readonly property string cutoutSvg: {
                             const s = home.screenData
