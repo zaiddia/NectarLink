@@ -978,7 +978,7 @@ FocusScope {
                                             variant: "tonal"
                                             size: "sm"
                                             Accessible.name: qsTr("Open Android release page in browser")
-                                            onClicked: Qt.openUrlExternally("https://github.com/thtbee/nectarlink/releases/latest")
+                                            onClicked: Qt.openUrlExternally("https://github.com/zaiddia/NectarLink/releases/latest")
                                         }
 
                                         Button {
@@ -990,7 +990,7 @@ FocusScope {
                                             size: "sm"
                                             Accessible.name: qsTr("Copy Android release URL")
                                             onClicked: {
-                                                AppController.copyText("https://github.com/thtbee/nectarlink/releases/latest")
+                                                AppController.copyText("https://github.com/zaiddia/NectarLink/releases/latest")
                                                 copied = true
                                                 resetCopyUrlTimer.restart()
                                             }

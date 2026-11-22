@@ -48,7 +48,7 @@ use crate::{
     win::{autostart, http, toast},
 };
 
-const LATEST: &str = "https://api.github.com/repos/thtbee/nectarlink/releases/latest";
+const LATEST: &str = "https://api.github.com/repos/zaiddia/NectarLink/releases/latest";
 const FIRST_CHECK: Duration = Duration::from_secs(30);
 /// How often a nightly install checks: nightlies are built at most every two
 /// hours. A check is a conditional GET, a few hundred bytes when unchanged.
@@ -298,7 +298,7 @@ fn announce(update: &Update) {
         key: update.version.clone(),
         title: tr!("Updater", "NectarLink %1 is available", update.title()),
         body: tr!("Updater", "Update now, or later from Settings."),
-        attribution: "NectarLink".into(),
+        attribution: "Panal".into(),
         icon: None,
         image: None,
         actions: vec![(ACTION_UPDATE.into(), "Update".into())],
@@ -544,6 +544,12 @@ fn newer_release_for(release: Release, current: &str, suffix: &str) -> Option<Up
         .assets
         .iter()
         .find(|a| a.name == "SHA256SUMS.txt" && a.browser_download_url.starts_with(RELEASE_DOWNLOADS))?;
+    // A release without its signature is never offered (release_key.rs).
+    let signature = crate::release_key::signature_name("SHA256SUMS.txt");
+    release
+        .assets
+        .iter()
+        .find(|a| a.name == signature && a.browser_download_url.starts_with(RELEASE_DOWNLOADS))?;
     Some(Update {
         version,
         name: None,
@@ -701,6 +707,13 @@ fn expected_hash(update: &Update) -> Result<String, StageError> {
     }
     let sums_url = update.sums_url.as_deref().ok_or(StageError::Damaged)?;
     let sums = http::get_retrying(sums_url, 64 * 1024).map_err(StageError::Network)?;
+    // The sums must carry this build's release signature; without it nothing installs.
+    let signature = http::get_retrying(&crate::release_key::signature_name(sums_url), 1024)
+        .map_err(StageError::Network)?;
+    if !crate::release_key::verify(&sums, &signature) {
+        tracing::warn!(sums_url, "update sums aren't signed with this build's release key");
+        return Err(StageError::Damaged);
+    }
     listed_hash(&String::from_utf8_lossy(&sums), &update.installer_name).ok_or(StageError::Damaged)
 }
 
@@ -1321,7 +1334,7 @@ fn after_start(shown: bool, title: String, body: String) {
             key: "updated".into(),
             title,
             body,
-            attribution: "NectarLink".into(),
+            attribution: "Panal".into(),
             icon: None,
             image: None,
             actions: Vec::new(),
@@ -1357,42 +1370,55 @@ mod tests {
     fn release(tag: &str) -> Release {
         Release {
             tag_name: tag.into(),
-            html_url: "https://github.com/thtbee/nectarlink/releases/tag/v9".into(),
+            html_url: "https://github.com/zaiddia/NectarLink/releases/tag/v9".into(),
             draft: false,
             prerelease: false,
             assets: vec![
                 Asset {
                     name: "Nectarlink-9.0.0-x64-setup.exe".into(),
-                    browser_download_url: "https://github.com/thtbee/nectarlink/releases/download/v9/setup"
+                    browser_download_url: "https://github.com/zaiddia/NectarLink/releases/download/v9/setup"
                         .into(),
                 },
                 Asset {
                     name: "Nectarlink-9.0.0-arm64-setup.exe".into(),
                     browser_download_url:
-                        "https://github.com/thtbee/nectarlink/releases/download/v9/setup-arm64".into(),
+                        "https://github.com/zaiddia/NectarLink/releases/download/v9/setup-arm64".into(),
                 },
                 Asset {
                     name: "Nectarlink-9.0.0-x86_64.AppImage".into(),
                     browser_download_url:
-                        "https://github.com/thtbee/nectarlink/releases/download/v9/appimage-x64".into(),
+                        "https://github.com/zaiddia/NectarLink/releases/download/v9/appimage-x64".into(),
                 },
                 Asset {
                     name: "nectarlink_9.0.0_amd64.deb".into(),
                     browser_download_url:
-                        "https://github.com/thtbee/nectarlink/releases/download/v9/deb-amd64".into(),
+                        "https://github.com/zaiddia/NectarLink/releases/download/v9/deb-amd64".into(),
                 },
                 Asset {
                     name: "nectarlink-9.0.0-1.x86_64.rpm".into(),
                     browser_download_url:
-                        "https://github.com/thtbee/nectarlink/releases/download/v9/rpm-x86_64".into(),
+                        "https://github.com/zaiddia/NectarLink/releases/download/v9/rpm-x86_64".into(),
                 },
                 Asset {
                     name: "SHA256SUMS.txt".into(),
-                    browser_download_url: "https://github.com/thtbee/nectarlink/releases/download/v9/sums"
+                    browser_download_url: "https://github.com/zaiddia/NectarLink/releases/download/v9/sums"
                         .into(),
+                },
+                Asset {
+                    name: "SHA256SUMS.txt.sig".into(),
+                    browser_download_url:
+                        "https://github.com/zaiddia/NectarLink/releases/download/v9/sums.sig".into(),
                 },
             ],
         }
+    }
+
+    #[test]
+    fn a_release_without_its_signature_is_never_offered() {
+        let mut unsigned = release("v9.0.0");
+        unsigned.assets.retain(|a| a.name != "SHA256SUMS.txt.sig");
+        assert!(newer_release_for(unsigned, "0.1.5", "-x64-setup.exe").is_none());
+        assert!(newer_release_for(release("v9.0.0"), "0.1.5", "-x64-setup.exe").is_some());
     }
 
     #[test]
@@ -1450,14 +1476,14 @@ mod tests {
         let x64 = newer_release_for(release("v9.0.0"), "0.0.1", "-x64-setup.exe").unwrap();
         assert_eq!(
             (x64.version.as_str(), x64.installer_url.as_str()),
-            ("9.0.0", "https://github.com/thtbee/nectarlink/releases/download/v9/setup")
+            ("9.0.0", "https://github.com/zaiddia/NectarLink/releases/download/v9/setup")
         );
         let arm64 = newer_release_for(release("v9.0.0"), "0.0.1", "-arm64-setup.exe").unwrap();
         assert_eq!(
             (arm64.installer_name.as_str(), arm64.installer_url.as_str()),
             (
                 "Nectarlink-9.0.0-arm64-setup.exe",
-                "https://github.com/thtbee/nectarlink/releases/download/v9/setup-arm64"
+                "https://github.com/zaiddia/NectarLink/releases/download/v9/setup-arm64"
             )
         );
         assert!(newer_release(release("v0.0.1"), "0.0.1").is_none());
@@ -1487,7 +1513,7 @@ mod tests {
             (appimage.installer_name.as_str(), appimage.installer_url.as_str()),
             (
                 "Nectarlink-9.0.0-x86_64.AppImage",
-                "https://github.com/thtbee/nectarlink/releases/download/v9/appimage-x64"
+                "https://github.com/zaiddia/NectarLink/releases/download/v9/appimage-x64"
             )
         );
         let deb = newer_release_for(release("v9.0.0"), "0.0.1", "_amd64.deb").unwrap();
@@ -1495,7 +1521,7 @@ mod tests {
             (deb.installer_name.as_str(), deb.installer_url.as_str()),
             (
                 "nectarlink_9.0.0_amd64.deb",
-                "https://github.com/thtbee/nectarlink/releases/download/v9/deb-amd64"
+                "https://github.com/zaiddia/NectarLink/releases/download/v9/deb-amd64"
             )
         );
         #[cfg(target_os = "linux")]

@@ -26,6 +26,49 @@ use crate::{
 /// The toast "device" for link notices.
 pub const TOAST_GROUP: &str = "links";
 
+/// The toast action that opens a link a phone sent.
+pub const ACTION_OPEN_LINK: &str = "open-link";
+
+/// A link a phone sent: opened right away when Settings allows that,
+/// otherwise offered in a notification (its key is the link) that opens it
+/// on Open or a click. Nothing on the phone can open pages here by itself.
+pub fn receive(from: &DeviceId, url: &str) -> Result<(), String> {
+    if crate::settings::open_links() {
+        return open_here(url);
+    }
+    let url = as_link(url).ok_or_else(|| "not a link".to_owned())?;
+    let device = core_host::host().hub.read(|s| s.name_of(from)).unwrap_or_else(|| tr!("Links", "Your phone"));
+    let shown: String = if url.chars().count() > 160 {
+        url.chars().take(157).chain("…".chars()).collect()
+    } else {
+        url.to_owned()
+    };
+    toast::show(Toast {
+        device: TOAST_GROUP.into(),
+        key: url.into(),
+        title: tr!("Links", "%1 sent a link", device),
+        body: shown,
+        attribution: "Panal".into(),
+        icon: None,
+        image: None,
+        actions: vec![(ACTION_OPEN_LINK.into(), tr!("Links", "Open"))],
+        reply: None,
+        silent: false,
+        progress: None,
+        call: false,
+    });
+    Ok(())
+}
+
+/// The notification for a link was clicked, or its Open chosen.
+pub fn on_toast(key: &str) {
+    if let Some(url) = as_link(key)
+        && let Err(e) = open_here(url)
+    {
+        tracing::warn!(error = %e, "can't open a link from the phone");
+    }
+}
+
 /// Opens a link a phone sent (`http://`, `https://`, or `geo:`), in the default browser.
 pub fn open_here(url: &str) -> Result<(), String> {
     if let Some(maps_url) = geo_to_maps_https(url) {
@@ -104,7 +147,7 @@ fn notice(title: &str, body: &str) {
         key: "notice".into(),
         title: title.into(),
         body: body.into(),
-        attribution: "NectarLink".into(),
+        attribution: "Panal".into(),
         icon: None,
         image: None,
         actions: Vec::new(),

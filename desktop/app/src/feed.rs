@@ -10,9 +10,9 @@
 //! ```json
 //! { "schema": 1, "channel": "nightly", "version": "0.1.5-nightly.7",
 //!   "name": "Amber Clover", "published": "2026-11-03T10:17:00Z",
-//!   "notes": "https://github.com/thtbee/nectarlink/releases/tag/v0.1.5-nightly.7",
+//!   "notes": "https://github.com/zaiddia/NectarLink/releases/tag/v0.1.5-nightly.7",
 //!   "files": [{ "name": "Nectarlink-0.1.5-nightly.7-x64-setup.exe",
-//!               "url": "https://github.com/thtbee/nectarlink/releases/download/…",
+//!               "url": "https://github.com/zaiddia/NectarLink/releases/download/…",
 //!               "sha256": "…", "size": 41234567 }] }
 //! ```
 
@@ -26,11 +26,11 @@ use crate::{
 };
 
 /// Where the feeds are: `<FEEDS><channel>.json`.
-const FEEDS: &str = "https://raw.githubusercontent.com/thtbee/nectarlink/channels/";
+const FEEDS: &str = "https://raw.githubusercontent.com/zaiddia/NectarLink/channels/";
 /// The only place a feed's files may come from.
-pub const RELEASE_DOWNLOADS: &str = "https://github.com/thtbee/nectarlink/releases/download/";
+pub const RELEASE_DOWNLOADS: &str = "https://github.com/zaiddia/NectarLink/releases/download/";
 /// Release notes live on the repository's own pages.
-const NOTES: &str = "https://github.com/thtbee/nectarlink/";
+const NOTES: &str = "https://github.com/zaiddia/NectarLink/";
 /// A feed is a few hundred bytes; anything near this is not one.
 const MAX_FEED: usize = 64 * 1024;
 const SCHEMA: u32 = 1;
@@ -111,6 +111,17 @@ pub fn fetch(channel: Channel) -> Result<Option<Feed>, String> {
     match http::get_fresh(&url, MAX_FEED, cached.as_ref().map(|(etag, _)| etag.as_str())) {
         Ok(Fresh::NotModified) => Ok(cached.map(|(_, feed)| feed)),
         Ok(Fresh::Changed { body, etag }) => {
+            // A feed names the installer's hash itself, so it must carry the
+            // release signature too (release_key.rs), or it's ignored.
+            let signature = http::get_fresh(&crate::release_key::signature_name(&url), 1024, None)
+                .ok()
+                .and_then(|fresh| match fresh {
+                    Fresh::Changed { body, .. } => Some(body),
+                    Fresh::NotModified => None,
+                });
+            if !signature.is_some_and(|sig| crate::release_key::verify(&body, &sig)) {
+                return Err("feed: not signed with this build's release key".into());
+            }
             let feed: Feed = serde_json::from_slice(&body).map_err(|e| format!("feed: {e}"))?;
             let feed = validated(feed, channel)?;
             let mut cache = CACHE.lock().unwrap_or_else(|e| e.into_inner());
@@ -137,7 +148,7 @@ mod tests {
             version: version.into(),
             name: Some("Amber Clover".into()),
             published: None,
-            notes: "https://github.com/thtbee/nectarlink/releases/tag/v1".into(),
+            notes: "https://github.com/zaiddia/NectarLink/releases/tag/v1".into(),
             files: vec![FeedFile {
                 name: "Nectarlink-0.1.5-nightly.7-x64-setup.exe".into(),
                 url: format!("{RELEASE_DOWNLOADS}v0.1.5-nightly.7/Nectarlink-0.1.5-nightly.7-x64-setup.exe"),
@@ -187,9 +198,9 @@ mod tests {
     #[test]
     fn real_json_parses() {
         let json = br#"{"schema":1,"channel":"nightly","version":"0.1.5-nightly.7","name":"Amber Clover",
-            "published":"2026-11-03T10:17:00Z","notes":"https://github.com/thtbee/nectarlink/releases/tag/v0.1.5-nightly.7",
+            "published":"2026-11-03T10:17:00Z","notes":"https://github.com/zaiddia/NectarLink/releases/tag/v0.1.5-nightly.7",
             "files":[{"name":"Nectarlink-0.1.5-nightly.7-android.apk",
-            "url":"https://github.com/thtbee/nectarlink/releases/download/v0.1.5-nightly.7/Nectarlink-0.1.5-nightly.7-android.apk",
+            "url":"https://github.com/zaiddia/NectarLink/releases/download/v0.1.5-nightly.7/Nectarlink-0.1.5-nightly.7-android.apk",
             "sha256":"0000000000000000000000000000000000000000000000000000000000000000","size":12}],"later":"ignored"}"#;
         let parsed: Feed = serde_json::from_slice(json).unwrap();
         assert_eq!(validated(parsed, Channel::Nightly).unwrap().files.len(), 1);

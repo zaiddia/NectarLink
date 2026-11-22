@@ -197,8 +197,8 @@ Installed-Size: ${INSTALLED_SIZE}
 Depends: ${BASE_DEPENDS}${QT_DEPENDS}
 Recommends: fuse3, curl | wget, libavcodec62 | libavcodec61 | libavcodec60, libopenh264-8 | libopenh264-7 | libopenh264-6, gstreamer1.0-tools, gstreamer1.0-pipewire, gstreamer1.0-plugins-base, pulseaudio-utils, pipewire-bin, libxtst6, wl-clipboard, xclip, xdg-utils, bluez, pkexec | policykit-1
 Suggests: v4l2loopback-dkms, ffmpeg, network-manager
-Maintainer: thtbee <https://github.com/thtbee/nectarlink>
-Homepage: https://github.com/thtbee/nectarlink
+Maintainer: zaiddia <https://github.com/zaiddia/NectarLink>
+Homepage: https://github.com/zaiddia/NectarLink
 Description: Connect your Android phone and Linux PC over LAN
  NectarLink links your Android phone and Linux desktop over your local
  network with end-to-end encryption, clipboard sync, notification

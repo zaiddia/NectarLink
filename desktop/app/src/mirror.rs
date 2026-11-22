@@ -489,7 +489,7 @@ pub fn screenshot_file(window: Window) {
         key: path.to_string_lossy().into_owned(),
         title: file_name.clone(),
         body: toast_body,
-        attribution: "NectarLink".into(),
+        attribution: "Panal".into(),
         icon: None,
         image: Some(path),
         actions: vec![(ACTION_OPEN.into(), "Open".into()), (ACTION_SHOW.into(), "Show in folder".into())],
@@ -642,7 +642,7 @@ pub fn stop_recording(window: Window) {
                     key: path.to_string_lossy().into_owned(),
                     title: file_name.clone(),
                     body: toast_body,
-                    attribution: "NectarLink".into(),
+                    attribution: "Panal".into(),
                     icon: None,
                     image: None,
                     actions: vec![

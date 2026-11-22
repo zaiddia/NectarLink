@@ -28,16 +28,19 @@ jobs:
     # Releases only; nightlies point the nightly feed themselves.
     if: github.event_name == 'workflow_dispatch' || !github.event.release.prerelease
     runs-on: ubuntu-latest
+    # The update key signs the feed (sign-feed.sh); approve it like a release.
+    environment: release-signing
     env:
       GH_TOKEN: ${{ github.token }}
       TAG: ${{ inputs.tag || github.event.release.tag_name }}
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           ref: main
           sparse-checkout: |
             Cargo.toml
             .github/scripts
+            .github/release-key.pub.pem
       - name: Write and publish the feed
         run: |
           set -euo pipefail
@@ -48,4 +51,6 @@ jobs:
           # The release's name ([workspace.metadata.release] in Cargo.toml), as in its title.
           name=$(awk '/^\[workspace.metadata.release\]/{f=1;next} /^\[/{f=0} f && /^name = /{print $3}' Cargo.toml | tr -d '"')
           python3 .github/scripts/write-feed.py stable "$TAG" "$name" stable.json
+          UPDATE_SIGNING_KEY="${{ secrets.UPDATE_SIGNING_KEY }}" \
+            bash .github/scripts/sign-feed.sh stable.json .github/release-key.pub.pem
           bash .github/scripts/publish-feed.sh stable stable.json

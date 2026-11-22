@@ -757,7 +757,7 @@ impl cxx_qt::Initialize for qobject::AppController {
         self.as_mut().set_data_retention_summary(QString::default());
         self.as_mut().set_localsend_peers_json(QString::from("[]"));
         self.as_mut().set_shelf_items(QString::default());
-        if let Ok(qr) = crate::qr::encode("https://github.com/thtbee/nectarlink/releases/latest") {
+        if let Ok(qr) = crate::qr::encode("https://github.com/zaiddia/NectarLink/releases/latest") {
             let svg = format!(
                 "data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 {size} {size}\" shape-rendering=\"crispEdges\"><rect width=\"{size}\" height=\"{size}\" fill=\"white\"/><path d=\"{path}\" fill=\"black\"/></svg>",
                 size = qr.size,
@@ -850,7 +850,7 @@ impl cxx_qt::Initialize for qobject::AppController {
             open_link: tr!("App", "Open copied link on phone"),
             quit: tr!("App", "Quit NectarLink"),
         };
-        match tray::Tray::create("NectarLink", labels, move |event| on_tray_event(&qt, event)) {
+        match tray::Tray::create("Panal", labels, move |event| on_tray_event(&qt, event)) {
             Ok(tray) => self.rust_mut().tray = Some(tray),
             Err(e) => tracing::warn!(error = %e, "no tray icon"),
         }

@@ -105,6 +105,8 @@ pub mod qobject {
         #[qproperty(bool, clipboard_auto_copy_received_files)]
         /// Open a single file shared from the phone when it arrives.
         #[qproperty(bool, open_shared_files)]
+        /// Open links from the phone without asking.
+        #[qproperty(bool, open_links)]
         /// Send the clipboard to the phone when control moves to it.
         #[qproperty(bool, flow_follow_clipboard)]
         /// Floating Nectar Island pill at the top center of the screen.
@@ -336,6 +338,7 @@ pub struct PreferencesRust {
     local_api_token_path: QString,
     clipboard_auto_copy_received_files: bool,
     open_shared_files: bool,
+    open_links: bool,
     flow_follow_clipboard: bool,
     nectar_island: bool,
     nectar_island_calls: bool,
@@ -433,6 +436,7 @@ impl cxx_qt::Initialize for qobject::Preferences {
         self.as_mut().set_local_api_token_path(QString::from(&token_path.to_string_lossy().into_owned()));
         self.as_mut().set_clipboard_auto_copy_received_files(settings.clipboard_auto_copy_received_files);
         self.as_mut().set_open_shared_files(settings.open_shared_files);
+        self.as_mut().set_open_links(settings.open_links);
         self.as_mut().set_flow_follow_clipboard(settings.flow_follow_clipboard);
         self.as_mut().set_nectar_island(settings.nectar_island);
         self.as_mut().set_nectar_island_calls(settings.nectar_island_calls);
@@ -688,6 +692,12 @@ impl cxx_qt::Initialize for qobject::Preferences {
         self.as_mut()
             .on_open_shared_files_changed(|p| {
                 crate::settings::set_open_shared_files(p.open_shared_files);
+                p.save();
+            })
+            .release();
+        self.as_mut()
+            .on_open_links_changed(|p| {
+                crate::settings::set_open_links(p.open_links);
                 p.save();
             })
             .release();
@@ -1096,6 +1106,7 @@ impl qobject::Preferences {
                 .unwrap_or(crate::settings::DEFAULT_LOCAL_API_PORT),
             clipboard_auto_copy_received_files: p.clipboard_auto_copy_received_files,
             open_shared_files: p.open_shared_files,
+            open_links: p.open_links,
             flow_follow_clipboard: p.flow_follow_clipboard,
             folder_sync_rules: crate::settings::folder_sync_rules(),
             nectar_island: p.nectar_island,

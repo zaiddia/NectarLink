@@ -141,6 +141,7 @@ static FORWARD_PC_NOTIFICATIONS: std::sync::atomic::AtomicBool = std::sync::atom
 static AWAY_MODE: std::sync::atomic::AtomicBool = std::sync::atomic::AtomicBool::new(false);
 static FLOW_FOLLOW_CLIPBOARD: std::sync::atomic::AtomicBool = std::sync::atomic::AtomicBool::new(true);
 static OPEN_SHARED_FILES: std::sync::atomic::AtomicBool = std::sync::atomic::AtomicBool::new(false);
+static OPEN_LINKS: std::sync::atomic::AtomicBool = std::sync::atomic::AtomicBool::new(false);
 
 static FOLDER_SYNC_RULES: std::sync::OnceLock<std::sync::Mutex<Vec<crate::folder_sync::FolderSyncRule>>> =
     std::sync::OnceLock::new();
@@ -165,6 +166,16 @@ pub fn open_shared_files() -> bool {
 
 pub fn set_open_shared_files(on: bool) {
     OPEN_SHARED_FILES.store(on, std::sync::atomic::Ordering::Relaxed);
+}
+
+/// Whether a link a phone sends opens in the browser right away, rather than
+/// being offered in a notification first.
+pub fn open_links() -> bool {
+    OPEN_LINKS.load(std::sync::atomic::Ordering::Relaxed)
+}
+
+pub fn set_open_links(on: bool) {
+    OPEN_LINKS.store(on, std::sync::atomic::Ordering::Relaxed);
 }
 
 #[allow(dead_code)]
@@ -477,6 +488,11 @@ pub struct Settings {
     /// arrives. Off by default: it's saved in Downloads\Nectarlink either way.
     #[serde(default, alias = "open_shared_files")]
     pub open_shared_files: bool,
+    /// Open a link a phone sends without asking. Off by default: a
+    /// notification offers it, so nothing on the phone can open pages on
+    /// this PC by itself.
+    #[serde(default, alias = "open_links")]
+    pub open_links: bool,
     /// Send the PC's clipboard to the phone when control moves to it: the mouse
     /// enters the phone's window, or a remote control session starts.
     #[serde(default = "default_true", alias = "flow_follow_clipboard")]
@@ -593,6 +609,7 @@ impl Default for Settings {
             local_api_port: default_local_api_port(),
             clipboard_auto_copy_received_files: true,
             open_shared_files: false,
+            open_links: false,
             flow_follow_clipboard: true,
             folder_sync_rules: Vec::new(),
             nectar_island: false,
@@ -658,6 +675,7 @@ impl Settings {
     pub fn apply_runtime(&self) {
         set_clipboard_auto_copy_received_files(self.clipboard_auto_copy_received_files);
         set_open_shared_files(self.open_shared_files);
+        set_open_links(self.open_links);
         set_flow_follow_clipboard(self.flow_follow_clipboard);
         set_folder_sync_rules(self.folder_sync_rules.clone());
         set_obs_settings(
@@ -830,6 +848,7 @@ mod tests {
             local_api_port: 54321,
             clipboard_auto_copy_received_files: false,
             open_shared_files: true,
+            open_links: true,
             flow_follow_clipboard: false,
             folder_sync_rules: Vec::new(),
             nectar_island: true,

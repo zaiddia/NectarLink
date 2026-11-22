@@ -317,7 +317,7 @@ pub fn on_event(event: &NodeEvent) {
         } else {
             tr!("Transfers", "From %1, saved in Downloads\\Nectarlink", device)
         },
-        attribution: "NectarLink".into(),
+        attribution: "Panal".into(),
         icon: None,
         image: None,
         actions: vec![(ACTION_OPEN.into(), "Open".into()), (ACTION_SHOW.into(), "Show in folder".into())],

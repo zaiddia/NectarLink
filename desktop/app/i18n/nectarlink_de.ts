@@ -56,27 +56,27 @@
     <message>
         <location filename="rust_strings.h" line="17"/>
         <source>NectarLink · %1</source>
-        <translation>NectarLink · %1</translation>
+        <translation>Panal · %1</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="18"/>
         <source>NectarLink · %1 devices connected</source>
-        <translation>NectarLink · %1 Geräte verbunden</translation>
+        <translation>Panal · %1 Geräte verbunden</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="19"/>
         <source>NectarLink · 1 device connected</source>
-        <translation>NectarLink · 1 Gerät verbunden</translation>
+        <translation>Panal · 1 Gerät verbunden</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="20"/>
         <source>NectarLink · no devices paired</source>
-        <translation>NectarLink · keine Geräte gekoppelt</translation>
+        <translation>Panal · keine Geräte gekoppelt</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="21"/>
         <source>NectarLink · not connected</source>
-        <translation>NectarLink · nicht verbunden</translation>
+        <translation>Panal · nicht verbunden</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="22"/>
@@ -86,7 +86,7 @@
     <message>
         <location filename="rust_strings.h" line="23"/>
         <source>Open NectarLink</source>
-        <translation>NectarLink öffnen</translation>
+        <translation>Panal öffnen</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="24"/>
@@ -96,7 +96,7 @@
     <message>
         <location filename="rust_strings.h" line="25"/>
         <source>Quit NectarLink</source>
-        <translation>NectarLink beenden</translation>
+        <translation>Panal beenden</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="26"/>
@@ -199,7 +199,7 @@
     <message>
         <location filename="../qml/pages/AppsPage.qml" line="94"/>
         <source>Set up Wireless debugging in NectarLink on the phone to open its apps here.</source>
-        <translation>Richte Kabelloses Debugging in NectarLink auf dem Gerät ein, um seine Apps hier zu öffnen.</translation>
+        <translation>Richte Kabelloses Debugging in Panal auf dem Gerät ein, um seine Apps hier zu öffnen.</translation>
     </message>
     <message>
         <location filename="../qml/pages/AppsPage.qml" line="147"/>
@@ -825,7 +825,7 @@
     <message>
         <location filename="rust_strings.h" line="63"/>
         <source>Update NectarLink on %1 to send it images.</source>
-        <translation>Aktualisiere NectarLink auf %1, um Bilder dorthin zu senden.</translation>
+        <translation>Aktualisiere Panal auf %1, um Bilder dorthin zu senden.</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="64"/>
@@ -1083,7 +1083,7 @@
     <message>
         <location filename="rust_strings.h" line="105"/>
         <source>Opened Recordings folder. Start a voice note in NectarLink on %1 to send it here.</source>
-        <translation>Ordner „Aufnahmen“ geöffnet. Starte eine Sprachnotiz in NectarLink auf %1, um sie hierher zu senden.</translation>
+        <translation>Ordner „Aufnahmen“ geöffnet. Starte eine Sprachnotiz in Panal auf %1, um sie hierher zu senden.</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="106"/>
@@ -1904,12 +1904,12 @@
     <message>
         <location filename="rust_strings.h" line="187"/>
         <source>%1 Open NectarLink on the phone and keep both on the same network. If the phone asks to run in the background, allow it.</source>
-        <translation>%1 Öffne NectarLink auf dem Gerät und halte beide Geräte im selben Netzwerk. Wenn das Gerät nach der Ausführung im Hintergrund fragt, erlaube sie.</translation>
+        <translation>%1 Öffne Panal auf dem Gerät und halte beide Geräte im selben Netzwerk. Wenn das Gerät nach der Ausführung im Hintergrund fragt, erlaube sie.</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="188"/>
         <source>%1 announces itself at %2, which isn&apos;t in a private range such as 192.168.x.x. NectarLink connects on such a network once both apps are up to date. Until then, turn on Connect over mobile data on both, or connect with a USB cable.</source>
-        <translation>%1 meldet sich unter %2, und diese Adresse liegt in keinem privaten Bereich wie 192.168.x.x. NectarLink verbindet sich in so einem Netz, sobald beide Apps aktuell sind. Bis dahin schalte auf beiden „Über mobile Daten verbinden“ ein oder verbinde sie per USB-Kabel.</translation>
+        <translation>%1 meldet sich unter %2, und diese Adresse liegt in keinem privaten Bereich wie 192.168.x.x. Panal verbindet sich in so einem Netz, sobald beide Apps aktuell sind. Bis dahin schalte auf beiden „Über mobile Daten verbinden“ ein oder verbinde sie per USB-Kabel.</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="189"/>
@@ -2034,47 +2034,47 @@
     <message>
         <location filename="rust_strings.h" line="213"/>
         <source>NectarLink can&apos;t show its icon in the top bar</source>
-        <translation>NectarLink kann sein Symbol nicht in der oberen Leiste anzeigen</translation>
+        <translation>Panal kann sein Symbol nicht in der oberen Leiste anzeigen</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="214"/>
         <source>NectarLink is in the top bar</source>
-        <translation>NectarLink ist in der oberen Leiste</translation>
+        <translation>Panal ist in der oberen Leiste</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="215"/>
         <source>NectarLink isn&apos;t allowed through Windows Firewall</source>
-        <translation>NectarLink ist in der Windows-Firewall nicht zugelassen</translation>
+        <translation>Panal ist in der Windows-Firewall nicht zugelassen</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="216"/>
         <source>NectarLink isn&apos;t allowed through the firewall</source>
-        <translation>NectarLink ist in der Firewall nicht zugelassen</translation>
+        <translation>Panal ist in der Firewall nicht zugelassen</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="217"/>
         <source>On Huawei / Honor: open Settings → Battery → App launch, turn off Manage automatically for NectarLink, and keep Auto-launch, Secondary launch, and Run in background on.</source>
-        <translation>Auf Huawei / Honor: Öffne Einstellungen → Akku → App-Start, deaktiviere „Automatisch verwalten“ für NectarLink und lasse „Auto-Start“, „Sekundärer Start“ und „Im Hintergrund ausführen“ aktiviert.</translation>
+        <translation>Auf Huawei / Honor: Öffne Einstellungen → Akku → App-Start, deaktiviere „Automatisch verwalten“ für Panal und lasse „Auto-Start“, „Sekundärer Start“ und „Im Hintergrund ausführen“ aktiviert.</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="218"/>
         <source>On OnePlus / OxygenOS: open Settings → Apps → App management → NectarLink → Battery usage and turn on Allow background activity and Allow auto-launch.</source>
-        <translation>Auf OnePlus / OxygenOS: Öffne Einstellungen → Apps → App-Verwaltung → NectarLink → Akkunutzung und aktiviere „Hintergrundaktivität zulassen“ sowie „Automatischen Start zulassen“.</translation>
+        <translation>Auf OnePlus / OxygenOS: Öffne Einstellungen → Apps → App-Verwaltung → Panal → Akkunutzung und aktiviere „Hintergrundaktivität zulassen“ sowie „Automatischen Start zulassen“.</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="219"/>
         <source>On Oppo / Realme: open Settings → Apps → App management → NectarLink → Battery usage and turn on Allow background activity and Allow auto-launch.</source>
-        <translation>Auf Oppo / Realme: Öffne Einstellungen → Apps → App-Verwaltung → NectarLink → Akkunutzung und aktiviere „Hintergrundaktivität zulassen“ sowie „Automatischen Start zulassen“.</translation>
+        <translation>Auf Oppo / Realme: Öffne Einstellungen → Apps → App-Verwaltung → Panal → Akkunutzung und aktiviere „Hintergrundaktivität zulassen“ sowie „Automatischen Start zulassen“.</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="220"/>
         <source>On Pixel: open Settings → Apps → See all apps → NectarLink → App battery usage, tap Allow background usage, and choose Unrestricted.</source>
-        <translation>Auf Pixel: Öffne Einstellungen → Apps → Alle Apps ansehen → NectarLink → Akkunutzung der App, tippe auf „Hintergrundnutzung zulassen“ und wähle „Uneingeschränkt“.</translation>
+        <translation>Auf Pixel: Öffne Einstellungen → Apps → Alle Apps ansehen → Panal → Akkunutzung der App, tippe auf „Hintergrundnutzung zulassen“ und wähle „Uneingeschränkt“.</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="221"/>
         <source>On Samsung: open Settings → Apps → NectarLink → Battery and choose Unrestricted, then in Device care → Battery → Background usage limits make sure NectarLink is never put to sleep.</source>
-        <translation>Auf Samsung: Öffne Einstellungen → Apps → NectarLink → Akku und wähle „Nicht eingeschränkt“. Stelle dann unter Gerätewartung → Akku → Grenzen der Hintergrundnutzung sicher, dass NectarLink nie in den Standby versetzt wird.</translation>
+        <translation>Auf Samsung: Öffne Einstellungen → Apps → Panal → Akku und wähle „Nicht eingeschränkt“. Stelle dann unter Gerätewartung → Akku → Grenzen der Hintergrundnutzung sicher, dass Panal nie in den Standby versetzt wird.</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="222"/>
@@ -2084,12 +2084,12 @@
     <message>
         <location filename="rust_strings.h" line="223"/>
         <source>On Vivo / OriginOS / Funtouch: open Settings → Battery → Background power consumption management → NectarLink and choose Unrestricted, and allow Autostart.</source>
-        <translation>Auf Vivo / OriginOS / Funtouch: Öffne Einstellungen → Akku → Hintergrund-Stromverbrauchsverwaltung → NectarLink, wähle „Uneingeschränkt“ und erlaube „Autostart“.</translation>
+        <translation>Auf Vivo / OriginOS / Funtouch: Öffne Einstellungen → Akku → Hintergrund-Stromverbrauchsverwaltung → Panal, wähle „Uneingeschränkt“ und erlaube „Autostart“.</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="224"/>
         <source>On Xiaomi / HyperOS / MIUI: open Settings → Apps → Manage apps → NectarLink, turn on Autostart, and set Battery saver to No restrictions.</source>
-        <translation>Auf Xiaomi / HyperOS / MIUI: Öffne Einstellungen → Apps → Apps verwalten → NectarLink, aktiviere „Autostart“ und stelle das Energiesparen auf „Keine Beschränkungen“.</translation>
+        <translation>Auf Xiaomi / HyperOS / MIUI: Öffne Einstellungen → Apps → Apps verwalten → Panal, aktiviere „Autostart“ und stelle das Energiesparen auf „Keine Beschränkungen“.</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="225"/>
@@ -2144,7 +2144,7 @@
     <message>
         <location filename="rust_strings.h" line="235"/>
         <source>The firewall blocks NectarLink</source>
-        <translation>Die Firewall blockiert NectarLink</translation>
+        <translation>Die Firewall blockiert Panal</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="236"/>
@@ -2194,7 +2194,7 @@
     <message>
         <location filename="rust_strings.h" line="245"/>
         <source>Windows Firewall blocks NectarLink</source>
-        <translation>Die Windows-Firewall blockiert NectarLink</translation>
+        <translation>Die Windows-Firewall blockiert Panal</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="246"/>
@@ -2475,7 +2475,7 @@
     <message>
         <location filename="../qml/pages/FeaturesGuidePage.qml" line="586"/>
         <source>Every feature in NectarLink, what it needs, and where to find it.</source>
-        <translation>Jede Funktion in NectarLink, was sie benötigt und wo du sie findest.</translation>
+        <translation>Jede Funktion in Panal, was sie benötigt und wo du sie findest.</translation>
     </message>
     <message>
         <location filename="../qml/pages/FeaturesGuidePage.qml" line="625"/>
@@ -3120,7 +3120,7 @@
 3. Open the Pair step in the setup walkthrough, or click + (Pair a new device) at the bottom of the left rail.
 4. Scan the QR code from the NectarLink Android app, or select your phone from the nearby devices list and confirm that the 6-digit code matches on both screens.
 5. Choose which features to share for that phone and grant only the Android permissions you want to use.</source>
-        <translation>1. Installiere NectarLink auf deinem PC (Windows 11 oder Linux) und deinem Android-Gerät (Android 8.0 oder neuer).
+        <translation>1. Installiere Panal auf deinem PC (Windows 11 oder Linux) und deinem Android-Gerät (Android 8.0 oder neuer).
 2. Verbinde beide Geräte mit demselben WLAN oder schließe dein Gerät per USB-Kabel an deinen PC an.
 3. Öffne den Kopplungsschritt im Einrichtungsassistenten oder klicke unten in der linken Seitenleiste auf „+“ (Neues Gerät koppeln).
 4. Scanne den QR-Code in der NectarLink-Android-App oder wähle dein Gerät aus der Liste der Geräte in der Nähe aus und bestätige, dass der 6-stellige Code auf beiden Bildschirmen übereinstimmt.
@@ -3202,9 +3202,9 @@
         <translation>Wenn dein Gerät und dein PC einander nicht finden:
 
 1. Öffne den Verbindungs-Doktor über Einstellungen › Verbindung &amp; Info oder über die Befehlspalette.
-2. Prüfe, ob dein WLAN-Netzwerkprofil in Windows auf „Privat“ statt auf „Öffentlich“ eingestellt ist, oder klicke im Verbindungs-Doktor auf „Zulassen“, um NectarLink in der Windows-Firewall freizugeben.
+2. Prüfe, ob dein WLAN-Netzwerkprofil in Windows auf „Privat“ statt auf „Öffentlich“ eingestellt ist, oder klicke im Verbindungs-Doktor auf „Zulassen“, um Panal in der Windows-Firewall freizugeben.
 3. Stelle sicher, dass sich beide Geräte im selben Subnetz befinden und dass die Gast-WLAN-/Client-Isolation auf deinem Router deaktiviert ist.
-4. Du kannst die Verbindung auch über ein USB-Kabel bei aktiviertem USB-Debugging herstellen; NectarLink richtet dann automatisch einen lokalen Tunnel ein.</translation>
+4. Du kannst die Verbindung auch über ein USB-Kabel bei aktiviertem USB-Debugging herstellen; Panal richtet dann automatisch einen lokalen Tunnel ein.</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="280"/>
@@ -3257,7 +3257,7 @@ Elevated mode (Wireless debugging or root)
 Assist mode (Android Accessibility Service)
 - Injects mouse clicks, scrolling, and touch gestures when you control your phone from your PC.
 - NectarLink never reads screen text or logs keystrokes through the Accessibility service.</source>
-        <translation>Die meisten Funktionen von NectarLink arbeiten im Standardmodus mit normalen Android-Berechtigungen. Zwei optionale Modi schalten eine tiefere Systemintegration frei:
+        <translation>Die meisten Funktionen von Panal arbeiten im Standardmodus mit normalen Android-Berechtigungen. Zwei optionale Modi schalten eine tiefere Systemintegration frei:
 
 Erweiterter Modus / Elevated (Kabelloses Debugging oder Root)
 - Überträgt den Gerätebildschirm, ohne jedes Mal den Android-Bestätigungsdialog anzuzeigen.
@@ -3266,7 +3266,7 @@ Erweiterter Modus / Elevated (Kabelloses Debugging oder Root)
 
 Assistenz-Modus (Android-Bedienungshilfen)
 - Führt Mausklicks, Scrollbewegungen und Touch-Gesten aus, wenn du dein Gerät vom PC aus steuerst.
-- NectarLink liest über die Bedienungshilfen niemals Bildschirmtexte aus und zeichnet keine Tastenanschläge auf.</translation>
+- Panal liest über die Bedienungshilfen niemals Bildschirmtexte aus und zeichnet keine Tastenanschläge auf.</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="286"/>
@@ -3286,7 +3286,7 @@ Capability tiers on Android
 - Standard mode: Works right after installation with standard Android permissions.
 - Elevated mode (optional): Uses Wireless debugging (set up once in the phone app) or root for phone apps in their own windows, mirroring without the screen capture prompt, and more phone controls.
 - Assist mode (optional): Uses the Android Accessibility service only when you enable Remote input so your PC mouse and keyboard can control the phone.</source>
-        <translation>NectarLink verbindet dein Android-Gerät und deinen PC direkt über dein lokales Netzwerk oder ein USB-Kabel.
+        <translation>Panal verbindet dein Android-Gerät und deinen PC direkt über dein lokales Netzwerk oder ein USB-Kabel.
 
 So funktioniert es
 - Geräte erkennen einander über das lokale WLAN (mDNS) oder USB (ADB-Reverse-Tunnel) und verbinden sich über QUIC (TLS 1.3).
@@ -3307,7 +3307,7 @@ Funktionsstufen unter Android
 - Phone and Call Log: Required only if you want incoming call alerts, call history, or dialing from your PC.
 - Media and Photos: Required only if you want the Photos gallery, Shelf latest photo, or folder sync.
 - Camera and Microphone: Required only while streaming your phone as a webcam, taking a Continuity Camera shot, or recording a voice note.</source>
-        <translation>NectarLink verlangt niemals alle Berechtigungen im Voraus. Jede Funktion arbeitet unabhängig:
+        <translation>Panal verlangt niemals alle Berechtigungen im Voraus. Jede Funktion arbeitet unabhängig:
 
 - Benachrichtigungszugriff: Nur erforderlich, wenn du Gerätebenachrichtigungen, direkte Antworten und benachrichtigungsbasierte Chats auf deinem PC nutzen möchtest.
 - SMS und Kontakte: Nur erforderlich, wenn du SMS-/MMS-Nachrichten lesen und senden oder Kontaktnamen auf deinem PC nachschlagen möchtest.
@@ -3656,7 +3656,7 @@ Wo zu finden
 - Einstellungen › Allgemein › Einmalcodes kopieren.
 
 Voraussetzungen
-- Aktivierter Benachrichtigungszugriff für NectarLink auf deinem Android-Gerät.
+- Aktivierter Benachrichtigungszugriff für Panal auf deinem Android-Gerät.
 - Aktivierter Schalter „Benachrichtigungen“ für dieses Gerät auf deinem PC.</translation>
     </message>
     <message>
@@ -3776,7 +3776,7 @@ Where to find it
 What it needs
 - Paired phone and the per-device Files toggle enabled.</source>
         <translation>Funktion
-Sendet Dateien, Ordner, Links und Text in lokaler Netzwerkgeschwindigkeit zwischen deinem Gerät und deinem PC. Wenn dein Gerät beim Senden offline ist, legt NectarLink das Element in die Warteschlange „Wartet auf Senden“ und überträgt es automatisch, sobald sich dein Gerät wieder verbindet.
+Sendet Dateien, Ordner, Links und Text in lokaler Netzwerkgeschwindigkeit zwischen deinem Gerät und deinem PC. Wenn dein Gerät beim Senden offline ist, legt Panal das Element in die Warteschlange „Wartet auf Senden“ und überträgt es automatisch, sobald sich dein Gerät wieder verbindet.
 
 Wo zu finden
 - Startseite › Schaltfläche „Dateien senden“, per Drag &amp; Drop überall im Fenster, Karte „Wartet auf Senden“ und Liste „Übertragungen“.
@@ -5035,7 +5035,7 @@ Voraussetzungen
     <message>
         <location filename="../qml/IslandWindow.qml" line="268"/>
         <source>Click to view in NectarLink</source>
-        <translation>Klicken, um in NectarLink anzuzeigen</translation>
+        <translation>Klicken, um in Panal anzuzeigen</translation>
     </message>
     <message>
         <location filename="../qml/IslandWindow.qml" line="271"/>
@@ -5113,7 +5113,22 @@ Voraussetzungen
     <message>
         <location filename="rust_strings.h" line="348"/>
         <source>Update NectarLink on %1.</source>
-        <translation>Aktualisiere NectarLink auf %1.</translation>
+        <translation>Aktualisiere Panal auf %1.</translation>
+    </message>
+    <message>
+        <location filename="../../src/links.rs" line="0"/>
+        <source>Your phone</source>
+        <translation>Dein Smartphone</translation>
+    </message>
+    <message>
+        <location filename="../../src/links.rs" line="0"/>
+        <source>%1 sent a link</source>
+        <translation>%1 hat einen Link gesendet</translation>
+    </message>
+    <message>
+        <location filename="../../src/links.rs" line="0"/>
+        <source>Open</source>
+        <translation>Öffnen</translation>
     </message>
 </context>
 <context>
@@ -5176,12 +5191,12 @@ Voraussetzungen
     <message>
         <location filename="../qml/components/LockChip.qml" line="46"/>
         <source>On your phone, open NectarLink › Settings › Control from your PC and turn on the Accessibility service.</source>
-        <translation>Öffne auf deinem Gerät NectarLink › Einstellungen › Vom PC aus steuern und aktiviere die Bedienungshilfe.</translation>
+        <translation>Öffne auf deinem Gerät Panal › Einstellungen › Vom PC aus steuern und aktiviere die Bedienungshilfe.</translation>
     </message>
     <message>
         <location filename="../qml/components/LockChip.qml" line="48"/>
         <source>Needs Elevated: set up Wireless debugging in NectarLink › Settings › Control from your PC, or connect the phone over USB with USB debugging allowed.</source>
-        <translation>Erfordert den erweiterten Modus: Richte Kabelloses Debugging in NectarLink › Einstellungen › Steuerung vom PC ein oder verbinde das Telefon per USB mit aktiviertem USB-Debugging.</translation>
+        <translation>Erfordert den erweiterten Modus: Richte Kabelloses Debugging in Panal › Einstellungen › Steuerung vom PC ein oder verbinde das Telefon per USB mit aktiviertem USB-Debugging.</translation>
     </message>
     <message>
         <source>Needs Elevated: set up Wireless debugging or connect over USB.</source>
@@ -5190,27 +5205,27 @@ Voraussetzungen
     <message>
         <location filename="../qml/components/LockChip.qml" line="50"/>
         <source>On your phone, set NectarLink as the default SMS/Caller ID app when prompted.</source>
-        <translation>Lege NectarLink auf deinem Gerät als Standard-App für SMS/Anrufer-ID fest, wenn du dazu aufgefordert wirst.</translation>
+        <translation>Lege Panal auf deinem Gerät als Standard-App für SMS/Anrufer-ID fest, wenn du dazu aufgefordert wirst.</translation>
     </message>
     <message>
         <location filename="../qml/components/LockChip.qml" line="53"/>
         <source>On your phone, open NectarLink and allow Notification access.</source>
-        <translation>Öffne NectarLink auf deinem Gerät und erlaube den Benachrichtigungszugriff.</translation>
+        <translation>Öffne Panal auf deinem Gerät und erlaube den Benachrichtigungszugriff.</translation>
     </message>
     <message>
         <location filename="../qml/components/LockChip.qml" line="55"/>
         <source>On your phone, open NectarLink and allow Do Not Disturb access.</source>
-        <translation>Öffne NectarLink auf deinem Gerät und erlaube den Zugriff auf „Nicht stören“.</translation>
+        <translation>Öffne Panal auf deinem Gerät und erlaube den Zugriff auf „Nicht stören“.</translation>
     </message>
     <message>
         <location filename="../qml/components/LockChip.qml" line="57"/>
         <source>On your phone, open NectarLink and allow Modify system settings.</source>
-        <translation>Öffne NectarLink auf deinem Gerät und erlaube das Ändern von Systemeinstellungen.</translation>
+        <translation>Öffne Panal auf deinem Gerät und erlaube das Ändern von Systemeinstellungen.</translation>
     </message>
     <message>
         <location filename="../qml/components/LockChip.qml" line="58"/>
         <source>Open NectarLink on your phone and grant this permission in Settings.</source>
-        <translation>Öffne NectarLink auf deinem Gerät und erteile diese Berechtigung in den Einstellungen.</translation>
+        <translation>Öffne Panal auf deinem Gerät und erteile diese Berechtigung in den Einstellungen.</translation>
     </message>
     <message>
         <location filename="../qml/components/LockChip.qml" line="60"/>
@@ -5836,7 +5851,7 @@ Voraussetzungen
     <message>
         <location filename="rust_strings.h" line="370"/>
         <source>Set up Wireless debugging in NectarLink on the phone to open its apps here.</source>
-        <translation>Richte Kabelloses Debugging in NectarLink auf dem Gerät ein, um dessen Apps hier zu öffnen.</translation>
+        <translation>Richte Kabelloses Debugging in Panal auf dem Gerät ein, um dessen Apps hier zu öffnen.</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="371"/>
@@ -5846,7 +5861,7 @@ Voraussetzungen
     <message>
         <location filename="rust_strings.h" line="372"/>
         <source>The app didn&apos;t open on the phone. Try again, or open NectarLink on the phone to check Wireless debugging.</source>
-        <translation>Die App wurde auf dem Gerät nicht geöffnet. Versuche es erneut oder öffne NectarLink auf dem Gerät, um das Kabellose Debugging zu prüfen.</translation>
+        <translation>Die App wurde auf dem Gerät nicht geöffnet. Versuche es erneut oder öffne Panal auf dem Gerät, um das Kabellose Debugging zu prüfen.</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="373"/>
@@ -5871,7 +5886,7 @@ Voraussetzungen
     <message>
         <location filename="rust_strings.h" line="377"/>
         <source>This phone&apos;s app doesn&apos;t share its screen yet. Update NectarLink on the phone.</source>
-        <translation>Die App auf diesem Gerät unterstützt noch keine Bildschirmfreigabe. Aktualisiere NectarLink auf dem Gerät.</translation>
+        <translation>Die App auf diesem Gerät unterstützt noch keine Bildschirmfreigabe. Aktualisiere Panal auf dem Gerät.</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="378"/>
@@ -5889,12 +5904,12 @@ Voraussetzungen
     <message>
         <location filename="../qml/MirrorWindow.qml" line="25"/>
         <source>%1 · NectarLink</source>
-        <translation>%1 · NectarLink</translation>
+        <translation>%1 · Panal</translation>
     </message>
     <message>
         <location filename="../qml/MirrorWindow.qml" line="25"/>
         <source>Phone screen · NectarLink</source>
-        <translation>Gerätebildschirm · NectarLink</translation>
+        <translation>Gerätebildschirm · Panal</translation>
     </message>
     <message>
         <location filename="../qml/MirrorWindow.qml" line="359"/>
@@ -6339,7 +6354,7 @@ Voraussetzungen
     <message>
         <location filename="../qml/pages/PairingPanel.qml" line="114"/>
         <source>Install NectarLink</source>
-        <translation>NectarLink installieren</translation>
+        <translation>Panal installieren</translation>
     </message>
     <message>
         <location filename="../qml/pages/PairingPanel.qml" line="114"/>
@@ -6367,7 +6382,7 @@ Voraussetzungen
     <message>
         <location filename="../qml/pages/PairingPanel.qml" line="187"/>
         <source>Open NectarLink on your phone</source>
-        <translation>Öffne NectarLink auf deinem Gerät</translation>
+        <translation>Öffne Panal auf deinem Gerät</translation>
     </message>
     <message>
         <location filename="../qml/pages/PairingPanel.qml" line="187"/>
@@ -6377,7 +6392,7 @@ Voraussetzungen
     <message>
         <location filename="../qml/pages/PairingPanel.qml" line="235"/>
         <source>On your phone, open NectarLink and choose “Pair nearby”. It shows up here.</source>
-        <translation>Öffne NectarLink auf deinem Gerät und wähle „In der Nähe koppeln“. Es erscheint dann hier.</translation>
+        <translation>Öffne Panal auf deinem Gerät und wähle „In der Nähe koppeln“. Es erscheint dann hier.</translation>
     </message>
     <message>
         <location filename="../qml/pages/PairingPanel.qml" line="265"/>
@@ -6488,7 +6503,7 @@ Voraussetzungen
     <message>
         <location filename="rust_strings.h" line="395"/>
         <source>Update NectarLink on %1 to use its microphone.</source>
-        <translation>Aktualisiere NectarLink auf %1, um das Mikrofon zu verwenden.</translation>
+        <translation>Aktualisiere Panal auf %1, um das Mikrofon zu verwenden.</translation>
     </message>
 </context>
 <context>
@@ -6496,7 +6511,7 @@ Voraussetzungen
     <message>
         <location filename="rust_strings.h" line="396"/>
         <source>%1 couldn&apos;t ask to share its sound. Check that NectarLink can show notifications on the phone.</source>
-        <translation>%1 konnte nicht fragen, ob der Ton geteilt werden darf. Prüfe, ob NectarLink auf dem Telefon Benachrichtigungen anzeigen darf.</translation>
+        <translation>%1 konnte nicht fragen, ob der Ton geteilt werden darf. Prüfe, ob Panal auf dem Telefon Benachrichtigungen anzeigen darf.</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="397"/>
@@ -6511,7 +6526,7 @@ Voraussetzungen
     <message>
         <location filename="rust_strings.h" line="399"/>
         <source>Update NectarLink on %1 to play its sound here.</source>
-        <translation>Aktualisiere NectarLink auf %1, um seinen Ton hier abzuspielen.</translation>
+        <translation>Aktualisiere Panal auf %1, um seinen Ton hier abzuspielen.</translation>
     </message>
 </context>
 <context>
@@ -6564,7 +6579,7 @@ Voraussetzungen
     <message>
         <location filename="rust_strings.h" line="409"/>
         <source>Update NectarLink on %1 to back up its photos.</source>
-        <translation>Aktualisiere NectarLink auf %1, um dessen Fotos zu sichern.</translation>
+        <translation>Aktualisiere Panal auf %1, um dessen Fotos zu sichern.</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="410"/>
@@ -6967,7 +6982,7 @@ Voraussetzungen
     <message>
         <location filename="rust_strings.h" line="430"/>
         <source>Update NectarLink on %1 to play on it.</source>
-        <translation>Aktualisiere NectarLink auf %1, um darauf abzuspielen.</translation>
+        <translation>Aktualisiere Panal auf %1, um darauf abzuspielen.</translation>
     </message>
 </context>
 <context>
@@ -7029,7 +7044,7 @@ Voraussetzungen
     <message>
         <location filename="rust_strings.h" line="439"/>
         <source>Send to %1 with NectarLink</source>
-        <translation>Mit NectarLink an %1 senden</translation>
+        <translation>Mit Panal an %1 senden</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="440"/>
@@ -7508,12 +7523,12 @@ Voraussetzungen
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="922"/>
         <source>NectarLink follows the system unless you pick one.</source>
-        <translation>NectarLink übernimmt die Systemsprache, sofern du keine auswählst.</translation>
+        <translation>Panal übernimmt die Systemsprache, sofern du keine auswählst.</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="923"/>
         <source>NectarLink follows Windows unless you pick one.</source>
-        <translation>NectarLink übernimmt die Windows-Sprache, sofern du keine auswählst.</translation>
+        <translation>Panal übernimmt die Windows-Sprache, sofern du keine auswählst.</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="931"/>
@@ -8459,7 +8474,7 @@ Voraussetzungen
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="3272"/>
         <source>NectarLink %1</source>
-        <translation>NectarLink %1</translation>
+        <translation>Panal %1</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="3275"/>
@@ -8577,7 +8592,7 @@ Voraussetzungen
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="3588"/>
         <source>Wi-Fi networks this PC has joined before. Your system keeps their passwords; NectarLink never sees them.</source>
-        <translation>WLAN-Netzwerke, mit denen dieser PC bereits verbunden war. Dein System speichert deren Passwörter; NectarLink sieht sie nie.</translation>
+        <translation>WLAN-Netzwerke, mit denen dieser PC bereits verbunden war. Dein System speichert deren Passwörter; Panal sieht sie nie.</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="3589"/>
@@ -8587,7 +8602,7 @@ Voraussetzungen
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="3591"/>
         <source>Wi-Fi networks this PC has joined before. Windows keeps their passwords; NectarLink never sees them.</source>
-        <translation>WLAN-Netzwerke, mit denen dieser PC bereits verbunden war. Windows speichert deren Passwörter; NectarLink sieht sie nie.</translation>
+        <translation>WLAN-Netzwerke, mit denen dieser PC bereits verbunden war. Windows speichert deren Passwörter; Panal sieht sie nie.</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="3592"/>
@@ -8672,7 +8687,7 @@ Voraussetzungen
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="3474"/>
         <source>The phone asks once to let this PC in. NectarLink there also needs All files access, or this folder under Selected folders only.</source>
-        <translation>Das Gerät fragt einmal, ob dieser PC zugreifen darf. NectarLink braucht dort außerdem „Zugriff auf alle Dateien“ oder diesen Ordner unter „Nur ausgewählte Ordner“.</translation>
+        <translation>Das Gerät fragt einmal, ob dieser PC zugreifen darf. Panal braucht dort außerdem „Zugriff auf alle Dateien“ oder diesen Ordner unter „Nur ausgewählte Ordner“.</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="3777"/>
@@ -8724,6 +8739,16 @@ Voraussetzungen
         <source>The holographic grid drifts and scans.</source>
         <translation>Das holografische Raster wandert und scannt.</translation>
     </message>
+    <message>
+        <location filename="../../qml/pages/SettingsPage.qml" line="0"/>
+        <source>Open links from the phone without asking</source>
+        <translation>Links vom Smartphone ohne Nachfrage öffnen</translation>
+    </message>
+    <message>
+        <location filename="../../qml/pages/SettingsPage.qml" line="0"/>
+        <source>Off: a notification shows the link and opens it when you choose Open.</source>
+        <translation>Aus: Eine Benachrichtigung zeigt den Link und öffnet ihn, wenn du „Öffnen“ wählst.</translation>
+    </message>
 </context>
 <context>
     <name>Setup</name>
@@ -8745,7 +8770,7 @@ Voraussetzungen
     <message>
         <location filename="rust_strings.h" line="447"/>
         <source>Couldn&apos;t uninstall NectarLink: %1</source>
-        <translation>NectarLink konnte nicht deinstalliert werden: %1</translation>
+        <translation>Panal konnte nicht deinstalliert werden: %1</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="448"/>
@@ -8775,7 +8800,7 @@ Voraussetzungen
     <message>
         <location filename="rust_strings.h" line="453"/>
         <source>The uninstaller is missing. Reinstall NectarLink, then uninstall it.</source>
-        <translation>Das Deinstallationsprogramm fehlt. Installiere NectarLink erneut und deinstalliere es anschließend.</translation>
+        <translation>Das Deinstallationsprogramm fehlt. Installiere Panal erneut und deinstalliere es anschließend.</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="454"/>
@@ -8803,7 +8828,7 @@ Voraussetzungen
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="51"/>
         <source>Uninstall NectarLink</source>
-        <translation>NectarLink deinstallieren</translation>
+        <translation>Panal deinstallieren</translation>
     </message>
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="51"/>
@@ -8813,7 +8838,7 @@ Voraussetzungen
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="67"/>
         <source>Install NectarLink in</source>
-        <translation>NectarLink installieren in</translation>
+        <translation>Panal installieren in</translation>
     </message>
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="120"/>
@@ -8826,12 +8851,12 @@ Voraussetzungen
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="187"/>
         <source>NectarLink</source>
-        <translation>NectarLink</translation>
+        <translation>Panal</translation>
     </message>
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="216"/>
         <source>Couldn&apos;t uninstall NectarLink</source>
-        <translation>NectarLink konnte nicht deinstalliert werden</translation>
+        <translation>Panal konnte nicht deinstalliert werden</translation>
     </message>
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="216"/>
@@ -8841,27 +8866,27 @@ Voraussetzungen
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="218"/>
         <source>Uninstalling NectarLink</source>
-        <translation>NectarLink wird deinstalliert</translation>
+        <translation>Panal wird deinstalliert</translation>
     </message>
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="219"/>
         <source>Updating NectarLink</source>
-        <translation>NectarLink wird aktualisiert</translation>
+        <translation>Panal wird aktualisiert</translation>
     </message>
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="220"/>
         <source>Installing NectarLink</source>
-        <translation>NectarLink wird installiert</translation>
+        <translation>Panal wird installiert</translation>
     </message>
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="221"/>
         <source>Uninstall NectarLink?</source>
-        <translation>NectarLink deinstallieren?</translation>
+        <translation>Panal deinstallieren?</translation>
     </message>
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="236"/>
         <source>Sorry to see you go. This uninstalls NectarLink and deletes its settings and pairings on this PC. Files you received stay in %1.</source>
-        <translation>Schade, dass du gehst. Dadurch wird NectarLink deinstalliert und alle Einstellungen sowie Kopplungen auf diesem PC werden gelöscht. Empfangene Dateien bleiben in %1 erhalten.</translation>
+        <translation>Schade, dass du gehst. Dadurch wird Panal deinstalliert und alle Einstellungen sowie Kopplungen auf diesem PC werden gelöscht. Empfangene Dateien bleiben in %1 erhalten.</translation>
     </message>
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="238"/>
@@ -8911,7 +8936,7 @@ Voraussetzungen
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="298"/>
         <source>Keep NectarLink</source>
-        <translation>NectarLink behalten</translation>
+        <translation>Panal behalten</translation>
     </message>
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="356"/>
@@ -8942,12 +8967,12 @@ Voraussetzungen
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="469"/>
         <source>NectarLink is uninstalled</source>
-        <translation>NectarLink wurde deinstalliert</translation>
+        <translation>Panal wurde deinstalliert</translation>
     </message>
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="469"/>
         <source>NectarLink is ready</source>
-        <translation>NectarLink ist bereit</translation>
+        <translation>Panal ist bereit</translation>
     </message>
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="481"/>
@@ -8972,12 +8997,12 @@ Voraussetzungen
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="531"/>
         <source>Open NectarLink</source>
-        <translation>NectarLink öffnen</translation>
+        <translation>Panal öffnen</translation>
     </message>
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="591"/>
         <source>NectarLink goes into Program Files, or the folder you choose, for everyone on this PC. Setup also:</source>
-        <translation>NectarLink wird unter „Programme“ oder im gewählten Ordner für alle Benutzer dieses PCs installiert. Außerdem führt die Installation Folgendes aus:</translation>
+        <translation>Panal wird unter „Programme“ oder im gewählten Ordner für alle Benutzer dieses PCs installiert. Außerdem führt die Installation Folgendes aus:</translation>
     </message>
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="593"/>
@@ -8986,12 +9011,12 @@ Voraussetzungen
     </message>
     <message>
         <source>NectarLink goes into Program Files for everyone on this PC. Setup also:</source>
-        <translation type="vanished">NectarLink wird unter „Programme“ für alle Benutzer dieses PCs installiert. Außerdem führt die Installation Folgendes aus:</translation>
+        <translation type="vanished">Panal wird unter „Programme“ für alle Benutzer dieses PCs installiert. Außerdem führt die Installation Folgendes aus:</translation>
     </message>
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="592"/>
         <source>allows it through Windows Firewall on private networks, so your phone can connect</source>
-        <translation>lässt NectarLink in privaten Netzwerken durch die Windows-Firewall zu, damit sich dein Gerät verbinden kann</translation>
+        <translation>lässt Panal in privaten Netzwerken durch die Windows-Firewall zu, damit sich dein Gerät verbinden kann</translation>
     </message>
     <message>
         <source>adds a task that installs updates without an administrator prompt</source>
@@ -9009,7 +9034,7 @@ Voraussetzungen
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="595"/>
         <source>adds it to the Windows Share sheet</source>
-        <translation>fügt NectarLink zum Teilen-Menü von Windows hinzu</translation>
+        <translation>fügt Panal zum Teilen-Menü von Windows hinzu</translation>
     </message>
     <message>
         <location filename="../qml/setup/SetupWindow.qml" line="596"/>
@@ -9027,7 +9052,7 @@ Voraussetzungen
     <message>
         <location filename="../qml/ShelfWindow.qml" line="16"/>
         <source>NectarLink Shelf</source>
-        <translation>NectarLink Shelf</translation>
+        <translation>Panal Shelf</translation>
     </message>
     <message>
         <location filename="../qml/ShelfWindow.qml" line="53"/>
@@ -9227,12 +9252,12 @@ Voraussetzungen
     <message>
         <location filename="rust_strings.h" line="459"/>
         <source>On the phone, allow All files access for NectarLink.</source>
-        <translation>Erlaube NectarLink auf dem Telefon „Zugriff auf alle Dateien“.</translation>
+        <translation>Erlaube Panal auf dem Telefon „Zugriff auf alle Dateien“.</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="460"/>
         <source>On the phone, turn on Browse this phone&apos;s storage in File Explorer in NectarLink.</source>
-        <translation>Schalte auf dem Telefon in NectarLink „Speicher dieses Geräts im Datei-Explorer durchsuchen“ ein.</translation>
+        <translation>Schalte auf dem Telefon in Panal „Speicher dieses Geräts im Datei-Explorer durchsuchen“ ein.</translation>
     </message>
 </context>
 <context>
@@ -9701,7 +9726,7 @@ Voraussetzungen
     <message>
         <location filename="rust_strings.h" line="490"/>
         <source>Accept in NectarLink to save to Downloads\Nectarlink</source>
-        <translation>In NectarLink annehmen, um unter Downloads\Nectarlink zu speichern</translation>
+        <translation>In Panal annehmen, um unter Downloads\Nectarlink zu speichern</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="491"/>
@@ -9744,27 +9769,27 @@ Voraussetzungen
     <message>
         <location filename="rust_strings.h" line="498"/>
         <source>NectarLink %1 is available</source>
-        <translation>NectarLink %1 ist verfügbar</translation>
+        <translation>Panal %1 ist verfügbar</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="499"/>
         <source>NectarLink %1 is available.</source>
-        <translation>NectarLink %1 ist verfügbar.</translation>
+        <translation>Panal %1 ist verfügbar.</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="500"/>
         <source>NectarLink is still on the version you had. Try again from Settings.</source>
-        <translation>NectarLink befindet sich noch auf der bisherigen Version. Versuche es über die Einstellungen erneut.</translation>
+        <translation>Panal befindet sich noch auf der bisherigen Version. Versuche es über die Einstellungen erneut.</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="501"/>
         <source>NectarLink is up to date.</source>
-        <translation>NectarLink ist auf dem neuesten Stand.</translation>
+        <translation>Panal ist auf dem neuesten Stand.</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="502"/>
         <source>NectarLink is updated to %1</source>
-        <translation>NectarLink wurde auf %1 aktualisiert</translation>
+        <translation>Panal wurde auf %1 aktualisiert</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="503"/>
@@ -9804,7 +9829,7 @@ Voraussetzungen
     <message>
         <location filename="rust_strings.h" line="510"/>
         <source>The update is installed. Restart NectarLink to use it.</source>
-        <translation>Das Update ist installiert. Starte NectarLink neu, um es zu verwenden.</translation>
+        <translation>Das Update ist installiert. Starte Panal neu, um es zu verwenden.</translation>
     </message>
     <message>
         <location filename="rust_strings.h" line="511"/>
@@ -9992,7 +10017,7 @@ Voraussetzungen
     <message>
         <location filename="../qml/pages/WalkthroughPage.qml" line="1555"/>
         <source>Keep NectarLink ready in the system tray when you sign in.</source>
-        <translation>NectarLink beim Anmelden im Infobereich bereithalten.</translation>
+        <translation>Panal beim Anmelden im Infobereich bereithalten.</translation>
     </message>
     <message>
         <location filename="../qml/pages/WalkthroughPage.qml" line="1613"/>
@@ -10037,7 +10062,7 @@ Voraussetzungen
     <message>
         <location filename="../qml/pages/WalkthroughPage.qml"/>
         <source>Welcome to NectarLink</source>
-        <translation>Willkommen bei NectarLink</translation>
+        <translation>Willkommen bei Panal</translation>
     </message>
     <message>
         <location filename="../qml/pages/WalkthroughPage.qml"/>
@@ -10047,7 +10072,7 @@ Voraussetzungen
     <message>
         <location filename="../qml/pages/WalkthroughPage.qml"/>
         <source>Install NectarLink on your phone</source>
-        <translation>NectarLink auf dem Gerät installieren</translation>
+        <translation>Panal auf dem Gerät installieren</translation>
     </message>
     <message>
         <location filename="../qml/pages/WalkthroughPage.qml"/>
@@ -10237,7 +10262,7 @@ Voraussetzungen
     <message>
         <location filename="../qml/pages/WalkthroughPage.qml"/>
         <source>Notifications are off for NectarLink in Windows Settings.</source>
-        <translation>Benachrichtigungen für NectarLink sind in den Windows-Einstellungen aus.</translation>
+        <translation>Benachrichtigungen für Panal sind in den Windows-Einstellungen aus.</translation>
     </message>
     <message>
         <location filename="../qml/pages/WalkthroughPage.qml"/>
@@ -10282,7 +10307,7 @@ Voraussetzungen
     <message>
         <location filename="../qml/pages/WalkthroughPage.qml"/>
         <source>Browse every feature in NectarLink, see what permissions it needs, and jump straight to it.</source>
-        <translation>Alle Funktionen von NectarLink ansehen, die nötigen Berechtigungen prüfen und direkt hinspringen.</translation>
+        <translation>Alle Funktionen von Panal ansehen, die nötigen Berechtigungen prüfen und direkt hinspringen.</translation>
     </message>
     <message>
         <location filename="../qml/pages/WalkthroughPage.qml"/>
@@ -10328,12 +10353,12 @@ Voraussetzungen
     <message>
         <location filename="../qml/pages/WelcomePage.qml" line="36"/>
         <source>Welcome to NectarLink</source>
-        <translation>Willkommen bei NectarLink</translation>
+        <translation>Willkommen bei Panal</translation>
     </message>
     <message>
         <location filename="../qml/pages/WelcomePage.qml" line="46"/>
         <source>NectarLink couldn&apos;t start.</source>
-        <translation>NectarLink konnte nicht gestartet werden.</translation>
+        <translation>Panal konnte nicht gestartet werden.</translation>
     </message>
     <message>
         <location filename="../qml/pages/WelcomePage.qml" line="47"/>

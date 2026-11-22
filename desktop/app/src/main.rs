@@ -47,6 +47,7 @@ mod photo_backup;
 mod photos;
 mod play_on_phone;
 mod qr;
+mod release_key;
 mod recordings;
 mod remote;
 mod send_to;
@@ -118,8 +119,8 @@ impl Platform for DesktopPlatform {
     fn power(&self, action: PowerAction) -> Result<(), String> {
         links::power(action)
     }
-    fn open_link(&self, _from: &nectarlink_core::DeviceId, url: &str) -> Result<(), String> {
-        links::open_here(url)
+    fn open_link(&self, from: &nectarlink_core::DeviceId, url: &str) -> Result<(), String> {
+        links::receive(from, url)
     }
     fn media_command(
         &self,

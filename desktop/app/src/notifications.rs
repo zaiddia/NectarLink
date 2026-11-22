@@ -452,6 +452,17 @@ pub fn on_toast(event: ToastEvent) {
             return crate::bridge::app::request_activation();
         }
         // New photos: open, save or copy one.
+        ToastEvent::Opened { device, key } if device == crate::links::TOAST_GROUP => {
+            crate::links::on_toast(&key);
+            return;
+        }
+        ToastEvent::Action { device, key, action } if device == crate::links::TOAST_GROUP => {
+            if action == crate::links::ACTION_OPEN_LINK {
+                crate::links::on_toast(&key);
+            }
+            return;
+        }
+        ToastEvent::Dismissed { device, .. } if device == crate::links::TOAST_GROUP => return,
         ToastEvent::Opened { device, key } if device == crate::photos::TOAST_GROUP => {
             return crate::photos::on_toast(key, None);
         }

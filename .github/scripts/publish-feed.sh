@@ -35,6 +35,11 @@ for attempt in 1 2 3 4 5; do
     fi
     cp "${feed}" "${dir}/${channel}.json"
     git -C "${dir}" add "${channel}.json"
+    # The feed's signature (sign-feed.sh); the PC app ignores a feed without one.
+    if [[ -f "${feed}.sig" ]]; then
+        cp "${feed}.sig" "${dir}/${channel}.json.sig"
+        git -C "${dir}" add "${channel}.json.sig"
+    fi
     if git -C "${dir}" diff --cached --quiet; then
         echo "${channel}.json already says ${version}"
         exit 0

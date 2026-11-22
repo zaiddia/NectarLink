@@ -114,7 +114,7 @@ EOF
 
           meta = with pkgs.lib; {
             description = "Your Android phone and your PC, working as one";
-            homepage = "https://github.com/thtbee/nectarlink";
+            homepage = "https://github.com/zaiddia/NectarLink";
             license = licenses.gpl3Plus;
             maintainers = with maintainers; [ ];
             platforms = platforms.linux;

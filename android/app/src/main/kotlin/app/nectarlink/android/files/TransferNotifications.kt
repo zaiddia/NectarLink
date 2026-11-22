@@ -125,12 +125,13 @@ internal object TransferNotifications {
     /**
      * Files from a PC are saved: tap to open the first one, or the
      * Downloads list when a folder came. When `openOnArrival` is true for a
-     * single safe document, attempts to open it immediately with the default app.
+     * single safe document and Open on arrival is on (Settings), opens it with the default app.
      */
     fun received(context: Context, transfer: Transfer, files: List<ReceivedFiles.Published>, pcName: String) {
         if (files.isEmpty()) return
         val first = files[0]
         val isHandoffDoc = transfer.openOnArrival &&
+            OpenOnArrival.isOn(context) &&
             files.size == 1 &&
             transfer.files.toInt() == 1 &&
             app.nectarlink.core.isSafeHandoffDocument(first.name)

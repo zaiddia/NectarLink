@@ -36,10 +36,10 @@ class AppUpdaterTest {
 
     private fun feed(channel: String, version: String, files: String): org.json.JSONObject = org.json.JSONObject(
         """{"schema":1,"channel":"$channel","version":"$version","name":"Amber Clover",
-            "notes":"https://github.com/thtbee/nectarlink/releases/tag/v$version","files":[$files]}""",
+            "notes":"https://github.com/zaiddia/NectarLink/releases/tag/v$version","files":[$files]}""",
     )
 
-    private fun apk(version: String, url: String = "https://github.com/thtbee/nectarlink/releases/download/v$version/Nectarlink-$version-android.apk") =
+    private fun apk(version: String, url: String = "https://github.com/zaiddia/NectarLink/releases/download/v$version/Nectarlink-$version-android.apk") =
         """{"name":"Nectarlink-$version-android.apk","url":"$url","sha256":"${"A".repeat(64)}","size":1}"""
 
     @Test
@@ -67,7 +67,7 @@ class AppUpdaterTest {
     fun filesFromElsewhereAreDropped() {
         val files = listOf(
             apk("0.1.5", url = "https://evil.example/Nectarlink-0.1.5-android.apk"),
-            apk("0.1.5", url = "https://github.com/thtbee/nectarlink/releases/download/../../x.apk"),
+            apk("0.1.5", url = "https://github.com/zaiddia/NectarLink/releases/download/../../x.apk"),
         ).joinToString(",")
         val checked = AppUpdater.checkedFeed(feed("stable", "0.1.5", files), AppUpdater.Channel.Stable)
         assertEquals(0, checked.getJSONArray("files").length())

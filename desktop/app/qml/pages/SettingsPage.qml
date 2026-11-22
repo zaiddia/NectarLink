@@ -2205,6 +2205,19 @@ Item {
                         Divider { width: parent.width }
                         ListRow {
                             width: parent.width
+                            iconPath: Icons.openExternal
+                            title: qsTr("Open links from the phone without asking")
+                            description: qsTr("Off: a notification shows the link and opens it when you choose Open.")
+                            Toggle {
+                                label: qsTr("Open links from the phone without asking")
+                                checked: Preferences.openLinks
+                                onToggled: (on) => Preferences.openLinks = on
+                            }
+                        }
+
+                        Divider { width: parent.width }
+                        ListRow {
+                            width: parent.width
                             stackBelow: true
                             iconPath: Icons.mic
                             title: qsTr("Voice recordings")

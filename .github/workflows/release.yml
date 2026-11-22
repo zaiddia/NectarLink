@@ -25,7 +25,7 @@ jobs:
     outputs:
       version: ${{ steps.check.outputs.version }}
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       - id: check
         run: |
           version=$(grep -m1 '^version = ' Cargo.toml | cut -d'"' -f2)
@@ -45,16 +45,60 @@ jobs:
       ANDROID_KEYSTORE: ${{ secrets.ANDROID_KEYSTORE }}
       ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
 
-  publish:
-    name: Draft the release
+  sign:
+    # Signs the release's SHA-256 sums with the update key, which the apps
+    # and install.sh check (desktop/app/src/release_key.rs). Kept apart: no
+    # write access, only first-party actions pinned by hash, and the key
+    # lives in the release-signing environment, where Settings ›
+    # Environments can require your approval before it's used.
+    name: Sign the sums
     needs: build
     runs-on: ubuntu-latest
+    environment: release-signing
+    permissions:
+      contents: read
     steps:
-      - uses: actions/download-artifact@v8
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
         with:
           path: files
           merge-multiple: true
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          path: source
+          sparse-checkout: .github/release-key.pub.pem
+          sparse-checkout-cone-mode: false
+      - name: Sign
+        env:
+          UPDATE_SIGNING_KEY: ${{ secrets.UPDATE_SIGNING_KEY }}
+        run: |
+          if [ -z "$UPDATE_SIGNING_KEY" ]; then echo "::error::the UPDATE_SIGNING_KEY secret isn't set"; exit 1; fi
+          umask 077
+          printf '%s\n' "$UPDATE_SIGNING_KEY" > "$RUNNER_TEMP/update-key.pem"
+          cd files
+          sha256sum *.exe *.deb *.rpm *.AppImage *.tar.gz *.apk install.sh > SHA256SUMS.txt
+          cat SHA256SUMS.txt
+          openssl pkeyutl -sign -inkey "$RUNNER_TEMP/update-key.pem" -rawin -in SHA256SUMS.txt -out SHA256SUMS.txt.sig
+          rm -f "$RUNNER_TEMP/update-key.pem"
+          # The key must be the one the apps carry.
+          openssl pkeyutl -verify -pubin -inkey ../source/.github/release-key.pub.pem -rawin \
+            -in SHA256SUMS.txt -sigfile SHA256SUMS.txt.sig
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: signed-sums
+          path: |
+            files/SHA256SUMS.txt
+            files/SHA256SUMS.txt.sig
+
+  publish:
+    name: Draft the release
+    needs: [build, sign]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
+        with:
+          path: files
+          merge-multiple: true
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           path: source
           sparse-checkout: |
@@ -69,13 +113,13 @@ jobs:
           name=$(awk '/^\[workspace.metadata.release\]/{f=1;next} /^\[/{f=0} f && /^name = /{print $3}' source/Cargo.toml | tr -d '"')
           title="NectarLink ${GITHUB_REF_NAME#v}${name:+ $name}"
           cd files
-          sha256sum *.exe *.deb *.rpm *.AppImage *.tar.gz *.apk install.sh > SHA256SUMS.txt
-          cat SHA256SUMS.txt
+          # The sums and their signature come from the sign job; check they still match.
+          sha256sum -c SHA256SUMS.txt
           # The notes: this version's section of CHANGELOG.md ("## <version> ..."),
           # with its wrapped lines joined, or GitHub's generated notes when
           # there isn't one.
           awk -v v="${GITHUB_REF_NAME#v}" '$1=="##" && $2==v {f=1; next} f && /^## / {exit} f' \
             ../source/CHANGELOG.md | awk -f ../source/.github/scripts/unwrap-notes.awk > notes.md || true
           if [ -s notes.md ]; then notes=(--notes-file notes.md); else notes=(--generate-notes); fi
-          gh release create "${{ github.ref_name }}" *.exe *.deb *.rpm *.AppImage *.tar.gz *.apk install.sh SHA256SUMS.txt \
+          gh release create "${{ github.ref_name }}" *.exe *.deb *.rpm *.AppImage *.tar.gz *.apk install.sh SHA256SUMS.txt SHA256SUMS.txt.sig \
             --repo "${{ github.repository }}" --draft "${notes[@]}" --title "$title"

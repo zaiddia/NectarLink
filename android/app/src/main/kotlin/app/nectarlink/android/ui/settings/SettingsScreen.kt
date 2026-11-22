@@ -760,6 +760,31 @@ fun SettingsScreen(
                             modifier = Modifier.semantics { contentDescription = suggestionsTitle },
                         )
                     }
+                    SettingRowDivider()
+                    val openOnArrivalContext = LocalContext.current
+                    var openOnArrival by remember {
+                        mutableStateOf(app.nectarlink.android.files.OpenOnArrival.isOn(openOnArrivalContext))
+                    }
+                    val openOnArrivalTitle = stringResource(R.string.settings_open_on_arrival)
+                    Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
+                        Column(Modifier.weight(1f).padding(end = 12.dp)) {
+                            Text(openOnArrivalTitle, style = MaterialTheme.typography.titleSmall)
+                            Text(
+                                stringResource(R.string.settings_open_on_arrival_hint),
+                                style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            )
+                        }
+                        Switch(
+                            checked = openOnArrival,
+                            onCheckedChange = { on ->
+                                openOnArrival = on
+                                app.nectarlink.android.files.OpenOnArrival.set(openOnArrivalContext, on)
+                            },
+                            colors = app.nectarlink.android.ui.theme.nectarSwitchColors(),
+                            modifier = Modifier.semantics { contentDescription = openOnArrivalTitle },
+                        )
+                    }
                 }
             }
 

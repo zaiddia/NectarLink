@@ -4837,6 +4837,21 @@ What it needs
         <source>Update NectarLink on %1.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../../src/links.rs" line="0"/>
+        <source>Your phone</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/links.rs" line="0"/>
+        <source>%1 sent a link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/links.rs" line="0"/>
+        <source>Open</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LockChip</name>
@@ -8430,6 +8445,16 @@ What it needs
     <message>
         <location filename="../../qml/pages/SettingsPage.qml" line="0"/>
         <source>The holographic grid drifts and scans.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../qml/pages/SettingsPage.qml" line="0"/>
+        <source>Open links from the phone without asking</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../qml/pages/SettingsPage.qml" line="0"/>
+        <source>Off: a notification shows the link and opens it when you choose Open.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

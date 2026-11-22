@@ -2494,6 +2494,7 @@ dependencies = [
  "cxx-qt-lib",
  "data-encoding",
  "dirs",
+ "ed25519-dalek",
  "embed-resource",
  "hostname",
  "libc",

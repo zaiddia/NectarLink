@@ -4,7 +4,7 @@
 # Installs NectarLink on Linux, with everything it needs, and shows each step
 # as it goes:
 #
-#   curl -fsSL https://github.com/thtbee/nectarlink/releases/latest/download/install.sh | sh
+#   curl -fsSL https://github.com/zaiddia/NectarLink/releases/latest/download/install.sh | sh
 #
 # It picks the package that fits this system (.deb with apt, .rpm with dnf
 # or zypper, the tarball elsewhere), checks it against the release's
@@ -26,7 +26,7 @@
 # Everything is in functions, called on the last line: piped into sh, the
 # whole script has arrived before anything runs.
 
-REPO="thtbee/nectarlink"
+REPO="zaiddia/NectarLink"
 DATA_PORT=7718
 MDNS_PORT=5353
 LOCALSEND_PORT=53317
@@ -37,6 +37,11 @@ VCAM_MODPROBE_CONF="/etc/modprobe.d/nectarlink-vcam.conf"
 UINPUT_RULE="/etc/udev/rules.d/70-nectarlink-uinput.rules"
 UINPUT_MODULES_CONF="/etc/modules-load.d/nectarlink-uinput.conf"
 PRIVATE_NETS="192.168.0.0/16 10.0.0.0/8 172.16.0.0/12"
+# This build's update signing key (desktop/app/src/release_key.rs): every
+# release's SHA256SUMS.txt must carry its Ed25519 signature.
+RELEASE_PUBLIC_KEY="-----BEGIN PUBLIC KEY-----
+MCowBQYDK2VwAyEA0Xf/MWe3wKc55rmjeXqcNVpuP481eMGG+GReK9un/ac=
+-----END PUBLIC KEY-----"
 
 STEP=0
 STEPS=7
@@ -277,6 +282,14 @@ download() {
     fetch "$BASE_URL/$ASSET" "$WORK/$ASSET" || fail "couldn't download $ASSET." \
         "If this release has no such file yet, try --package tarball."
     fetch "$BASE_URL/SHA256SUMS.txt" "$WORK/SHA256SUMS.txt" || fail "couldn't download SHA256SUMS.txt to check the download."
+    fetch "$BASE_URL/SHA256SUMS.txt.sig" "$WORK/SHA256SUMS.txt.sig" || fail "couldn't download SHA256SUMS.txt.sig to check the release's signature."
+    has openssl || fail "this needs openssl to check the release's signature." "Install openssl and run this again."
+    printf '%s\n' "$RELEASE_PUBLIC_KEY" > "$WORK/release-key.pem"
+    openssl pkeyutl -verify -pubin -inkey "$WORK/release-key.pem" -rawin \
+        -in "$WORK/SHA256SUMS.txt" -sigfile "$WORK/SHA256SUMS.txt.sig" >/dev/null 2>&1 \
+        || fail "SHA256SUMS.txt isn't signed with this build's release key; it may have been tampered with." \
+            "Nothing was installed."
+    good "Release signature is valid"
     size="$(du -h "$WORK/$ASSET" | cut -f1)"
     say "Downloaded $size"
     expected="$(awk -v f="$ASSET" '$2 == f || $2 == "*"f {print $1}' "$WORK/SHA256SUMS.txt" | head -n 1)"

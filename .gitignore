@@ -63,3 +63,6 @@ aqtinstall.log
 # Nix build outputs
 result
 result-*
+
+# The update signing key's public half (release_key.rs); never its private key.
+!.github/release-key.pub.pem

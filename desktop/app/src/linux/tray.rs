@@ -1643,7 +1643,7 @@ mod tests {
             open_link: "Open link".into(),
             quit: "Quit".into(),
         };
-        let tray = Tray::create("NectarLink", labels, |_| {}).expect("create tray");
+        let tray = Tray::create("Panal", labels, |_| {}).expect("create tray");
         tray.set_tooltip("NectarLink · Pixel 9");
         tray.set_find_phone_enabled(true);
         assert!(tray.icon_path.exists());

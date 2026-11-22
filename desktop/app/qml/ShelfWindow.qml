@@ -240,11 +240,31 @@ Window {
             radius: Theme.graphite ? Theme.radiusMd : Theme.radiusXl
             color: Theme.surface
             border.width: 1
-            border.color: shelfDropArea.containsDrag ? Theme.primary : Theme.outlineVariant
+            border.color: shelfDropArea.containsDrag ? Theme.primary : (Theme.nova ? Theme.cardBorder : Theme.outlineVariant)
 
             Behavior on border.color {
                 enabled: !Theme.reduceMotion
                 ColorAnimation { duration: Theme.fadeFast }
+            }
+
+            // Nova: the same holographic grid as the main window, kept clear
+            // of the rounded corners (a shader isn't clipped to them).
+            NovaBackdrop {
+                visible: Theme.nova
+                anchors.fill: parent
+                anchors.topMargin: panel.radius
+                anchors.bottomMargin: panel.radius
+                anchors.leftMargin: 1
+                anchors.rightMargin: 1
+                animate: Theme.gridMotion
+                time: Theme.combTime
+                cell: Theme.grid.cell
+                driftSeconds: Theme.grid.driftSeconds
+                scanSeconds: Theme.grid.scanSeconds
+                lineColor: Theme.gridLine
+                glowColor: Theme.gridGlow
+                accentColor: Theme.gridAccent
+                origin: Qt.point(width / 2, 0)
             }
 
             // Whole-window drop target so dropping anywhere on the Shelf queues a send with 3s Undo.

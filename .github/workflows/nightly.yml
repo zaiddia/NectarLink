@@ -31,7 +31,9 @@ concurrency:
 jobs:
   plan:
     name: Is a nightly due?
-    if: github.event_name != 'schedule' || github.repository == 'thtbee/nectarlink'
+    # Scheduled nightlies only when the repository variable NIGHTLY is "true"
+    # (Settings › Secrets and variables › Actions › Variables); by hand any time.
+    if: github.event_name != 'schedule' || vars.NIGHTLY == 'true'
     runs-on: ubuntu-latest
     outputs:
       due: ${{ steps.plan.outputs.due }}
@@ -41,7 +43,7 @@ jobs:
       commit: ${{ steps.plan.outputs.commit }}
       previous: ${{ steps.plan.outputs.previous }}
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           ref: main
           fetch-depth: 0
@@ -129,6 +131,8 @@ jobs:
     name: Publish the nightly
     needs: [plan, build]
     runs-on: ubuntu-latest
+    # The update key signs the sums and the feed; approve it like a release.
+    environment: release-signing
     env:
       GH_TOKEN: ${{ github.token }}
       VERSION: ${{ needs.plan.outputs.version }}
@@ -137,20 +141,24 @@ jobs:
       COMMIT: ${{ needs.plan.outputs.commit }}
       PREVIOUS: ${{ needs.plan.outputs.previous }}
     steps:
-      - uses: actions/download-artifact@v8
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
         with:
           path: files
           merge-multiple: true
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           path: source
-          sparse-checkout: .github/scripts
+          sparse-checkout: |
+            .github/scripts
+            .github/release-key.pub.pem
       - name: Publish it as a pre-release
         run: |
           set -euo pipefail
           cd files
           sha256sum *.exe *.deb *.rpm *.AppImage *.tar.gz *.apk install.sh > SHA256SUMS.txt
           cat SHA256SUMS.txt
+          UPDATE_SIGNING_KEY="${{ secrets.UPDATE_SIGNING_KEY }}" \
+            bash ../source/.github/scripts/sign-feed.sh SHA256SUMS.txt ../source/.github/release-key.pub.pem
           compare=""
           if [ -n "$PREVIOUS" ]; then
             compare="What changed since the last nightly: https://github.com/$GITHUB_REPOSITORY/compare/$PREVIOUS...v$VERSION"
@@ -161,13 +169,15 @@ jobs:
             "A build for trying what's new before it's released, with the latest fixes and features and sometimes new bugs. NectarLink installs on the Nightly channel update to it by themselves; to get it, pick **Nightly** under Settings, Updates, in the PC app or on the phone." \
             "" \
             "$compare" > notes.md
-          gh release create "v$VERSION" *.exe *.deb *.rpm *.AppImage *.tar.gz *.apk install.sh SHA256SUMS.txt \
+          gh release create "v$VERSION" *.exe *.deb *.rpm *.AppImage *.tar.gz *.apk install.sh SHA256SUMS.txt SHA256SUMS.txt.sig \
             --repo "$GITHUB_REPOSITORY" --target "$COMMIT" --prerelease \
             --title "Nightly $NUMBER · $NAME ($VERSION)" --notes-file notes.md
       - name: Point the nightly feed at it
         run: |
           set -euo pipefail
           python3 source/.github/scripts/write-feed.py nightly "v$VERSION" "$NAME" nightly.json
+          UPDATE_SIGNING_KEY="${{ secrets.UPDATE_SIGNING_KEY }}" \
+            bash source/.github/scripts/sign-feed.sh nightly.json source/.github/release-key.pub.pem
           bash source/.github/scripts/publish-feed.sh nightly nightly.json
       - name: Keep the last six nightlies
         run: |

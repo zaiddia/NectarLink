@@ -814,7 +814,7 @@ mod imp {
             key: format!("storage-refused-{device}"),
             title: tr!("Storage", "%1's files aren't shared with this PC", name),
             body,
-            attribution: "NectarLink".into(),
+            attribution: "Panal".into(),
             icon: None,
             image: None,
             actions: Vec::new(),

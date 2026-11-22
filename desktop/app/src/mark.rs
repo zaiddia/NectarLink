@@ -1,29 +1,23 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
-//! The NectarLink mark, the Waggle Dance (`assets/brand/icon.svg`): two loops,
-//! the phone and the PC, around a drop of nectar, tilted like a bee's waggle
-//! run, on an espresso tile with a warm glow. Drawn in code at any pixel
-//! size: the tray, window and toast icons at runtime, and the executable's
-//! icon at build time (`build.rs` includes this file), so every size is sharp
-//! without bitmap assets. At 32 px and below the strokes are heavier and the
-//! tile fills more of the square, as in the hand-tuned small sizes.
+//! The Panal mark (`assets/brand/icon.svg`): a honeycomb cell, the link
+//! between the phone and the PC, in electric cyan around a violet core, on
+//! a deep-space tile with a cyan glow (the Nova palette). Drawn in code at
+//! any pixel size: the tray, window and toast icons at runtime, and the
+//! executable's icon at build time (`build.rs` includes this file), so every
+//! size is sharp without bitmap assets. At 32 px and below the strokes are
+//! heavier and the tile fills more of the square.
 
-/// Espresso tile, its glow, the honey rim, and the two loops and the drop
-/// (docs/design/tokens.json, Honey palette).
-const TILE: [f32; 3] = rgb(0x2C, 0x16, 0x00);
-const GLOW: [f32; 3] = rgb(0x69, 0x3C, 0x00);
-const RIM: [f32; 3] = rgb(0xFF, 0xB9, 0x5F);
-const PHONE: [f32; 3] = rgb(0xFF, 0xF8, 0xF3);
-const PC: [f32; 3] = rgb(0xFF, 0xDD, 0xB8);
-const NECTAR: [f32; 3] = rgb(0xFF, 0xB9, 0x5F);
+/// Deep-space tile, its glow, the cyan rim, the cell and its core
+/// (docs/design/tokens.json, Nova palette).
+const TILE: [f32; 3] = rgb(0x07, 0x0A, 0x12);
+const GLOW: [f32; 3] = rgb(0x0A, 0x3B, 0x4C);
+const RIM: [f32; 3] = rgb(0x5C, 0xE1, 0xFF);
+const CELL: [f32; 3] = rgb(0x5C, 0xE1, 0xFF);
+const CORE: [f32; 3] = rgb(0xB3, 0x88, 0xFF);
 
-/// The loops in a 100×100 design grid, before the tilt: each is two cubic
-/// Béziers (start, control, control, end, control, control, end).
-const LEFT_LOOP: [(f32, f32); 7] =
-    [(41.5, 42.5), (26.0, 24.0), (13.5, 31.0), (13.5, 50.0), (13.5, 69.0), (26.0, 76.0), (41.5, 57.5)];
-const RIGHT_LOOP: [(f32, f32); 7] =
-    [(58.5, 42.5), (74.0, 24.0), (86.5, 31.0), (86.5, 50.0), (86.5, 69.0), (74.0, 76.0), (58.5, 57.5)];
-/// The tilt, degrees (counterclockwise on screen).
-const TILT: f32 = -25.0;
+/// The cell's and the core's circumradius in the 100×100 design grid
+/// (pointy-top hexagons around the centre).
+const CELL_RADIUS: f32 = 30.0;
 
 /// Supersampling grid per pixel (SS×SS samples) for smooth edges.
 const SS: usize = 4;
@@ -37,26 +31,40 @@ struct Geometry {
     inset: f32,
     corner: f32,
     stroke: f32,
-    drop: f32,
+    core: f32,
 }
 
 impl Geometry {
     fn for_size(size: usize) -> Self {
         if size <= 32 {
-            Geometry { inset: 2.0, corner: 20.0, stroke: 11.4, drop: 8.8 }
+            Geometry { inset: 2.0, corner: 20.0, stroke: 11.0, core: 13.0 }
         } else {
-            Geometry { inset: 4.0, corner: 22.0, stroke: 10.4, drop: 8.2 }
+            Geometry { inset: 4.0, corner: 22.0, stroke: 9.0, core: 11.0 }
         }
     }
+}
+
+/// A pointy-top hexagon's corners around the centre of the design grid.
+fn hexagon(radius: f32) -> Vec<(f32, f32)> {
+    (0..=6)
+        .map(|k| {
+            let a = (-90.0 + 60.0 * (k % 6) as f32).to_radians();
+            (50.0 + radius * a.cos(), 50.0 + radius * a.sin())
+        })
+        .collect()
+}
+
+/// Whether (x, y) is inside a convex polygon given as a closed polyline.
+fn inside(polygon: &[(f32, f32)], (x, y): (f32, f32)) -> bool {
+    polygon.windows(2).all(|w| (w[1].0 - w[0].0) * (y - w[0].1) - (w[1].1 - w[0].1) * (x - w[0].0) >= 0.0)
 }
 
 /// Renders the mark as straight-alpha RGBA, row by row, `size`×`size`.
 pub fn render(size: usize) -> Vec<u8> {
     let g = Geometry::for_size(size);
     let unit = 100.0 / size as f32;
-    let left = polyline(&LEFT_LOOP);
-    let right = polyline(&RIGHT_LOOP);
-    let (sin, cos) = (-TILT.to_radians()).sin_cos();
+    let cell = hexagon(CELL_RADIUS);
+    let core = hexagon(g.core);
     // The rim is at least about a pixel wide, so the tile keeps an edge on dark taskbars.
     let rim = (1.5f32).max(unit * 0.6);
 
@@ -75,16 +83,11 @@ pub fn render(size: usize) -> Vec<u8> {
                         continue;
                     }
                     covered += 1;
-                    // Undo the tilt to test against the upright loops.
                     let (dx, dy) = (x - 50.0, y - 50.0);
-                    let (ux, uy) = (50.0 + dx * cos - dy * sin, 50.0 + dx * sin + dy * cos);
-                    let half = g.stroke / 2.0;
-                    let paint = if (dx * dx + dy * dy).sqrt() <= g.drop {
-                        NECTAR
-                    } else if distance_to(&left, (ux, uy)) <= half {
-                        PHONE
-                    } else if distance_to(&right, (ux, uy)) <= half {
-                        PC
+                    let paint = if inside(&core, (x, y)) {
+                        CORE
+                    } else if distance_to(&cell, (x, y)) <= g.stroke / 2.0 {
+                        CELL
                     } else if -edge <= rim {
                         mix(TILE, RIM, 0.34)
                     } else {
@@ -129,28 +132,6 @@ fn rounded_square_distance(x: f32, y: f32, inset: f32, r: f32) -> f32 {
     (qx * qx + qy * qy).sqrt() - r
 }
 
-/// A loop's two Béziers as points close enough together to measure against.
-fn polyline(loop_points: &[(f32, f32); 7]) -> Vec<(f32, f32)> {
-    const STEPS: usize = 32;
-    let mut points = Vec::with_capacity(STEPS * 2 + 1);
-    for segment in [&loop_points[0..4], &loop_points[3..7]] {
-        for step in 0..=STEPS {
-            if step == 0 && !points.is_empty() {
-                continue;
-            }
-            let t = step as f32 / STEPS as f32;
-            let u = 1.0 - t;
-            let (a, b, c, d) = (segment[0], segment[1], segment[2], segment[3]);
-            let w = [u * u * u, 3.0 * u * u * t, 3.0 * u * t * t, t * t * t];
-            points.push((
-                w[0] * a.0 + w[1] * b.0 + w[2] * c.0 + w[3] * d.0,
-                w[0] * a.1 + w[1] * b.1 + w[2] * c.1 + w[3] * d.1,
-            ));
-        }
-    }
-    points
-}
-
 fn distance_to(polyline: &[(f32, f32)], p: (f32, f32)) -> f32 {
     polyline.windows(2).map(|w| dist_to_segment(p, w[0], w[1])).fold(f32::INFINITY, f32::min)
 }
@@ -173,26 +154,25 @@ mod tests {
     }
 
     #[test]
-    fn corners_are_transparent_and_the_drop_sits_in_the_middle() {
+    fn corners_are_transparent_and_the_core_sits_in_the_middle() {
         let size = 64;
         let img = render(size);
         assert_eq!(img.len(), size * size * 4);
         assert_eq!(pixel(&img, size, 0, 0)[3], 0, "rounded corner");
         let middle = pixel(&img, size, 32, 32);
-        assert_eq!(middle, [0xFF, 0xB9, 0x5F, 255], "the nectar drop");
-        // Near the top edge, between the loops: the dark tile.
-        let tile = pixel(&img, size, 32, 8);
-        assert!(tile[0] < 0x80 && tile[3] == 255, "{tile:?}");
+        assert_eq!(middle, [0xB3, 0x88, 0xFF, 255], "the violet core");
+        // Near the top edge, above the cell: the dark tile.
+        let tile = pixel(&img, size, 32, 6);
+        assert!(tile[0] < 0x40 && tile[3] == 255, "{tile:?}");
     }
 
     #[test]
-    fn both_loops_are_drawn() {
+    fn the_cell_is_drawn_on_both_sides() {
         let size = 128;
         let img = render(size);
-        let light = |p: [u8; 4]| p[0] > 0xF0 && p[3] == 255;
-        // Somewhere left and right of the drop there's loop ink.
-        let left = (8..56).any(|x| light(pixel(&img, size, x, 64)) || light(pixel(&img, size, x, 70)));
-        let right = (72..120).any(|x| light(pixel(&img, size, x, 64)) || light(pixel(&img, size, x, 58)));
+        let cyan = |p: [u8; 4]| p == [0x5C, 0xE1, 0xFF, 255];
+        let left = (16..44).any(|x| cyan(pixel(&img, size, x, 64)));
+        let right = (84..112).any(|x| cyan(pixel(&img, size, x, 64)));
         assert!(left && right);
     }
 
