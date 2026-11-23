@@ -34,12 +34,15 @@ export BIN_PATH="${WORK}/panal" QMAKE="${WORK}/qmake" OUT_DIR="${DIST}" VERSION=
 "${SCRIPT_DIR}/build-tarball.sh" >/dev/null
 cp "${SCRIPT_DIR}/install.sh" "${DIST}/install.sh"
 (cd "${DIST}" && sha256sum ./*.deb ./*.rpm ./*.tar.gz | sed 's| \./| |' > SHA256SUMS.txt)
+openssl genpkey -algorithm ed25519 -out "${WORK}/test-key.pem"
+openssl pkey -in "${WORK}/test-key.pem" -pubout -out "${DIST}/test-key.pub.pem"
+openssl pkeyutl -sign -rawin -inkey "${WORK}/test-key.pem" -in "${DIST}/SHA256SUMS.txt" -out "${DIST}/SHA256SUMS.txt.sig"
 chmod -R a+rX "${WORK}"
 
 check() {
     local name="$1" image="$2" script="$3"
     echo "--- ${name} (${image})"
-    if "${DOCKER}" run --rm -v "${DIST}:/dist:ro" -e NECTARLINK_ASSETS_DIR=/dist "${image}" sh -euc "${script}" \
+    if "${DOCKER}" run --rm -v "${DIST}:/dist:ro" -e NECTARLINK_ASSETS_DIR=/dist -e NECTARLINK_TEST_RELEASE_KEY=/dist/test-key.pub.pem "${image}" sh -euc "${script}" \
         > "${WORK}/${name}.log" 2>&1; then
         grep -E '^(\[|      [A-Z])' "${WORK}/${name}.log" || true
         echo "--- ${name}: passed"
@@ -63,14 +66,14 @@ check rpm registry.fedoraproject.org/fedora:40 "${ROOT_ROUND_TRIP}"
 check tarball docker.io/library/archlinux:latest "${ROOT_ROUND_TRIP}"
 check home-folder docker.io/library/ubuntu:24.04 '
     useradd -m user
-    su user -c "NECTARLINK_ASSETS_DIR=/dist sh /dist/install.sh"
+    su user -c "NECTARLINK_ASSETS_DIR=/dist NECTARLINK_TEST_RELEASE_KEY=/dist/test-key.pub.pem sh /dist/install.sh"
     su user -c "~/.local/bin/panal --version" >/dev/null
     test -f /home/user/.local/share/applications/panal.desktop
-    su user -c "NECTARLINK_ASSETS_DIR=/dist sh /dist/install.sh --uninstall"
+    su user -c "NECTARLINK_ASSETS_DIR=/dist NECTARLINK_TEST_RELEASE_KEY=/dist/test-key.pub.pem sh /dist/install.sh --uninstall"
     ! test -e /home/user/.local/bin/panal'
 check bad-checksum docker.io/library/ubuntu:24.04 '
     mkdir /tampered && cp /dist/* /tampered/
     echo tampered >> /tampered/panal_9.9.9_amd64.deb
-    ! NECTARLINK_ASSETS_DIR=/tampered sh /tampered/install.sh
+    ! NECTARLINK_ASSETS_DIR=/tampered NECTARLINK_TEST_RELEASE_KEY=/tampered/test-key.pub.pem sh /tampered/install.sh
     ! command -v panal'
 echo "All install.sh checks passed."

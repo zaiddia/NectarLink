@@ -230,8 +230,14 @@ jobs:
         # Ubuntu, the .rpm on Fedora, and the tarball in a home folder.
         run: |
           (cd dist && sha256sum *.deb *.rpm *.tar.gz > SHA256SUMS.txt)
+          # The real signature is made later, with the release key; here a
+          # throwaway key signs the sums so install.sh's check runs too.
+          openssl genpkey -algorithm ed25519 -out "$RUNNER_TEMP/test-key.pem"
+          openssl pkey -in "$RUNNER_TEMP/test-key.pem" -pubout -out dist/test-key.pub.pem
+          openssl pkeyutl -sign -rawin -inkey "$RUNNER_TEMP/test-key.pem" \
+            -in dist/SHA256SUMS.txt -out dist/SHA256SUMS.txt.sig
           for image in ubuntu:24.04 fedora:40; do
-            docker run --rm -v "$PWD/dist:/dist:ro" -e NECTARLINK_ASSETS_DIR=/dist "$image" sh -euc '
+            docker run --rm -v "$PWD/dist:/dist:ro" -e NECTARLINK_ASSETS_DIR=/dist -e NECTARLINK_TEST_RELEASE_KEY=/dist/test-key.pub.pem "$image" sh -euc '
               sh /dist/install.sh
               panal --version
               sh /dist/install.sh --uninstall
@@ -246,10 +252,10 @@ jobs:
           docker run --rm -v "$PWD/dist:/dist:ro" ubuntu:24.04 sh -euc '
             apt-get update -qq
             DEBIAN_FRONTEND=noninteractive apt-get install -y -qq --no-install-recommends /dist/*.deb >/dev/null
-            apt-get remove -y -qq nectarlink >/dev/null
+            apt-get remove -y -qq panal >/dev/null
             useradd -m user
-            su user -c "NECTARLINK_ASSETS_DIR=/dist sh /dist/install.sh && ~/.local/bin/panal --version"'
-          rm dist/SHA256SUMS.txt
+            su user -c "NECTARLINK_ASSETS_DIR=/dist NECTARLINK_TEST_RELEASE_KEY=/dist/test-key.pub.pem sh /dist/install.sh && ~/.local/bin/panal --version"'
+          rm dist/SHA256SUMS.txt dist/SHA256SUMS.txt.sig dist/test-key.pub.pem
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
         with:
           name: linux

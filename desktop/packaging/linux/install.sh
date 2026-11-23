@@ -285,6 +285,11 @@ download() {
     fetch "$BASE_URL/SHA256SUMS.txt.sig" "$WORK/SHA256SUMS.txt.sig" || fail "couldn't download SHA256SUMS.txt.sig to check the release's signature."
     has openssl || fail "this needs openssl to check the release's signature." "Install openssl and run this again."
     printf '%s\n' "$RELEASE_PUBLIC_KEY" > "$WORK/release-key.pem"
+    # Tests of local files (NECTARLINK_ASSETS_DIR) sign them with a throwaway
+    # key; a download from GitHub always uses the built-in key.
+    if [ -n "${NECTARLINK_ASSETS_DIR:-}" ] && [ -n "${NECTARLINK_TEST_RELEASE_KEY:-}" ]; then
+        cp "$NECTARLINK_TEST_RELEASE_KEY" "$WORK/release-key.pem" || fail "couldn't read $NECTARLINK_TEST_RELEASE_KEY."
+    fi
     openssl pkeyutl -verify -pubin -inkey "$WORK/release-key.pem" -rawin \
         -in "$WORK/SHA256SUMS.txt" -sigfile "$WORK/SHA256SUMS.txt.sig" >/dev/null 2>&1 \
         || fail "SHA256SUMS.txt isn't signed with this build's release key; it may have been tampered with." \
