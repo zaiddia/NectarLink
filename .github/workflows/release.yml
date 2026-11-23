@@ -93,6 +93,10 @@ jobs:
     name: Draft the release
     needs: [build, sign]
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      # To run channels.yml for a release that was published by hand.
+      actions: write
     steps:
       - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
         with:
@@ -121,5 +125,17 @@ jobs:
           awk -v v="${GITHUB_REF_NAME#v}" '$1=="##" && $2==v {f=1; next} f && /^## / {exit} f' \
             ../source/CHANGELOG.md | awk -f ../source/.github/scripts/unwrap-notes.awk > notes.md || true
           if [ -s notes.md ]; then notes=(--notes-file notes.md); else notes=(--generate-notes); fi
-          gh release create "${{ github.ref_name }}" *.exe *.deb *.rpm *.AppImage *.tar.gz *.apk install.sh SHA256SUMS.txt SHA256SUMS.txt.sig \
-            --repo "${{ github.repository }}" --draft "${notes[@]}" --title "$title"
+          files=(*.exe *.deb *.rpm *.AppImage *.tar.gz *.apk install.sh SHA256SUMS.txt SHA256SUMS.txt.sig)
+          if gh release view "${{ github.ref_name }}" --repo "${{ github.repository }}" >/dev/null 2>&1; then
+            # Someone made the release by hand on GitHub (which also made the
+            # tag): add the files to it instead of drafting a second one.
+            gh release upload "${{ github.ref_name }}" "${files[@]}" --clobber --repo "${{ github.repository }}"
+            if [ "$(gh release view "${{ github.ref_name }}" --repo "${{ github.repository }}" --json isDraft --jq .isDraft)" = false ]; then
+              # It was already published, before it had files, so the stable
+              # feed couldn't be made then: make it now.
+              gh workflow run channels.yml --ref main -f tag="${{ github.ref_name }}" --repo "${{ github.repository }}"
+            fi
+          else
+            gh release create "${{ github.ref_name }}" "${files[@]}" \
+              --repo "${{ github.repository }}" --draft "${notes[@]}" --title "$title"
+          fi
